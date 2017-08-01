@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':xDSDKAndroid')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-v4:25.0.0'
+    compile files('libs/classes.jar')
+}
+
+android.libraryVariants.all { variant ->
+    def task = project.tasks.create "jar${variant.buildType.name.capitalize()}", Jar
+    task.dependsOn variant.javaCompile
+    task.from variant.javaCompile.destinationDir
+    artifacts.add('archives', task);
+}
+
+task jarUnityXDSDKLib(type: Jar, dependsOn: ['build']) {
+    archiveName = 'SDkLibForUnity.jar'
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('com/xd/sdklib/BuildConfig.class')
+    exclude('com/xd/sdklib/BuildConfig\$*.class')
+    exclude('com/xd/unitysdk/BuildConfig.class')
+    exclude('com/xd/unitysdk/BuildConfig\$*.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+    include('com/xd/unitysdk/*.class')
+
+
+}
