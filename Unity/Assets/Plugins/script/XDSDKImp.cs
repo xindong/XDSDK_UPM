@@ -30,7 +30,7 @@ namespace xdsdk
 
 		public void HideGuest(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			hideGuest();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -40,7 +40,7 @@ namespace xdsdk
 
 		public void HideWX(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			hideWeiChat();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -50,7 +50,7 @@ namespace xdsdk
 
 		public void HideQQ(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			hideQQ();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -60,7 +60,7 @@ namespace xdsdk
 
 		public void ShowVC(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			showVC();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -70,7 +70,7 @@ namespace xdsdk
 
 		public void SetQQWeb(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			setQQWeb();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -80,7 +80,7 @@ namespace xdsdk
 
 		public void SetWXWeb(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			setWXWeb();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -90,7 +90,7 @@ namespace xdsdk
 
 		public string GetSDKVersion(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			return getSDKVersion();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -101,7 +101,7 @@ namespace xdsdk
 
 		public void Init(string appid, int aOrientation){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			initSDK(appid,aOrientation);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -112,7 +112,7 @@ namespace xdsdk
 		public void Login(){
 
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			login();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -122,7 +122,7 @@ namespace xdsdk
 
 		public string GetAccessToken(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			return getAccessToken();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -133,7 +133,7 @@ namespace xdsdk
 
 		public bool IsLoggedIn(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			return isLoggedIn();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -144,7 +144,7 @@ namespace xdsdk
 
 		public bool OpenUserCenter(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			return openUserCenter();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -156,6 +156,7 @@ namespace xdsdk
 		public bool Pay(Dictionary<string, string> info){
 
 			#if UNITY_IOS && !UNITY_EDITOR
+			pay(info["Product_Name"],info["Product_Id"],info["Product_Price"],info["Sid"],info["Role_Id"],info["OrderId"],info["EXT"]);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -167,7 +168,7 @@ namespace xdsdk
 
 		public void Logout(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			logout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -186,9 +187,47 @@ namespace xdsdk
 			#endif
 		}
 
+		[DllImport("__Internal")]
+		private static extern void initSDK(string appid, int aOrientation);
 
+		[DllImport("__Internal")]
+		private static extern void login();
 
+		[DllImport("__Internal")]
+		private static extern bool isLoggedIn();
 
+		[DllImport("__Internal")]
+		private static extern void logout();
+
+		[DllImport("__Internal")]
+		private static extern bool openUserCenter();
+
+		[DllImport("__Internal")]
+		private static extern void pay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);
+
+		[DllImport("__Internal")]
+		private static extern string getSDKVersion();
+
+		[DllImport("__Internal")]
+		private static extern string getAccessToken();
+
+		[DllImport("__Internal")]
+		private static extern void hideGuest();
+
+		[DllImport("__Internal")]
+		private static extern void hideQQ();
+
+		[DllImport("__Internal")]
+		private static extern void hideWeiChat();
+
+		[DllImport("__Internal")]
+		private static extern void showVC();
+
+		[DllImport("__Internal")]
+		private static extern void setQQWeb();
+
+		[DllImport("__Internal")]
+		private static extern void setWXWeb();
 
 
 		#if UNITY_IOS && !UNITY_EDITOR
