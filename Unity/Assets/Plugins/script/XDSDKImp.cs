@@ -105,7 +105,7 @@ namespace xdsdk
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("initSDK","a4d6xky5gt4c80s", 1);
+			jc.CallStatic ("initSDK",appid, aOrientation);
 			#endif
 		}
 
