@@ -80,7 +80,7 @@ public class UnitySDK{
     private static final XDCallback xdCallback = new XDCallback() {
         @Override
         public void onInitSucceed() {
-            UnityPlayer.UnitySendMessage("XDSDK", "onInitSucceed", "");
+            UnityPlayer.UnitySendMessage("XDSDK", "OnInitSucceed", "");
         }
 
         @Override
