@@ -417,6 +417,8 @@ resource | 心动SDK需要或依赖的资源文件，需要保证所有文件都
 libs | 心动SDK依赖的其它库文件，需要添加到项目依赖中
 wrapper| Unity ObjC 桥接文件
 
+将以上文件导入Xcode工程。
+
 ### 3.2. 添加系统依赖库
 
 ```
@@ -503,6 +505,8 @@ tencent{QQ AppID}|用于QQ授权登录后跳回|tencent317081|如果给到的心
 ### 3.6. Buid Settings
 
 Enable Bitcode = NO
+
+##### 完成以上配置即可进行编译打包。
 
 ## 4. 服务端对接
 
