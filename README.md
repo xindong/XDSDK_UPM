@@ -284,18 +284,18 @@ XDSDK.Exit();
 
 ## 2.Android
 
-### 2.1.1.按需要修改AndroidManifest
+### 2.1.按需要修改AndroidManifest
 
 <p> 根据需要修改Plugins/Android/AndroidManifest.xml中的主Activity屏幕方向
 </p>
 
-### 2.1.3.生成APK
+### 2.2.生成APK
 
 <p>在Unity中生成APK，或将工程导出至Android Studio进行打包。
 
 <img src="img/2.png"></img>
 
-### 2.1.3.接入微信分享
+### 2.3.接入微信分享
 
 <p>心动SDK目前仅提供微信登录功能，如果游戏需要使用微信分享功能，需要自行接入微信分享功能。需要注意下面几点。</p>
 
