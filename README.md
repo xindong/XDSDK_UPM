@@ -21,7 +21,7 @@ Plugins/Android/res | 心动SDK Android资源文件
 
 
 
-### 1.2.实现并设置回调方法
+### 1.2.实现并设置回调方法
 
 <p> 脚本需要实现的回调请参考以下代码： </p>
 
@@ -284,14 +284,14 @@ XDSDK.Exit();
 
 ## 2.Android
 
-### 2.1.1.按需要修改AndroidManifest
+### 2.1.1.按需要修改AndroidManifest
 
 <p> 根据需要修改Plugins/Android/AndroidManifest.xml中的主Activity屏幕方向
 </p>
 
 ### 2.1.3.生成APK
 
-<p>在Unity中生成APK，或将工程导出至Android Studio进行打包。
+<p>在Unity中生成APK，或将工程导出至Android Studio进行打包。
 
 <img src="img/2.png"></img>
 
@@ -299,7 +299,7 @@ XDSDK.Exit();
 
 <p>心动SDK目前仅提供微信登录功能，如果游戏需要使用微信分享功能，需要自行接入微信分享功能。需要注意下面几点。</p>
 
-<p style="color:red">需要将工程导出至Android Studio进行操作</p>
+<p style="color:red">需要将工程导出至Android Studio进行操作</p>
 
 <p style="color:red">微信分享的微信AppID必须使用心动提供的微信AppID，否则会导致微信登录失败</p>
 
@@ -400,4 +400,4 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 }
 ```
 
-## 3.iOS
+## 3.iOS
