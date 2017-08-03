@@ -134,7 +134,7 @@ XDSDK.InitSDK ("xxxxxx", 1);
 调用该接口进行登录。
 
 ```
-public static void Login(){
+public static void Login()
 ```
 
 示例代码
@@ -276,6 +276,7 @@ XDSDK.Exit();
 ```
 
 调用该接口会触发下列回调
+
 类别 | 回调方法
 --- | ---
 确认退出 | public void OnExitConfirm() 
@@ -401,3 +402,178 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 ```
 
 ## 3.iOS
+
+用Unity导出Xcode工程并打开
+
+### 3.1. 导入SDK文件
+
+从心动平台处获取SDK，其中主要的文件或目录用途如下。
+
+目录或文件 | 用途
+--- | ---
+XdComPlatform.framework | 心动SDK的主要库文件，需要添加到项目依赖中 
+XDStore.framework | 心动SDK支付组建，需要添加到项目依赖库中
+resource | 心动SDK需要或依赖的资源文件，需要保证所有文件都被添加到了Xcode的“Copy Bundle Resources”中
+libs | 心动SDK依赖的其它库文件，需要添加到项目依赖中
+wrapper| Unity ObjC 桥接文件
+
+### 3.2. 添加系统依赖库
+
+```
+libz.tbd
+libsqlite3.tbd
+libicucore.tbd
+*请核对下列库文件是否已自动添加*
+Security.framework 
+CFNetwork.framework
+UIKit.framework
+QuartzCore.framework
+Foundation.framework
+CoreGraphics.Framework
+CoreTelephony.framework
+SystemConfiguration.framework
+libiconv.tbd
+libstdc++.tbd
+```
+
+### 3.3. 设置 URL Types
+
+需要在Xcode中设置多个URL Types，URL Types主要是需要设置URL Schemes，其它选项可任意填写。按照下面表格的内容填写，注意替换其中的各项AppID。
+
+URL Schemes | 用途 |示例 |备注
+---|---|---|---|
+XD-{心动AppID}|用于支付宝支付后跳回|XD-ci2dos1ktzsca4f
+{微信AppID}| 用于微信授权登录后跳回|wx19f231d77ac408d9
+tencent{QQ AppID}|用于QQ授权登录后跳回|tencent317081|如果给到的心动AppID没有对应的QQ AppID，可以不配置该项
+
+### 3.4. 配置 info.plist
+
+修改项目的info.plist，在<dict>节点中添加下列内容。修改的内容主要为了保证QQ和微信登录能够正常运行。
+
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+<string>mqq</string>
+<string>mqqapi</string>
+<string>wtloginmqq2</string>
+<string>mqqopensdkapiV4</string>
+<string>mqqopensdkapiV3</string>
+<string>mqqopensdkapiV2</string>
+<string>mqqwpa</string>
+<string>mqqOpensdkSSoLogin</string>
+<string>mqqgamebindinggroup</string>
+<string>mqqopensdkfriend</string>
+<string>mqzone</string>
+<string>weixin</string>
+<string>wechat</string>
+</array>
+<key>NSAppTransportSecurity</key>
+<dict>
+<key>NSAllowsArbitraryLoads</key>
+<true/>
+</dict>
+
+```
+
+### 3.5. 处理第三发应用跳回事件
+
+<p style="color:red">
+在UnityAppController.mm中增加如下两个方法，如果已经存在这些方法，在其中追加相应的处理代码即可。请务必添加下列代码，否则将影响第三方登录的授权回调。
+</p>
+
+```
+#import <XdComPlatform/XDCore.h>
+```
+
+```
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation{
+	
+	...
+	...
+    ...
+   return [XDCore HandleXDOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options{
+    
+    return [XDCore HandleXDOpenURL:url];
+}
+```
+
+### 3.6. Buid Settings
+
+Enable Bitcode = NO
+
+## 4. 服务端对接
+
+### 4.1	获取用户信息
+游戏服务端使用客户端获取的access token，按照下面的方式获取用户信息。
+
+```
+接口：https://api.xd.com/v1/user
+method：GET
+参数：access_token
+请求示例：https://api.xd.com/v1/user?access_token=1234
+成功判断：返回的HTTP Code为200时表示成功，否则失败
+返回数据格式：application/json
+返回值示例：
+{"id":”a13”,"name":"xdname","friendly_name":"xdfriendly_name","client_id":"abc"}
+id：用户的ID，注意类型是字符串
+name：用户的账号名称
+friendly_name：用户的昵称，如果游戏想要展现用户名称，建议使用该字段
+client_id：该用户首次在该游戏登录时使用的心动AppID
+```
+### 4.2.	处理支付回调
+游戏服务端需要提供一个能够处理支付回调的接口，这个接口是申请心动AppID时需要的。处理逻辑中，需要使用一个密钥进行加密验证，该密钥即为心动AppKey。
+当心动平台处有充值成功时，心动服务端会通知到支付回调接口，信息如下。
+
+```
+method：POST
+数据格式：application/x-www-form-urlencoded
+
+```
+字段如下。
+
+
+字段 | 类型 | 描述
+--- | --- | ---
+order_id | number | 心动平台的订单号，相同订单号表示是同一笔支付
+payment | string | 支付方式，appstore或其它（若回调无该字段，则默认为appstore）
+user_id | string | 充值用户ID，注意类型是字符串
+client_id | string | 充值的心动AppID
+app | string | 同client_id
+app_id | string | 游戏客户端调用充值时传递的Sid字段
+app\_order_id | string | 游戏客户端调用充值时传递的OrderId字段
+role_id | string | 游戏客户端调用充值时传递的Role_Id字段
+product_id | string | 支付购买的商品ID
+gold | number | 支付实际所付金额，单位元。（仅在客户端使用非AppStore支付方式支付时才有该字段）
+ext | string | 游戏客户端调用充值时传递的EXT字段
+timestamp | number | 时间戳，1990年到当前时间的秒数
+sign | string | 签名校验字段，按照下面的方式进行校验
+
+签名算法示例，使用php语言。
+
+```
+/**
+* @param params 类型array，支付回调时收到的参数
+* @param appKey 类型string，心动AppKey
+*/
+function verify_sign($params, $appKey) {
+$tmp = $params;
+$sign = $tmp['sign'];
+unset($tmp['sign']);
+ksort($tmp);
+
+return strcasecmp($sign, md5(http_build_query($tmp) . $appKey)) == 0;
+}
+```
+
+<p style="color:red">
+需要注意
+</br>
+1、游戏服务端应该按照order_id进行排重，相同order_id仅生效一次。
+</br>
+2、游戏服务端成功处理了支付回调后，应当返回字符串“success”，如果是一笔已经处理的重复的订单，也应该返回“success”。
+</br>
+3、只要通过签名校验的回调，都应该视为合法数据，按照如下逻辑发放道具。A.如果payment字段为appstore，即AppStore支付，直接按照product_id字段进行道具发放；B.如果payment字段为其它值，需要验证gold字段和 product_id 字段是否相符，如果相符，按照product_id发放道具，如果不相符，直接按照gold字段折算成对应的游戏货币发放。
+</p>
