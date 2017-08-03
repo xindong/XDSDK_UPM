@@ -13,7 +13,7 @@
 --- |---
 Plugins/script/XDSDK.cs | 心动SDK接口
 Plugins/script/XDCallback.cs | 心动SDK回调
-Plugins/script/XDSDKImp.cs | 心动SDK调用原生方法
+Plugins/script/XDSDKImp.cs | 心动SDK调用原生方法
 Plugins/Android/libs | 心动SDK Android依赖库
 Plugins/Android/res | 心动SDK Android资源文件
 
