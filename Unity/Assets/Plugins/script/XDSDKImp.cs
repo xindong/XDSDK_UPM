@@ -99,7 +99,7 @@ namespace xdsdk
 			return "0.0.0";
 		}
 
-		public void Init(string appid, int aOrientation){
+		public void InitSDK(string appid, int aOrientation){
 			#if UNITY_IOS && !UNITY_EDITOR
 			initSDK(appid,aOrientation);
 

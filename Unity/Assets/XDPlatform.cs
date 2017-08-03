@@ -21,7 +21,7 @@ public class XDPlatform : MonoBehaviour {
 
 			xdsdk.XDSDK.SetCallback (new XDSDKHandler ());
 
-			xdsdk.XDSDK.Init ("d4bjgwom9zk84wk", 1);
+			xdsdk.XDSDK.InitSDK ("d4bjgwom9zk84wk", 1);
 		}
 
 		if(GUI.Button(new Rect(280,80,100,100),"登录")) {  

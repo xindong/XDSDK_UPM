@@ -45,8 +45,8 @@ namespace xdsdk
 
 		}
         
-		public static void Init(string appid, int aOrientation){
-			XDSDKImp.GetInstance ().Init (appid, aOrientation);
+		public static void InitSDK(string appid, int aOrientation){
+			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation);
         }
 
 		public static void Login(){
