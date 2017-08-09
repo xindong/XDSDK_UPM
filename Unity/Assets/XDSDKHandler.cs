@@ -53,13 +53,13 @@ public class XDSDKHandler : xdsdk.XDCallback {
 	public override void OnPayCompleted (){
 		Debug.Log ("OnPayCompleted");
 	
-		sdk_debug_msg ("onInitSucceed");
+		sdk_debug_msg ("OnPayCompleted");
 	}
 
 	public override void OnPayFailed (string msg){
 		Debug.Log ("OnPayFailed: " + msg);
 	
-		sdk_debug_msg ("onInitSucceed");
+		sdk_debug_msg ("OnPayFailed");
 	}
 
 
