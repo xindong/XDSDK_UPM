@@ -7,6 +7,7 @@
 ### 1.1.导入SDK资源
 
 <p> 下载“XDSDK For Unity 3D”版本的SDK包。将其中的XDSDKForUnity.unitypackage文件导入到Unity工程里面（如果无法导入，请再次确认文件是放置于非中文路径下的），如下图所示： </p>
+
 <img src="img/1.png"></img>
 
 目录或文件 | 用途
@@ -16,6 +17,13 @@ Plugins/script/XDCallback.cs | 心动SDK回调
 Plugins/script/XDSDKImp.cs | 心动SDK调用原生方法
 Plugins/Android/libs | 心动SDK Android依赖库
 Plugins/Android/res | 心动SDK Android资源文件
+Plugins/iOS/libRMStore | 心动SDK iOS支付库组件
+Plugins/iOS/libWeChatSDK | 心动SDK iOS微信依赖库
+Plugins/iOS/libXDSDKiOSWrapper | 心动SDK iOS桥接组件
+Library/TencentOpenAPI.framework | 心动SDK iOSQQ登录库文件
+Library/XdComPlatform.framework | 心动SDK iOS核心依赖库 
+Library/XDStore.framework | 心动SDK iOS支付组件
+
 
 <p> 导入后，将Plugins/script下面的XDSDKListener.cs脚本文件拖动到长生命周期的对象中进行脚本挂接。 </p>
 
@@ -28,50 +36,62 @@ Plugins/Android/res | 心动SDK Android资源文件
 ```
 public class XDSDKHandler : XDCallback {
 
+	//初始化成功回调
 	public override void OnInitSucceed (){
 
 	}
-
+	
+	//初始化失败回调
 	public override void OnInitFailed (string msg){
 
 	}
 
+	//登录成功回调
 	public override void OnLoginSucceed (string token){
 
 	}
 
+	//登录失败回调
 	public override void OnLoginFailed (string msg){
 
 	}
-
+	
+	//登录取消回调
 	public override void OnLoginCanceled (){
 
 	}
 
+	//游客绑定成功回调
 	public override void OnGuestBindSucceed (string token){
 
 	}
 
+	//登出回调
 	public override void OnLogoutSucceed (){
 
 	}
 
+	//支付完成回调
 	public override void OnPayCompleted (){
 
 	}
 
+	//支付失败回调
 	public override void OnPayFailed (string msg){
 
 	}
 
+	//支付取消回调
 	public override void OnPayCanceled (){
 
 	}
 
+	//Android 退出回调
 	public override void OnExitConfirm (){
 
 	}
 
+	//Android 取消退出回调
 	public override void OnExitCancel (){
 
 	}
@@ -411,15 +431,12 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
 ### 3.1. 导入SDK文件
 
-从心动平台处获取SDK，其中主要的文件或目录用途如下。
+从心动平台处获取SDK资源文件，其中主要的文件或目录用途如下。
 
 目录或文件 | 用途
 --- | ---
-XdComPlatform.framework | 心动SDK的主要库文件，需要添加到项目依赖中 
-XDStore.framework | 心动SDK支付组建，需要添加到项目依赖库中
 resource | 心动SDK需要或依赖的资源文件，需要保证所有文件都被添加到了Xcode的“Copy Bundle Resources”中
-libs | 心动SDK依赖的其它库文件，需要添加到项目依赖中
-wrapper| Unity ObjC 桥接文件
+
 
 将以上文件导入Xcode工程。
 
