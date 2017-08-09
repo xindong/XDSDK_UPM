@@ -17,7 +17,7 @@ Plugins/script/XDSDKImp.cs | 心动SDK调用原生方法
 Plugins/Android/libs | 心动SDK Android依赖库
 Plugins/Android/res | 心动SDK Android资源文件
 
-<p> 导入后，将Plugins/script下面的XDSDK.cs脚本文件拖动到任意对象中进行脚本挂接。 </p>
+<p> 导入后，将Plugins/script下面的XDSDKListener.cs脚本文件拖动到长生命周期的对象中进行脚本挂接。 </p>
 
 
 

@@ -6,130 +6,76 @@ using System;
 
 namespace xdsdk
 {
-	public class XDSDK : MonoBehaviour
+	public class XDSDK
 	{
-		void Start () {
-			this.name = "XDSDK";
-		}
-		
+		//设置回调方法
 		public static void SetCallback(XDCallback callback){
 			XDSDKImp.GetInstance ().SetCallback (callback);
         }
-			
+		//隐藏游客登录	
 		public static void HideGuest(){
 			XDSDKImp.GetInstance ().HideGuest ();
 		}
-
+		//隐藏微信登录
 		public static void HideWX(){
 			XDSDKImp.GetInstance ().HideWX ();
 		}
-
+		//隐藏QQ登录
 		public static void HideQQ(){
 			XDSDKImp.GetInstance ().HideQQ ();
 		}
-
+		//显示VeryCD登录（此接口供老游戏兼容，新游戏不建议调用）
 		public static void ShowVC(){
 			XDSDKImp.GetInstance ().ShowVC ();
 		}
-
+		//设置QQ为Web登录方式
 		public static void SetQQWeb(){
 			XDSDKImp.GetInstance ().SetQQWeb ();
 		}
-
+		//设置微信为Web 扫码登录方式
 		public static void SetWXWeb(){
 			XDSDKImp.GetInstance ().SetWXWeb ();
 		}
-
+		//获取SDK版本
 		public static string GetSDKVersion(){
 			return XDSDKImp.GetInstance ().GetSDKVersion ();
 
 		}
-        
+		//初始化心动SDK
 		public static void InitSDK(string appid, int aOrientation){
 			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation);
         }
-
+		//登录
 		public static void Login(){
 			XDSDKImp.GetInstance ().Login ();
 		}
-
+		//获取Access Token
 		public static string GetAccessToken(){
 			return XDSDKImp.GetInstance ().GetAccessToken ();
 		
 		}
-
+		//获取当前登录状态
 		public static bool IsLoggedIn(){
 			return XDSDKImp.GetInstance ().IsLoggedIn ();
 		
 		}
-
+		//打开用户中心
 		public static bool OpenUserCenter(){
 			return XDSDKImp.GetInstance ().OpenUserCenter ();
 		
 		}
-
+		//发起支付
 		public static bool Pay(Dictionary<string, string> info){
 			return XDSDKImp.GetInstance ().Pay (info);
 		
 		}
-
+		//登出
 		public static void Logout(){
 			XDSDKImp.GetInstance ().Logout ();
 		}
-
+		//退出
 		public static void Exit(){
 			XDSDKImp.GetInstance ().Exit ();
-		}
-
-
-
-		//callback
-		public void OnInitSucceed (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnInitSucceed ();
-		}
-
-		public void OnInitFailed (string msg){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnInitFailed (msg);
-		}
-
-		public void OnLoginSucceed (string token){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnLoginSucceed (token);
-		}
-
-		public void OnLoginFailed (string msg){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnLoginFailed (msg);
-		}
-
-		public void OnLoginCanceled (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnLoginCanceled ();
-		}
-
-		public void OnGuestBindSucceed (string token){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnGuestBindSucceed (token);
-		}
-
-		public void OnLogoutSucceed (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnLogoutSucceed ();
-		}
-
-		public void OnPayCompleted (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnPayCompleted ();
-		}
-
-		public void OnPayFailed (string msg){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnPayFailed (msg);
-		}
-
-		public void OnPayCanceled (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnPayCanceled ();
-		}
-
-		public void OnExitConfirm (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnExitConfirm ();
-		}
-
-		public void OnExitCancel (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnExitCancel ();
 		}
 
 	}
