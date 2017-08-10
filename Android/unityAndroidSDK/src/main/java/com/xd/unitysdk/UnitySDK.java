@@ -10,6 +10,8 @@ import com.xd.xdsdk.ExitCallback;
 import com.xd.xdsdk.XDCallback;
 import com.xd.xdsdk.XDCore;
 import com.xd.xdsdk.XDSDK;
+import com.xd.xdsdk.share.XDWXShare;
+import com.xd.xdsdk.share.XDWXShareObject;
 
 import java.util.Map;
 
@@ -18,6 +20,7 @@ public class UnitySDK{
 
     public static void initSDK(String appid, int aOrientation) {
         XDSDK.setCallback(xdCallback);
+        XDWXShare.setWXShareCallBack(wxShareCallback);
         XDSDK.initSDK(UnityPlayer.currentActivity, appid, aOrientation);
     }
 
@@ -75,6 +78,37 @@ public class UnitySDK{
 
     public static void setWXWeb() {
         XDSDK.setWXWeb();
+    }
+
+    public static void shareToWX(Map<String, String> content) {
+        XDWXShareObject wxShareObject = new XDWXShareObject();
+        wxShareObject.setTitle(content.get("title"));
+        wxShareObject.setDescription(content.get("description"));
+        wxShareObject.setThumbPath(content.get("thumb"));
+        if(content.get("scene").equals("SESSION")){
+            wxShareObject.setScene(XDWXShareObject.SCENE_SESSION);
+        }else if (content.get("scene").equals("TIMELINE")){
+            wxShareObject.setScene(XDWXShareObject.SCENE_TIMELINE);
+        }else if (content.get("scene").equals("FAVOURITE")){
+            wxShareObject.setScene(XDWXShareObject.SCENE_FAVOURITE);
+        }
+        if (content.get("type").equals("TEXT")){
+            wxShareObject.setText(content.get("text"));
+            wxShareObject.setType(XDWXShareObject.TYPE_TEXT);
+        }else if (content.get("type").equals("IMAGE")){
+            wxShareObject.setImagePath(content.get("image"));
+            wxShareObject.setType(XDWXShareObject.TYPE_IMAGE);
+        }else if (content.get("type").equals("MUSIC")){
+            wxShareObject.setMusicUrl(content.get("music"));
+            wxShareObject.setType(XDWXShareObject.TYPE_MUSIC);
+        }else if (content.get("type").equals("VIDEO")){
+            wxShareObject.setVideoUrl(content.get("video"));
+            wxShareObject.setType(XDWXShareObject.TYPE_VIDEO);
+        }else if (content.get("type").equals("WEB")){
+            wxShareObject.setWebPageUrl(content.get("web"));
+            wxShareObject.setType(XDWXShareObject.TYPE_WEB);
+        }
+        XDWXShare.share(wxShareObject);
     }
 
     private static final XDCallback xdCallback = new XDCallback() {
@@ -140,6 +174,20 @@ public class UnitySDK{
             UnityPlayer.UnitySendMessage("XDSDK", "OnExitCancel", "");
         }
     };
+
+    private static final XDWXShare.XDWXShareCallback wxShareCallback= new XDWXShare.XDWXShareCallback() {
+        @Override
+        public void onWXShareSucceed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareSucceed", "");
+        }
+
+        @Override
+        public void onWXShareFailed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareFailed", "");
+        }
+    };
+
+
 
 
 }

@@ -187,6 +187,17 @@ namespace xdsdk
 			#endif
 		}
 
+		public void Share(Dictionary<string, string> content){
+			#if UNITY_IOS && !UNITY_EDITOR
+
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("shareToWX", DicToMap(content));
+			#endif
+		}
+			
+
 		[DllImport("__Internal")]
 		private static extern void initSDK(string appid, int aOrientation);
 

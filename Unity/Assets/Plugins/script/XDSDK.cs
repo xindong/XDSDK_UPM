@@ -78,5 +78,10 @@ namespace xdsdk
 			XDSDKImp.GetInstance ().Exit ();
 		}
 
+		//分享至微信
+		public static void Share(Dictionary<string, string> content){
+			XDSDKImp.GetInstance ().Share (content);
+		}
+
 	}
 }

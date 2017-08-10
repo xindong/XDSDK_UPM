@@ -81,6 +81,20 @@ public class XDSDKHandler : xdsdk.XDCallback {
 		sdk_debug_msg ("OnExitCancel");
 	}
 
+	public override void OnWXShareSucceed (){
+		Debug.Log ("OnWXShareSucceed");
+
+		sdk_debug_msg ("OnExitCancel");
+	}
+
+	public override void OnWXShareFailed (){
+		Debug.Log ("OnWXShareFailed");
+
+		sdk_debug_msg ("OnExitCancel");
+	}
+
+
+
 	[DllImport("__Internal")]
 	private static extern void sdk_debug_msg(string msg);
 

@@ -31,5 +31,9 @@ namespace xdsdk
 
 		public abstract void OnExitCancel ();
 
+		public virtual void OnWXShareSucceed (){}
+
+		public virtual void OnWXShareFailed (){}
+
     }
 }
