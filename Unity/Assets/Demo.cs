@@ -93,9 +93,9 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("text", "aaaa");
+			content.Add ("text", "***text***");
 			content.Add ("scene", "SESSION");
-			content.Add ("type", "TEXT");
+			content.Add ("shareType", "TEXT");
 			xdsdk.XDSDK.Share (content);
 		}
 
@@ -103,10 +103,10 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("thumb", "/storage/emulated/0/2.png");
-			content.Add ("image", "/storage/emulated/0/2.png");
+			content.Add ("thumbPath", "/storage/emulated/0/2.png");
+			content.Add ("imageUrl", "/storage/emulated/0/2.png");
 			content.Add ("scene", "SESSION");
-			content.Add ("type", "IMAGE");
+			content.Add ("shareType", "IMAGE");
 			xdsdk.XDSDK.Share (content);
 		}
 
@@ -114,11 +114,10 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("thumb", "/storage/emulated/0/2.png");
-			content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");
-//			content.Add("music", "http://xd.com");
+			content.Add ("thumbPath", "/storage/emulated/0/2.png");
+			content.Add ("musicUrl", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");
 			content.Add ("scene", "SESSION");
-			content.Add ("type", "MUSIC");
+			content.Add ("shareType", "MUSIC");
 			xdsdk.XDSDK.Share (content);
 		}
 
@@ -126,10 +125,10 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-//			content.Add ("thumb", "/storage/emulated/0/2.png");
-			content.Add ("video", "xd.com");
+			content.Add ("thumbPath", "/storage/emulated/0/2.png");
+			content.Add ("videoUrl", "xd.com");
 			content.Add ("scene", "SESSION");
-			content.Add ("type", "VIDEO");
+			content.Add ("shareType", "VIDEO");
 			xdsdk.XDSDK.Share (content);
 		}
 
@@ -137,10 +136,10 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("thumb", "/storage/emulated/0/2.png");
-			content.Add ("web", "xd.com");
+			content.Add ("thumbPath", "/storage/emulated/0/2.png");
+			content.Add ("webpageUrl", "xd.com");
 			content.Add ("scene", "SESSION");
-			content.Add ("type", "WEB");
+			content.Add ("shareType", "WEB");
 			xdsdk.XDSDK.Share (content);
 		}
 

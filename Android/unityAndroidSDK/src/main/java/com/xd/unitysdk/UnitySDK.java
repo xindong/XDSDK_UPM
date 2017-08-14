@@ -85,7 +85,7 @@ public class UnitySDK{
         XDWXShareObject wxShareObject = new XDWXShareObject();
         wxShareObject.setTitle(content.get("title"));
         wxShareObject.setDescription(content.get("description"));
-        wxShareObject.setThumb(content.get("thumb"));
+        wxShareObject.setThumb(content.get("thumbPath"));
         if(content.get("scene").equals("SESSION")){
             wxShareObject.setScene(XDWXShareObject.SCENE_SESSION);
         }else if (content.get("scene").equals("TIMELINE")){
@@ -93,20 +93,20 @@ public class UnitySDK{
         }else if (content.get("scene").equals("FAVOURITE")){
             wxShareObject.setScene(XDWXShareObject.SCENE_FAVOURITE);
         }
-        if (content.get("type").equals("TEXT")){
+        if (content.get("shareType").equals("TEXT")){
             wxShareObject.setText(content.get("text"));
             wxShareObject.setType(XDWXShareObject.TYPE_TEXT);
-        }else if (content.get("type").equals("IMAGE")){
-            wxShareObject.setImage(content.get("image"));
+        }else if (content.get("shareType").equals("IMAGE")){
+            wxShareObject.setImage(content.get("imageUrl"));
             wxShareObject.setType(XDWXShareObject.TYPE_IMAGE);
-        }else if (content.get("type").equals("MUSIC")){
-            wxShareObject.setMusicUrl(content.get("music"));
+        }else if (content.get("shareType").equals("MUSIC")){
+            wxShareObject.setMusicUrl(content.get("musicUrl"));
             wxShareObject.setType(XDWXShareObject.TYPE_MUSIC);
-        }else if (content.get("type").equals("VIDEO")){
-            wxShareObject.setVideoUrl(content.get("video"));
+        }else if (content.get("shareType").equals("VIDEO")){
+            wxShareObject.setVideoUrl(content.get("videoUrl"));
             wxShareObject.setType(XDWXShareObject.TYPE_VIDEO);
-        }else if (content.get("type").equals("WEB")){
-            wxShareObject.setWebPageUrl(content.get("web"));
+        }else if (content.get("shareType").equals("WEB")){
+            wxShareObject.setWebPageUrl(content.get("webpageUrl"));
             wxShareObject.setType(XDWXShareObject.TYPE_WEB);
         }
         XDWXShare.share(wxShareObject);
@@ -183,8 +183,8 @@ public class UnitySDK{
         }
 
         @Override
-        public void onWXShareFailed() {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareFailed", "");
+        public void onWXShareFailed(String msg) {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareFailed", msg);
         }
     };
 

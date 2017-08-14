@@ -334,47 +334,47 @@ content.Add ("title", "***title***");  //标题
 content.Add ("description", "***description***"); //描述
 content.Add ("text", "***text***"); //内容
 content.Add ("scene", "SESSION"); //scene场景值
-content.Add ("type", "TEXT");  //分享类型 文字
+content.Add ("shareType", "TEXT");  //分享类型 文字
 xdsdk.XDSDK.Share (content);
 
 //分享图片
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***");  //标题
 content.Add ("description", "***description***");  //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("image", "/storage/emulated/0/2.png"); //图片路径
+content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("imageUrl", "/storage/emulated/0/2.png"); //图片路径
 content.Add ("scene", "SESSION"); //scene场景值
-content.Add ("type", "IMAGE");  //分享类型 图片
+content.Add ("shareType", "IMAGE");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
 
 //分享音乐
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
+content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("musicUrl", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("type", "MUSIC");  //分享类型 图片
+content.Add ("shareType", "MUSIC");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
 
 //分享视频
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("video", "xd.com");  //视频url
+content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("videoUrl", "xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("type", "VIDEO");  //分享类型 图片
+content.Add ("shareType", "VIDEO");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
 
 //分享网页
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("web", "xd.com");  //视频url
+content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("webpageUrl", "xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("type", "WEB");  //分享类型 图片
+content.Add ("shareType", "WEB");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
 ```
 
