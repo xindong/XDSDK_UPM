@@ -14,6 +14,7 @@ import com.xd.xdsdk.share.XDWXShare;
 import com.xd.xdsdk.share.XDWXShareObject;
 
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class UnitySDK{
 
@@ -84,7 +85,7 @@ public class UnitySDK{
         XDWXShareObject wxShareObject = new XDWXShareObject();
         wxShareObject.setTitle(content.get("title"));
         wxShareObject.setDescription(content.get("description"));
-        wxShareObject.setThumbPath(content.get("thumb"));
+        wxShareObject.setThumb(content.get("thumb"));
         if(content.get("scene").equals("SESSION")){
             wxShareObject.setScene(XDWXShareObject.SCENE_SESSION);
         }else if (content.get("scene").equals("TIMELINE")){
@@ -96,7 +97,7 @@ public class UnitySDK{
             wxShareObject.setText(content.get("text"));
             wxShareObject.setType(XDWXShareObject.TYPE_TEXT);
         }else if (content.get("type").equals("IMAGE")){
-            wxShareObject.setImagePath(content.get("image"));
+            wxShareObject.setImage(content.get("image"));
             wxShareObject.setType(XDWXShareObject.TYPE_IMAGE);
         }else if (content.get("type").equals("MUSIC")){
             wxShareObject.setMusicUrl(content.get("music"));

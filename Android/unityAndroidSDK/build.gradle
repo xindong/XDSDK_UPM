@@ -38,7 +38,7 @@ android.libraryVariants.all { variant ->
 }
 
 task jarUnityXDSDKLib(type: Jar, dependsOn: ['build']) {
-    archiveName = 'SDkLibForUnity.jar'
+    archiveName = 'SDKLibForUnity.jar'
     from('build/intermediates/classes/release')
     destinationDir = file('build/libs')
     exclude('com/xd/sdklib/BuildConfig.class')

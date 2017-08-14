@@ -41,6 +41,7 @@ public class Demo : MonoBehaviour {
 			info.Add("Product_Id", "4");
 			info.Add("Product_Name", "648大礼包");
 			xdsdk.XDSDK.Pay (info);
+
 		}
 
 		if (GUI.Button (new Rect (50, 1100, 300, 100), "登出", myButtonStyle)){
@@ -92,8 +93,7 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("thumb", "***thumb***");
-			content.Add ("text", "***text***");
+			content.Add ("text", "aaaa");
 			content.Add ("scene", "SESSION");
 			content.Add ("type", "TEXT");
 			xdsdk.XDSDK.Share (content);
@@ -116,6 +116,7 @@ public class Demo : MonoBehaviour {
 			content.Add ("description", "***description***");
 			content.Add ("thumb", "/storage/emulated/0/2.png");
 			content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");
+//			content.Add("music", "http://xd.com");
 			content.Add ("scene", "SESSION");
 			content.Add ("type", "MUSIC");
 			xdsdk.XDSDK.Share (content);
@@ -125,7 +126,7 @@ public class Demo : MonoBehaviour {
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
-			content.Add ("thumb", "/storage/emulated/0/2.png");
+//			content.Add ("thumb", "/storage/emulated/0/2.png");
 			content.Add ("video", "xd.com");
 			content.Add ("scene", "SESSION");
 			content.Add ("type", "VIDEO");

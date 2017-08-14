@@ -36,65 +36,75 @@ Library/XDStore.framework | 心动SDK iOS支付组件
 ```
 public class XDSDKHandler : XDCallback {
 
-	//初始化成功回调
-	public override void OnInitSucceed (){
+    //初始化成功回调
+    public override void OnInitSucceed (){
 
-	}
+    }
 	
-	//初始化失败回调
-	public override void OnInitFailed (string msg){
+    //初始化失败回调
+    public override void OnInitFailed (string msg){
 
-	}
+    }
 
-	//登录成功回调
-	public override void OnLoginSucceed (string token){
+    //登录成功回调
+    public override void OnLoginSucceed (string token){
 
-	}
+    }
 
-	//登录失败回调
-	public override void OnLoginFailed (string msg){
+    //登录失败回调
+    public override void OnLoginFailed (string msg){
 
-	}
+    }
 	
-	//登录取消回调
-	public override void OnLoginCanceled (){
+    //登录取消回调
+    public override void OnLoginCanceled (){
 
-	}
+    }
 
-	//游客绑定成功回调
-	public override void OnGuestBindSucceed (string token){
+    //游客绑定成功回调
+    public override void OnGuestBindSucceed (string token){
 
-	}
+    }
 
-	//登出回调
-	public override void OnLogoutSucceed (){
+    //登出回调
+    public override void OnLogoutSucceed (){
 
-	}
+    }
 
-	//支付完成回调
-	public override void OnPayCompleted (){
+    //支付完成回调
+    public override void OnPayCompleted (){
 
-	}
+    }
 
-	//支付失败回调
-	public override void OnPayFailed (string msg){
+    //支付失败回调
+    public override void OnPayFailed (string msg){
 
-	}
+    }
 
-	//支付取消回调
-	public override void OnPayCanceled (){
+    //支付取消回调
+    public override void OnPayCanceled (){  
 
-	}
+    }
 
-	//Android 退出回调
-	public override void OnExitConfirm (){
+    //Android 退出回调
+    public override void OnExitConfirm (){
 
-	}
+    }
 
-	//Android 取消退出回调
-	public override void OnExitCancel (){
+    //Android 取消退出回调
+    public override void OnExitCancel (){
 
-	}
+    }
+
+    //微信分享成功回调（可选）
+    public override void OnWXShareSucceed (){
+
+    }
+
+    //微信分享失败回调（可选）
+    public override void OnWXShareFailed (){
+
+    }
 
 }
 ```
@@ -302,6 +312,73 @@ XDSDK.Exit();
 确认退出 | public void OnExitConfirm() 
 取消退出 | public void OnExitCancel() 
 
+### 1.13.微信分享
+
+调用心动SDK的微信分享功能。
+
+
+分享或收藏的目标场景，通过设置scene场景值实现。
+
+发送到聊天界面 —— SESSION
+
+发送到朋友圈 —— TIMELINE
+
+添加到微信收藏 —— FAVOURITE
+
+示例代码
+
+```
+//分享文字
+Dictionary<string, string> content = new Dictionary<string, string> ();
+content.Add ("title", "***title***");  //标题
+content.Add ("description", "***description***"); //描述
+content.Add ("text", "***text***"); //内容
+content.Add ("scene", "SESSION"); //scene场景值
+content.Add ("type", "TEXT");  //分享类型 文字
+xdsdk.XDSDK.Share (content);
+
+//分享图片
+Dictionary<string, string> content = new Dictionary<string, string> ();
+content.Add ("title", "***title***");  //标题
+content.Add ("description", "***description***");  //描述
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("image", "/storage/emulated/0/2.png"); //图片路径
+content.Add ("scene", "SESSION"); //scene场景值
+content.Add ("type", "IMAGE");  //分享类型 图片
+xdsdk.XDSDK.Share (content);
+
+//分享音乐
+Dictionary<string, string> content = new Dictionary<string, string> ();
+content.Add ("title", "***title***"); //标题
+content.Add ("description", "***description***"); //描述
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
+content.Add ("scene", "SESSION");  //scene场景值
+content.Add ("type", "MUSIC");  //分享类型 图片
+xdsdk.XDSDK.Share (content);
+
+//分享视频
+Dictionary<string, string> content = new Dictionary<string, string> ();
+content.Add ("title", "***title***"); //标题
+content.Add ("description", "***description***"); //描述
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("video", "xd.com");  //视频url
+content.Add ("scene", "SESSION");  //scene场景值
+content.Add ("type", "VIDEO");  //分享类型 图片
+xdsdk.XDSDK.Share (content);
+
+//分享网页
+Dictionary<string, string> content = new Dictionary<string, string> ();
+content.Add ("title", "***title***"); //标题
+content.Add ("description", "***description***"); //描述
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("web", "xd.com");  //视频url
+content.Add ("scene", "SESSION");  //scene场景值
+content.Add ("type", "WEB");  //分享类型 图片
+xdsdk.XDSDK.Share (content);
+```
+
+
 
 ## 2.Android
 
@@ -322,7 +399,9 @@ XDSDK.Exit();
 
 <p style="color:red">需要将工程导出至Android Studio进行操作</p>
 
-<p style="color:red">微信分享的微信AppID必须使用心动提供的微信AppID，否则会导致微信登录失败</p>
+<p style="color:red">使用心动SDK提供的分享功能，可略过该部分。</p>
+<p style="color:red">如果游戏仍需要自行接入微信分享，需进行以下处理。</p>
+<p style="color:red">微信分享的微信AppID必须使用心动提供的微信AppID，否则会导致微信登录失败。</p>
 
 <p>接入其它SDK提供的微信分享功能时，会被要求在项目中增加一个类“{游戏包名}.wxapi.WXEntryActivity”，这个类可能是复制SDK提供的一个类，或者继承SDK的一个类。无论如何，将其修改为另一个名字，比如“{游戏包名}.wxapi.MYWXEntryActivity”。</p>
 <p>修改AndroidManifest中，Activity的配置内容</p>
