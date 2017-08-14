@@ -312,7 +312,7 @@ XDSDK.Exit();
 确认退出 | public void OnExitConfirm() 
 取消退出 | public void OnExitCancel() 
 
-### 1.13.微信分享
+### 1.13.微信分享
 
 调用心动SDK的微信分享功能。
 
@@ -341,8 +341,8 @@ xdsdk.XDSDK.Share (content);
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***");  //标题
 content.Add ("description", "***description***");  //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("image", "/storage/emulated/0/2.png"); //图片路径
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("image", "/storage/emulated/0/2.png"); //图片路径
 content.Add ("scene", "SESSION"); //scene场景值
 content.Add ("type", "IMAGE");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
@@ -351,8 +351,8 @@ xdsdk.XDSDK.Share (content);
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("music", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
 content.Add ("scene", "SESSION");  //scene场景值
 content.Add ("type", "MUSIC");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
@@ -361,8 +361,8 @@ xdsdk.XDSDK.Share (content);
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("video", "xd.com");  //视频url
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("video", "xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
 content.Add ("type", "VIDEO");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
@@ -371,8 +371,8 @@ xdsdk.XDSDK.Share (content);
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
-content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("web", "xd.com");  //视频url
+content.Add ("thumb", "/storage/emulated/0/2.png"); //预览图路径
+content.Add ("web", "xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
 content.Add ("type", "WEB");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
