@@ -15,7 +15,6 @@
 
 #define XdComPlatform_XDCore_h
 
-
 /**
  心动SDK
  */

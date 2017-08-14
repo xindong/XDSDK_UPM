@@ -84,13 +84,13 @@ public class XDSDKHandler : xdsdk.XDCallback {
 	public override void OnWXShareSucceed (){
 		Debug.Log ("OnWXShareSucceed");
 
-		sdk_debug_msg ("OnExitCancel");
+		sdk_debug_msg ("OnWXShareSucceed");
 	}
 
-	public override void OnWXShareFailed (){
+	public override void OnWXShareFailed (string msg){
 		Debug.Log ("OnWXShareFailed");
 
-		sdk_debug_msg ("OnExitCancel");
+		sdk_debug_msg ("OnWXShareFailed");
 	}
 
 
