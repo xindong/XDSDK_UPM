@@ -33,7 +33,7 @@ namespace xdsdk
 
 		public virtual void OnWXShareSucceed (){}
 
-		public virtual void OnWXShareFailed (){}
+		public virtual void OnWXShareFailed (string msg){}
 
     }
 }

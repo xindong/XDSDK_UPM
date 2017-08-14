@@ -101,6 +101,29 @@ public class XDPlatform : MonoBehaviour {
 
 			sdk_debug_msg (xdsdk.XDSDK.IsLoggedIn ().ToString());
 		}
+
+		if (GUI.Button (new Rect (480, 560, 100, 100), "Share")) {
+
+			Dictionary<string,string> shareData = new Dictionary<string,string>();
+
+			shareData.Add ("text","text");
+			shareData.Add ("bText","1");
+			shareData.Add ("scene","0");
+			shareData.Add ("shareType","0");
+			shareData.Add ("title","title");
+			shareData.Add ("description","description");
+			shareData.Add ("thumbPath","");
+			shareData.Add ("imageUrl","");
+			shareData.Add ("musicUrl","");
+			shareData.Add ("musicLowBandUrl","");
+			shareData.Add ("musicDataUrl","");
+			shareData.Add ("musicLowBandDataUrl","");
+			shareData.Add ("videoUrl","");
+			shareData.Add ("videoLowBandUrl","");
+			shareData.Add ("webpageUrl","https://www.xd.com");
+
+			xdsdk.XDSDK.Share (shareData);
+		}
 	}
 
 	[DllImport("__Internal")]

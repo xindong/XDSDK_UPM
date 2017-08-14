@@ -63,8 +63,8 @@ namespace xdsdk{
 			XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareSucceed ();
 		}
 
-		public void OnWXShareFailed (){
-			XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareFailed ();
+		public void OnWXShareFailed (string msg){
+			XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareFailed (msg);
 		}
 
 	}
