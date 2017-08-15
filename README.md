@@ -316,14 +316,47 @@ XDSDK.Exit();
 
 调用心动SDK的微信分享功能。
 
+参数说明
 
-分享或收藏的目标场景，通过设置scene场景值实现。
+通用参数 | 是否必须 | 类型| 说明 
+--- | --- | --- | --- | ---
+text | 否 | string | 分享文字内容 
+bText | 是 | string | 分享内容是否为多媒体内容（1文本内容，0多媒体内容）
+scene | 是 | string | 分享场景（SESSION对话，TIMELINE朋友圈，FAVOURITE收藏）
+shareType | 是 | string | 分享类型（TEXT，IMAGE，MUSIC，VIDEO，WEB）
+title | 否 | string | 分享标题 
+description | 否 | string | 分享描述信息 
+thumbPath | 否 | string | 缩略图路径 （安卓不支持Url，请填写文件路径。）
+meidaTagName | 否 | string
+messageExt | 否 | string 
+messageAction | 否 | string
 
-发送到聊天界面 —— SESSION
+以下参数，请根据不同的分享类型（shareType参数）进行设置
 
-发送到朋友圈 —— TIMELINE
+图片分享 | 是否必须 | 类型| 说明 
+--- | --- | --- | --- | ---
+imageUrl | 是| string | 分享图片Url （安卓不支持Url，请填写文件路径）
+<br/>
 
-添加到微信收藏 —— FAVOURITE
+
+音乐分享 | 是否必须 | 类型| 说明
+--- | --- | --- | ---
+musicUrl | 是 | string | 音乐链接 （请填写音乐路径。例：https://www.xd.com/music.mp3）
+musicLowBandUrl | 否 | string | 低带宽音乐链接
+musicDataUrl | 否 | string | 音乐数据链接
+musicLowBandDataUrl | 否 | string | 低带宽状音乐数据链接
+<br/>
+
+视频分享 | 是否必须 | 类型| 说明
+--- | --- | --- | ---
+videoUrl | 是 | string | 视频链接
+videoLowBandUrl | 否 | string | 低带宽视频链接
+<br/>
+
+
+网页分享参数 | 是否必须 | 类型| 说明
+--- | --- | --- | ---
+webpageUrl | 是 | string | 网页链接
 
 示例代码
 
@@ -354,7 +387,7 @@ content.Add ("description", "***description***"); //描述
 content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
 content.Add ("musicUrl", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");  //音乐url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("shareType", "MUSIC");  //分享类型 图片
+content.Add ("shareType", "MUSIC");  //分享类型 音乐
 xdsdk.XDSDK.Share (content);
 
 //分享视频
@@ -362,9 +395,9 @@ Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
 content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("videoUrl", "xd.com");  //视频url
+content.Add ("videoUrl", "https://www.xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("shareType", "VIDEO");  //分享类型 图片
+content.Add ("shareType", "VIDEO");  //分享类型 视频
 xdsdk.XDSDK.Share (content);
 
 //分享网页
@@ -372,12 +405,23 @@ Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
 content.Add ("thumbPath", "/storage/emulated/0/2.png"); //预览图路径
-content.Add ("webpageUrl", "xd.com");  //视频url
+content.Add ("webpageUrl", "https://www.xd.com");  //视频url
 content.Add ("scene", "SESSION");  //scene场景值
-content.Add ("shareType", "WEB");  //分享类型 图片
+content.Add ("shareType", "WEB");  //分享类型 网页
 xdsdk.XDSDK.Share (content);
 ```
 
+
+调用分享接口会触发下列回调
+
+类别 | 回调方法
+--- | ---
+分享成功 | public void OnWXShareSucceed() 
+分享失败 | public void OnWXShareFailed(string msg)
+
+<p style = "color : red"> 
+注意：分享过程中，若用户选择留在微信，则不会产生分享回调。游戏不应当完全依赖分享回调。
+</p> 
 
 
 ## 2.Android
