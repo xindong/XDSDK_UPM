@@ -80,4 +80,19 @@
  */
 - (void)onPayCanceled;
 
+
+
+/**
+ 微信分享成功
+ */
+- (void)onWXShareSucceed;
+
+
+/**
+ 微信分享失败
+
+ @param error_msg 错误信息
+ */
+- (void)onWXShareFailed:(nullable NSString*)error_msg;
+
 @end
