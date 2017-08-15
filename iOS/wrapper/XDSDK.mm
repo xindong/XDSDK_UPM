@@ -4,7 +4,9 @@
 
 #import <XdComPlatform/XDCore.h>
 
-@interface XDSDK ()<XDCallback>
+#import <XdComPlatform/XDWXShare.h>
+
+@interface XDSDK ()<XDCallback,XDWXShareCallback>
 
 @property (nonatomic,copy,nonnull)NSString* gameObjectName;
 
@@ -47,6 +49,58 @@ static XDSDK * instance;
     
     [[XDSDK defaultInstance] setGameObjectName:gameObject];
 }
+
++ (int)getShareType:(NSString*)shareType{
+    
+    if ([shareType isEqualToString:@"TEXT"]) {
+        
+        return 0;
+    
+    }else if ([shareType isEqualToString:@"IMAGE"]){
+        
+        return 1;
+    
+    }else if ([shareType isEqualToString:@"MUSIC"]){
+        
+        return 2;
+    
+    }else if ([shareType isEqualToString:@"VIDEO"]){
+        
+        return 3;
+    
+    }else if ([shareType isEqualToString:@"WEB"]){
+        
+        return 4;
+    }
+    
+    return 0;
+}
+
++ (int)getShareScene:(NSString*)shareScene{
+    
+    if ([shareScene isEqualToString:@"SESSION"]) {
+        
+        return 0;
+    
+    }else if ([shareScene isEqualToString:@"TIMELINE"]){
+        
+        return 1;
+    
+    }else if ([shareScene isEqualToString:@"FAVOURITE"]){
+        
+        return 2;
+    }
+
+    return 0;
+}
+
+#if defined(__cplusplus)
+extern "C"{
+#endif
+    extern void UnitySendMessage(const char *, const char *, const char *);
+#if defined(__cplusplus)
+}
+#endif
 
 # pragma mark - XDSDKWrapper
 
@@ -159,6 +213,86 @@ static XDSDK * instance;
             [XDCore setWXWeb];
         }
         
+        void share(const char* text, const char* bText, const char* scene, const char* shareType, const char* title, const char* description, const char* thumbPath, const char* imageUrl,const char*musicUrl, const char* musicLowBandUrl, const char* musicDataUrl, const char* musicLowBandDataUrl, const char* videoUrl, const char* videoLowBandUrl, const char* webpageUrl){
+            
+            NSLog(@"微信分享");
+            
+            NSString * oc_text = [NSString stringWithUTF8String:text];
+            NSString * oc_bText = [NSString stringWithUTF8String:bText];
+            NSString * oc_scene = [NSString stringWithUTF8String:scene];
+            NSString * oc_shareType = [NSString stringWithUTF8String:shareType];
+            NSString * oc_title = [NSString stringWithUTF8String:title];
+            NSString * oc_description = [NSString stringWithUTF8String:description];
+            NSString * oc_thumbPath = [NSString stringWithUTF8String:thumbPath];
+            
+            NSString * oc_imageUrl = [NSString stringWithUTF8String:imageUrl];
+           
+            NSString * oc_musicUrl = [NSString stringWithUTF8String:musicUrl];
+            NSString * oc_musicLowBandUrl = [NSString stringWithUTF8String:musicLowBandUrl];
+            NSString * oc_musicDataUrl = [NSString stringWithUTF8String:musicDataUrl];
+            NSString * oc_musicLowBandDataUrl = [NSString stringWithUTF8String:musicLowBandDataUrl];
+            
+            NSString * oc_videoUrl = [NSString stringWithUTF8String:videoUrl];
+            NSString * oc_videoLowBandUrl = [NSString stringWithUTF8String:videoLowBandUrl];
+            
+            NSString * oc_webpageUrl = [NSString stringWithUTF8String:webpageUrl];
+            
+            [XDWXShare setWXShareCallBack:[XDSDK defaultInstance]];
+            
+            XDWXShareObject * shareObject = [XDWXShareObject shareObject];
+            shareObject.text = oc_text?oc_text:@"";
+            shareObject.bText = [oc_bText boolValue];
+            shareObject.scene = [XDSDK getShareScene:oc_scene];
+            shareObject.type = (XDWXShareType)[XDSDK getShareType:oc_shareType];
+            shareObject.title = oc_title?oc_title:@"";
+            shareObject.descriptionStr = oc_description?oc_description:@"";
+            shareObject.thumbPath = oc_thumbPath?oc_thumbPath:@"";
+            
+            switch (shareObject.type) {
+                    
+                case XDWXShareTypeText:{
+                    
+                }
+                    break;
+                    
+                case XDWXShareTypeImage:{
+                    
+                    shareObject.imageUrl = oc_imageUrl?oc_imageUrl:@"";
+                }
+                    break;
+                    
+                case XDWXShareTypeMusic:{
+                    
+                    shareObject.musicUrl = oc_musicUrl?oc_musicUrl:@"";
+                    shareObject.musicDataUrl = oc_musicDataUrl?oc_musicDataUrl:@"";
+                    
+                    shareObject.musicLowBandUrl = oc_musicLowBandUrl?oc_musicLowBandUrl:@"";
+                    shareObject.musicLowBandDataUrl = oc_musicLowBandDataUrl?oc_musicLowBandDataUrl:@"";
+                }
+                    break;
+                    
+                case XDWXShareTypeVideo:{
+                    
+                    shareObject.videoUrl = oc_videoUrl?oc_videoUrl:@"";
+                    shareObject.videoLowBandUrl = oc_videoLowBandUrl?oc_videoLowBandUrl:@"";
+                }
+                    break;
+                    
+                    
+                case XDWXShareTypeWebPage:{
+                    
+                    shareObject.webpageUrl = oc_webpageUrl?oc_webpageUrl:@"";
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            [XDWXShare WXShareWithObject:shareObject];
+        
+        }
+        
         void sdk_debug_msg(const char* msg){
             
             UIAlertView * debugAlter = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithUTF8String:msg] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil];
@@ -266,6 +400,24 @@ static XDSDK * instance;
     UnitySendMessage(self.gameObjectName.UTF8String, "OnPayCanceled", "");
 }
 
+/**
+ 分享成功
+ */
+- (void)onWXShareSucceed{
+    
+    UnitySendMessage(self.gameObjectName.UTF8String, "onWXShareSucceed", "");
+}
+
+
+/**
+ 分享失败
+ 
+ @param error_msg 错误信息(0成功,-1普通错误,-2用户取消,-3发送失败,-4授权失败，-5微信不支持,)未知错误(error_msg:"")详情见微信官方API
+ */
+- (void)onWXShareFailed:(NSString*)error_msg{
+    
+    UnitySendMessage(self.gameObjectName.UTF8String, "onWXShareFailed", error_msg?error_msg.UTF8String:"");
+}
 
 @end
 

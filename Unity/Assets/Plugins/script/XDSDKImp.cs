@@ -190,8 +190,8 @@ namespace xdsdk
 		public void Share(Dictionary<string, string> content){
 			#if UNITY_IOS && !UNITY_EDITOR
 
-			share(content['text'],content['bText'],content['scene'],content['shareType'],content['title'],content['description'],content['thumbPath'],content['imageUrl'],content['musicUrl'],
-			content['musicLowBandUrl'],content['musicDataUrl'],content['musicDataLowBandUrl'],content['videoUrl'],content['videoLowBandUrl'],content['webPageUrl'])
+			share(content["text"],content["bText"],content["scene"],content["shareType"],content["title"],content["description"],content["thumbPath"],content["imageUrl"],content["musicUrl"],
+			content["musicLowBandUrl"],content["musicDataUrl"],content["musicLowBandDataUrl"],content["videoUrl"],content["videoLowBandUrl"],content["webpageUrl"]);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
