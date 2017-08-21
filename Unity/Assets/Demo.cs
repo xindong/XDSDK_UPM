@@ -20,7 +20,7 @@ public class Demo : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (50, 300, 300, 100), "初始化", myButtonStyle)){
-			xdsdk.XDSDK.InitSDK ("a4d6xky5gt4c80s", 1);
+			xdsdk.XDSDK.InitSDK ("a4d6xky5gt4c80s", 0);
 		}
 
 		if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
