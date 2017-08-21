@@ -440,12 +440,12 @@ xdsdk.XDSDK.Share (content);
 
 ### 2.3.接入微信分享
 
-<p>心动SDK目前仅提供微信登录功能，如果游戏需要使用微信分享功能，需要自行接入微信分享功能。需要注意下面几点。</p>
+<p>心动SDK目前集成了微信分享功能，需要注意下面几点。</p>
 
 <p style="color:red">需要将工程导出至Android Studio进行操作</p>
 
-<p style="color:red">使用心动SDK提供的分享功能，可略过该部分。</p>
-<p style="color:red">如果游戏仍需要自行接入微信分享，需进行以下处理。</p>
+<p style="color:red">使用心动SDK提供的分享功能，可略过该部分。</p>
+<p style="color:red">如果游戏仍需要自行接入微信分享，需进行以下处理。</p>
 <p style="color:red">微信分享的微信AppID必须使用心动提供的微信AppID，否则会导致微信登录失败。</p>
 
 <p>接入其它SDK提供的微信分享功能时，会被要求在项目中增加一个类“{游戏包名}.wxapi.WXEntryActivity”，这个类可能是复制SDK提供的一个类，或者继承SDK的一个类。无论如何，将其修改为另一个名字，比如“{游戏包名}.wxapi.MYWXEntryActivity”。</p>
