@@ -381,7 +381,7 @@ content.Add ("scene", "SESSION"); //scene场景值
 content.Add ("shareType", "IMAGE");  //分享类型 图片
 xdsdk.XDSDK.Share (content);
 
-//分享音乐
+//分享音乐
 Dictionary<string, string> content = new Dictionary<string, string> ();
 content.Add ("title", "***title***"); //标题
 content.Add ("description", "***description***"); //描述
@@ -429,8 +429,110 @@ xdsdk.XDSDK.Share (content);
 
 ### 2.1.按需要修改AndroidManifest
 
-<p> 根据需要修改Plugins/Android/AndroidManifest.xml中的主Activity屏幕方向
+<p> 可以根据需要,参照如下示例修改Plugins/Android/AndroidManifest.xml。
 </p>
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xd.sdkdemo"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="preferExternal"
+    android:versionCode="1"
+    android:versionName="1.0">
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:anyDensity="true"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:theme="@style/UnityThemeSelector"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:debuggable="true">
+        <activity android:name="com.unity3d.player.UnityPlayerActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+        </activity>
+
+        <activity
+            android:name="com.xd.sdklib.helper.XDStartView"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.xd.sdklib.helper.XDViewActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.xd.sdklib.helper.XDPayActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.xd.sdklib.helper.XDWebView"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.xd.sdklib.helper.WXEntryActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <!-- 微信登录 -->
+        <activity-alias
+            android:name=".wxapi.WXEntryActivity"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:targetActivity="com.xd.sdklib.helper.WXEntryActivity"/>
+
+        <!-- Ping++ SDK -->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <!-- 支付宝 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- 微信支付 -->
+        <activity-alias
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+
+
+        <!-- QQ登录 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+        </activity>
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+    </application>
+</manifest>
+```
 
 ### 2.2.生成APK
 
