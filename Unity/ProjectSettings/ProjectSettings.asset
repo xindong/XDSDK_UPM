@@ -217,7 +217,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: sign.keystore
+  AndroidKeystoreName: /Users/sunyi/Work/sign_password_111111.keystore
   AndroidKeyaliasName: wxlogin
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
