@@ -68,6 +68,12 @@ public class XDPlatform : MonoBehaviour {
 		if(GUI.Button(new Rect(280,320,100,100),"隐藏游客")) {  
 
 			xdsdk.XDSDK.HideGuest ();
+			xdsdk.XDSDK.HideQQ ();
+			xdsdk.XDSDK.HideWX ();
+			xdsdk.XDSDK.ShowVC ();
+			xdsdk.XDSDK.SetWXWeb ();
+			xdsdk.XDSDK.SetQQWeb ();
+
 		}  
 
 		if(GUI.Button(new Rect(480,320,100,100),"隐藏QQ")) {  
