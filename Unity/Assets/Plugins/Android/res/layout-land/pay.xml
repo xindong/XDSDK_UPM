@@ -108,11 +108,11 @@
         android:gravity="bottom" >
 
         <LinearLayout
-            android:id="@+id/pay_wechat_commit"
+            android:id="@+id/pay_alipay_commit"
             android:layout_width="210dp"
             android:layout_height="54dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/xd_pay_weixin_bg"
+            android:background="@drawable/xd_pay_alipay_bg"
             android:gravity="center_horizontal" >
 
             <ImageView
@@ -120,14 +120,14 @@
                 android:layout_height="27dp"
                 android:layout_gravity="center_vertical"
                 android:scaleType="fitCenter"
-                android:src="@drawable/start_weixin" />
+                android:src="@drawable/xd_alipay"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:text="微信支付 "
+                android:text="支付宝"
                 android:textColor="#ffffff"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -138,14 +138,15 @@
             android:layout_height="48dp"
             android:layout_marginLeft="-57dp"
             android:scaleType="fitCenter"
+            android:visibility="invisible"
             android:src="@drawable/xd_recommand" />
 
         <LinearLayout
-            android:id="@+id/pay_alipay_commit"
+            android:id="@+id/pay_wechat_commit"
             android:layout_width="210dp"
             android:layout_height="54dp"
             android:layout_marginLeft="36dp"
-            android:background="@drawable/xd_pay_alipay_bg"
+            android:background="@drawable/xd_pay_weixin_bg"
             android:gravity="center_horizontal" >
 
             <ImageView
@@ -154,14 +155,14 @@
                 android:layout_gravity="center_vertical"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/xd_alipay" />
+                android:src="@drawable/start_weixin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:text="支付宝"
+                android:text="微信支付 "
                 android:textColor="#ffffff"
                 android:textSize="24sp" />
         </LinearLayout>

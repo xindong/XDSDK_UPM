@@ -149,7 +149,8 @@
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:visibility="invisible">
 
         <CheckBox
             android:id="@+id/legal_check"
