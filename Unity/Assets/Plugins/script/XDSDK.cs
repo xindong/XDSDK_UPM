@@ -36,6 +36,12 @@ namespace xdsdk
 		public static void SetWXWeb(){
 			XDSDKImp.GetInstance ().SetWXWeb ();
 		}
+
+		//显示TapTap登录
+		public static void ShowTapTap(){
+			XDSDKImp.GetInstance ().ShowTapTap ();
+		}
+	
 		//获取SDK版本
 		public static string GetSDKVersion(){
 			return XDSDKImp.GetInstance ().GetSDKVersion ();
@@ -45,6 +51,7 @@ namespace xdsdk
 		public static void InitSDK(string appid, int aOrientation){
 			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation);
         }
+
 		//登录
 		public static void Login(){
 			XDSDKImp.GetInstance ().Login ();
@@ -52,27 +59,31 @@ namespace xdsdk
 		//获取Access Token
 		public static string GetAccessToken(){
 			return XDSDKImp.GetInstance ().GetAccessToken ();
-		
 		}
 		//获取当前登录状态
 		public static bool IsLoggedIn(){
 			return XDSDKImp.GetInstance ().IsLoggedIn ();
-		
 		}
+
 		//打开用户中心
 		public static bool OpenUserCenter(){
 			return XDSDKImp.GetInstance ().OpenUserCenter ();
-		
+		}
+
+		//打开用户反馈
+		public static void UserFeedback(){
+			XDSDKImp.GetInstance ().UserFeedback ();
 		}
 		//发起支付
 		public static bool Pay(Dictionary<string, string> info){
 			return XDSDKImp.GetInstance ().Pay (info);
-		
 		}
+
 		//登出
 		public static void Logout(){
 			XDSDKImp.GetInstance ().Logout ();
 		}
+
 		//退出
 		public static void Exit(){
 			XDSDKImp.GetInstance ().Exit ();

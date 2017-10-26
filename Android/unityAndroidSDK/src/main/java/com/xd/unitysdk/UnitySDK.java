@@ -81,6 +81,14 @@ public class UnitySDK{
         XDSDK.setWXWeb();
     }
 
+    public static void showTapTap() {
+        XDSDK.showTapTap();
+    }
+
+    public static void userFeedback(){
+        XDSDK.userFeedback();
+    }
+
     public static void shareToWX(Map<String, String> content) {
         XDWXShareObject wxShareObject = new XDWXShareObject();
         wxShareObject.setTitle(content.get("title"));

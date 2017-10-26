@@ -88,6 +88,16 @@ namespace xdsdk
 			#endif
 		}
 
+		public void ShowTapTap(){
+			#if UNITY_IOS && !UNITY_EDITOR
+
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("showTapTap");
+			#endif
+		}
+
 		public string GetSDKVersion(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			return getSDKVersion();
@@ -149,6 +159,17 @@ namespace xdsdk
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			return jc.CallStatic<bool> ("openUserCenter");
+			#endif
+			return false;
+		}
+
+		public bool UserFeedback(){
+			#if UNITY_IOS && !UNITY_EDITOR
+
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("userFeedback");
 			#endif
 			return false;
 		}

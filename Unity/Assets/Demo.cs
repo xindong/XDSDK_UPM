@@ -20,7 +20,7 @@ public class Demo : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (50, 300, 300, 100), "初始化", myButtonStyle)){
-			xdsdk.XDSDK.InitSDK ("a4d6xky5gt4c80s", 0);
+			xdsdk.XDSDK.InitSDK ("a4d6xky5gt4c80s", 1);
 		}
 
 		if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
@@ -89,7 +89,15 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Exit();
 		}
 
-		if (GUI.Button (new Rect (400, 1500, 300, 100), "微信分享文字", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 1500, 300, 100), "用户反馈", myButtonStyle)){
+			xdsdk.XDSDK.UserFeedback();
+		}
+
+		if (GUI.Button (new Rect (400, 1700, 300, 100), "TapTap登录", myButtonStyle)){
+			xdsdk.XDSDK.ShowTapTap();
+		}
+
+		if (GUI.Button (new Rect (750, 100, 300, 100), "微信分享文字", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -99,7 +107,7 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (400, 1700, 300, 100), "微信分享图片", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享图片", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -110,7 +118,7 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 100, 300, 100), "微信分享音乐", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享音乐", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -121,7 +129,7 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享视频", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 700, 300, 100), "微信分享视频", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -132,7 +140,7 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享链接", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 900, 300, 100), "微信分享链接", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
