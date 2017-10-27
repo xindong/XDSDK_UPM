@@ -103,6 +103,16 @@ public class XDPlatform : MonoBehaviour {
 			xdsdk.XDSDK.SetWXWeb ();
 		}
 
+		if (GUI.Button (new Rect (80, 680, 100, 100), "showTapTap")) {
+
+			xdsdk.XDSDK.ShowTapTap ();
+		}
+
+		if (GUI.Button (new Rect (280, 680, 100, 100), "用户反馈")) {
+
+			xdsdk.XDSDK.UserFeedback ();
+		}
+
 		if (GUI.Button (new Rect (280, 560, 100, 100), "isLogedIn")) {
 
 			sdk_debug_msg (xdsdk.XDSDK.IsLoggedIn ().ToString());

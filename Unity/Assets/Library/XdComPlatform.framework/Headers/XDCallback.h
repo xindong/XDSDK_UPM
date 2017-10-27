@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
+/**
+ 3.0 以上版本 心动SDK回调事件
+ */
 @protocol XDCallback <NSObject>
 
 @required
