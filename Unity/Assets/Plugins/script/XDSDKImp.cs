@@ -90,7 +90,7 @@ namespace xdsdk
 
 		public void ShowTapTap(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			showTapTap();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -165,7 +165,7 @@ namespace xdsdk
 
 		public bool UserFeedback(){
 			#if UNITY_IOS && !UNITY_EDITOR
-
+			userFeedback();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -262,6 +262,12 @@ namespace xdsdk
 
 		[DllImport("__Internal")]
 		private static extern void setWXWeb();
+
+		[DllImport("__Internal")]
+		private static extern void userFeedback();
+
+		[DllImport("__Internal")]
+		private static extern void showTapTap();
 
 		[DllImport("__Internal")]
 		private static extern void share (string text, string bText, string scene, string shareType, string title,string description, string thumbPath, 
