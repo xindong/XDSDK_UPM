@@ -45,6 +45,11 @@
 
 
 /**
+ 显示TapTap登录
+ */
++ (void)showTapTap;
+
+/**
  隐藏微信登录功能
  */
 + (void)hideWX;
@@ -126,6 +131,12 @@
  登出用户
  */
 + (void)logout;
+
+
+/**
+ 用户反馈
+ */
++ (void)userFeedback;
 
 /**
  处理跳转app回调
