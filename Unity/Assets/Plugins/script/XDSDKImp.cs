@@ -88,13 +88,13 @@ namespace xdsdk
 			#endif
 		}
 
-		public void ShowTapTap(){
+		public void HideTapTap(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			showTapTap();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("showTapTap");
+			jc.CallStatic ("hideTapTap");
 			#endif
 		}
 

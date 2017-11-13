@@ -38,8 +38,8 @@ namespace xdsdk
 		}
 
 		//显示TapTap登录
-		public static void ShowTapTap(){
-			XDSDKImp.GetInstance ().ShowTapTap ();
+		public static void HideTapTap(){
+			XDSDKImp.GetInstance ().HideTapTap ();
 		}
 	
 		//获取SDK版本

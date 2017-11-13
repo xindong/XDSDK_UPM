@@ -81,8 +81,8 @@ public class UnitySDK{
         XDSDK.setWXWeb();
     }
 
-    public static void showTapTap() {
-        XDSDK.showTapTap();
+    public static void hideTapTap() {
+        XDSDK.hideTapTap();
     }
 
     public static void userFeedback(){

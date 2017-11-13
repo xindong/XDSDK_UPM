@@ -94,7 +94,7 @@ public class Demo : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (400, 1700, 300, 100), "TapTap登录", myButtonStyle)){
-			xdsdk.XDSDK.ShowTapTap();
+			xdsdk.XDSDK.HideTapTap();
 		}
 
 		if (GUI.Button (new Rect (750, 100, 300, 100), "微信分享文字", myButtonStyle)){
