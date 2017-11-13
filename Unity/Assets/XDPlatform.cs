@@ -108,9 +108,9 @@ public class XDPlatform : MonoBehaviour {
 			xdsdk.XDSDK.SetWXWeb ();
 		}
 
-		if (GUI.Button (new Rect (80, 680, 100, 100), "showTapTap")) {
+		if (GUI.Button (new Rect (80, 680, 100, 100), "hideTapTap")) {
 
-			xdsdk.XDSDK.ShowTapTap ();
+			xdsdk.XDSDK.HideTapTap ();
 		}
 
 		if (GUI.Button (new Rect (280, 680, 100, 100), "用户反馈")) {
