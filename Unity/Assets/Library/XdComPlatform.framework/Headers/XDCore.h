@@ -45,9 +45,9 @@
 
 
 /**
- 显示TapTap登录
+ 隐藏TapTap登录
  */
-+ (void)showTapTap;
++ (void)hideTapTap;
 
 /**
  隐藏微信登录功能

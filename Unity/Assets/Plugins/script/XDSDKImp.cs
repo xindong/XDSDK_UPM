@@ -90,7 +90,7 @@ namespace xdsdk
 
 		public void HideTapTap(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			showTapTap();
+			hideTapTap();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -267,7 +267,7 @@ namespace xdsdk
 		private static extern void userFeedback();
 
 		[DllImport("__Internal")]
-		private static extern void showTapTap();
+		private static extern void hideTapTap();
 
 		[DllImport("__Internal")]
 		private static extern void share (string text, string bText, string scene, string shareType, string title,string description, string thumbPath, 

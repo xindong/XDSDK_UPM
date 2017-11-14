@@ -36,7 +36,7 @@ public class XDPlatform : MonoBehaviour {
 
 		if(GUI.Button(new Rect(680,80,100,100),"显示TapTap")) {  
 
-			xdsdk.XDSDK.ShowTapTap ();
+			xdsdk.XDSDK.HideTapTap ();
 		}
 
 
