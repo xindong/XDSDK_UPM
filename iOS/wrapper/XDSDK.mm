@@ -178,6 +178,20 @@ extern "C"{
             [XDCore hideGuest];
         }
         
+        bool userFeedback(){
+            
+            NSLog(@"用户反馈");
+            
+            return [XDCore userFeedback];
+        }
+        
+        void showTapTap(){
+            
+            NSLog(@"显示TapTap");
+            
+            [XDCore showTapTap];
+        }
+        
         void hideQQ(){
             
             NSLog(@"隐藏QQ");
@@ -323,9 +337,8 @@ extern "C"{
  */
 - (void)onInitFailed:(nullable NSString*)error_msg{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "OnInitFailed", error_msg.UTF8String);
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnInitFailed", error_msg?error_msg.UTF8String:"");
 }
-
 
 /**
  登录成功
@@ -334,7 +347,7 @@ extern "C"{
  */
 - (void)onLoginSucceed:(nonnull NSString*)access_token{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "OnLoginSucceed", access_token.UTF8String);
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnLoginSucceed", access_token?access_token.UTF8String:"");
 }
 
 /**
@@ -353,7 +366,7 @@ extern "C"{
  */
 - (void)onLoginFailed:(nullable NSString*)error_msg{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "OnLoginFailed", error_msg.UTF8String);
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnLoginFailed", error_msg? error_msg.UTF8String:"");
 }
 
 
@@ -362,7 +375,7 @@ extern "C"{
  */
 - (void)onGuestBindSucceed:(nonnull NSString*)access_token{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "OnGuestBindSucceed", access_token.UTF8String);
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnGuestBindSucceed", access_token?access_token.UTF8String:"");
 }
 
 /**
@@ -389,7 +402,7 @@ extern "C"{
  */
 - (void)onPayFailed:(nullable NSString*)error_msg{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "OnPayFailed", error_msg.UTF8String);
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnPayFailed", error_msg?error_msg.UTF8String:"");
 }
 
 /**

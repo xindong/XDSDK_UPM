@@ -34,6 +34,11 @@ public class XDPlatform : MonoBehaviour {
 			xdsdk.XDSDK.Logout ();
 		}
 
+		if(GUI.Button(new Rect(680,80,100,100),"显示TapTap")) {  
+
+			xdsdk.XDSDK.HideTapTap ();
+		}
+
 
 		if (GUI.Button (new Rect (80, 200, 100, 100), "用户中心")) {
 
