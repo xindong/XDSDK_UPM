@@ -154,7 +154,7 @@ public class UnitySDK{
 
         @Override
         public void onRealNameFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s);
         }
 
         @Override
