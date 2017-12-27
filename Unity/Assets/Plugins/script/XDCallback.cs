@@ -19,6 +19,10 @@ namespace xdsdk
 
 		public abstract void OnGuestBindSucceed (string token);
 
+		public abstract void OnRealNameSucceed ();
+
+		public abstract void OnRealNameFailed(string msg);
+
 		public abstract void OnLogoutSucceed ();
 
 		public abstract void OnPayCompleted ();

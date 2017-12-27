@@ -70,6 +70,11 @@ namespace xdsdk
 			return XDSDKImp.GetInstance ().OpenUserCenter ();
 		}
 
+		//打开实名认证界面
+		public static void OpenRealName(){
+			XDSDKImp.GetInstance().OpenRealName();
+		}
+
 		//打开用户反馈
 		public static void UserFeedback(){
 			XDSDKImp.GetInstance ().UserFeedback ();

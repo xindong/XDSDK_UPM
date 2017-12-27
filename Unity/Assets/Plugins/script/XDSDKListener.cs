@@ -35,6 +35,13 @@ namespace xdsdk{
 			XDSDKImp.GetInstance ().GetXDCallback ().OnGuestBindSucceed (token);
 		}
 
+		public void OnRealNameSucceed (){
+			XDSDKImp.GetInstance().GetXDCallback().OnRealNameSucceed();
+		}
+
+		public void OnRealNameFailed(string msg){
+			XDSDKImp.GetInstance().GetXDCallback().OnRealNameFailed(msg);
+		}
 		public void OnLogoutSucceed (){
 			XDSDKImp.GetInstance ().GetXDCallback ().OnLogoutSucceed ();
 		}

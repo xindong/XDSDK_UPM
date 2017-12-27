@@ -173,6 +173,15 @@ namespace xdsdk
 			return false;
 		}
 
+
+		public void OpenRealName(){
+			#if UNITY_IOS && !UNITY_EDITOR
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic("openRealName");
+			#endif
+		}
+
 		public bool Pay(Dictionary<string, string> info){
 
 			#if UNITY_IOS && !UNITY_EDITOR

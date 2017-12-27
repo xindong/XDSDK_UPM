@@ -151,6 +151,10 @@ public class Demo : MonoBehaviour {
 			xdsdk.XDSDK.Share (content);
 		}
 
+		if (GUI.Button (new Rect (750, 1100, 300, 100), "实名认证", myButtonStyle)){
+			xdsdk.XDSDK.OpenRealName();
+		}
+
 
 
 	}
