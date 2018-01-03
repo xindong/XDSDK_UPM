@@ -40,6 +40,12 @@ public class XDPlatform : MonoBehaviour {
 			xdsdk.XDSDK.OpenUserCenter ();
 		}
 
+		if (GUI.Button (new Rect (80, 880, 100, 100), "用户中心")) {
+
+			xdsdk.XDSDK.OpenRealName ();
+		}
+
+
 		if(GUI.Button(new Rect(280,200,100,100),"支付")) {  
 
 			Dictionary<string, string> info = new Dictionary<string,string>();
@@ -117,6 +123,7 @@ public class XDPlatform : MonoBehaviour {
 
 			sdk_debug_msg (xdsdk.XDSDK.IsLoggedIn ().ToString());
 		}
+
 
 		if (GUI.Button (new Rect (480, 560, 100, 100), "Share")) {
 
