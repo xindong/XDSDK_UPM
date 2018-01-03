@@ -48,8 +48,8 @@ namespace xdsdk
 
 		}
 		//初始化心动SDK
-		public static void InitSDK(string appid, int aOrientation){
-			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation);
+		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb){
+			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation, channel, version, enableTapdb);
         }
 
 		//登录

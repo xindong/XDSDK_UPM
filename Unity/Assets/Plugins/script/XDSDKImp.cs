@@ -108,13 +108,13 @@ namespace xdsdk
 			return "0.0.0";
 		}
 
-		public void InitSDK(string appid, int aOrientation){
+		public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB){
 			#if UNITY_IOS && !UNITY_EDITOR
-			initSDK(appid,aOrientation);
+			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("initSDK",appid, aOrientation);
+			jc.CallStatic ("initSDK",appid,aOrientation,channel,version,enableTapDB);
 			#endif
 		}
 
@@ -233,6 +233,9 @@ namespace xdsdk
 
 		[DllImport("__Internal")]
 		private static extern void initSDK(string appid, int aOrientation);
+
+		[DllImport("__Internal")]
+		private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
 
 		[DllImport("__Internal")]
 		private static extern void login();
