@@ -19,10 +19,10 @@ import java.util.StringTokenizer;
 public class UnitySDK{
 
 
-    public static void initSDK(String appid, int aOrientation) {
+    public static void initSDK(String appid,int aOrientation,  String channel, String version, boolean enableTapdb) {
         XDSDK.setCallback(xdCallback);
         XDWXShare.setWXShareCallBack(wxShareCallback);
-        XDSDK.initSDK(UnityPlayer.currentActivity, appid, aOrientation);
+        XDSDK.initSDK(UnityPlayer.currentActivity, appid,aOrientation,  channel, version, enableTapdb);
     }
 
     public static String getSDKVersion(){
@@ -81,8 +81,25 @@ public class UnitySDK{
         XDSDK.setWXWeb();
     }
 
+    public static void hideTapTap(){
+        XDSDK.hideTapTap();
+    }
+
+    public static void userFeedback(){
+        XDSDK.userFeedback();
+    }
+
+
     public static void openRealName(){
         XDSDK.openRealName();
+    }
+
+    public static void setLevel(int level){
+        XDSDK.setLevel(level);
+    }
+
+    public static void setServer(String server){
+        XDSDK.setServer(server);
     }
 
     public static void shareToWX(Map<String, String> content) {
