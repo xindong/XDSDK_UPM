@@ -48,8 +48,8 @@ namespace xdsdk
 
 		}
 		//初始化心动SDK
-		public static void InitSDK(string appid, int aOrientation){
-			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation);
+		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb){
+			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation, channel, version, enableTapdb);
         }
 
 		//登录
@@ -68,6 +68,11 @@ namespace xdsdk
 		//打开用户中心
 		public static bool OpenUserCenter(){
 			return XDSDKImp.GetInstance ().OpenUserCenter ();
+		}
+
+		//打开实名认证界面
+		public static void OpenRealName(){
+			XDSDKImp.GetInstance().OpenRealName();
 		}
 
 		//打开用户反馈
@@ -94,5 +99,14 @@ namespace xdsdk
 			XDSDKImp.GetInstance ().Share (content);
 		}
 
+		//设置用户等级
+		public static void SetLevel(int level){
+			XDSDKImp.GetInstance ().SetLevel (level);
+		}
+
+		//设置游戏服务器地址
+		public static void SetServer(string server){
+			XDSDKImp.GetInstance ().SetServer (server);
+		}
 	}
 }

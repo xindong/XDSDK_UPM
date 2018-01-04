@@ -93,6 +93,18 @@ public class XDSDKHandler : xdsdk.XDCallback {
 		sdk_debug_msg ("OnWXShareFailed");
 	}
 
+	public override void OnRealNameSucceed(){
+		Debug.Log ("OnRealNameSucceed");
+
+		sdk_debug_msg ("OnRealNameSucceed");
+	}
+
+	public override void OnRealNameFailed(string msg){
+		Debug.Log ("OnRealNameFailed ： " + msg);
+
+		sdk_debug_msg ("OnRealNameFailed");
+	}
+
 
 
 	[DllImport("__Internal")]

@@ -21,7 +21,7 @@ public class XDPlatform : MonoBehaviour {
 
 			xdsdk.XDSDK.SetCallback (new XDSDKHandler ());
 
-			xdsdk.XDSDK.InitSDK ("d4bjgwom9zk84wk", 1);
+			xdsdk.XDSDK.InitSDK ("d4bjgwom9zk84wk", 1,"","",true);
 		}
 
 		if(GUI.Button(new Rect(280,80,100,100),"登录")) {  
@@ -34,16 +34,17 @@ public class XDPlatform : MonoBehaviour {
 			xdsdk.XDSDK.Logout ();
 		}
 
-		if(GUI.Button(new Rect(680,80,100,100),"显示TapTap")) {  
-
-			xdsdk.XDSDK.HideTapTap ();
-		}
-
 
 		if (GUI.Button (new Rect (80, 200, 100, 100), "用户中心")) {
 
 			xdsdk.XDSDK.OpenUserCenter ();
 		}
+
+		if (GUI.Button (new Rect (80, 880, 100, 100), "用户中心")) {
+
+			xdsdk.XDSDK.OpenRealName ();
+		}
+
 
 		if(GUI.Button(new Rect(280,200,100,100),"支付")) {  
 
@@ -122,6 +123,7 @@ public class XDPlatform : MonoBehaviour {
 
 			sdk_debug_msg (xdsdk.XDSDK.IsLoggedIn ().ToString());
 		}
+
 
 		if (GUI.Button (new Rect (480, 560, 100, 100), "Share")) {
 

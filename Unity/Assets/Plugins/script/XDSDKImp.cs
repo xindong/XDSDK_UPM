@@ -90,7 +90,6 @@ namespace xdsdk
 
 		public void HideTapTap(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			hideTapTap();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -109,13 +108,13 @@ namespace xdsdk
 			return "0.0.0";
 		}
 
-		public void InitSDK(string appid, int aOrientation){
+		public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB){
 			#if UNITY_IOS && !UNITY_EDITOR
-			initSDK(appid,aOrientation);
+			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("initSDK",appid, aOrientation);
+			jc.CallStatic ("initSDK",appid,aOrientation,channel,version,enableTapDB);
 			#endif
 		}
 
@@ -174,6 +173,17 @@ namespace xdsdk
 			return false;
 		}
 
+
+		public void OpenRealName(){
+			#if UNITY_IOS && !UNITY_EDITOR
+			openRealName();
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic("openRealName");
+			#endif
+		}
+
 		public bool Pay(Dictionary<string, string> info){
 
 			#if UNITY_IOS && !UNITY_EDITOR
@@ -219,10 +229,40 @@ namespace xdsdk
 			jc.CallStatic ("shareToWX", DicToMap(content));
 			#endif
 		}
+
+		public void SetLevel(int level){
+			#if UNITY_IOS && !UNITY_EDITOR
+
+			setLevel(level);
+				
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+
+			#endif
+		}
+
+		public void SetServer(string server){
+
+			#if UNITY_IOS && !UNITY_EDITOR
+
+			setServer(server);
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+
+			#endif
+		}
 						
 
 		[DllImport("__Internal")]
 		private static extern void initSDK(string appid, int aOrientation);
+
+		[DllImport("__Internal")]
+		private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
+
+		[DllImport("__Internal")]
+		private static extern void setLevel(int level);
+
+		[DllImport("__Internal")]
+		private static extern void setServer(string server);
 
 		[DllImport("__Internal")]
 		private static extern void login();
@@ -268,6 +308,9 @@ namespace xdsdk
 
 		[DllImport("__Internal")]
 		private static extern void hideTapTap();
+
+		[DllImport("__Internal")]
+		private static extern void openRealName();
 
 		[DllImport("__Internal")]
 		private static extern void share (string text, string bText, string scene, string shareType, string title,string description, string thumbPath, 

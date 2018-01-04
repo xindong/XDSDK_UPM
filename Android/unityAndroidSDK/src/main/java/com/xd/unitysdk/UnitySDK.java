@@ -81,12 +81,8 @@ public class UnitySDK{
         XDSDK.setWXWeb();
     }
 
-    public static void hideTapTap() {
-        XDSDK.hideTapTap();
-    }
-
-    public static void userFeedback(){
-        XDSDK.userFeedback();
+    public static void openRealName(){
+        XDSDK.openRealName();
     }
 
     public static void shareToWX(Map<String, String> content) {
@@ -152,6 +148,16 @@ public class UnitySDK{
         }
 
         @Override
+        public void onRealNameSucceed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameSucceed", "");
+        }
+
+        @Override
+        public void onRealNameFailed(String s) {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s);
+        }
+
+        @Override
         public void onLogoutSucceed() {
             UnityPlayer.UnitySendMessage("XDSDK", "OnLogoutSucceed", "");
         }
@@ -168,7 +174,7 @@ public class UnitySDK{
 
         @Override
         public void onPayCanceled() {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnPayFailed", "");
+            UnityPlayer.UnitySendMessage("XDSDK", "OnPayCanceled", "");
         }
     };
 
