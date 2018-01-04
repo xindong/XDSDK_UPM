@@ -229,6 +229,27 @@ namespace xdsdk
 			jc.CallStatic ("shareToWX", DicToMap(content));
 			#endif
 		}
+
+		public void SetLevel(int level){
+			#if UNITY_IOS && !UNITY_EDITOR
+
+			setLevel(level);
+				
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+
+			#endif
+		}
+
+		public void SetServer(string server){
+
+			#if UNITY_IOS && !UNITY_EDITOR
+
+			setServer(server);
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+
+			#endif
+		}
 						
 
 		[DllImport("__Internal")]
@@ -236,6 +257,12 @@ namespace xdsdk
 
 		[DllImport("__Internal")]
 		private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
+
+		[DllImport("__Internal")]
+		private static extern void setLevel(int level);
+
+		[DllImport("__Internal")]
+		private static extern void setServer(string server);
 
 		[DllImport("__Internal")]
 		private static extern void login();

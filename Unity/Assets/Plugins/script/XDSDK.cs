@@ -99,5 +99,14 @@ namespace xdsdk
 			XDSDKImp.GetInstance ().Share (content);
 		}
 
+		//设置用户等级
+		public static void SetLevel(int level){
+			XDSDKImp.GetInstance ().SetLevel (level);
+		}
+
+		//设置游戏服务器地址
+		public static void SetServer(string server){
+			XDSDKImp.GetInstance ().SetServer (server);
+		}
 	}
 }
