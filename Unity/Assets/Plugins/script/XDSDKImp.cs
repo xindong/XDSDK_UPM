@@ -236,7 +236,8 @@ namespace xdsdk
 			setLevel(level);
 				
 			#elif UNITY_ANDROID && !UNITY_EDITOR
-
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("setLevel", level);
 			#endif
 		}
 
@@ -247,7 +248,8 @@ namespace xdsdk
 			setServer(server);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
-
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("setServer", server);
 			#endif
 		}
 						
