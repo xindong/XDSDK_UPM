@@ -86,9 +86,7 @@ public class XDPlatform : MonoBehaviour {
 
 			xdsdk.XDSDK.HideQQ ();
 		}
-
-
-
+			
 		if (GUI.Button (new Rect (80, 440, 100, 100), "隐藏WX")) {
 
 			xdsdk.XDSDK.HideWX ();
