@@ -254,6 +254,7 @@ namespace xdsdk
 		}
 						
 
+		#if UNITY_IOS && !UNITY_EDITOR
 		[DllImport("__Internal")]
 		private static extern void initSDK(string appid, int aOrientation);
 
@@ -319,6 +320,8 @@ namespace xdsdk
 			string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
 			string webPageUrl
 		);
+
+		#endif
 
 
 		#if UNITY_IOS && !UNITY_EDITOR
