@@ -74,6 +74,8 @@
 + (void)setWXWeb;
 
 
++ (void)hideTapTap;
+
 /**
  初始化SDK
 
@@ -83,11 +85,30 @@
 + (void)init:(nonnull NSString*)appid orientation:(int)orientation;
 
 
+
+/**
+ 初始化sdk，包含心动SDK，TapDB统计SDK
+
+ @param appid 心动appid
+ @param orientation 屏幕方向
+ @param channel 渠道号
+ @param version 版本号
+ @param enableTapdb 是否开启TapDB
+ */
++ (void)init:(nonnull NSString*)appid orientation:(int)orientation
+     channel:(nonnull NSString*)channel version:(nonnull NSString*)version
+ enableTapdb:(BOOL)enableTapdb;
+
 /**
  登录
  */
 + (void)login;
 
+
+/**
+ 用户反馈
+ */
++ (void)userFeedback;
 
 /**
  获取Token
@@ -112,6 +133,10 @@
  */
 + (BOOL)openUserCenter;
 
+/**
+ 打开实名认证窗口
+ */
++ (void)openRealName;
 
 /**
  进行支付
@@ -134,6 +159,25 @@
  @return TRUE-回调成功，FALSE-回调失败
  */
 + (BOOL)HandleXDOpenURL:(nonnull NSURL*)url;
+
+
+#pragma mark - TapDB相关
+
+/**
+ 设置玩家区服
+
+ @param server server
+ */
++ (void)setServer:(nonnull NSString *)server;
+
+
+/**
+ 设置玩家等级
+
+ @param level 等级
+ */
++ (void)setLevel:(NSInteger)level;
+
 
 @end
 
