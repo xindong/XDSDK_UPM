@@ -254,8 +254,7 @@ namespace xdsdk
 		}
 						
 
-		#if UNITY_IOS && !UNITY_EDITOR   
-
+		#if UNITY_IOS && !UNITY_EDITOR
 		[DllImport("__Internal")]
 		private static extern void initSDK(string appid, int aOrientation);
 
@@ -323,7 +322,6 @@ namespace xdsdk
 		);
 
 		#endif
-
 
 
 		#if UNITY_IOS && !UNITY_EDITOR
