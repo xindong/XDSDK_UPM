@@ -30,6 +30,7 @@
  */
 + (nonnull NSString*)getSDKVersion;
 
+
 /**
  设置回调协议
 
@@ -74,7 +75,11 @@
 + (void)setWXWeb;
 
 
+/**
+ 隐藏TapTap登录
+ */
 + (void)hideTapTap;
+
 
 /**
  初始化SDK
@@ -83,7 +88,6 @@
  @param orientation 屏幕方向（0，横屏）（1，竖屏）
  */
 + (void)init:(nonnull NSString*)appid orientation:(int)orientation;
-
 
 
 /**
@@ -99,6 +103,7 @@
      channel:(nonnull NSString*)channel version:(nonnull NSString*)version
  enableTapdb:(BOOL)enableTapdb;
 
+
 /**
  登录
  */
@@ -109,6 +114,7 @@
  用户反馈
  */
 + (void)userFeedback;
+
 
 /**
  获取Token
@@ -133,10 +139,12 @@
  */
 + (BOOL)openUserCenter;
 
+
 /**
  打开实名认证窗口
  */
 + (void)openRealName;
+
 
 /**
  进行支付
@@ -144,13 +152,14 @@
  @param prodectInfo 订单信息
  @return （YES，流程正常）（NO，尚未登录或重复调用）
  */
-+ (BOOL)pay:(nonnull NSDictionary*)prodectInfo;
++ (BOOL)requestProduct:(nonnull NSDictionary*)prodectInfo;
 
 
 /**
  登出用户
  */
 + (void)logout;
+
 
 /**
  处理跳转app回调
