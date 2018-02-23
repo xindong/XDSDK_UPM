@@ -90,6 +90,7 @@ namespace xdsdk
 
 		public void HideTapTap(){
 			#if UNITY_IOS && !UNITY_EDITOR
+			hideTapTap();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");

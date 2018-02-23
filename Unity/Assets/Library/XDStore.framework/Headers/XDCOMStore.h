@@ -10,9 +10,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RMStore.h"
-
-
 #pragma mark - XDComPayProtocol
 /**
  支付回调协议，当前版本暂不使用
@@ -111,13 +108,6 @@ typedef void(^finish)(void);
  @param product 支付的道具信息
  */
 - (void)parepareForProduct:(XDComPayProduct*)product;
-
-/**
- 处理支付宝App跳转
- 
- @param url URL
- */
-- (void)alixPayResultHandler:(NSURL *)url;
 
 @property (nonatomic,assign) id<XDComPayProtocol> delegate;
 
