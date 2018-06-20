@@ -34,4 +34,10 @@
  */
 + (BOOL)isTapTapClientSupport;
 
+/**
+ *  @brief 打开TapTap论坛
+ *  @param appid 游戏论坛ID
+ */
++ (void)openTapTapForum:(NSString *)appid;
+
 @end

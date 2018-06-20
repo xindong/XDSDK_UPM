@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using com.taptap.sdk;
 
 public class Demo : MonoBehaviour {
 
@@ -153,6 +154,10 @@ public class Demo : MonoBehaviour {
 
 		if (GUI.Button (new Rect (750, 1100, 300, 100), "实名认证", myButtonStyle)){
 			xdsdk.XDSDK.OpenRealName();
+		}
+
+		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
+			TapTapSDK.Instance.OpenTapTapForum("58881");
 		}
 
 

@@ -103,7 +103,6 @@
         <activity
             android:name="com.taptap.sdk.TapTapActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:theme="@android:style/Theme.NoTitleBar" />
     </application>
