@@ -41,6 +41,11 @@ namespace xdsdk
 		public static void HideTapTap(){
 			XDSDKImp.GetInstance ().HideTapTap ();
 		}
+
+		//设置登录顺序
+		public static void SetLoginEntries(string[] entries){
+			XDSDKImp.GetInstance ().SetLoginEntries (entries);
+		}
 	
 		//获取SDK版本
 		public static string GetSDKVersion(){

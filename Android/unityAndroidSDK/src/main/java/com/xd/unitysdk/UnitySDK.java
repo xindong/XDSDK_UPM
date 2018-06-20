@@ -85,6 +85,10 @@ public class UnitySDK{
         XDSDK.hideTapTap();
     }
 
+    public static void setLoginEntries(String[] entries){
+        XDSDK.setLoginEntries(entries);
+    }
+
     public static void userFeedback(){
         XDSDK.userFeedback();
     }

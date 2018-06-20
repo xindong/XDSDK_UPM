@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -95,6 +96,16 @@ namespace xdsdk
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("hideTapTap");
+			#endif
+		}
+
+		public void SetLoginEntries(string[] entries){
+			#if UNITY_IOS && !UNITY_EDITOR
+			
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("setLoginEntries", CSStringArrayToJavaStringArray(entries));
 			#endif
 		}
 
@@ -328,6 +339,20 @@ namespace xdsdk
 		#if UNITY_IOS && !UNITY_EDITOR
 
 		#elif UNITY_ANDROID && !UNITY_EDITOR
+		private AndroidJavaObject CSStringArrayToJavaStringArray(string [] values) {
+			AndroidJavaClass arrayClass  = new AndroidJavaClass("java.lang.reflect.Array");
+			AndroidJavaObject arrayObject = arrayClass.CallStatic<AndroidJavaObject>("newInstance",
+                                             new AndroidJavaClass("java.lang.String"),
+											 values.Count());
+			for (int i=0; i<values.Count(); ++i) {
+				arrayClass.CallStatic("set", 
+				arrayObject, 
+				i,
+				new AndroidJavaObject("java.lang.String", 
+				values[i]));
+			}
+			return arrayObject;
+		}
 		public static AndroidJavaObject DicToMap(Dictionary<string, string> dictionary)
 		{
 			if(dictionary == null)

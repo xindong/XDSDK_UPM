@@ -16,8 +16,12 @@ public class Demo : MonoBehaviour {
 		GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button);
 		myButtonStyle.fontSize = 50;
 
+
+		
 		if (GUI.Button (new Rect (50, 100, 300, 100), "设置回调", myButtonStyle)){
 			xdsdk.XDSDK.SetCallback (new XDSDKHandler ());
+			string [] entries = {"WX_LOGIN", "TAPTAP_LOGIN"};
+			xdsdk.XDSDK.SetLoginEntries(entries);
 		}
 
 		if (GUI.Button (new Rect (50, 300, 300, 100), "初始化", myButtonStyle)){
