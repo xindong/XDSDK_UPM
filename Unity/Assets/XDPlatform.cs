@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;  
 using System.Runtime.InteropServices;
+using com.taptap.sdk;
 
 public class XDPlatform : MonoBehaviour {
 
@@ -147,6 +148,10 @@ public class XDPlatform : MonoBehaviour {
 			shareData.Add ("webpageUrl","https://www.xd.com");
 
 			xdsdk.XDSDK.Share (shareData);
+		}
+
+		if (GUI.Button (new Rect (80, 800, 300, 100), "论坛")){
+			TapTapSDK.Instance.OpenTapTapForum("58881");
 		}
 	}
 

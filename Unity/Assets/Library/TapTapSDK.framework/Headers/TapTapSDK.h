@@ -37,7 +37,7 @@
 
 /**
  *  @brief 打开TapTap论坛
- *  @param appid 游戏论坛ID
+ *  @param appid 游戏论坛ID，与TapTap开发者ID不同
  */
 + (void)openTapTapForum:(NSString *)appid;
 
