@@ -21,7 +21,10 @@ public class XDPlatform : MonoBehaviour {
 
 			xdsdk.XDSDK.SetCallback (new XDSDKHandler ());
 
-			xdsdk.XDSDK.InitSDK ("d4bjgwom9zk84wk", 1,"","",true);
+			string [] entries = {"WX_LOGIN", "TAPTAP_LOGIN"};
+			xdsdk.XDSDK.SetLoginEntries(entries);
+
+			xdsdk.XDSDK.InitSDK ("d4bjgwom9zk84wk", 0,"","",true);
 		}
 
 		if(GUI.Button(new Rect(280,80,100,100),"登录")) {  
