@@ -8,12 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C1DDEAEA20DA2F5F00959047 /* XDSDK.mm in Sources */ = {isa = PBXBuildFile; fileRef = C1DDEAE820DA2F5F00959047 /* XDSDK.mm */; };
-		C1DDEAF120DA314400959047 /* TapTapSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAEB20DA314300959047 /* TapTapSDK.framework */; };
-		C1DDEAF220DA314400959047 /* libTyrantdbGameTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAEC20DA314400959047 /* libTyrantdbGameTracker.a */; };
-		C1DDEAF320DA314400959047 /* XdComPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAED20DA314400959047 /* XdComPlatform.framework */; };
-		C1DDEAF420DA314400959047 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAEE20DA314400959047 /* libWeChatSDK.a */; };
-		C1DDEAF520DA314400959047 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAEF20DA314400959047 /* TencentOpenAPI.framework */; };
-		C1DDEAF620DA314400959047 /* libSensorsAnalyticsSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DDEAF020DA314400959047 /* libSensorsAnalyticsSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,12 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DDEAF520DA314400959047 /* TencentOpenAPI.framework in Frameworks */,
-				C1DDEAF620DA314400959047 /* libSensorsAnalyticsSDK.a in Frameworks */,
-				C1DDEAF320DA314400959047 /* XdComPlatform.framework in Frameworks */,
-				C1DDEAF220DA314400959047 /* libTyrantdbGameTracker.a in Frameworks */,
-				C1DDEAF420DA314400959047 /* libWeChatSDK.a in Frameworks */,
-				C1DDEAF120DA314400959047 /* TapTapSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

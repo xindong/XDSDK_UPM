@@ -145,6 +145,18 @@ extern "C"{
             return [XDCore openUserCenter];
         }
         
+        void setServer (const char* server){
+            [XDCore setServer:[NSString stringWithUTF8String:server]];
+        }
+        
+        void setLevel (int level) {
+            [XDCore setLevel:level];
+        }
+        
+        void openRealName () {
+            [XDCore openRealName];
+        }
+        
         bool isLoggedIn(){
             
             return [XDCore isLoggedIn];
