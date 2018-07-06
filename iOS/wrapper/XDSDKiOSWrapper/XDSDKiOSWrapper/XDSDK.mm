@@ -158,7 +158,6 @@ extern "C"{
         }
         
         bool isXdLoggedIn(){
-            
             return [XDCore isLoggedIn];
         }
         
