@@ -30,6 +30,7 @@
  */
 + (nonnull NSString*)getSDKVersion;
 
+
 /**
  设置回调协议
 
@@ -39,15 +40,34 @@
 
 
 /**
+ 自定义登录入口。共五种，其中主要两种，次要两种。
+ 1、默认显示为：微信、TapTap、游客、QQ
+ 
+ 2、各登录方式对应名称如下：
+ 微信登录：WX_LOGIN，
+ taptap登录：TAPTAP_LOGIN，
+ QQ登录：QQ_LOGIN，
+ 游客登录：GUEST_LOGIN，
+ 心动登录：XD_LOGIN
+ 
+ 3、例，传入的数组。
+ @[@"WX_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN",@"QQ_LOGIN"]
+
+ 注：
+    1）传入为空或nil，则当做隐藏所有按钮，直接显示心动登录。
+    2）最多只能显示4种登录方式。
+    3) 四个登录按钮TapTap和心动登录不能同时显示
+
+ @param entries 入口类型，带顺序
+ */
++ (void)setLoginEntries:(NSArray *)entries;
+
+
+/**
  隐藏游客登录功能
  */
 + (void)hideGuest;
 
-
-/**
- 显示TapTap登录
- */
-+ (void)showTapTap;
 
 /**
  隐藏微信登录功能
@@ -80,6 +100,12 @@
 
 
 /**
+ 隐藏TapTap登录
+ */
++ (void)hideTapTap;
+
+
+/**
  初始化SDK
 
  @param appid appid
@@ -89,9 +115,29 @@
 
 
 /**
+ 初始化sdk，包含心动SDK，TapDB统计SDK
+
+ @param appid 心动appid
+ @param orientation 屏幕方向
+ @param channel 渠道号
+ @param version 版本号
+ @param enableTapdb 是否开启TapDB
+ */
++ (void)init:(nonnull NSString*)appid orientation:(int)orientation
+     channel:(nonnull NSString*)channel version:(nonnull NSString*)version
+ enableTapdb:(BOOL)enableTapdb;
+
+
+/**
  登录
  */
 + (void)login;
+
+
+/**
+ 用户反馈
+ */
++ (void)userFeedback;
 
 
 /**
@@ -119,12 +165,18 @@
 
 
 /**
+ 打开实名认证窗口
+ */
++ (void)openRealName;
+
+
+/**
  进行支付
 
  @param prodectInfo 订单信息
  @return （YES，流程正常）（NO，尚未登录或重复调用）
  */
-+ (BOOL)pay:(nonnull NSDictionary*)prodectInfo;
++ (BOOL)requestProduct:(nonnull NSDictionary*)prodectInfo;
 
 
 /**
@@ -134,17 +186,31 @@
 
 
 /**
- 用户反馈
- */
-+ (void)userFeedback;
-
-/**
  处理跳转app回调
  
  @param url 回调的URL
  @return TRUE-回调成功，FALSE-回调失败
  */
 + (BOOL)HandleXDOpenURL:(nonnull NSURL*)url;
+
+
+#pragma mark - TapDB相关
+
+/**
+ 设置玩家区服
+
+ @param server server
+ */
++ (void)setServer:(nonnull NSString *)server;
+
+
+/**
+ 设置玩家等级
+
+ @param level 等级
+ */
++ (void)setLevel:(NSInteger)level;
+
 
 @end
 

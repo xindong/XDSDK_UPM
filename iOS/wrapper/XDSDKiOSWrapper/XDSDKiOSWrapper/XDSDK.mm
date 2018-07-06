@@ -130,12 +130,12 @@ extern "C"{
             [XDCore init:[NSString stringWithUTF8String:appid] orientation:orientation];
         }
         
-        void login(){
+        void xdLogin(){
             
             [XDCore login];
         }
         
-        void logout(){
+        void xdLogout(){
             
             [XDCore logout];
         }
@@ -145,12 +145,24 @@ extern "C"{
             return [XDCore openUserCenter];
         }
         
-        bool isLoggedIn(){
+        void setServer (const char* server){
+            [XDCore setServer:[NSString stringWithUTF8String:server]];
+        }
+        
+        void setLevel (int level) {
+            [XDCore setLevel:level];
+        }
+        
+        void openRealName () {
+            [XDCore openRealName];
+        }
+        
+        bool isXdLoggedIn(){
             
             return [XDCore isLoggedIn];
         }
         
-        void pay(const char* product_name, const char* product_id, const char* product_price,const char* sid,const char* role_id,const char* orderid,const char* ext){
+        void xdPay(const char* product_name, const char* product_id, const char* product_price,const char* sid,const char* role_id,const char* orderid,const char* ext){
             
             [XDCore requestProduct:@{
                           @"Product_Name":[NSString stringWithUTF8String:product_name?product_name:"Product_Name"],
@@ -163,14 +175,14 @@ extern "C"{
                           }];
         }
         
-        const char* getSDKVersion(){
+        const char* getXDSDKVersion(){
             
             const char* version = [XDCore getSDKVersion].UTF8String;
             
             return strdup(version);
         }
         
-        const char* getAccessToken(){
+        const char* getXDAccessToken(){
             
             const char* token = [XDCore getAccessToken].UTF8String;
             
@@ -251,7 +263,7 @@ extern "C"{
             [XDCore setWXWeb];
         }
         
-        void share(const char* text, const char* bText, const char* scene, const char* shareType, const char* title, const char* description, const char* thumbPath, const char* imageUrl,const char*musicUrl, const char* musicLowBandUrl, const char* musicDataUrl, const char* musicLowBandDataUrl, const char* videoUrl, const char* videoLowBandUrl, const char* webpageUrl){
+        void xdShare(const char* text, const char* bText, const char* scene, const char* shareType, const char* title, const char* description, const char* thumbPath, const char* imageUrl,const char*musicUrl, const char* musicLowBandUrl, const char* musicDataUrl, const char* musicLowBandDataUrl, const char* videoUrl, const char* videoLowBandUrl, const char* webpageUrl){
             
             NSLog(@"微信分享");
             

@@ -111,7 +111,7 @@ namespace xdsdk
 
 		public string GetSDKVersion(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			return getSDKVersion();
+			return getXDSDKVersion();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -133,7 +133,7 @@ namespace xdsdk
 		public void Login(){
 
 			#if UNITY_IOS && !UNITY_EDITOR
-			login();
+			xdLogin();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -143,7 +143,7 @@ namespace xdsdk
 
 		public string GetAccessToken(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			return getAccessToken();
+			return getXDAccessToken();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -154,7 +154,7 @@ namespace xdsdk
 
 		public bool IsLoggedIn(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			return isLoggedIn();
+			return isXdLoggedIn();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -199,7 +199,7 @@ namespace xdsdk
 		public bool Pay(Dictionary<string, string> info){
 
 			#if UNITY_IOS && !UNITY_EDITOR
-			pay(info["Product_Name"],info["Product_Id"],info["Product_Price"],info["Sid"],info["Role_Id"],info["OrderId"],info["EXT"]);
+			xdPay(info["Product_Name"],info["Product_Id"],info["Product_Price"],info["Sid"],info["Role_Id"],info["OrderId"],info["EXT"]);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -211,7 +211,7 @@ namespace xdsdk
 
 		public void Logout(){
 			#if UNITY_IOS && !UNITY_EDITOR
-			logout();
+			xdLogout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -233,7 +233,7 @@ namespace xdsdk
 		public void Share(Dictionary<string, string> content){
 			#if UNITY_IOS && !UNITY_EDITOR
 
-			share(content["text"],content["bText"],content["scene"],content["shareType"],content["title"],content["description"],content["thumbPath"],content["imageUrl"],content["musicUrl"],
+			xdShare(content["text"],content["bText"],content["scene"],content["shareType"],content["title"],content["description"],content["thumbPath"],content["imageUrl"],content["musicUrl"],
 			content["musicLowBandUrl"],content["musicDataUrl"],content["musicLowBandDataUrl"],content["videoUrl"],content["videoLowBandUrl"],content["webpageUrl"]);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
@@ -280,25 +280,25 @@ namespace xdsdk
 		private static extern void setServer(string server);
 
 		[DllImport("__Internal")]
-		private static extern void login();
+		private static extern void xdLogin();
 
 		[DllImport("__Internal")]
-		private static extern bool isLoggedIn();
+		private static extern bool isXdLoggedIn();
 
 		[DllImport("__Internal")]
-		private static extern void logout();
+		private static extern void xdLogout();
 
 		[DllImport("__Internal")]
 		private static extern bool openUserCenter();
 
 		[DllImport("__Internal")]
-		private static extern void pay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);
+		private static extern void xdPay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);
 
 		[DllImport("__Internal")]
-		private static extern string getSDKVersion();
+		private static extern string getXDSDKVersion();
 
 		[DllImport("__Internal")]
-		private static extern string getAccessToken();
+		private static extern string getXDAccessToken();
 
 		[DllImport("__Internal")]
 		private static extern void hideGuest();
@@ -331,7 +331,7 @@ namespace xdsdk
 		private static extern void openRealName();
 
 		[DllImport("__Internal")]
-		private static extern void share (string text, string bText, string scene, string shareType, string title,string description, string thumbPath, 
+		private static extern void xdShare (string text, string bText, string scene, string shareType, string title,string description, string thumbPath, 
 		string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
 		string webPageUrl
 		);
