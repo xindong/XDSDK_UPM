@@ -221,16 +221,16 @@ extern "C"{
             [XDCore hideQQ];
         }
         
-        void setLoginEntries(const char* entries[]){
+        void setLoginEntries(const char* entries[],int length){
             
             NSLog(@"设置登录按钮顺序");
             
             NSMutableArray *loginEntries = [NSMutableArray array];
-            while(*entries){
-                NSString *loginName = [NSString stringWithUTF8String:*entries];
+            for(int  index = 0;index < length; index++){
+                NSString *loginName = [NSString stringWithUTF8String:entries[index]];
                 [loginEntries addObject:loginName];
-                entries++;
             }
+
             [XDCore setLoginEntries:loginEntries];
         }
         

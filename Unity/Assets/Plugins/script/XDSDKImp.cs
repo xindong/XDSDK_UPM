@@ -101,7 +101,7 @@ namespace xdsdk
 
 		public void SetLoginEntries(string[] entries){
 			#if UNITY_IOS && !UNITY_EDITOR
-			setLoginEntries(entries);
+			setLoginEntries(entries,entries.Count());
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -319,7 +319,7 @@ namespace xdsdk
 		private static extern void setWXWeb();
 
 		[DllImport("__Internal")]
-		private static extern void setLoginEntries(string[] entries);
+		private static extern void setLoginEntries(string[] entries,int length);
 
 		[DllImport("__Internal")]
 		private static extern void userFeedback();

@@ -23,15 +23,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C19649E920F6F21E006DE244 /* TapTapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapTapSDK.framework; path = XDSDKiOSWrapper/TapTapSDK.framework; sourceTree = "<group>"; };
+		C19649EA20F6F21E006DE244 /* libTyrantdbGameTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTyrantdbGameTracker.a; path = XDSDKiOSWrapper/libTyrantdbGameTracker.a; sourceTree = "<group>"; };
+		C19649EB20F6F21E006DE244 /* XdComPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XdComPlatform.framework; path = XDSDKiOSWrapper/XdComPlatform.framework; sourceTree = "<group>"; };
+		C19649EC20F6F21E006DE244 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = XDSDKiOSWrapper/libWeChatSDK.a; sourceTree = "<group>"; };
+		C19649ED20F6F21F006DE244 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = XDSDKiOSWrapper/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		C19649EE20F6F21F006DE244 /* libSensorsAnalyticsSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSensorsAnalyticsSDK.a; path = XDSDKiOSWrapper/libSensorsAnalyticsSDK.a; sourceTree = "<group>"; };
 		C1DDEAD920DA2F1800959047 /* libXDSDKiOSWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDSDKiOSWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DDEAE820DA2F5F00959047 /* XDSDK.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDSDK.mm; sourceTree = "<group>"; };
 		C1DDEAE920DA2F5F00959047 /* XDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDSDK.h; sourceTree = "<group>"; };
-		C1DDEAEB20DA314300959047 /* TapTapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TapTapSDK.framework; sourceTree = "<group>"; };
-		C1DDEAEC20DA314400959047 /* libTyrantdbGameTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTyrantdbGameTracker.a; sourceTree = "<group>"; };
-		C1DDEAED20DA314400959047 /* XdComPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XdComPlatform.framework; sourceTree = "<group>"; };
-		C1DDEAEE20DA314400959047 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		C1DDEAEF20DA314400959047 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		C1DDEAF020DA314400959047 /* libSensorsAnalyticsSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSensorsAnalyticsSDK.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,11 +45,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C102D37A20F6351A005EEEA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C1DDEAD020DA2F1800959047 = {
 			isa = PBXGroup;
 			children = (
+				C19649EE20F6F21F006DE244 /* libSensorsAnalyticsSDK.a */,
+				C19649EA20F6F21E006DE244 /* libTyrantdbGameTracker.a */,
+				C19649EC20F6F21E006DE244 /* libWeChatSDK.a */,
+				C19649E920F6F21E006DE244 /* TapTapSDK.framework */,
+				C19649ED20F6F21F006DE244 /* TencentOpenAPI.framework */,
+				C19649EB20F6F21E006DE244 /* XdComPlatform.framework */,
 				C1DDEADB20DA2F1800959047 /* XDSDKiOSWrapper */,
 				C1DDEADA20DA2F1800959047 /* Products */,
+				C102D37A20F6351A005EEEA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,12 +78,6 @@
 		C1DDEADB20DA2F1800959047 /* XDSDKiOSWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDEAF020DA314400959047 /* libSensorsAnalyticsSDK.a */,
-				C1DDEAEC20DA314400959047 /* libTyrantdbGameTracker.a */,
-				C1DDEAEE20DA314400959047 /* libWeChatSDK.a */,
-				C1DDEAEB20DA314300959047 /* TapTapSDK.framework */,
-				C1DDEAEF20DA314400959047 /* TencentOpenAPI.framework */,
-				C1DDEAED20DA314400959047 /* XdComPlatform.framework */,
 				C1DDEAE920DA2F5F00959047 /* XDSDK.h */,
 				C1DDEAE820DA2F5F00959047 /* XDSDK.mm */,
 			);
@@ -190,7 +198,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -242,7 +250,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -262,8 +270,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/XDSDKiOSWrapper",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -272,6 +282,10 @@
 		C1DDEAE420DA2F1800959047 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7,
+				);
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C8Q9HL3X57;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -282,8 +296,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/XDSDKiOSWrapper",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
