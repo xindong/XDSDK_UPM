@@ -29,7 +29,6 @@ namespace xdsdk{
 
 		//callback
 		public void OnInitSucceed (){
-			Debug.Log("OnInitSucceed");
 			XDSDKImp.GetInstance ().GetXDCallback ().OnInitSucceed ();
 		}
 
