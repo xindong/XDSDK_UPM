@@ -6,22 +6,22 @@ namespace xdsdk{
 	
 	public class XDSDKListener : MonoBehaviour {
 
-		private static int OnInitSucceedCode = 1;
-		private static int OnInitFailedCode = 2;
-		private static int OnLoginSucceedCode = 3;
-		private static int OnLoginFailedCode = 4;
-		private static int OnLoginCanceledCode = 5;
-		private static int OnGuestBindSucceedCode = 6;
-		private static int OnRealNameSucceedCode = 7;
-		private static int OnRealNameFailedCode = 8;
-		private static int OnLogoutSucceedCode = 9;
-		private static int OnPayCompletedCode = 10;
-		private static int OnPayFailedCode = 11;
-		private static int OnPayCanceledCode = 12;
-		private static int OnExitConfirmCode = 13;
-		private static int OnExitCancelCode = 14;
-		private static int OnWXShareSucceedCode = 15;
-		private static int OnWXShareFailedCode = 16;
+		private const int OnInitSucceedCode = 1;
+		private const int OnInitFailedCode = 2;
+		private const int OnLoginSucceedCode = 3;
+		private const int OnLoginFailedCode = 4;
+		private const int OnLoginCanceledCode = 5;
+		private const int OnGuestBindSucceedCode = 6;
+		private const int OnRealNameSucceedCode = 7;
+		private const int OnRealNameFailedCode = 8;
+		private const int OnLogoutSucceedCode = 9;
+		private const int OnPayCompletedCode = 10;
+		private const int OnPayFailedCode = 11;
+		private const int OnPayCanceledCode = 12;
+		private const int OnExitConfirmCode = 13;
+		private const int OnExitCancelCode = 14;
+		private const int OnWXShareSucceedCode = 15;
+		private const int OnWXShareFailedCode = 16;
 
 		void Start () {
 			this.name = "XDSDK";
@@ -91,9 +91,9 @@ namespace xdsdk{
 			XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareFailed (msg);
 		}
 
-		#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+		#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-		public static delegate void UniversalCallbackDelegate(int code, string msg);
+		public delegate void UniversalCallbackDelegate(int code, string msg);
 
 		public static void UniversalCallback(int code, string msg) {
 			switch (code)
@@ -146,7 +146,7 @@ namespace xdsdk{
 			case OnWXShareFailedCode:
 				XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareFailed (msg);
 				break;
-			case default:
+			default:
 				break;
 			}
 		}

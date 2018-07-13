@@ -361,7 +361,7 @@ namespace xdsdk
 		#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
 		[DllImport("XDSDK")]
-		private static extern void UnitySetCallback(XDSDKListener.UniversalCallbackDelegate);
+		private static extern void UnitySetCallback(XDSDKListener.UniversalCallbackDelegate delegate);
 
 		[DllImport("XDSDK")]
 		private static extern void UnitySetLoginEntries(string[] entries, int length);
