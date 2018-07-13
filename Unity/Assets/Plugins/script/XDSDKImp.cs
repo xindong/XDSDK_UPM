@@ -103,6 +103,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			setLoginEntries(entries,entries.Count());
 
+			#elif UNITY_WSA && !UNITY_EDITOR
+
+			SetLoginEntries(entries, entries.Count());
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("setLoginEntries", CSStringArrayToJavaStringArray(entries));
@@ -124,6 +128,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
+			#elif UNITY_WSA && !UNITY_EDITOR
+
+			Init(appid);
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("initSDK",appid,aOrientation,channel,version,enableTapDB);
@@ -134,6 +142,10 @@ namespace xdsdk
 
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogin();
+
+			#elif UNITY_WSA && !UNITY_EDITOR
+
+			Login();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -212,6 +224,10 @@ namespace xdsdk
 		public void Logout(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogout();
+
+			#elif UNITY_WSA && !UNITY_EDITOR
+
+			Logout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -335,6 +351,20 @@ namespace xdsdk
 		string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
 		string webPageUrl
 		);
+
+		#elif UNITY_WSA && !UNITY_EDITOR
+
+		[DllImport("__Internal")]
+		private static extern void SetLoginEntries(string[] entries, int length);
+
+		[DllImport("__Internal")]
+		private static extern void Init(string appid);
+
+		[DllImport("__Internal")]
+		private static extern void Login();
+
+		[DllImport("__Internal")]
+		private static extern void Logout();
 
 		#endif
 
