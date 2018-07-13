@@ -103,9 +103,9 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			setLoginEntries(entries,entries.Count());
 
-			#elif UNITY_WSA && !UNITY_EDITOR
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			SetLoginEntries(entries, entries.Count());
+			InternalSetLoginEntries(entries, entries.Count());
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -128,9 +128,9 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
-			#elif UNITY_WSA && !UNITY_EDITOR
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			Init(appid);
+			InternalInit(appid);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -143,9 +143,9 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogin();
 
-			#elif UNITY_WSA && !UNITY_EDITOR
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			Login();
+			InternalLogin();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -225,9 +225,9 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogout();
 
-			#elif UNITY_WSA && !UNITY_EDITOR
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			Logout();
+			InternalLogout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -352,19 +352,19 @@ namespace xdsdk
 		string webPageUrl
 		);
 
-		#elif UNITY_WSA && !UNITY_EDITOR
+		#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
 		[DllImport("__Internal")]
-		private static extern void SetLoginEntries(string[] entries, int length);
+		private static extern void InternalSetLoginEntries(string[] entries, int length);
 
 		[DllImport("__Internal")]
-		private static extern void Init(string appid);
+		private static extern void InternalInit(string appid);
 
 		[DllImport("__Internal")]
-		private static extern void Login();
+		private static extern void InternalLogin();
 
 		[DllImport("__Internal")]
-		private static extern void Logout();
+		private static extern void InternalLogout();
 
 		#endif
 
