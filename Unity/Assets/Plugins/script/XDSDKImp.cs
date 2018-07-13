@@ -23,6 +23,12 @@ namespace xdsdk
 
 		public void SetCallback(XDCallback callback){
 			xdCallback = callback;
+
+			#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnitySetCallback(new XDSDKListener.UniversalCallbackDelegate(XDSDKListener.UniversalCallback));
+
+			#endif
 		}
 
 		public XDCallback GetXDCallback(){
@@ -105,7 +111,7 @@ namespace xdsdk
 
 			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			InternalSetLoginEntries(entries, entries.Count());
+			UnitySetLoginEntries(entries, entries.Count());
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -130,7 +136,7 @@ namespace xdsdk
 
 			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			InternalInit(appid);
+			UnityInit(appid);
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -145,7 +151,7 @@ namespace xdsdk
 
 			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			InternalLogin();
+			UnityLogin();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -227,7 +233,7 @@ namespace xdsdk
 
 			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-			InternalLogout();
+			UnityLogout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -354,17 +360,20 @@ namespace xdsdk
 
 		#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-		[DllImport("__Internal")]
-		private static extern void InternalSetLoginEntries(string[] entries, int length);
+		[DllImport("XDSDK")]
+		private static extern void UnitySetCallback(XDSDKListener.UniversalCallbackDelegate);
 
-		[DllImport("__Internal")]
-		private static extern void InternalInit(string appid);
+		[DllImport("XDSDK")]
+		private static extern void UnitySetLoginEntries(string[] entries, int length);
 
-		[DllImport("__Internal")]
-		private static extern void InternalLogin();
+		[DllImport("XDSDK")]
+		private static extern void UnityInit(string appid);
 
-		[DllImport("__Internal")]
-		private static extern void InternalLogout();
+		[DllImport("XDSDK")]
+		private static extern void UnityLogin();
+
+		[DllImport("XDSDK")]
+		private static extern void UnityLogout();
 
 		#endif
 
