@@ -23,6 +23,12 @@ namespace xdsdk
 
 		public void SetCallback(XDCallback callback){
 			xdCallback = callback;
+
+			#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnitySetCallback(new XDSDKListener.UniversalCallbackDelegate(XDSDKListener.UniversalCallback));
+
+			#endif
 		}
 
 		public XDCallback GetXDCallback(){
@@ -103,6 +109,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			setLoginEntries(entries,entries.Count());
 
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnitySetLoginEntries(entries, entries.Count());
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("setLoginEntries", CSStringArrayToJavaStringArray(entries));
@@ -124,6 +134,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnityInit(appid);
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("initSDK",appid,aOrientation,channel,version,enableTapDB);
@@ -134,6 +148,10 @@ namespace xdsdk
 
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogin();
+
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnityLogin();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -212,6 +230,10 @@ namespace xdsdk
 		public void Logout(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			xdLogout();
+
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnityLogout();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -335,6 +357,23 @@ namespace xdsdk
 		string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
 		string webPageUrl
 		);
+
+		#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+		[DllImport("XDSDK")]
+		private static extern void UnitySetCallback(XDSDKListener.UniversalCallbackDelegate universalCallback);
+
+		[DllImport("XDSDK")]
+		private static extern void UnitySetLoginEntries(string[] entries, int length);
+
+		[DllImport("XDSDK")]
+		private static extern void UnityInit(string appid);
+
+		[DllImport("XDSDK")]
+		private static extern void UnityLogin();
+
+		[DllImport("XDSDK")]
+		private static extern void UnityLogout();
 
 		#endif
 
