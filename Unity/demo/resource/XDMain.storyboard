@@ -2057,7 +2057,6 @@
                                     </constraint>
                                     <constraint firstItem="9rk-Ev-2KU" firstAttribute="centerY" secondItem="pqp-WX-UiE" secondAttribute="centerY" id="hLQ-u0-j8s"/>
                                     <constraint firstAttribute="height" constant="75" id="iwU-Ry-8Sz"/>
-                                    <constraint firstAttribute="width" constant="577.5" id="m57-DV-bcn"/>
                                     <constraint firstAttribute="height" constant="75" id="qNh-nP-XxR"/>
                                     <constraint firstItem="dhh-Oz-giX" firstAttribute="centerX" secondItem="pqp-WX-UiE" secondAttribute="centerX" constant="-91" id="yOe-3y-fDs">
                                         <variation key="heightClass=compact" constant="-85"/>
@@ -2067,7 +2066,6 @@
                                     <mask key="constraints">
                                         <exclude reference="Tux-uw-upE"/>
                                         <exclude reference="iwU-Ry-8Sz"/>
-                                        <exclude reference="m57-DV-bcn"/>
                                         <exclude reference="qNh-nP-XxR"/>
                                         <exclude reference="BY5-0P-weG"/>
                                         <exclude reference="J22-sU-eHG"/>
@@ -2084,7 +2082,6 @@
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
                                         <include reference="iwU-Ry-8Sz"/>
-                                        <include reference="m57-DV-bcn"/>
                                         <exclude reference="cpg-mB-S7c"/>
                                         <include reference="yOe-3y-fDs"/>
                                         <include reference="0rB-Tr-XXt"/>
@@ -2326,7 +2323,6 @@
                         <outletCollection property="landscapeConstraintCollection" destination="6Hc-z6-KEt" id="L9U-gT-EF1"/>
                         <outletCollection property="landscapeConstraintCollection" destination="Ot4-ZU-gLL" id="18n-fK-vbP"/>
                         <outletCollection property="landscapeConstraintCollection" destination="iwU-Ry-8Sz" id="3NO-dd-SGa"/>
-                        <outletCollection property="landscapeConstraintCollection" destination="m57-DV-bcn" id="Rq9-zT-eAg"/>
                         <outletCollection property="landscapeConstraintCollection" destination="yOe-3y-fDs" id="txz-gz-ahq"/>
                         <outletCollection property="landscapeConstraintCollection" destination="0rB-Tr-XXt" id="Nf9-BS-48S"/>
                         <outletCollection property="landscapeConstraintCollection" destination="45g-pd-rzP" id="gCB-0c-Bk6"/>
