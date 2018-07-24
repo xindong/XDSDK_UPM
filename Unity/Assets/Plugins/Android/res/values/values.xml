@@ -2,4 +2,6 @@
 <resources>
     <color name="primary_color">#FF14B9C8</color>
     <string name="app_name">sdk</string>
+    <string name="taptap_sdk_close">关闭</string>
+    <string name="taptap_sdk_other">更多功能</string>
 </resources>
