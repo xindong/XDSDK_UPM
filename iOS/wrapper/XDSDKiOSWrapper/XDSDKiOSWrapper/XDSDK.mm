@@ -453,7 +453,7 @@ extern "C"{
  */
 - (void)onWXShareSucceed{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "onWXShareSucceed", "");
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnWXShareSucceed", "");
 }
 
 
@@ -464,8 +464,18 @@ extern "C"{
  */
 - (void)onWXShareFailed:(NSString*)error_msg{
     
-    UnitySendMessage(self.gameObjectName.UTF8String, "onWXShareFailed", error_msg?error_msg.UTF8String:"");
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnWXShareFailed", error_msg?error_msg.UTF8String:"");
 }
+
+- (void)onRealNameSucceed {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnRealNameSucceed", "");
+
+}
+
+- (void)onRealNameFailed:(NSString *)error_msg {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnRealNameFailed", error_msg?error_msg.UTF8String:"");
+}
+
 
 @end
 
