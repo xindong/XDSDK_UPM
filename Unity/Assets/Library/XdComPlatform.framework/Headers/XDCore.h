@@ -6,10 +6,7 @@
 //  Copyright (c) 2014年 XINDONG Network. All rights reserved.
 //
 
-
-
 #import "XDCallback.h"
-
 
 #ifndef XdComPlatform_XDCore_h
 
@@ -106,15 +103,6 @@
 
 
 /**
- 初始化SDK
-
- @param appid appid
- @param orientation 屏幕方向（0，横屏）（1，竖屏）
- */
-+ (void)init:(nonnull NSString*)appid orientation:(int)orientation;
-
-
-/**
  初始化sdk，包含心动SDK，TapDB统计SDK
 
  @param appid 心动appid
@@ -123,8 +111,10 @@
  @param version 版本号
  @param enableTapdb 是否开启TapDB
  */
-+ (void)init:(nonnull NSString*)appid orientation:(int)orientation
-     channel:(nonnull NSString*)channel version:(nonnull NSString*)version
++ (void)init:(nonnull NSString *)appid
+ orientation:(int)orientation
+     channel:(nonnull NSString *)channel
+     version:(nonnull NSString *)version
  enableTapdb:(BOOL)enableTapdb;
 
 
@@ -145,7 +135,7 @@
 
  @return Token
  */
-+ (nullable NSString*)getAccessToken;
++ (nullable NSString *)getAccessToken;
 
 
 /**
@@ -176,7 +166,7 @@
  @param prodectInfo 订单信息
  @return （YES，流程正常）（NO，尚未登录或重复调用）
  */
-+ (BOOL)requestProduct:(nonnull NSDictionary*)prodectInfo;
++ (BOOL)requestProduct:(nonnull NSDictionary *)prodectInfo;
 
 
 /**
@@ -191,7 +181,7 @@
  @param url 回调的URL
  @return TRUE-回调成功，FALSE-回调失败
  */
-+ (BOOL)HandleXDOpenURL:(nonnull NSURL*)url;
++ (BOOL)HandleXDOpenURL:(nonnull NSURL *)url;
 
 
 #pragma mark - TapDB相关
