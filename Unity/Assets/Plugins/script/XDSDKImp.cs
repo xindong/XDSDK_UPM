@@ -123,6 +123,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			return getXDSDKVersion();
 
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			return UnityGetSdkVersion();
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			return jc.CallStatic<string> ("getSDKVersion");
@@ -163,6 +167,10 @@ namespace xdsdk
 			#if UNITY_IOS && !UNITY_EDITOR
 			return getXDAccessToken();
 
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			return UnityGetAccessToken();
+
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			return jc.CallStatic<string> ("getAccessToken");
@@ -173,6 +181,10 @@ namespace xdsdk
 		public bool IsLoggedIn(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			return isXdLoggedIn();
+
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			return UnityIsLoggedIn();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -207,6 +219,10 @@ namespace xdsdk
 		public void OpenRealName(){
 			#if UNITY_IOS && !UNITY_EDITOR
 			openRealName();
+
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnityOpenRealName();
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -374,6 +390,18 @@ namespace xdsdk
 
 		[DllImport("XDSDK")]
 		private static extern void UnityLogout();
+
+		[DllImport("XDSDK")]
+		private static extern string UnityGetAccessToken();
+
+		[DllImport("XDSDK")]
+		private static extern bool UnityIsLoggedIn();
+
+		[DllImport("XDSDK")]
+		private static extern void UnityOpenRealName();
+
+		[DllImport("XDSDK")]
+		private static extern string UnityGetSdkVersion();
 
 		#endif
 
