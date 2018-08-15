@@ -233,7 +233,23 @@ namespace xdsdk
 		public bool Pay(Dictionary<string, string> info){
 
 			#if UNITY_IOS && !UNITY_EDITOR
-			xdPay(info["Product_Name"],info["Product_Id"],info["Product_Price"],info["Sid"],info["Role_Id"],info["OrderId"],info["EXT"]);
+			xdPay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
+					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
+					info.ContainsKey("Product_Price") ? info["Product_Price"] : "",
+					info.ContainsKey("Sid") ? info["Sid"] : "",
+					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
+					info.ContainsKey("OrderId") ? info["OrderId"] : "",
+					info.ContainsKey("EXT") ? info["EXT"] : "");
+
+			#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+
+			UnityPay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
+					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
+					info.ContainsKey("Product_Price") ? int.Parse(info["Product_Price"]) : 0,
+					info.ContainsKey("Sid") ? info["Sid"] : "",
+					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
+					info.ContainsKey("OrderId") ? info["OrderId"] : "",
+					info.ContainsKey("EXT") ? info["EXT"] : "");
 
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -402,6 +418,9 @@ namespace xdsdk
 
 		[DllImport("XDSDK")]
 		private static extern string UnityGetSdkVersion();
+
+		[DllImport("XDSDK")]
+		private static extern void UnityPay(string proudct_name, string product_id, int product_price, string sid, string role_id, string order_id, string ext);
 
 		#endif
 
