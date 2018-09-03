@@ -10,6 +10,8 @@
 
 <img src="img/1.png"></img>
 
+[下载浏览器插件](http://xindong-res.b0.upaiyun.com/xdsdk/unity-dependencies/Embedded%20Browser.unitypackage) 并导入到工程，提交时请勿提交该插件。
+
 目录或文件 | 用途
 --- |---
 Plugins/script/XDSDK.cs | 心动SDK接口
