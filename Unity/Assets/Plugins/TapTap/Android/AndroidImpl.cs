@@ -16,6 +16,21 @@ namespace com.taptap.sdk
 			AndroidJavaClass jc = new AndroidJavaClass ("com.taptap.sdk.TapTapUnity");
 			jc.CallStatic ("openTapTapForum", appid);
 		}
+
+		public override void InitAppBoard(){
+			AndroidJavaClass jc = new AndroidJavaClass ("com.taptap.sdk.TapTapUnity");
+			jc.CallStatic ("initAppBoard");
+		}
+
+		public override void QueryAppBoardStatus(){
+			AndroidJavaClass jc = new AndroidJavaClass ("com.taptap.sdk.TapTapUnity");
+			jc.CallStatic ("queryAppBoardStatus");
+		}
+
+		public override void OpenAppBoard(string appid){
+			AndroidJavaClass jc = new AndroidJavaClass ("com.taptap.sdk.TapTapUnity");
+			jc.CallStatic ("openAppBoard", appid);
+		}
 	}
 }
 

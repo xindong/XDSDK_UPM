@@ -3,32 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using com.taptap.sdk;
 
-public class Demo : MonoBehaviour {
+public class Demo : MonoBehaviour
+{
 
 
-	void Update()
-	{
 
-	}
+    void Update()
+    {
 
-	void OnGUI()
-	{
-		GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button);
-		myButtonStyle.fontSize = 50;
+    }
 
+    void OnGUI()
+    {
+        GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button)
+        {
+            fontSize = 50
+        };
 
-		
-		if (GUI.Button (new Rect (50, 100, 300, 100), "设置回调", myButtonStyle)){
-			xdsdk.XDSDK.SetCallback (new XDSDKHandler ());
-			string [] entries = {"WX_LOGIN", "TAPTAP_LOGIN"};
-			xdsdk.XDSDK.SetLoginEntries(entries);
-		}
+        GUI.depth = 0;
 
-		if (GUI.Button (new Rect (50, 300, 300, 100), "初始化", myButtonStyle)){
-			xdsdk.XDSDK.InitSDK ("a4d6xky5gt4c80s", 0,"UnityXDSDK","0.0.0",true);
-		}
+        if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
+        {
+            xdsdk.XDSDK.SetCallback(new XDSDKHandler());
+            string[] entries = { "WX_LOGIN", "TAPTAP_LOGIN" };
+            xdsdk.XDSDK.SetLoginEntries(entries);
+        }
 
-		if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
+        if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
+        {
+            xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "UnityXDSDK", "0.0.0", true);
+#if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
+            TapTapSDK.Instance.InitAppBoard ();
+#endif
+        }
+
+        if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
 			xdsdk.XDSDK.Login ();
 		}
 
@@ -162,6 +171,14 @@ public class Demo : MonoBehaviour {
 
 		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
 			TapTapSDK.Instance.OpenTapTapForum("58881");
+		}
+
+		if (GUI.Button (new Rect (750, 1500, 300, 100), "公告", myButtonStyle)){
+			TapTapSDK.Instance.OpenAppBoard("58881");
+		}
+
+		if (GUI.Button (new Rect (750, 1700, 300, 100), "检查", myButtonStyle)) {
+			TapTapSDK.Instance.QueryAppBoardStatus ();
 		}
 
 

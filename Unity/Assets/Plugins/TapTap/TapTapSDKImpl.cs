@@ -12,6 +12,12 @@ namespace com.taptap.sdk
 	public abstract class TapTapSDKImpl
 	{
 		public abstract void OpenTapTapForum(string appid);
+
+		public abstract void InitAppBoard();
+
+		public abstract void QueryAppBoardStatus();
+
+		public abstract void OpenAppBoard(string appid);
 	}
 
 }

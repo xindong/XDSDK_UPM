@@ -55,6 +55,7 @@ namespace xdsdk
 		//初始化心动SDK
 		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb){
 			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation, channel, version, enableTapdb);
+			com.taptap.sdk.TapTapListener.Init ();
         }
 
 		//登录

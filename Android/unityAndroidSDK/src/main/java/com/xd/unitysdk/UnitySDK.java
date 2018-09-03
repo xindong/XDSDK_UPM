@@ -214,11 +214,13 @@ public class UnitySDK{
     private static final XDWXShare.XDWXShareCallback wxShareCallback= new XDWXShare.XDWXShareCallback() {
         @Override
         public void onWXShareSucceed() {
+            Log.e("Unity SDK" ,"onWXShareSucceed" );
             UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareSucceed", "");
         }
 
         @Override
         public void onWXShareFailed(String msg) {
+            Log.e("Unity SDK" ,"onWXShareFailed" );
             UnityPlayer.UnitySendMessage("XDSDK", "OnWXShareFailed", msg);
         }
     };

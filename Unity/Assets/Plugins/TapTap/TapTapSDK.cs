@@ -17,6 +17,8 @@ namespace com.taptap.sdk
 		private static object syncRoot = new System.Object ();
 
 		private TapTapSDKImpl taptapSDKimpl;
+
+		public TapCallback tapCallback;
 	
 
 		private TapTapSDK ()
@@ -35,6 +37,15 @@ namespace com.taptap.sdk
 			}
 		}
 
+		public void SetCallback(TapCallback callback){
+			tapCallback = callback;
+		}
+
+		public TapCallback GetCallback(){
+			return tapCallback;
+		}
+
+
 		public void OpenTapTapForum(string appid){
        		if(taptapSDKimpl == null){
 #if UNITY_ANDROID
@@ -45,7 +56,40 @@ namespace com.taptap.sdk
 			}
 			taptapSDKimpl.OpenTapTapForum(appid);
 		}	
-		
+
+		public void InitAppBoard(){
+			if(taptapSDKimpl == null){
+				#if UNITY_ANDROID
+				taptapSDKimpl = new AndroidImpl ();
+				#elif UNITY_IPHONE
+				taptapSDKimpl = new iOSImpl ();
+				#endif
+			}
+			taptapSDKimpl.InitAppBoard();
+			TapTapListener.Init ();
+		}	
+
+		public void QueryAppBoardStatus(){
+			if(taptapSDKimpl == null){
+				#if UNITY_ANDROID
+				taptapSDKimpl = new AndroidImpl ();
+				#elif UNITY_IPHONE
+				taptapSDKimpl = new iOSImpl ();
+				#endif
+			}
+			taptapSDKimpl.QueryAppBoardStatus();
+		}	
+
+		public void OpenAppBoard(string appid){
+			if(taptapSDKimpl == null){
+				#if UNITY_ANDROID
+				taptapSDKimpl = new AndroidImpl ();
+				#elif UNITY_IPHONE
+				taptapSDKimpl = new iOSImpl ();
+				#endif
+			}
+			taptapSDKimpl.OpenAppBoard(appid);
+		}	
 	}
 }
 

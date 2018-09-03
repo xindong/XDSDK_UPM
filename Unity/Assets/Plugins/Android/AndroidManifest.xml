@@ -102,6 +102,11 @@
             android:name="com.taptap.sdk.TapTapActivity"
             android:exported="false"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:exported="false"
+            android:authorities=".com.squareup.picasso" />
     </application>
 </manifest>
