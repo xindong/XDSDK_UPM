@@ -25,7 +25,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
-            string[] entries = { "WX_LOGIN", "TAPTAP_LOGIN" };
+            string[] entries = { "WX_LOGIN", "TAPTAP_LOGIN","XD_LOGIN" };
             xdsdk.XDSDK.SetLoginEntries(entries);
         }
 
