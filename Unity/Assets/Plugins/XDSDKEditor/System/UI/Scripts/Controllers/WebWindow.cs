@@ -12,6 +12,8 @@ namespace xdsdk.Unity
 
         public Button close;
 
+        public Button back;
+
         public Browser browser;
 
         private string url = "";
@@ -65,6 +67,8 @@ namespace xdsdk.Unity
             };
 
             close.onClick.AddListener(OnCloseClicked);
+
+            back.onClick.AddListener(browser.GoBack);
 
             transitionDurationTime = 0.2f;
         }
