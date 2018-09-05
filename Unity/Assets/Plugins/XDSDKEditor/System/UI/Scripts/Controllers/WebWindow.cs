@@ -71,6 +71,7 @@ namespace xdsdk.Unity
             back.onClick.AddListener(browser.GoBack);
 
             transitionDurationTime = 0.2f;
+
         }
 
         private void HandleUrl(string urlStr){

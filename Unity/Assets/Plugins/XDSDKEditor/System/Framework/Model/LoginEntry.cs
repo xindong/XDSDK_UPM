@@ -18,8 +18,8 @@ namespace xdsdk.Unity
         };
 
         private Type first = Type.WX;
-        private Type second = Type.Tap;
-        private Type third = Type.QQ;
+        private Type second = Type.QQ;
+        private Type third = Type.Tap;
         private Type fourth = Type.None;
 
         public Type First
@@ -82,6 +82,7 @@ namespace xdsdk.Unity
         {
             SetStringArrayToCurrentEntries(RemoveStringFromArray("WX_LOGIN",
                                                      CurrentEntriesToStringArray()));
+            third = Type.XD;
         }
 
         public void HideQQ()

@@ -14,6 +14,14 @@ namespace xdsdk.Unity
         void Awake()
         {
             transitionDurationTime = 0.1f;
+
+            CanvasScaler scaler = GetComponent<CanvasScaler>();
+            if(Screen.height > 1080){
+                scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            } else {
+                scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+            }
+
         }
 
         public override IEnumerator PlayExit()

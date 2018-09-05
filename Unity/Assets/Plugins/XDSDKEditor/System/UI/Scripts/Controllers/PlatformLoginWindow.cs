@@ -58,11 +58,11 @@ namespace xdsdk.Unity
             });
             forgot.onClick.AddListener(() =>
             {
-                Application.OpenURL("http://xd.com/");
+                Application.OpenURL("https://www.xd.com/security/forget_pass");
             });
             register.onClick.AddListener(() =>
             {
-                Application.OpenURL("http://xd.com/");
+                Application.OpenURL("https://www.xd.com/users/register/");
             });
             login.onClick.AddListener(LoginXD);
             username.onValueChanged.AddListener((string value) =>
