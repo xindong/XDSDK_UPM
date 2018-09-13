@@ -224,7 +224,7 @@ namespace xdsdk.Unity
             if (questionMarkIndex == url.Length - 1)
                 return;
             string ps = url.Substring(questionMarkIndex + 1);
-            Regex re = new Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?", RegexOptions.Compiled);
+            Regex re = new Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?", RegexOptions.None);
             MatchCollection mc = re.Matches(ps);
             foreach (Match m in mc)
             {

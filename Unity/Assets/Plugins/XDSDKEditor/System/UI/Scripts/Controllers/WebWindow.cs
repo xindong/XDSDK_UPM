@@ -68,7 +68,14 @@ namespace xdsdk.Unity
 
             close.onClick.AddListener(OnCloseClicked);
 
-            back.onClick.AddListener(browser.GoBack);
+            back.onClick.AddListener(()=>{
+                string a = browser.Url;
+                if(browser.CanGoBack){
+                    browser.GoBack();
+                } else {
+                    OnCloseClicked();
+                }
+            });
 
             transitionDurationTime = 0.2f;
 
@@ -90,7 +97,7 @@ namespace xdsdk.Unity
         {
 
             OnCallback(SDKManager.RESULT_BACK, "Close button clicked");
-            GetSDKManager().Pop();
+            GetSDKManager().Pop(name);
         }
 
         public override IEnumerator PlayExit()
