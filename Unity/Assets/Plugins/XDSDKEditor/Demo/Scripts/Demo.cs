@@ -8,12 +8,15 @@ namespace xdsdk.Unity
 {
     public class Demo : MonoBehaviour
     {
+#if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
         public Text result;
 
         public void Init()
         {
             string[] entries = { "XD_LOGIN", "QQ_LOGIN", "WX_LOGIN", "TAPTAP_LOGIN" };
             XDSDK.SetLoginEntries(entries);
+
+
             XDSDK.SetCallback((ResultCode code, string data) =>
             {
 
@@ -52,6 +55,8 @@ namespace xdsdk.Unity
         public void OpenRealName(){
             XDSDK.OpenRealName();
         }
+#endif
     }
+
 }
 
