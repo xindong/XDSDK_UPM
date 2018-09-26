@@ -269,7 +269,7 @@ namespace xdsdk
 			return UnityIsLoggedIn();
 
 #elif UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-            return string.IsNullOrEmpty(Unity.XDSDK.GetAccessToken());
+            return !string.IsNullOrEmpty(Unity.XDSDK.GetAccessToken());
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
