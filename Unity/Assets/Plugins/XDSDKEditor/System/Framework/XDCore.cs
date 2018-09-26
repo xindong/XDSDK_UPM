@@ -114,6 +114,7 @@ namespace xdsdk.Unity
                                              name = "XDUIManager"
                                          };
                                          managerObject.AddComponent<SDKManager>();
+                                         managerObject.AddComponent<ZenFulcrum.EmbeddedBrowser.Browser>();
 
 
                                          UnityEngine.Object.DontDestroyOnLoad(managerObject);
