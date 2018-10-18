@@ -43,7 +43,7 @@ namespace xdsdk.Unity
             {
                 { "OrderId", "1234567890123456789012345678901234567890" },
                 { "Product_Price", "101" },
-                { "EXT", "abcd|efgh|1234|5678" },
+                { "EXT", "{\"payCallbackCode\":999}" },
                 { "Sid", "2" },
                 { "Role_Id", "3" },
                 { "Product_Id", "4" },

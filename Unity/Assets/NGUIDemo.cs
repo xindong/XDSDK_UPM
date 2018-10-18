@@ -23,6 +23,8 @@ public class NGUIDemo : MonoBehaviour {
 
     public void Login(){
         xdsdk.XDSDK.Login();
+        xdsdk.XDSDK.Login();
+        xdsdk.XDSDK.Login();
     }
 
     public void Logout(){

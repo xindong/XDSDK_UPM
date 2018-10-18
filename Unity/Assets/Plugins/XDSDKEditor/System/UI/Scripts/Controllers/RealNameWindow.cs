@@ -53,7 +53,7 @@ namespace xdsdk.Unity
                 } else {
                     OnCallback(SDKManager.RESULT_CLOSE, "Close button clicked");
                 }
-                GetSDKManager().Pop();
+                GetSDKManager().PopAll();
             });
             realname.onValueChanged.AddListener((string content) =>
             {

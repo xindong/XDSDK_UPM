@@ -80,6 +80,7 @@ namespace xdsdk.Unity
 
         public void Init(string appid)
         {
+
             if (Callback == null)
             {
                 Debug.LogError("Please set callback first.");
@@ -166,11 +167,16 @@ namespace xdsdk.Unity
 
                                 manager.ShowRealName<RealNameWindow>(config, (int code, object result) =>
                                 {
-                                    if (code == SDKManager.RESULT_SUCCESS)
-                                    {
-                                        this.user = user;
-                                        state = SDK_State.LoggedIn;
-                                        Callback(ResultCode.LoginSucceed, token);
+                                    if (code == SDKManager.RESULT_SUCCESS) {
+                                        Service.Login.User(token, (User userAfterRealName) => {
+                                            this.user = userAfterRealName;
+                                            state = SDK_State.LoggedIn;
+                                            Callback(ResultCode.LoginSucceed, token);
+                                        }, (String err) => {
+                                            this.user = user;
+                                            state = SDK_State.LoggedIn;
+                                            Callback(ResultCode.LoginSucceed, token);
+                                        });
                                     }
                                     else if (code == SDKManager.RESULT_CLOSE)
                                     {
@@ -274,14 +280,14 @@ namespace xdsdk.Unity
         {
             if (state == SDK_State.LoggedIn)
             {
-                if (user.AuthorizationState == 0 && appInfo.NeedLoginRealName != 0)
+                if (user.AuthorizationState == 0 && appInfo.NeedChargeRealName != 0)
                 {
                     SDKManager manager = managerObject.GetComponent<SDKManager>();
                     Dictionary<string, object> config = new Dictionary<string, object>
                             {
                         {"token", Service.Token.GetToken(appInfo.Id)}
                             };
-                    if (appInfo.NeedLoginRealName == 1)
+                    if (appInfo.NeedChargeRealName == 1)
                     {
                         config.Add("type", "required");
                     }
@@ -295,11 +301,21 @@ namespace xdsdk.Unity
                         state = SDK_State.LoggedIn;
                         if (code == SDKManager.RESULT_SUCCESS)
                         {
-                            if (string.IsNullOrEmpty((string)result) || !result.ToString().Equals("Close button clicked"))
-                            {
-                                Callback(ResultCode.RealNameSucceed, "");
-                            }
-                            PayWithoutRealNameCheck(info);
+                            Service.Login.User(Service.Token.GetToken(appInfo.Id), (User userAfterRealName) => {
+                                this.user = userAfterRealName;
+                                if (string.IsNullOrEmpty((string)result) || !result.ToString().Equals("Close button clicked"))
+                                {
+                                    Callback(ResultCode.RealNameSucceed, "");
+                                }
+                                PayWithoutRealNameCheck(info);
+                            }, (String err) => {
+                                if (string.IsNullOrEmpty((string)result) || !result.ToString().Equals("Close button clicked"))
+                                {
+                                    Callback(ResultCode.RealNameSucceed, "");
+                                }
+                                PayWithoutRealNameCheck(info);
+                            });
+
                         }
                         else
                         {

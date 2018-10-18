@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 222731362379466372}
   - component: {fileID: 114946638552249878}
   - component: {fileID: 114812171187993428}
+  - component: {fileID: 114493978504217914}
   m_Layer: 5
   m_Name: Username
   m_TagString: Untagged
@@ -351,6 +352,7 @@ GameObject:
   - component: {fileID: 222093528315178650}
   - component: {fileID: 114709742708586698}
   - component: {fileID: 114434387468299920}
+  - component: {fileID: 114501982543400536}
   m_Layer: 5
   m_Name: Password
   m_TagString: Untagged
@@ -835,9 +837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 114812171187993428}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -949,6 +951,17 @@ MonoBehaviour:
   error1Icon: {fileID: 114500435224181514}
   error2: {fileID: 114944378942076330}
   error2Icon: {fileID: 114150131017924708}
+--- !u!114 &114493978504217914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1047713636815630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527e7d95372e74ad891f505434a635f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114500435224181514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1003,6 +1016,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114501982543400536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879237703504108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527e7d95372e74ad891f505434a635f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114521734066987598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1320,9 +1344,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 114434387468299920}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1

@@ -26,18 +26,22 @@ namespace xdsdk.Unity.Service
                     string name = WWW.EscapeURL(info["Product_Name"]);
                     string productID = info["Product_Id"];
                     string roleID = info["Role_Id"];
+                    string sID = info["Sid"];
+                    string orderID = info["OrderId"];
                     string amount = Convert.ToString(Int32.Parse(info["Product_Price"]) / 100f);
                     Dictionary<string, string> finalInfo = new Dictionary<string, string>()
-                {
-                    {"client_id", appid},
-                    {"access_token", token},
-                    {"product_name", name},
-                    {"product_id", productID},
-                    {"role_id", roleID},
-                    {"amount", amount}
-                };
+                    {
+                        {"client_id", appid},
+                        {"access_token", token},
+                        {"product_name", name},
+                        {"product_id", productID},
+                        {"role_id", roleID},
+                        {"sid", sID},
+                        {"order_id", orderID},
+                        {"amount", amount}
+                    };
                     if(info.ContainsKey("EXT")){
-                        finalInfo.Add("EXT", WWW.EscapeURL(info["EXT"]));
+                        finalInfo.Add("ext", WWW.EscapeURL(info["EXT"]));
                     }
                     if (methodForResult != null)
                     {

@@ -73,6 +73,8 @@ namespace xdsdk.Unity
             {
                 HideError2();
             });
+            InputNavigator passwordInputNavigator = password.gameObject.GetComponent<InputNavigator>();
+            passwordInputNavigator.OnEnter += LoginXD;
             HideError1();
             HideError2();
         }
@@ -107,11 +109,19 @@ namespace xdsdk.Unity
                         {
                             if (code == SDKManager.RESULT_SUCCESS)
                             {
-                                Dictionary<string, object> resultDict = new Dictionary<string, object> {
+                                Service.Login.User(token, (User userAfterRealName) => {
+                                    Dictionary<string, object> resultDict = new Dictionary<string, object> {
+                                        {"user" , userAfterRealName},
+                                        {"token", token},
+                                    };
+                                    OnCallback(SDKManager.RESULT_SUCCESS, resultDict);
+                                }, (String err) => {
+                                    Dictionary<string, object> resultDict = new Dictionary<string, object> {
                                         {"user" , user},
                                         {"token", token},
                                     };
-                                OnCallback(SDKManager.RESULT_SUCCESS, resultDict);
+                                    OnCallback(SDKManager.RESULT_SUCCESS, resultDict);
+                                });
                             }
                             else if (code == SDKManager.RESULT_CLOSE)
                             {
