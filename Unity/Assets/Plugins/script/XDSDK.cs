@@ -56,6 +56,7 @@ namespace xdsdk
 		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb){
 			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation, channel, version, enableTapdb);
 			com.taptap.sdk.TapTapListener.Init ();
+            com.xdsdk.xdlive.XDLiveListener.Init();
         }
 
 		//登录

@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDK_VERSION @"1.2"  //!< SDK Version
+#define SDK_VERSION @"1.2.0"  //!< SDK Version
+#define ITK_VERSION @"0.1.1"  //!< Tapitk Version
 
 #import "TTSDKApplicationDelegate.h"
 #import "TTSDKLoginResult.h"
@@ -17,6 +18,7 @@
 #import "TTSDKProfile.h"
 #import "TTSDKProfileManager.h"
 #import "TTSDKCertify.h"
+#import "TTSDKAppBoard.h"
 
 @interface TapTapSDK: NSObject
 
@@ -40,5 +42,14 @@
  *  @param appid 游戏论坛ID，与TapTap开发者ID不同
  */
 + (void)openTapTapForum:(NSString *)appid;
+
++ (void)openTapTapForum:(NSString *)appid uri:(NSString *)uri;
+
+/**
+ *  @brief 打开TapTap通知中心
+ *  @param appid 游戏论坛ID，与TapTap开发者ID不同
+ */
++ (void)openAppBoard:(NSString *)appid;
+
 
 @end

@@ -1,0 +1,6 @@
+framework module XDLive {
+  umbrella header "XDLive.h"
+
+  export *
+  module * { export * }
+}

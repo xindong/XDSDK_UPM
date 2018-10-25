@@ -25,7 +25,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
-            string[] entries = { "WX_LOGIN", "TAPTAP_LOGIN","XD_LOGIN" };
+            string[] entries = { "XD_LOGIN"};
             xdsdk.XDSDK.SetLoginEntries(entries);
         }
 
@@ -76,8 +76,8 @@ public class Demo : MonoBehaviour
 
 
 		if (GUI.Button (new Rect (400, 100, 300, 100), "隐藏微信", myButtonStyle)){
-			xdsdk.XDSDK.HideWX();
-		}
+            com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1");
+        }
 
 		if (GUI.Button (new Rect (400, 300, 300, 100), "隐藏QQ", myButtonStyle)){
 			xdsdk.XDSDK.HideQQ();
@@ -177,8 +177,8 @@ public class Demo : MonoBehaviour
 			TapTapSDK.Instance.OpenAppBoard("58881");
 		}
 
-		if (GUI.Button (new Rect (750, 1700, 300, 100), "检查", myButtonStyle)) {
-			TapTapSDK.Instance.QueryAppBoardStatus ();
+		if (GUI.Button (new Rect (750, 1700, 300, 100), "直播", myButtonStyle)) {
+            com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1");
 		}
 
 

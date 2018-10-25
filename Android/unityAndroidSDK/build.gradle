@@ -48,6 +48,18 @@ task jarUnityXDSDKLib(type: Jar, dependsOn: ['build']) {
     exclude('**/R.class')
     exclude('**/R\$*.class')
     include('com/xd/unitysdk/*.class')
+}
 
 
+task jarUnityXDLiveLib(type: Jar, dependsOn: ['build']) {
+    archiveName = 'XDLiveForUnity.jar'
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('com/xindong/xdlive/BuildConfig.class')
+    exclude('com/xindong/xdlive/BuildConfig\$*.class')
+    exclude('com/xindong/xdlive/BuildConfig.class')
+    exclude('com/xindong/xdlive/BuildConfig\$*.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+    include('com/xindong/xdlive/*.class')
 }
