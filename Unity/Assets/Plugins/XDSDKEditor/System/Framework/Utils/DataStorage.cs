@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -12,17 +13,57 @@ namespace xdsdk.Unity
 {
     public static class DataStorage
     {
+
+        private static Dictionary<string, string> dataCache;
         private static byte[] Keys = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
 
         public static void SaveString(string key, string value)
         {
+            SaveStringToCache(key, value);
             PlayerPrefs.SetString(key, EncodeString(value));
         }
 
         public static string LoadString(string key)
         {
-            return PlayerPrefs.HasKey(key) ? DecodeString(PlayerPrefs.GetString(key)) : null;
+            string value = LoadStringFromCache(key);
+            if (!string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+            value = PlayerPrefs.HasKey(key) ? DecodeString(PlayerPrefs.GetString(key)) : null;
+            if(value != null)
+            {
+                SaveStringToCache(key, value);
+            }
+            return value;
         }
+
+        private static void SaveStringToCache(string key, string value)
+        {
+            if (dataCache == null)
+            {
+                dataCache = new Dictionary<string, string>();
+            }
+            if (dataCache.ContainsKey(key))
+            {
+                dataCache[key] = value;
+            }
+            else
+            {
+                dataCache.Add(key, value);
+            }
+        }
+
+        private static string LoadStringFromCache(string key)
+        {
+            if (dataCache == null)
+            {
+                dataCache = new Dictionary<string, string>();
+            }
+            return dataCache.ContainsKey(key) ? dataCache[key] : null;
+        }
+
+
 
 
         private static string EncodeString(string encryptString)
