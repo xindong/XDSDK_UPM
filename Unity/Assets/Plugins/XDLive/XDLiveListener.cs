@@ -20,20 +20,18 @@ namespace com.xdsdk.xdlive{
 
         void OnXDLiveClosed()
         {
-            Debug.Log("=========OnXDLiveClosed==========");
             if (XDLive.Instance.GetCallback() != null)
             {
-                XDLive.Instance.GetCallback().OnXDLiveOpen();
+                XDLive.Instance.GetCallback().OnXDLiveClosed();
             }
 
         }
 
         void OnXDLiveOpen()
         {
-            Debug.Log("========OnXDLiveClosed===========");
             if (XDLive.Instance.GetCallback() != null)
             {
-                XDLive.Instance.GetCallback().OnXDLiveClosed();
+                XDLive.Instance.GetCallback().OnXDLiveOpen();
             }
         }
     }
