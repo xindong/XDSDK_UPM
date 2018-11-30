@@ -12,13 +12,13 @@
 #define ITK_VERSION @"0.1.1"  //!< Tapitk Version
 
 #import "TTSDKApplicationDelegate.h"
+#import "TTSDKAppBoard.h"
 #import "TTSDKLoginResult.h"
 #import "TTSDKAccessToken.h"
 #import "TTSDKLoginManager.h"
 #import "TTSDKProfile.h"
 #import "TTSDKProfileManager.h"
 #import "TTSDKCertify.h"
-#import "TTSDKAppBoard.h"
 
 @interface TapTapSDK: NSObject
 

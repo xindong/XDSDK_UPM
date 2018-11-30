@@ -21,6 +21,6 @@ typedef void (^TTSDKAppBoardStatusHandler)(NSInteger unreadCount , NSError * err
 
 + (void) markArticlesRead:(NSArray<NSString *> *) articleIDArray;
 
-+ (void)fetchLatestAppBoard:(void (^)(NSData *, NSURLResponse *, NSError *)) responseHandler;
++ (void) fetchLatestAppBoard:(void (^)(NSData *, NSURLResponse *, NSError *)) responseHandler;
 
 @end

@@ -38,17 +38,17 @@
 
 /**
  自定义登录入口。共五种，其中主要两种，次要两种。
- 1、默认显示为：微信、TapTap、游客、QQ
+ 1、默认显示为：微信、QQ、TapTap、游客
  
  2、各登录方式对应名称如下：
  微信登录：WX_LOGIN，
- taptap登录：TAPTAP_LOGIN，
  QQ登录：QQ_LOGIN，
+ taptap登录：TAPTAP_LOGIN，
  游客登录：GUEST_LOGIN，
  心动登录：XD_LOGIN
  
  3、例，传入的数组。
- @[@"WX_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN",@"QQ_LOGIN"]
+ @[@"WX_LOGIN",@"QQ_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN"]
 
  注：
     1）传入为空或nil，则当做隐藏所有按钮，直接显示心动登录。
