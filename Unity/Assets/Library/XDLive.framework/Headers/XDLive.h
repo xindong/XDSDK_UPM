@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define  XDLIVE_VERSION @"0.1.1"
+#define  XDLIVE_VERSION @"0.1.2"
 
 @protocol XDLiveDelegate <NSObject>
 -(void) onXDLiveOpen;

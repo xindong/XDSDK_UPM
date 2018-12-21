@@ -30,6 +30,12 @@ typedef enum {
 + (void)setHost:(NSString *)host;
 
 /**
+ * 调用该接口修改自定义事件数据发送的域名，有特殊需要时调用，调用必须位于初始化之前
+ * 域名必须是https://abc.example.com/的格式，不能为空
+ */
++ (void)setCustomEventHost:(NSString *)host;
+
+/**
  * 初始化，尽早调用
  * appId: 注册游戏时获得的APP ID
  * channel: 分包渠道名称，可为空
@@ -93,6 +99,12 @@ typedef enum {
  */
 + (void)onChargeOnlySuccess:(NSString *)orderId product:(NSString *)product amount:(NSInteger)amount currencyType:(NSString *)currencyType virtualCurrencyAmount:(NSInteger)virtualCurrencyAmount payment:(NSString *)payment;
 
+/**
+ * 自定义事件
+ * eventCode: 事件代码，需要在控制后台预先进行配置
+ * properties: 事件属性，需要在控制后台预先进行配置
+ */
++ (void)onEvent:(NSString *)eventCode properties:(NSDictionary *)properties;
 
 /**
  * 目前TapDB SDK仅支持单实例模式，如果多次调用onStart方法，只有最初传入的appid生效。调用该函数可以获取生效的信息
@@ -117,13 +129,6 @@ typedef enum {
 
 
 ///////////已过期接口，新接入的游戏不要调用///////////////
-
-/**
- * 自定义事件
- * eventName: 事件名称
- * properties: 事件属性
- */
-+ (void)onEvent:(NSString *)eventName properties:(NSDictionary *)properties;
 
 /**
  * 获赠虚拟币时调用

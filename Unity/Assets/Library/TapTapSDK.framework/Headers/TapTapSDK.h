@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #define SDK_VERSION @"1.2.0"  //!< SDK Version
-#define ITK_VERSION @"0.1.1"  //!< Tapitk Version
+#define ITK_VERSION @"0.1.2"  //!< Tapitk Version
 
 #import "TTSDKApplicationDelegate.h"
-#import "TTSDKAppBoard.h"
 #import "TTSDKLoginResult.h"
 #import "TTSDKAccessToken.h"
 #import "TTSDKLoginManager.h"
 #import "TTSDKProfile.h"
 #import "TTSDKProfileManager.h"
 #import "TTSDKCertify.h"
+#import "TTSDKAppBoard.h"
 
 @interface TapTapSDK: NSObject
 
