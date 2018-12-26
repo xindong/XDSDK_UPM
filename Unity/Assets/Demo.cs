@@ -25,7 +25,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
-            string[] entries = { "XD_LOGIN"};
+            string[] entries = { "QQ_LOGIN", "XD_LOGIN","GUEST_LOGIN" };
             xdsdk.XDSDK.SetLoginEntries(entries);
         }
 
@@ -42,7 +42,7 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (50, 700, 300, 100), "用户中心", myButtonStyle)){
-			xdsdk.XDSDK.OpenUserCenter ();
+            xdsdk.XDSDK.OpenUserBindView ();
 		}
 
 		if (GUI.Button (new Rect (50, 900, 300, 100), "支付", myButtonStyle)){

@@ -45,6 +45,10 @@ public class UnitySDK{
         return XDSDK.openUserCenter();
     }
 
+    public static void openUserBindView() {
+        XDSDK.openUserBindView();
+    }
+
     public static boolean pay(Map<String, String> info) {
         return XDSDK.pay(info);
     }
@@ -166,6 +170,11 @@ public class UnitySDK{
         @Override
         public void onGuestBindSucceed(String s) {
             UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s);
+        }
+
+        @Override
+        public void onGuestBindFailed(String s) {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindFailed", s);
         }
 
         @Override

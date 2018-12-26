@@ -58,6 +58,11 @@
  */
 - (void)onGuestBindSucceed:(nonnull NSString*)access_token;
 
+/**
+ 游客账号升级失败
+ */
+- (void)onGuestBindFailed:(nonnull NSString*)errorMsg;
+
 
 /**
  登出成功

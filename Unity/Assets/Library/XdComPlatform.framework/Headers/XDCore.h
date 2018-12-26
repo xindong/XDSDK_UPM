@@ -155,6 +155,14 @@
 
 
 /**
+ 打开游客升级
+
+ @return 是否打开成功
+ */
++ (BOOL)openUserBindView;
+
+
+/**
  打开实名认证窗口
  */
 + (void)openRealName;

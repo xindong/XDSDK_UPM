@@ -48,47 +48,55 @@ namespace com.taptap.sdk
 
 		public void OpenTapTapForum(string appid){
        		if(taptapSDKimpl == null){
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
         		taptapSDKimpl = new AndroidImpl ();
-#elif UNITY_IPHONE
+#elif UNITY_IPHONE && !UNITY_EDITOR
         		taptapSDKimpl = new iOSImpl ();
 #endif
-			}
-			taptapSDKimpl.OpenTapTapForum(appid);
+            }
+            if (taptapSDKimpl != null) {
+                taptapSDKimpl.OpenTapTapForum(appid);
+            }
 		}	
 
 		public void InitAppBoard(){
 			if(taptapSDKimpl == null){
-				#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
 				taptapSDKimpl = new AndroidImpl ();
-				#elif UNITY_IPHONE
+#elif UNITY_IPHONE && !UNITY_EDITOR
 				taptapSDKimpl = new iOSImpl ();
-				#endif
-			}
-			taptapSDKimpl.InitAppBoard();
-			TapTapListener.Init ();
+#endif
+            }
+            if(taptapSDKimpl != null) {
+                taptapSDKimpl.InitAppBoard();
+                TapTapListener.Init();
+            }
 		}	
 
 		public void QueryAppBoardStatus(){
 			if(taptapSDKimpl == null){
-				#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
 				taptapSDKimpl = new AndroidImpl ();
-				#elif UNITY_IPHONE
+#elif UNITY_IPHONE && !UNITY_EDITOR
 				taptapSDKimpl = new iOSImpl ();
-				#endif
-			}
-			taptapSDKimpl.QueryAppBoardStatus();
+#endif
+            }
+            if (taptapSDKimpl != null) {
+                taptapSDKimpl.QueryAppBoardStatus();
+            }
 		}	
 
 		public void OpenAppBoard(string appid){
 			if(taptapSDKimpl == null){
-				#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
 				taptapSDKimpl = new AndroidImpl ();
-				#elif UNITY_IPHONE
+#elif UNITY_IPHONE && !UNITY_EDITOR
 				taptapSDKimpl = new iOSImpl ();
-				#endif
-			}
-			taptapSDKimpl.OpenAppBoard(appid);
+#endif
+            }
+            if(taptapSDKimpl != null) {
+                taptapSDKimpl.OpenAppBoard(appid);
+            }
 		}	
 	}
 }

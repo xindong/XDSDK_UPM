@@ -29,7 +29,11 @@ public class XDSDKHandler : xdsdk.XDCallback {
 		Debug.Log ("OnGuestBindSucceed:" + token);
 	}
 
-	public override void OnLogoutSucceed (){
+    public override void OnGuestBindFailed(string msg){
+        Debug.Log("OnGuestBindFailed:" + msg);
+    }
+
+    public override void OnLogoutSucceed (){
 		Debug.Log ("OnLogoutSucceed");
 
 	}

@@ -1,3 +1,11 @@
+/*
+ * XDSDK Version 1.2.6
+ * 
+ * 
+ * 
+ */
+
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,8 +90,12 @@ namespace xdsdk
 			XDSDKImp.GetInstance().OpenRealName();
 		}
 
-		//打开用户反馈
-		public static void UserFeedback(){
+        public static void OpenUserBindView() {
+            XDSDKImp.GetInstance().OpenUserBindView();
+        }
+
+        //打开用户反馈
+        public static void UserFeedback(){
 			XDSDKImp.GetInstance ().UserFeedback ();
 		}
 		//发起支付

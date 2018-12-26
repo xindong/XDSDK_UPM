@@ -6,10 +6,7 @@
 //  Copyright (c) 2014年 XINDONG Network. All rights reserved.
 //
 
-
-
 #import "XDCallback.h"
-
 
 #ifndef XdComPlatform_XDCore_h
 
@@ -41,17 +38,17 @@
 
 /**
  自定义登录入口。共五种，其中主要两种，次要两种。
- 1、默认显示为：微信、TapTap、游客、QQ
+ 1、默认显示为：微信、QQ、TapTap、游客
  
  2、各登录方式对应名称如下：
  微信登录：WX_LOGIN，
- taptap登录：TAPTAP_LOGIN，
  QQ登录：QQ_LOGIN，
+ taptap登录：TAPTAP_LOGIN，
  游客登录：GUEST_LOGIN，
  心动登录：XD_LOGIN
  
  3、例，传入的数组。
- @[@"WX_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN",@"QQ_LOGIN"]
+ @[@"WX_LOGIN",@"QQ_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN"]
 
  注：
     1）传入为空或nil，则当做隐藏所有按钮，直接显示心动登录。
@@ -106,15 +103,6 @@
 
 
 /**
- 初始化SDK
-
- @param appid appid
- @param orientation 屏幕方向（0，横屏）（1，竖屏）
- */
-+ (void)init:(nonnull NSString*)appid orientation:(int)orientation;
-
-
-/**
  初始化sdk，包含心动SDK，TapDB统计SDK
 
  @param appid 心动appid
@@ -123,8 +111,10 @@
  @param version 版本号
  @param enableTapdb 是否开启TapDB
  */
-+ (void)init:(nonnull NSString*)appid orientation:(int)orientation
-     channel:(nonnull NSString*)channel version:(nonnull NSString*)version
++ (void)init:(nonnull NSString *)appid
+ orientation:(int)orientation
+     channel:(nonnull NSString *)channel
+     version:(nonnull NSString *)version
  enableTapdb:(BOOL)enableTapdb;
 
 
@@ -145,7 +135,7 @@
 
  @return Token
  */
-+ (nullable NSString*)getAccessToken;
++ (nullable NSString *)getAccessToken;
 
 
 /**
@@ -165,6 +155,14 @@
 
 
 /**
+ 打开游客升级
+
+ @return 是否打开成功
+ */
++ (BOOL)openUserBindView;
+
+
+/**
  打开实名认证窗口
  */
 + (void)openRealName;
@@ -176,7 +174,7 @@
  @param prodectInfo 订单信息
  @return （YES，流程正常）（NO，尚未登录或重复调用）
  */
-+ (BOOL)requestProduct:(nonnull NSDictionary*)prodectInfo;
++ (BOOL)requestProduct:(nonnull NSDictionary *)prodectInfo;
 
 
 /**
@@ -191,7 +189,7 @@
  @param url 回调的URL
  @return TRUE-回调成功，FALSE-回调失败
  */
-+ (BOOL)HandleXDOpenURL:(nonnull NSURL*)url;
++ (BOOL)HandleXDOpenURL:(nonnull NSURL *)url;
 
 
 #pragma mark - TapDB相关

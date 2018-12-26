@@ -127,7 +127,7 @@ extern "C"{
             
             [XDCore setCallBack:sdk];
             
-            [XDCore init:[NSString stringWithUTF8String:appid] orientation:orientation];
+            //[XDCore init:[NSString stringWithUTF8String:appid] orientation:orientation];
         }
         
         void xdLogin(){
@@ -260,6 +260,10 @@ extern "C"{
             NSLog(@"微信Web");
 
             [XDCore setWXWeb];
+        }
+        
+        void openUserBindView () {
+            [XDCore openUserBindView];
         }
         
         void xdShare(const char* text, const char* bText, const char* scene, const char* shareType, const char* title, const char* description, const char* thumbPath, const char* imageUrl,const char*musicUrl, const char* musicLowBandUrl, const char* musicDataUrl, const char* musicLowBandDataUrl, const char* videoUrl, const char* videoLowBandUrl, const char* webpageUrl){
@@ -409,10 +413,13 @@ extern "C"{
  游客账号升级成功
  */
 - (void)onGuestBindSucceed:(nonnull NSString*)access_token{
-    
+         NSLog(@"onGuestBindSucceed游客绑定成功");
     UnitySendMessage(self.gameObjectName.UTF8String, "OnGuestBindSucceed", access_token?access_token.UTF8String:"");
 }
 
+- (void)onGuestBindFailed:(NSString *)errorMsg {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnGuestBindFailed", errorMsg?errorMsg.UTF8String:"");
+}
 /**
  登出成功
  */

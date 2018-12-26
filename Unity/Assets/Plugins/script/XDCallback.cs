@@ -19,7 +19,9 @@ namespace xdsdk
 
 		public abstract void OnGuestBindSucceed (string token);
 
-		public abstract void OnRealNameSucceed ();
+        public virtual void OnGuestBindFailed(string msg){}
+
+        public abstract void OnRealNameSucceed ();
 
 		public abstract void OnRealNameFailed(string msg);
 

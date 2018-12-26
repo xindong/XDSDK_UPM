@@ -14,7 +14,6 @@ namespace com.xdsdk.xdlive
 
         private static volatile XDLive instance;
         private static object syncRoot = new System.Object();
-        private static volatile bool inited = false;
 
         private XDLiveCallback callback;
 

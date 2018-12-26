@@ -291,7 +291,7 @@ namespace xdsdk
             return false;
         }
 
-        public bool UserFeedback()
+        public void UserFeedback()
         {
 #if UNITY_IOS && !UNITY_EDITOR
 			userFeedback();
@@ -300,7 +300,6 @@ namespace xdsdk
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("userFeedback");
 #endif
-            return false;
         }
 
 
@@ -319,6 +318,17 @@ namespace xdsdk
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic("openRealName");
+#endif
+        }
+
+        public void OpenUserBindView()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            openUserBindView();
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("openUserBindView");
 #endif
         }
 
@@ -494,6 +504,10 @@ namespace xdsdk
         string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
         string webPageUrl
         );
+
+        [DllImport("__Internal")]
+        private static extern void openUserBindView();
+
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
