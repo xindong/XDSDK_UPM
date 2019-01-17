@@ -63,7 +63,7 @@ namespace xdsdk{
 
         public void OnRealNameFailed ()
         {
-            XDSDKImp.GetInstance().GetXDCallback().OnRealNameSucceed();
+            XDSDKImp.GetInstance().GetXDCallback().OnRealNameFailed("");
         }
 
         public void OnRealNameFailed(string msg){
