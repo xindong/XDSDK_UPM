@@ -12,22 +12,32 @@ namespace com.taptap.sdk {
 	public class iOSImpl : TapTapSDKImpl {
 
 		public override void OpenTapTapForum(string appid){
+#if UNITY_IOS && !UNITY_EDITOR
 			ttOpenTapTapForum(appid);
-		}
+#endif
+        }
 
-		public override void InitAppBoard(){
+        public override void InitAppBoard(){
+#if UNITY_IOS && !UNITY_EDITOR
 			ttInitAppBoard();
-		}
+#endif
+        }
 
-		public override void QueryAppBoardStatus(){
+        public override void QueryAppBoardStatus(){
+#if UNITY_IOS && !UNITY_EDITOR
 			ttQueryAppBoardStatus();
-		}
+#endif
+        }
 
-		public override void OpenAppBoard(string appid){
+        public override void OpenAppBoard(string appid){
+#if UNITY_IOS && !UNITY_EDITOR
 			ttOpenAppBoard(appid);
-		}
+#endif
+        }
 
-		[DllImport("__Internal")]
+#if UNITY_IOS && !UNITY_EDITOR
+
+        [DllImport("__Internal")]
 		private static extern void ttOpenTapTapForum (string appid);
 
 		[DllImport("__Internal")]
@@ -38,6 +48,7 @@ namespace com.taptap.sdk {
 
 		[DllImport("__Internal")]
 		private static extern void ttOpenAppBoard (string appid);
-	}
+#endif
+    }
 }
 
