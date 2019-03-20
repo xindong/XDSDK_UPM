@@ -25,8 +25,10 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
+            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler());
             string[] entries = { "QQ_LOGIN", "XD_LOGIN","GUEST_LOGIN" };
             xdsdk.XDSDK.SetLoginEntries(entries);
+            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
         if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
@@ -34,6 +36,7 @@ public class Demo : MonoBehaviour
             xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "UnityXDSDK", "0.0.0", true);
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
             TapTapSDK.Instance.InitAppBoard ();
+            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
 #endif
         }
 
@@ -67,8 +70,9 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (50, 1500, 300, 100), "SDK版本", myButtonStyle)){
-			Debug.Log (xdsdk.XDSDK.GetSDKVersion());
-		}
+            //Debug.Log (xdsdk.XDSDK.GetSDKVersion());
+            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
+        }
 
 		if (GUI.Button (new Rect (50, 1700, 300, 100), "token", myButtonStyle)){
 			Debug.Log (xdsdk.XDSDK.GetAccessToken ());

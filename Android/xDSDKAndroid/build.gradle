@@ -29,4 +29,5 @@ dependencies {
     compile files('libs/android-support-fragment.jar')
     compile files('libs/libTyrantdbGameTracker.jar')
     compile files('libs/xdlive.jar')
+    compile files('libs/xd-traffic-control.jar')
 }

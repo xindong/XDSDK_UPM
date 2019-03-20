@@ -63,3 +63,16 @@ task jarUnityXDLiveLib(type: Jar, dependsOn: ['build']) {
     exclude('**/R\$*.class')
     include('com/xindong/xdlive/*.class')
 }
+
+task jarUnityXDTrafficControlLib(type: Jar, dependsOn: ['build']) {
+    archiveName = 'XDTrafficControlForUnity.jar'
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('com/xindong/trafficcontrol/BuildConfig.class')
+    exclude('com/xindong/trafficcontrol/BuildConfig\$*.class')
+    exclude('com/xindong/trafficcontrol/BuildConfig.class')
+    exclude('com/xindong/trafficcontrol/BuildConfig\$*.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+    include('com/xindong/trafficcontrol/*.class')
+}
