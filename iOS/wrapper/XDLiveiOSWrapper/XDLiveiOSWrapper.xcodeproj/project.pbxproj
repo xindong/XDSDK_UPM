@@ -136,7 +136,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nif [ \"${ACTION}\" = \"build\" ]\nthen\nINSTALL_DIR=${SRCROOT}/Products\n\nDEVICE_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphoneos\n\nSIMULATOR_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphonesimulator\n\n\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n#ditto \"${DEVICE_DIR}/Headers\" \"${INSTALL_DIR}/Headers\"\n\nlipo -create \"${DEVICE_DIR}/lib${PROJECT_NAME}.a\" \"${SIMULATOR_DIR}/lib${PROJECT_NAME}.a\" -output \"${INSTALL_DIR}/lib${PROJECT_NAME}.a\"\n\n#open \"${DEVICE_DIR}\"\n#open \"${SRCROOT}/Products\"\nfi\n\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -7,6 +7,8 @@
 
 #define  XDLIVE_VERSION @"0.1.2"
 
+typedef void (^XDLFuncResultCallback)(NSDictionary *result);
+
 @protocol XDLiveDelegate <NSObject>
 -(void) onXDLiveOpen;
 -(void) onXDLiveClosed;
@@ -18,5 +20,9 @@
 + (void) setDelegate:(id<XDLiveDelegate>)delegate;
 
 + (void) openXDLive:(NSString *)appid;
+
++ (void) closeXDLive;
+
++ (void) invokeFunc:(NSDictionary *)params callback:(XDLFuncResultCallback) callback;
 
 @end

@@ -46,6 +46,10 @@ extern "C"{
         UnitySendMessage("XDLiveListener", "OnXDLiveOpen" , "");
 }
 
+- (void)InvokeFuncCallback:(NSString *) resultString{
+    UnitySendMessage("XDLiveListener", "InvokeFuncCallback", [resultString UTF8String]);
+}
+
 
 #if __cplusplus
 extern "C" {
@@ -53,6 +57,30 @@ extern "C" {
     void openXDLive(const char * appid){
         [XDLive setDelegate:[XDLiveWrapper defaultInstance]];
         [XDLive openXDLive:[NSString stringWithUTF8String:appid]];
+    }
+    
+    void closeXDLive() {
+        [XDLive closeXDLive];
+    }
+    
+    void invokeFunc(const char * unityCallbackID, const char * params) {
+        NSString *unityCallbackIDString = [NSString stringWithUTF8String:unityCallbackID];
+        NSString *paramsString = [NSString stringWithUTF8String:params];
+        NSData *paramsData = [paramsString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *paramsDict = [NSJSONSerialization JSONObjectWithData:paramsData
+                                                        options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        [XDLive invokeFunc:paramsDict callback:^(NSDictionary *result) {
+            NSError *error;
+            NSMutableDictionary *mutableResult = [result mutableCopy];
+            [mutableResult setObject:unityCallbackIDString forKey:@"unity_callback_id"];
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableResult options:NSJSONWritingPrettyPrinted error:&error];
+            NSString *resultString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+            [[XDLiveWrapper defaultInstance] InvokeFuncCallback:resultString];
+            
+        }];
+        
     }
 #if __cplusplus
 }

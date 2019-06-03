@@ -12,6 +12,8 @@ namespace com.xdsdk.xdlive
     public sealed class XDLive
     {
 
+		public delegate void FuncResult(int num);
+
         private static volatile XDLive instance;
         private static object syncRoot = new System.Object();
 
@@ -49,8 +51,33 @@ namespace com.xdsdk.xdlive
             AndroidJavaClass jc = new AndroidJavaClass("com.xindong.xdlive.XDLiveUnity");
             jc.CallStatic ("OpenXDLive", appid);
 #endif
-
         }
+
+		public void CloseXDLive()
+		{
+			#if UNITY_IOS && !UNITY_EDITOR
+			closeXDLive();
+
+			#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xindong.xdlive.XDLiveUnity");
+			jc.CallStatic ("CloseXDLive");
+			#endif
+		}
+
+		public void InvokeFunc(Dictionary<string, object> parameters, Action<Dictionary<string, object>> callback)
+		{
+			string unityCallbackID = Guid.NewGuid().ToString();
+			string paramString = MiniJSON.Json.Serialize(parameters);
+			XDLiveListener listener = GameObject.Find("XDLiveListener").GetComponent<XDLiveListener>();
+			listener.AddCallback (unityCallbackID, callback);
+
+#if UNITY_IOS && !UNITY_EDITOR
+			invokeFunc(unityCallbackID, paramString);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xindong.xdlive.XDLiveUnity");
+			jc.CallStatic ("InvokeFunc", unityCallbackID, paramString);
+#endif
+		}
 
         public void SetCallback(XDLiveCallback callback)
         {
@@ -70,6 +97,10 @@ namespace com.xdsdk.xdlive
 #if UNITY_IOS && !UNITY_EDITOR
         [DllImport("__Internal")]
         private static extern void openXDLive(string appid);
+		[DllImport("__Internal")]
+		private static extern void closeXDLive();
+		[DllImport("__Internal")]
+		private static extern void invokeFunc(string unityCallbackID, string parameters);
 #endif
     }
 }
