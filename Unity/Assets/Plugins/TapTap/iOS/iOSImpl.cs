@@ -37,7 +37,7 @@ namespace com.taptap.sdk {
 
 #if UNITY_IOS && !UNITY_EDITOR
 
-        [DllImport("__Internal")]
+        	[DllImport("__Internal")]
 		private static extern void ttOpenTapTapForum (string appid);
 
 		[DllImport("__Internal")]
