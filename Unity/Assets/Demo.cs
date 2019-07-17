@@ -122,7 +122,7 @@ public class Demo : MonoBehaviour
         }
 
 		if (GUI.Button (new Rect (400, 300, 300, 100), "隐藏QQ", myButtonStyle)){
-			xdsdk.XDSDK.HideQQ();
+			com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1");
 		}
 
 		if (GUI.Button (new Rect (400, 500, 300, 100), "显示VeryCD", myButtonStyle)){
