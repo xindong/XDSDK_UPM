@@ -58,6 +58,11 @@
  */
 - (void)onGuestBindSucceed:(nonnull NSString*)access_token;
 
+/**
+ 游客账号升级失败
+ */
+- (void)onGuestBindFailed:(nonnull NSString*)errorMsg;
+
 
 /**
  登出成功
@@ -87,5 +92,14 @@
 - (void)onRealNameSucceed;
 
 - (void)onRealNameFailed:(nullable NSString*)error_msg;
+
+@optional
+
+/// 有未完成的订单回调，比如：礼包码.注意：多个未完成订单会回调多次。（只会在登录状态下回调）
+/// @param paymentInfo 订单信息。
+/// 包含：     transactionIdentifier ：订单标识 ，恢复购买时需要回传
+///        productIdentifier ：商品ID，
+///        quantity：商品数量
+- (void)restoredPayment:(nonnull NSDictionary *)paymentInfo;
 
 @end

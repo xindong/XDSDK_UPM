@@ -291,6 +291,19 @@ namespace xdsdk
             return false;
         }
 
+        public bool openMobileVerify()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+			return openMobileVerifyView();
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			jc.CallStatic ("openMobileVerifyView");
+                        return true;
+#endif
+            return false;
+        }
+
         public void UserFeedback()
         {
 #if UNITY_IOS && !UNITY_EDITOR
@@ -459,6 +472,9 @@ namespace xdsdk
 
         [DllImport("__Internal")]
         private static extern bool openUserCenter();
+
+        [DllImport("__Internal")]
+        private static extern bool openMobileVerifyView();
 
         [DllImport("__Internal")]
         private static extern void xdPay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);

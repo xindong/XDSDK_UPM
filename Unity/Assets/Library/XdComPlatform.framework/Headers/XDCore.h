@@ -28,6 +28,8 @@
 + (nonnull NSString*)getSDKVersion;
 
 
+/// 初始化支付相关功能
++ (void)setupXDStore;
 /**
  设置回调协议
 
@@ -160,6 +162,13 @@
  @return 是否打开成功
  */
 + (BOOL)openUserBindView;
+
+/**
+ 打开手机认证窗口
+ 
+ @return 是否打开成功
+ */
++ (BOOL)openMobileVerifyView;
 
 
 /**

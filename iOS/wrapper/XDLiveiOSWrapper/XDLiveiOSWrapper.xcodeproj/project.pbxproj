@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2853EEFE217D7C5400322BF0 /* XDLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2853EEFD217D7C5400322BF0 /* XDLive.framework */; };
 		28D0F004217D7BA900CB471F /* XDLiveWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28D0F002217D7BA900CB471F /* XDLiveWrapper.mm */; };
+		C161026F22F1482E008BFC78 /* XDLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C161026E22F1482E008BFC78 /* XDLive.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,10 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2853EEFD217D7C5400322BF0 /* XDLive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XDLive.framework; sourceTree = SOURCE_ROOT; };
 		28D0EFF6217D7B6300CB471F /* libXDLiveiOSWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDLiveiOSWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		28D0F002217D7BA900CB471F /* XDLiveWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = XDLiveWrapper.mm; sourceTree = "<group>"; };
 		28D0F003217D7BA900CB471F /* XDLiveWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XDLiveWrapper.h; sourceTree = "<group>"; };
+		C161026E22F1482E008BFC78 /* XDLive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XDLive.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2853EEFE217D7C5400322BF0 /* XDLive.framework in Frameworks */,
+				C161026F22F1482E008BFC78 /* XDLive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 		28D0EFF8217D7B6300CB471F /* XDLiveiOSWrapper */ = {
 			isa = PBXGroup;
 			children = (
-				2853EEFD217D7C5400322BF0 /* XDLive.framework */,
+				C161026E22F1482E008BFC78 /* XDLive.framework */,
 				28D0F002217D7BA900CB471F /* XDLiveWrapper.mm */,
 				28D0F003217D7BA900CB471F /* XDLiveWrapper.h */,
 			);
@@ -271,6 +271,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/XDLiveiOSWrapper",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,6 +287,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/XDLiveiOSWrapper",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

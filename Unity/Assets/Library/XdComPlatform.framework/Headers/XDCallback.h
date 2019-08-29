@@ -92,5 +92,4 @@
 - (void)onRealNameSucceed;
 
 - (void)onRealNameFailed:(nullable NSString*)error_msg;
-
 @end

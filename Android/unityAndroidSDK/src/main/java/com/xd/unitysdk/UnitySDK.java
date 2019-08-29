@@ -49,6 +49,8 @@ public class UnitySDK{
         XDSDK.openUserBindView();
     }
 
+    public static void openMobileVerifyView(){ XDSDK.openMobileVerifyView();}
+
     public static boolean pay(Map<String, String> info) {
         return XDSDK.pay(info);
     }

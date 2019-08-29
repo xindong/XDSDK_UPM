@@ -84,7 +84,7 @@ namespace xdsdk{
 		public void OnPayCanceled (){
 			XDSDKImp.GetInstance ().GetXDCallback ().OnPayCanceled ();
 		}
-
+		
 		public void OnExitConfirm (){
 			XDSDKImp.GetInstance ().GetXDCallback ().OnExitConfirm ();
 		}

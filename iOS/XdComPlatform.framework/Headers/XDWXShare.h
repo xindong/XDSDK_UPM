@@ -6,12 +6,13 @@
 //  Copyright © 2017年 dyy. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#define DEPRECATED_ATTRIBUTE_XDSDK_SHARE __attribute__((deprecated("XDSDK 第三方分享模块已废弃, 后续更新版本将移除第三方分享模块，如有相关需求请自行对接第三方 SDK。")))
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 # pragma mark - XDWXShareCallback
-
+DEPRECATED_ATTRIBUTE_XDSDK_SHARE
 @protocol XDWXShareCallback <NSObject>
 
 @optional
@@ -28,20 +29,21 @@
 
  @param error_msg 错误信息(0成功,-1普通错误,-2用户取消,-3发送失败,-4授权失败，-5微信不支持,) 未知错误(error_msg:"") 详情见微信官方API
  */
-- (void)onWXShareFailed:(NSString*)error_msg;
+- (void)onWXShareFailed:(NSString *)error_msg;
 
 @end
 
 # pragma mark - XDWXShareObject
 
-enum  XDWXShareType {
+enum XDWXShareType {
     XDWXShareTypeText     = 0,   /**< 文本分享 >**/
     XDWXShareTypeImage    = 1,   /**< 图片分享 >**/
     XDWXShareTypeMusic    = 2,   /**< 音乐分享 >**/
     XDWXShareTypeVideo    = 3,   /**< 视频分享 >**/
     XDWXShareTypeWebPage  = 4,   /**< 网页分享 >**/
-};
+} DEPRECATED_ATTRIBUTE_XDSDK_SHARE;
 
+DEPRECATED_ATTRIBUTE_XDSDK_SHARE
 @interface XDWXShareObject : NSObject
 
 + (instancetype)shareObject;
@@ -143,8 +145,7 @@ enum  XDWXShareType {
 
 
 # pragma mark - XDWXShare
-
-
+DEPRECATED_ATTRIBUTE_XDSDK_SHARE
 @interface XDWXShare : NSObject
 
 

@@ -157,6 +157,10 @@ extern "C"{
             [XDCore openRealName];
         }
         
+        bool openMobileVerifyView () {
+            return [XDCore openMobileVerifyView];
+        }
+        
         bool isXdLoggedIn(){
             return [XDCore isLoggedIn];
         }
@@ -174,9 +178,22 @@ extern "C"{
                           }];
         }
         
+//        void xdRestorePay(const char* product_name, const char* product_id, const char* product_price,const char* sid,const char* role_id,const char* orderid,const char* ext,const char* transactionIdentifier){
+//            [XDCore restoreProduct:@{
+//                                     @"Product_Name":[NSString stringWithUTF8String:product_name?product_name:"Product_Name"],
+//                                     @"Product_Id":[NSString stringWithUTF8String:product_id?product_id:"Product_Id"],
+//                                     @"Product_Price":[NSString stringWithUTF8String:product_price?product_price:"Product_Price"],
+//                                     @"Sid":[NSString stringWithUTF8String:sid?sid:"Sid"],
+//                                     @"Role_Id":[NSString stringWithUTF8String:role_id?role_id:"Role_Id"],
+//                                     @"Order_Id":[NSString stringWithUTF8String:orderid?orderid:"Order_Id"],
+//                                     @"EXT":[NSString stringWithUTF8String:ext?ext:"EXT"],
+//                                     @"transactionIdentifier":[NSString stringWithUTF8String:transactionIdentifier?transactionIdentifier:""],
+//                                     }];
+//        }
+        
         const char* getXDSDKVersion(){
-            
-            const char* version = [XDCore getSDKVersion].UTF8String;
+            NSString *SDKVersion = [XDCore getSDKVersion];
+            const char* version = SDKVersion.UTF8String;
             
             return strdup(version);
         }
@@ -453,6 +470,20 @@ extern "C"{
 - (void)onPayCanceled{
     
     UnitySendMessage(self.gameObjectName.UTF8String, "OnPayCanceled", "");
+}
+
+/**
+ 恢复支付
+ */
+- (void)restoredPayment:(NSArray *)paymentInfos {
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:paymentInfos options:NSJSONWritingPrettyPrinted error:&error];
+    if ([jsonData length] == 0 || error != nil) {
+        return;
+    }
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    UnitySendMessage(self.gameObjectName.UTF8String, "RestoredPayment", jsonString.UTF8String);
 }
 
 /**

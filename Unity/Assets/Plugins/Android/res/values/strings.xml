@@ -9,5 +9,7 @@
     <string name="open_history">充值历史</string>
     <string name="open_alipay">支付宝充值</string>
     <string name="open_liquan">礼券充值</string>
+    <string name="phone_number_verify">手机号认证</string>
+    <string name="phone_number_verify_tip">依据中国互联网实名认证管理要求，用户账号须通过实名认证方可进行。</string>
 
 </resources>

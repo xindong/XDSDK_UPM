@@ -59,6 +59,11 @@ extern "C" {
         [XDLive openXDLive:[NSString stringWithUTF8String:appid]];
     }
     
+    void openXDLiveWithUri(const char * appid,const char * uri){
+        [XDLive setDelegate:[XDLiveWrapper defaultInstance]];
+        [XDLive openXDLive:[NSString stringWithUTF8String:appid] uri:[NSString stringWithUTF8String:uri]];
+    }
+    
     void closeXDLive() {
         [XDLive closeXDLive];
     }
