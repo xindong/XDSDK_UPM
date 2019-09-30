@@ -185,6 +185,14 @@
  */
 + (BOOL)requestProduct:(nonnull NSDictionary *)prodectInfo;
 
+/**
+ 恢复支付
+ 
+ @param prodectInfo 订单信息
+ @return （YES，流程正常）（NO，尚未登录或重复调用）
+ */
++ (BOOL)restoreProduct:(nonnull NSDictionary *)prodectInfo;
+
 
 /**
  登出用户

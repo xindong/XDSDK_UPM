@@ -76,16 +76,16 @@ public class XDSDKHandler : xdsdk.XDCallback {
 
 	}
 
-	// public override void RestoredPayment(List<Dictionary<string,string>> resultList){
-	// 	Debug.Log ("RestoredPayment ： ");
-	// 	foreach (Dictionary<string,string> dictionary in resultList)
-	// 		{
-	// 			foreach (KeyValuePair<string, string> kvp in dictionary)
-	// 			{
-	// 					Debug.Log(kvp.Key + kvp.Value);
-	// 			}
-	// 		}
+	public override void RestoredPayment(List<Dictionary<string,string>> resultList){
+		Debug.Log ("RestoredPayment ： ");
+		foreach (Dictionary<string,string> dictionary in resultList)
+			{
+				foreach (KeyValuePair<string, string> kvp in dictionary)
+				{
+						Debug.Log(kvp.Key + kvp.Value);
+				}
+			}
 
 
-	// }
+	}
 }

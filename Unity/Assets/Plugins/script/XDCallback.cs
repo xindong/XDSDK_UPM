@@ -34,6 +34,8 @@ namespace xdsdk
 
 		public abstract void OnPayCanceled ();
 
+		public abstract void RestoredPayment (List<Dictionary<string,string>> resultList);
+
 		public abstract void OnExitConfirm ();
 
 		public abstract void OnExitCancel ();

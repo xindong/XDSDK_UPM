@@ -178,18 +178,18 @@ extern "C"{
                           }];
         }
         
-//        void xdRestorePay(const char* product_name, const char* product_id, const char* product_price,const char* sid,const char* role_id,const char* orderid,const char* ext,const char* transactionIdentifier){
-//            [XDCore restoreProduct:@{
-//                                     @"Product_Name":[NSString stringWithUTF8String:product_name?product_name:"Product_Name"],
-//                                     @"Product_Id":[NSString stringWithUTF8String:product_id?product_id:"Product_Id"],
-//                                     @"Product_Price":[NSString stringWithUTF8String:product_price?product_price:"Product_Price"],
-//                                     @"Sid":[NSString stringWithUTF8String:sid?sid:"Sid"],
-//                                     @"Role_Id":[NSString stringWithUTF8String:role_id?role_id:"Role_Id"],
-//                                     @"Order_Id":[NSString stringWithUTF8String:orderid?orderid:"Order_Id"],
-//                                     @"EXT":[NSString stringWithUTF8String:ext?ext:"EXT"],
-//                                     @"transactionIdentifier":[NSString stringWithUTF8String:transactionIdentifier?transactionIdentifier:""],
-//                                     }];
-//        }
+        void xdRestorePay(const char* product_name, const char* product_id, const char* product_price,const char* sid,const char* role_id,const char* orderid,const char* ext,const char* transactionIdentifier){
+            [XDCore restoreProduct:@{
+                                     @"Product_Name":[NSString stringWithUTF8String:product_name?product_name:"Product_Name"],
+                                     @"Product_Id":[NSString stringWithUTF8String:product_id?product_id:"Product_Id"],
+                                     @"Product_Price":[NSString stringWithUTF8String:product_price?product_price:"Product_Price"],
+                                     @"Sid":[NSString stringWithUTF8String:sid?sid:"Sid"],
+                                     @"Role_Id":[NSString stringWithUTF8String:role_id?role_id:"Role_Id"],
+                                     @"Order_Id":[NSString stringWithUTF8String:orderid?orderid:"Order_Id"],
+                                     @"EXT":[NSString stringWithUTF8String:ext?ext:"EXT"],
+                                     @"transactionIdentifier":[NSString stringWithUTF8String:transactionIdentifier?transactionIdentifier:""],
+                                     }];
+        }
         
         const char* getXDSDKVersion(){
             NSString *SDKVersion = [XDCore getSDKVersion];

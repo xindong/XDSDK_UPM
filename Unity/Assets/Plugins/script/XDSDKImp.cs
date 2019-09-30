@@ -378,6 +378,22 @@ namespace xdsdk
 
         }
 
+        public void RestorePay(Dictionary<string, string> info)
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+	xdRestorePay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
+					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
+					info.ContainsKey("Product_Price") ? info["Product_Price"] : "",
+					info.ContainsKey("Sid") ? info["Sid"] : "",
+					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
+					info.ContainsKey("OrderId") ? info["OrderId"] : "",
+					info.ContainsKey("EXT") ? info["EXT"] : "",
+                                        info.ContainsKey("transactionIdentifier") ? info["transactionIdentifier"] : "");
+#elif UNITY_ANDROID && !UNITY_EDITOR
+
+#endif
+        }
+
         public void Logout()
         {
 #if UNITY_IOS && !UNITY_EDITOR
@@ -478,6 +494,9 @@ namespace xdsdk
 
         [DllImport("__Internal")]
         private static extern void xdPay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);
+
+        [DllImport("__Internal")]
+        private static extern void xdRestorePay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext,string transactionIdentifier);
 
         [DllImport("__Internal")]
         private static extern string getXDSDKVersion();
@@ -585,9 +604,39 @@ namespace xdsdk
             AndroidJavaObject map = new AndroidJavaObject("java.util.HashMap");
             foreach(KeyValuePair<string, string> pair in dictionary)
             {
-                map.Call<string>("put", pair.Key, pair.Value);
+                
+                safeCallStringMethod(map,"put",new string[2] { pair.Key,pair.Value});
+                // map.Call<string>("put", pair.Key, pair.Value);
             }
             return map;
+        }
+
+        public static string safeCallStringMethod(AndroidJavaObject javaObject, string methodName, params object[] args)
+        {
+#if UNITY_2018_2_OR_NEWER
+            if (args == null) args = new object[] {null};
+            IntPtr methodID = AndroidJNIHelper.GetMethodID<string>(javaObject.GetRawClass(), methodName, args, false);
+            jvalue[] jniArgs = AndroidJNIHelper.CreateJNIArgArray(args);
+ 
+            try
+            {
+                IntPtr returnValue = AndroidJNI.CallObjectMethod(javaObject.GetRawObject(), methodID, jniArgs);
+                if (IntPtr.Zero != returnValue)
+                {
+                    var val = AndroidJNI.GetStringUTFChars(returnValue);
+                    AndroidJNI.DeleteLocalRef(returnValue);
+                    return val;
+                }
+            }
+            finally
+            {
+                AndroidJNIHelper.DeleteJNIArgArray(args, jniArgs);
+            }
+ 
+            return null;
+#else
+            return  javaObject.Call<string>(methodName, args);
+#endif
         }
 #endif
     }

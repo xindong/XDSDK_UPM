@@ -84,7 +84,14 @@ namespace xdsdk{
 		public void OnPayCanceled (){
 			XDSDKImp.GetInstance ().GetXDCallback ().OnPayCanceled ();
 		}
-		
+
+		public void RestoredPayment (string msg){
+			Debug.Log ("RestoredPayment ： " + msg);
+
+			List<Dictionary<string,string>> resultList = XDMiniJSON.Json.Deserialize(msg) as List<Dictionary<string,string>>;
+			XDSDKImp.GetInstance ().GetXDCallback ().RestoredPayment (resultList);
+		}
+
 		public void OnExitConfirm (){
 			XDSDKImp.GetInstance ().GetXDCallback ().OnExitConfirm ();
 		}

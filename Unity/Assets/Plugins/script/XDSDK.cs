@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 1.2.12
+ * XDSDK Version 1.2.13
  * 
  * 
  * 
@@ -106,6 +106,11 @@ namespace xdsdk
 		//发起支付
 		public static bool Pay(Dictionary<string, string> info){
 			return XDSDKImp.GetInstance ().Pay (info);
+		}
+
+		//恢复支付
+		public static void RestorePay(Dictionary<string, string> info){
+			XDSDKImp.GetInstance ().RestorePay (info);
 		}
 
 		//登出

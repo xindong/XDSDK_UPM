@@ -92,4 +92,12 @@
 - (void)onRealNameSucceed;
 
 - (void)onRealNameFailed:(nullable NSString*)error_msg;
+
+/// 有未完成的订单回调，比如：礼包码.注意：多个未完成订单会在一个数组中一起回调。（只会在登录状态下回调）
+/// @param paymentInfos 订单信息数组。
+/// 单个未完成订单信息包含：     transactionIdentifier ：订单标识 ，恢复购买时需要回传
+///                                                       productIdentifier ：商品ID，
+///                                                                     quantity：商品数量
+- (void)restoredPayment:(nonnull NSArray*)paymentInfos;
+
 @end

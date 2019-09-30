@@ -234,6 +234,14 @@ public class Demo : MonoBehaviour
             // com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
 		}
 
+		if (GUI.Button (new Rect (750, 1900, 300, 100), "退出", myButtonStyle)) {
+			#if UNITY_EDITOR
+
+			#else
+			Application.Quit();
+			#endif
+		}
+
 
 
 	}
