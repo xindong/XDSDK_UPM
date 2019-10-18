@@ -34,7 +34,7 @@ namespace xdsdk
 
 			UnitySetCallback(new XDSDKListener.UniversalCallbackDelegate(XDSDKListener.UniversalCallback));
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN ) && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN )
             Unity.XDSDK.SetCallback((Unity.ResultCode code, string data) =>
             {
                 if (xdCallback != null)
@@ -171,7 +171,7 @@ namespace xdsdk
 
 			UnitySetLoginEntries(entries, entries.Count());
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
 
             Unity.XDSDK.SetLoginEntries(entries);
 
@@ -189,7 +189,7 @@ namespace xdsdk
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 			return UnityGetSdkVersion();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             return Unity.XDSDK.VERSION;
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -211,7 +211,7 @@ namespace xdsdk
 
 			UnityInit(appid);
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             Unity.XDSDK.Init(appid);
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -230,7 +230,7 @@ namespace xdsdk
 
 			UnityLogin();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             Unity.XDSDK.Login();
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -247,7 +247,7 @@ namespace xdsdk
 
 			return UnityGetAccessToken();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             return Unity.XDSDK.GetAccessToken();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -268,7 +268,7 @@ namespace xdsdk
 
 			return UnityIsLoggedIn();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             return !string.IsNullOrEmpty(Unity.XDSDK.GetAccessToken());
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -325,7 +325,7 @@ namespace xdsdk
 
 			UnityOpenRealName();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             Unity.XDSDK.OpenRealName();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -367,7 +367,7 @@ namespace xdsdk
 					info.ContainsKey("OrderId") ? info["OrderId"] : "",
 					info.ContainsKey("EXT") ? info["EXT"] : "");
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             Unity.XDSDK.Pay(info);
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -403,7 +403,7 @@ namespace xdsdk
 
 			UnityLogout();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)  && FOR_RO
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
             Unity.XDSDK.Logout();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
