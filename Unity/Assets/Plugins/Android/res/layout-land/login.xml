@@ -52,9 +52,9 @@
 
         <ImageView
             android:id="@+id/xd_logo"
-            android:layout_width="132dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="31dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="53dp"
             android:background="@null"
             android:scaleType="fitCenter"
