@@ -47,7 +47,8 @@
  QQ登录：QQ_LOGIN，
  taptap登录：TAPTAP_LOGIN，
  游客登录：GUEST_LOGIN，
- 心动登录：XD_LOGIN
+ 心动登录：XD_LOGIN,
+ 苹果登录（iOS13）：APPLE_LOGIN,
  
  3、例，传入的数组。
  @[@"WX_LOGIN",@"QQ_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN"]
@@ -226,6 +227,36 @@
  */
 + (void)setLevel:(NSInteger)level;
 
+#pragma mark - 广告相关
+/**
+ 自定义广告参数。如测试新参数。 需在SDK初始化前调用
+
+@param appId 心动appId
+@param params 自定义第三方广告SDK的初始化参数，会覆盖后台参数
+
+"adPlatform":广告平台，0: 所有平台 1: 广点通 2：头条
+
+"appID":appid
+"appName":appName
+"channel":channel                  App发布的渠道名（建议内测版用local_test，正式版用App Store，灰度版用发布的渠道名，如pp
+
+"actionSetId":UserActionSetId
+"secretKey":secretKey
+
+例，覆盖头条广告平台参数:
+NSMutableDictionary *params = [NSMutableDictionary dictionary];
+[params setValue:@1 forKey:@"adPlatform"];
+[params setValue:@"123455" forKey:@"appID"];
+[params setValue:@"testName" forKey:@"appName"];
+[params setValue:@"APP Store" forKey:@"channel"];
+
+*/
++ (void)customAdParams:(nullable NSDictionary *)params;
+
+/// 注册事件
+/// @param method 注册方式
+/// @param isSuccess 是否成功
++ (void)registerAction:(nullable NSString *)method isSuccess:(BOOL)isSuccess;
 
 @end
 

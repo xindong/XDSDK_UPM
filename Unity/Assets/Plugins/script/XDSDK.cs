@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 1.2.14
+ * XDSDK Version 1.2.15
  * 
  * 
  * 
@@ -60,6 +60,12 @@ namespace xdsdk
 			return XDSDKImp.GetInstance ().GetSDKVersion ();
 
 		}
+
+		//获取当前包的渠道名（安卓）
+		public static string GetAdChannelName(){
+			return XDSDKImp.GetInstance ().GetAdChannelName ();
+		}
+
 		//初始化心动SDK
 		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb){
 			XDSDKImp.GetInstance ().InitSDK (appid, aOrientation, channel, version, enableTapdb);

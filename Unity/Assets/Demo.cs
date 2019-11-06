@@ -39,7 +39,7 @@ public class Demo : MonoBehaviour
 
         if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
         {
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "UnityXDSDK", "0.0.0", true);
+			xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 0, "UnityXDSDK", "0.0.0", true);
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
             TapTapSDK.Instance.InitAppBoard ();
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
@@ -220,7 +220,7 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 1700, 300, 100), "直播", myButtonStyle)) {
-			xdsdk.XDSDK.openMobileVerifyView();
+			Debug.Log (xdsdk.XDSDK.GetAdChannelName());
 			// Dictionary<string, string> info = new Dictionary<string,string>();
 			// info.Add("OrderId", "1234567890123456789012345678901234567890");
 			// info.Add("Product_Price", "1");

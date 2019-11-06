@@ -202,6 +202,29 @@ namespace xdsdk
 
         }
 
+        public string GetAdChannelName()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            return "";
+
+#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+            return "";
+
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+            return "";
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			return jc.CallStatic<string> ("getAdChannelName");
+
+#else
+            return "";
+#endif
+
+        }
+
+
+
         public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB)
         {
 #if UNITY_IOS && !UNITY_EDITOR

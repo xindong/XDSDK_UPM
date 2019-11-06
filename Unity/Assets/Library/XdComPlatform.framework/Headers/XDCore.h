@@ -47,7 +47,8 @@
  QQ登录：QQ_LOGIN，
  taptap登录：TAPTAP_LOGIN，
  游客登录：GUEST_LOGIN，
- 心动登录：XD_LOGIN
+ 心动登录：XD_LOGIN,
+ 苹果登录（iOS13）：APPLE_LOGIN,
  
  3、例，传入的数组。
  @[@"WX_LOGIN",@"QQ_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN"]

@@ -29,6 +29,8 @@ public class UnitySDK{
         return XDSDK.getSDKVersion();
     }
 
+    public static String getAdChannelName() {return XDSDK.getAdChannelName(UnityPlayer.currentActivity);}
+
     public static void login() {
         XDSDK.login();
     }
