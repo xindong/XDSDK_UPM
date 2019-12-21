@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="@dimen/form_element_width"
+    android:layout_height="match_parent"
+    android:background="@drawable/start_bg_round">
+    <ImageView
+        android:layout_marginTop="17dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="93dp"
+        android:layout_height="75dp"
+        android:src="@drawable/auth_finish"
+        android:scaleType="fitCenter"/>
+    <Button
+        android:id="@+id/bt_auth_finish"
+        android:layout_width="225dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/xdsdk__bg_round_button"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+
+</LinearLayout>

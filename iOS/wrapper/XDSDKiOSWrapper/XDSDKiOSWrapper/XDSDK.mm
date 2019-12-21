@@ -187,7 +187,7 @@ extern "C"{
                                      @"Role_Id":[NSString stringWithUTF8String:role_id?role_id:"Role_Id"],
                                      @"Order_Id":[NSString stringWithUTF8String:orderid?orderid:"Order_Id"],
                                      @"EXT":[NSString stringWithUTF8String:ext?ext:"EXT"],
-                                     @"transactionIdentifier":[NSString stringWithUTF8String:transactionIdentifier?transactionIdentifier:""],
+                                     @"TransactionIdentifier":[NSString stringWithUTF8String:transactionIdentifier?transactionIdentifier:""],
                                      }];
         }
         
@@ -476,6 +476,9 @@ extern "C"{
  恢复支付
  */
 - (void)restoredPayment:(NSArray *)paymentInfos {
+    if (!paymentInfos || paymentInfos.count <= 0) {
+        return;
+    }
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:paymentInfos options:NSJSONWritingPrettyPrinted error:&error];
     if ([jsonData length] == 0 || error != nil) {

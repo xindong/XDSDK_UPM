@@ -164,18 +164,17 @@
  */
 + (BOOL)openUserBindView;
 
-/**
- 打开手机认证窗口
- 
- @return 是否打开成功
- */
-+ (BOOL)openMobileVerifyView;
-
 
 /**
  打开实名认证窗口
  */
 + (void)openRealName;
+
+
+/**
+ 主动展示用户协议窗口，不提供给游戏，只作DEMO使用
+ */
++ (void)openAgreementView;
 
 
 /**
@@ -227,6 +226,31 @@
  */
 + (void)setLevel:(NSInteger)level;
 
+#pragma mark - 广告相关
+/**
+ 自定义广告参数。如测试新参数。 需在SDK初始化前调用
+
+@param appId 心动appId
+@param params 自定义第三方广告SDK的初始化参数，会覆盖后台参数
+
+"adPlatform":广告平台，0: 所有平台 1: 广点通 2：头条
+
+"appID":appid
+"appName":appName
+"channel":channel                  App发布的渠道名（建议内测版用local_test，正式版用App Store，灰度版用发布的渠道名，如pp
+
+"actionSetId":UserActionSetId
+"secretKey":secretKey
+
+例，覆盖头条广告平台参数:
+NSMutableDictionary *params = [NSMutableDictionary dictionary];
+[params setValue:@1 forKey:@"adPlatform"];
+[params setValue:@"123455" forKey:@"appID"];
+[params setValue:@"testName" forKey:@"appName"];
+[params setValue:@"APP Store" forKey:@"channel"];
+
+*/
++ (void)customAdParams:(nullable NSDictionary *)params;
 
 @end
 

@@ -77,7 +77,7 @@ public class XDSDKHandler : xdsdk.XDCallback {
 	}
 
 	public override void RestoredPayment(List<Dictionary<string,string>> resultList){
-		Debug.Log ("RestoredPayment ： ");
+		Debug.Log ("RestoredPayment resultList： ");
 		foreach (Dictionary<string,string> dictionary in resultList)
 			{
 				foreach (KeyValuePair<string, string> kvp in dictionary)

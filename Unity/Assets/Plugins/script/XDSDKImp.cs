@@ -34,7 +34,7 @@ namespace xdsdk
 
 			UnitySetCallback(new XDSDKListener.UniversalCallbackDelegate(XDSDKListener.UniversalCallback));
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN )
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN ) && PC_VERSION
             Unity.XDSDK.SetCallback((Unity.ResultCode code, string data) =>
             {
                 if (xdCallback != null)
@@ -171,7 +171,7 @@ namespace xdsdk
 
 			UnitySetLoginEntries(entries, entries.Count());
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
 
             Unity.XDSDK.SetLoginEntries(entries);
 
@@ -189,7 +189,7 @@ namespace xdsdk
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 			return UnityGetSdkVersion();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return Unity.XDSDK.VERSION;
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -210,7 +210,7 @@ namespace xdsdk
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
             return "";
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return "";
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -234,7 +234,7 @@ namespace xdsdk
 
 			UnityInit(appid);
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Init(appid);
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -253,7 +253,7 @@ namespace xdsdk
 
 			UnityLogin();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Login();
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
@@ -270,7 +270,7 @@ namespace xdsdk
 
 			return UnityGetAccessToken();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return Unity.XDSDK.GetAccessToken();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -291,7 +291,7 @@ namespace xdsdk
 
 			return UnityIsLoggedIn();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return !string.IsNullOrEmpty(Unity.XDSDK.GetAccessToken());
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -348,7 +348,7 @@ namespace xdsdk
 
 			UnityOpenRealName();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.OpenRealName();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -390,7 +390,7 @@ namespace xdsdk
 					info.ContainsKey("OrderId") ? info["OrderId"] : "",
 					info.ContainsKey("EXT") ? info["EXT"] : "");
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Pay(info);
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -411,7 +411,7 @@ namespace xdsdk
 					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
 					info.ContainsKey("OrderId") ? info["OrderId"] : "",
 					info.ContainsKey("EXT") ? info["EXT"] : "",
-                                        info.ContainsKey("transactionIdentifier") ? info["transactionIdentifier"] : "");
+                                        info.ContainsKey("TransactionIdentifier") ? info["TransactionIdentifier"] : "");
 #elif UNITY_ANDROID && !UNITY_EDITOR
 
 #endif
@@ -426,7 +426,7 @@ namespace xdsdk
 
 			UnityLogout();
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN)
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Logout();
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -484,6 +484,43 @@ namespace xdsdk
 			jc.CallStatic ("setServer", server);
 #endif
         }
+
+        public void OnResume(){
+                #if UNITY_IOS && !UNITY_EDITOR
+
+#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+			// AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			// jc.CallStatic ("onResume");
+
+		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
+		getAgent().CallStatic("onResume", activity);
+
+#else
+#endif
+
+	}
+	
+	public void OnStop(){
+                             #if UNITY_IOS && !UNITY_EDITOR
+
+#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+			// AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+			// jc.CallStatic ("onStop");
+
+		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
+		getAgent().CallStatic("onStop", activity);
+#else
+#endif
+
+	}
 
 
 
@@ -604,6 +641,25 @@ namespace xdsdk
 #if UNITY_IOS && !UNITY_EDITOR
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
+	public static string JAVA_CLASS = "com.xd.xdsdk.XDSDK";
+	private static string UNTIFY_CLASS = "com.unity3d.player.UnityPlayer";
+	private static AndroidJavaClass agent = null;
+	private static AndroidJavaClass unityClass = null;
+
+	private static AndroidJavaClass getAgent() {
+		if (agent == null) {
+			agent = new AndroidJavaClass(JAVA_CLASS);
+		}
+		return agent;
+	}
+
+	private static AndroidJavaClass getUnityClass(){
+		if (unityClass == null) {
+			unityClass = new AndroidJavaClass(UNTIFY_CLASS);
+		}
+		return unityClass;
+	}
+
         private AndroidJavaObject CSStringArrayToJavaStringArray(string [] values) {
             AndroidJavaClass arrayClass  = new AndroidJavaClass("java.lang.reflect.Array");
             AndroidJavaObject arrayObject = arrayClass.CallStatic<AndroidJavaObject>("newInstance",

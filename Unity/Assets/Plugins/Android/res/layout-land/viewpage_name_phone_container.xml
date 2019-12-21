@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/start_bg_round"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_auth_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:layout_alignParentLeft="true"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/xd_back" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:textColor="#a37d79"
+            android:textSize="21sp"
+            android:text="游戏实名登记"/>
+        <ImageView
+            android:id="@+id/iv_auth_close"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/xd_close" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/form_element_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_auth_step1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:button="@null"
+            android:background="@drawable/rb_auth_bg"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@drawable/rb_auth_text"
+            android:text="1" />
+        
+        <RadioButton
+            android:id="@+id/rb_auth_line1"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="45dp"
+            android:layout_height="3dp"
+            android:background="@drawable/rb_auth_line"
+            android:button="@null"/>
+
+        <RadioButton
+            android:id="@+id/rb_auth_step2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:button="@null"
+            android:background="@drawable/rb_auth_bg"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@drawable/rb_auth_text"
+            android:text="2" />
+
+        <RadioButton
+            android:id="@+id/rb_auth_line2"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="45dp"
+            android:layout_height="3dp"
+            android:background="@drawable/rb_auth_line"
+            android:button="@null"/>
+
+        <RadioButton
+            android:id="@+id/rb_auth_step3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:button="@null"
+            android:background="@drawable/rb_auth_bg"
+            android:textColor="@drawable/rb_auth_text"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:text="3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_auth_step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a37d79"
+            android:textSize="15sp"
+            android:text="身份证"/>
+        <TextView
+            android:id="@+id/tv_auth_step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a37d79"
+            android:layout_marginLeft="90dp"
+            android:layout_marginRight="85dp"
+            android:textSize="15sp"
+            android:text="手机号"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#a37d79"
+            android:textSize="15sp"
+            android:text="提交成功"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/ll_vp_container"
+        android:layout_width="@dimen/form_element_width"
+        android:layout_height="184dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_auth_tip"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xd_auth_tip_button"
+            android:scaleType="fitCenter"/>
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于游戏实名登记"
+            android:textSize="15sp"
+            android:textColor="#a37d79"/>
+    </LinearLayout>
+
+</LinearLayout>

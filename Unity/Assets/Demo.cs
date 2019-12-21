@@ -39,7 +39,9 @@ public class Demo : MonoBehaviour
 
         if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
         {
-			xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 0, "UnityXDSDK", "0.0.0", true);
+			// xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 1, "UnityXDSDK", "0.0.0", true);
+			xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
+
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
             TapTapSDK.Instance.InitAppBoard ();
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
@@ -47,6 +49,7 @@ public class Demo : MonoBehaviour
         }
 
         if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
+
 			xdsdk.XDSDK.Login ();
 			com.xdsdk.xdlive.XDLiveListener.Init ();
 		}
@@ -56,13 +59,15 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (50, 900, 300, 100), "支付", myButtonStyle)){
+
+
 			Dictionary<string, string> info = new Dictionary<string,string>();
 			info.Add("OrderId", "1234567890123456789012345678901234567890");
 			info.Add("Product_Price", "1");
 			info.Add("EXT", "abcd|efgh|1234|5678");
 			info.Add("Sid", "2");
 			info.Add("Role_Id", "3");
-			info.Add("Product_Id", "4");
+			info.Add("Product_Id", "com.xd.ro.3d.EP04_Card73");
 			info.Add("Product_Name", "648大礼包");
 			xdsdk.XDSDK.Pay (info);
 
@@ -216,11 +221,15 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 1500, 300, 100), "公告", myButtonStyle)){
-			TapTapSDK.Instance.OpenAppBoard("58881");
+			// TapTapSDK.Instance.OpenAppBoard("58881");
+			xdsdk.XDSDK.OnStop();
 		}
 
 		if (GUI.Button (new Rect (750, 1700, 300, 100), "直播", myButtonStyle)) {
-			Debug.Log (xdsdk.XDSDK.GetAdChannelName());
+			// Debug.Log (xdsdk.XDSDK.GetAdChannelName());
+
+			xdsdk.XDSDK.OnResume();
+
 			// Dictionary<string, string> info = new Dictionary<string,string>();
 			// info.Add("OrderId", "1234567890123456789012345678901234567890");
 			// info.Add("Product_Price", "1");

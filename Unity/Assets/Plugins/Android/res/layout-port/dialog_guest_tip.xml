@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_guest_tip_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="健康游戏提示"
+        android:textColor="#a37d79"
+        android:textSize="21sp" />
+
+    <TextView
+        android:id="@+id/tv_guest_tip_content"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/bg_round"
+        android:padding="15dp"
+        android:text="您当前为游客账号，体验时间为60分钟，实名注册后可继续游戏。"
+        android:textColor="#a37d79"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_guest_tip_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="-35dp">
+
+        <ImageView
+            android:layout_marginBottom="2dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:src="@drawable/switch_account" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="切换账号"
+            android:textColor="#ff6600"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_guest_tip_real"
+            android:layout_width="220dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/xdsdk__bg_round_button"
+            android:gravity="center"
+            android:text="去实名"
+            android:textColor="#FFFFFF"
+            android:textSize="21sp" />
+
+        <Button
+            android:id="@+id/bt_guest_tip_enter"
+            android:layout_width="220dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/xdsdk__bg_round_button"
+            android:gravity="center"
+            android:text="进入游戏"
+            android:textColor="#FFFFFF"
+            android:textSize="21sp" />
+
+        <Button
+            android:id="@+id/bt_guest_tip_quit"
+            android:layout_width="220dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bt_tip_quit_bg"
+            android:gravity="center"
+            android:text="退出游戏"
+            android:textColor="#8e7065"
+            android:textSize="21sp" />
+    </LinearLayout>
+
+</LinearLayout>

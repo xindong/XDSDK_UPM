@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 1.2.15
+ * XDSDK Version 2.0.4
  * 
  * 
  * 
@@ -142,6 +142,16 @@ namespace xdsdk
 		//设置游戏服务器地址
 		public static void SetServer(string server){
 			XDSDKImp.GetInstance ().SetServer (server);
+		}
+
+		// onresume 安卓
+		public static void OnResume(){
+			XDSDKImp.GetInstance ().OnResume();
+		}
+
+		// onstop 安卓
+		public static void OnStop(){
+			XDSDKImp.GetInstance ().OnStop();
 		}
 	}
 }

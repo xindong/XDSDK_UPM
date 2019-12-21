@@ -88,8 +88,22 @@ namespace xdsdk{
 		public void RestoredPayment (string msg){
 			Debug.Log ("RestoredPayment ： " + msg);
 
-			List<Dictionary<string,string>> resultList = XDMiniJSON.Json.Deserialize(msg) as List<Dictionary<string,string>>;
-			XDSDKImp.GetInstance ().GetXDCallback ().RestoredPayment (resultList);
+			List<object> resultList = (List<object>)XDMiniJSON.Json.Deserialize(msg);
+			List<Dictionary<string,string>> paymentInfoList = new List<Dictionary<string,string>>();
+			foreach (Dictionary<string,object> dict in resultList)
+			{
+				Dictionary<string,string> onePaymentInfo = new Dictionary<string,string>();
+
+				foreach (KeyValuePair<string,object> kvp in dict)
+				{
+					onePaymentInfo[kvp.Key] = (string)kvp.Value;
+				}
+
+				paymentInfoList.Add(onePaymentInfo);
+			}
+
+			XDSDKImp.GetInstance ().GetXDCallback ().RestoredPayment (paymentInfoList);
+
 		}
 
 		public void OnExitConfirm (){

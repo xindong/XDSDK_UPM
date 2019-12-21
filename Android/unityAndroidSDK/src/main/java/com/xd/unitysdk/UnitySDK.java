@@ -114,6 +114,10 @@ public class UnitySDK{
         XDSDK.setServer(server);
     }
 
+    public static void onResume(){XDSDK.onResume(UnityPlayer.currentActivity);}
+    public static void onStop(){XDSDK.onStop(UnityPlayer.currentActivity);}
+
+
     public static void shareToWX(Map<String, String> content) {
         XDWXShareObject wxShareObject = new XDWXShareObject();
         wxShareObject.setTitle(content.get("title"));
