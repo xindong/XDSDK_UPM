@@ -24,13 +24,23 @@ public class XDLiveUnity {
 
         @Override
         public void onXDLiveClosed() {
-            UnityPlayer.UnitySendMessage("XDLiveListener", "OnXDLiveClosed", "");
+            UnityPlayer.UnitySendMessage("XDLiveListener", "OnXDLiveClos./ed", "");
         }
     };
 
     public static void OpenXDLive(String appid) {
         XDLive.setCallback(XDLiveUnity.callback);
         XDLive.openXDLive(UnityPlayer.currentActivity, appid);
+    }
+
+    public static void OpenXDLive(String appid, String url) {
+        XDLive.setCallback(callback);
+        XDLive.openXDLive(UnityPlayer.currentActivity, appid, url);
+    }
+
+    public static void OpenXDLive(String appid, String url,int orientation) {
+        XDLive.setCallback(callback);
+        XDLive.openXDLive(UnityPlayer.currentActivity, appid, url,orientation);
     }
 
     public static void CloseXDLive() {

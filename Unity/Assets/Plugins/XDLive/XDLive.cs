@@ -64,6 +64,17 @@ namespace com.xdsdk.xdlive
 #endif
         }
 
+        public void OpenXDLive(string appid,string uri,int orientation)
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+            openXDLiveWithUriAndOrientation(appid,uri,orientation);
+
+#elif UNITY_ANDROID && !UNITY_EDITOR
+            AndroidJavaClass jc = new AndroidJavaClass("com.xindong.xdlive.XDLiveUnity");
+            jc.CallStatic ("OpenXDLive", appid,uri,orientation);
+#endif
+        }
+
 		public void CloseXDLive()
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
@@ -110,6 +121,8 @@ namespace com.xdsdk.xdlive
         private static extern void openXDLive(string appid);
         [DllImport("__Internal")]
         private static extern void openXDLiveWithUri(string appid,string uri);
+        [DllImport("__Internal")]
+        private static extern void openXDLiveWithUriAndOrientation(string appid,string uri,int orientation);
 		[DllImport("__Internal")]
 		private static extern void closeXDLive();
 		[DllImport("__Internal")]

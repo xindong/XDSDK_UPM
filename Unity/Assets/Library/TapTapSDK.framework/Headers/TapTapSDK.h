@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDK_VERSION @"1.2.0"  //!< SDK Version
-#define ITK_VERSION @"0.1.2"  //!< Tapitk Version
+#define SDK_VERSION @"1.2.1"  //!< SDK Version
+#define ITK_VERSION @"0.2.0"  //!< Tapitk Version
 
 #import "TTSDKApplicationDelegate.h"
 #import "TTSDKLoginResult.h"

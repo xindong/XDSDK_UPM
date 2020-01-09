@@ -7,6 +7,12 @@
 
 #define  XDLIVE_VERSION @"0.1.3"
 
+typedef NS_ENUM(NSInteger,XDLiveOrientation) {
+    XDLiveOrientationDefault = 0,
+    XDLiveOrientationPortrait,
+    XDLiveOrientationLandscape,
+};
+
 typedef void (^XDLFuncResultCallback)(NSDictionary *result);
 
 @protocol XDLiveDelegate <NSObject>
@@ -21,6 +27,13 @@ typedef void (^XDLFuncResultCallback)(NSDictionary *result);
 
 + (void)openXDLive:(NSString *)appid;
 + (void)openXDLive:(NSString *)appid uri:(NSString *)uri;
+
+/// 打开论坛
+/// @param appid appid
+/// @param uri 自定义url
+/// @param orientation 指定屏幕方向
++ (void)openXDLive:(NSString *)appid uri:(NSString *)uri orientation:(XDLiveOrientation)orientation;
+
 
 
 + (void)closeXDLive;

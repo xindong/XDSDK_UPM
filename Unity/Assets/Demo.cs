@@ -213,7 +213,18 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 1100, 300, 100), "实名认证", myButtonStyle)){
-			xdsdk.XDSDK.OpenRealName();
+			// xdsdk.XDSDK.OpenRealName();
+						Dictionary<string, string> info = new Dictionary<string,string>();
+			info.Add("OrderId", "1234567890123456789012345678901234567890");
+			info.Add("Product_Price", "1");
+			info.Add("EXT", "abcd|efgh|1234|5678");
+			info.Add("Sid", "2");
+			info.Add("Role_Id", "3");
+			info.Add("Product_Id", "4");
+			info.Add("Product_Name", "648大礼包");
+			info.Add ("transactionIdentifier", "123456789");
+			// xdsdk.XDSDK.RestorePay (info);
+            com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
 		}
 
 		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
@@ -229,18 +240,6 @@ public class Demo : MonoBehaviour
 			// Debug.Log (xdsdk.XDSDK.GetAdChannelName());
 
 			xdsdk.XDSDK.OnResume();
-
-			// Dictionary<string, string> info = new Dictionary<string,string>();
-			// info.Add("OrderId", "1234567890123456789012345678901234567890");
-			// info.Add("Product_Price", "1");
-			// info.Add("EXT", "abcd|efgh|1234|5678");
-			// info.Add("Sid", "2");
-			// info.Add("Role_Id", "3");
-			// info.Add("Product_Id", "4");
-			// info.Add("Product_Name", "648大礼包");
-			// info.Add ("transactionIdentifier", "123456789");
-			// xdsdk.XDSDK.RestorePay (info);
-            // com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
 		}
 
 		if (GUI.Button (new Rect (750, 1900, 300, 100), "退出", myButtonStyle)) {

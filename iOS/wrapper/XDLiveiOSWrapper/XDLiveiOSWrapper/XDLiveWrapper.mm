@@ -64,6 +64,18 @@ extern "C" {
         [XDLive openXDLive:[NSString stringWithUTF8String:appid] uri:[NSString stringWithUTF8String:uri]];
     }
     
+    void openXDLiveWithUriAndOrientation(const char * appid,const char * uri,int orientation) {
+        [XDLive setDelegate:[XDLiveWrapper defaultInstance]];
+        XDLiveOrientation xdlOrientation = XDLiveOrientationDefault;
+        if(orientation == 1){
+            xdlOrientation = XDLiveOrientationPortrait;
+        }else if (orientation == 2){
+            xdlOrientation = XDLiveOrientationLandscape;
+        }
+        
+        [XDLive openXDLive:[NSString stringWithUTF8String:appid] uri:[NSString stringWithUTF8String:uri] orientation:xdlOrientation];
+    }
+    
     void closeXDLive() {
         [XDLive closeXDLive];
     }

@@ -21,6 +21,7 @@ android {
             abortOnError false
         }
     }
+
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -53,7 +54,7 @@ task jarUnityXDSDKLib(type: Jar, dependsOn: ['build']) {
 
 task jarUnityXDLiveLib(type: Jar, dependsOn: ['build']) {
     archiveName = 'XDLiveForUnity.jar'
-    from('build/intermediates/classes/release')
+    from('build/intermediates/javac/release/compileReleaseJavaWithJavac/classes')
     destinationDir = file('build/libs')
     exclude('com/xindong/xdlive/BuildConfig.class')
     exclude('com/xindong/xdlive/BuildConfig\$*.class')
