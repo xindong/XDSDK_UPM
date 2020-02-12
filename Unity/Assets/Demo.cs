@@ -19,6 +19,11 @@ public class Demo : MonoBehaviour
 
     }
 
+	void OnApplicationPause(bool pauseStatus)
+    {
+		
+    }
+
     void OnGUI()
     {
         GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button)
@@ -39,8 +44,8 @@ public class Demo : MonoBehaviour
 
         if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
         {
-			// xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 1, "UnityXDSDK", "0.0.0", true);
-			xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
+			xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 1, "UnityXDSDK", "0.0.0", true);
+			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
             TapTapSDK.Instance.InitAppBoard ();

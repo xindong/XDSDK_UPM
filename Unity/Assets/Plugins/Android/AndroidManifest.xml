@@ -14,6 +14,25 @@
     
     <application>
         <activity
+                         android:name="com.unity3d.player.UnityPlayerActivity"
+                         android:launchMode="2"
+                         android:screenOrientation="0"
+                         android:configChanges="orientation|keyboardHidden|screenSize"
+                         android:hardwareAccelerated="false">
+
+                         <intent-filter>
+
+                             <action
+                                 android:name="android.intent.action.MAIN" />
+
+                             <category
+                                 android:name="android.intent.category.LAUNCHER" />
+                         </intent-filter>
+
+        </activity>
+
+
+        <activity
             android:name="com.xd.sdklib.helper.XDStartView"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             android:configChanges="orientation|keyboardHidden|screenSize" />
