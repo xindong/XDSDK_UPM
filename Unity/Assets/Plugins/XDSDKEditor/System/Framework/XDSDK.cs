@@ -8,7 +8,7 @@ namespace xdsdk.Unity
 
     public class XDSDK
     {
-        public static string VERSION = "XDSDK-Unity-0.0.1";
+        public static string VERSION = "XDSDK-Unity-1.0.1";
 
         public static void SetCallback(Action<ResultCode, string> callback)
         {

@@ -78,7 +78,7 @@ namespace xdsdk.Unity
             send.onClick.AddListener(() =>
             {
                 GetSDKManager().ShowLoading();
-                Service.Login.VerificationCode(appInfo.Id, userID.ToString(), (string result) => {
+                Service.Login.VerificationCode(appInfo.Id, userID.ToString(), null, null, null, "login", (string result) => {
                     GetSDKManager().DismissLoading();
                     lastFetchTime = (DateTime.UtcNow - dateTime).TotalMilliseconds;
                 }, (string error) => {
@@ -147,6 +147,7 @@ namespace xdsdk.Unity
                             }
 
                         }
+
                         Debug.LogError(errorType + ":" + errorContent);
                     });
                 } else {

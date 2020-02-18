@@ -179,9 +179,9 @@ namespace xdsdk.Unity.Service
             });
         }
 
-        public static void VerificationCode(string appid, string userID, Action<string> methodForResult, Action<string> methodForError)
+        public static void VerificationCode(string appid, string userID, string token, string areaCode, string mobile, string type, Action<string> methodForResult, Action<string> methodForError)
         {
-            Api.Instance.FetchVerificationCode(appid, userID, (string result) =>
+            Api.Instance.FetchVerificationCode(appid, userID, token, areaCode, mobile, type, (string result) =>
             {
                 if (methodForResult != null)
                 {
@@ -200,9 +200,64 @@ namespace xdsdk.Unity.Service
         {
             Api.Instance.GetUser(accessToken, (User result) =>
             {
-                if (methodForResult != null)
+                Api.Instance.GetRealnameInfo(accessToken,
+                    (Dictionary<string, object> realnameResult) =>
+                    {
+                        if (methodForResult != null)
+                        {
+                            result.Realname = realnameResult["name"] as string;
+                            result.IdentifyNumber = realnameResult["id"] as string;
+                            methodForResult(result);
+                        }
+                    },
+                    (string error) =>
+                    {
+                        if (methodForResult != null)
+                        {
+                            methodForResult(result);
+                        }
+                    });
+               
+            }, (string error) =>
+            {
+                if (methodForError != null)
                 {
-                    methodForResult(result);
+                    methodForError(error);
+                }
+            });
+        }
+
+        public static void RealName(string accessToken, string name, string id, Action success, Action<string> methodForError)
+        {
+            Api.Instance.VerifyRealName(accessToken, name, id, (string result) =>
+             {
+                 if (success != null)
+                 {
+                     success();
+                 }
+             }, (string error) =>
+             {
+                 if (methodForError != null)
+                 {
+                     methodForError(error);
+                 }
+             });
+        }
+
+        public static void MobileAndRealName(string token,
+            string realname,
+            string identityCode,
+            string areaCode,
+            string mobile,
+            string code,
+            Action success,
+            Action<string> methodForError)
+        {
+            Api.Instance.BindMobileAndRealname(token, realname, identityCode, areaCode, mobile, code, () =>
+            {
+                if (success != null)
+                {
+                    success();
                 }
             }, (string error) =>
             {
@@ -213,21 +268,27 @@ namespace xdsdk.Unity.Service
             });
         }
 
-        public static void RealName(string accessToken, string name, string id, Action<string> methodForResult, Action<string> methodForError)
+
+        public static void Mobile(string token,
+            string areaCode,
+            string mobile,
+            string code,
+            Action success,
+            Action<string> methodForError)
         {
-            Api.Instance.VerifyRealName(accessToken, name, id, (string result) =>
-             {
-                 if (methodForResult != null)
-                 {
-                     methodForResult(result);
-                 }
-             }, (string error) =>
-             {
-                 if (methodForError != null)
-                 {
-                     methodForError(error);
-                 }
-             });
+            Api.Instance.BindMobile(token, areaCode, mobile, code, () =>
+            {
+                if (success != null)
+                {
+                    success();
+                }
+            }, (string error) =>
+            {
+                if (methodForError != null)
+                {
+                    methodForError(error);
+                }
+            });
         }
 
         public static void Logout(Action method)

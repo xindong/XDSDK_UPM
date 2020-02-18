@@ -60,7 +60,7 @@ namespace xdsdk.Unity
 
         }
 
-        private IEnumerator BlockCoroutine(float blockDuration, Action onBlockEnd = null)
+    private IEnumerator BlockCoroutine(float blockDuration, Action onBlockEnd = null)
         {
             yield return new WaitForSeconds(blockDuration);
             if (onBlockEnd != null)

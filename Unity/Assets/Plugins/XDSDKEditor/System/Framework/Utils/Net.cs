@@ -83,7 +83,15 @@ namespace xdsdk.Unity
             if (!string.IsNullOrEmpty(w.error))
             {
                 Debug.LogError(w.error);
-                methodForError(GetResponseCode(w), w.error);
+                string data = w.text;
+                if (data != null)
+                {
+                    methodForError(GetResponseCode(w), data);
+                } else
+                {
+                    methodForError(GetResponseCode(w), w.error);
+                }
+    
                 w.Dispose();
                 yield break;
             }

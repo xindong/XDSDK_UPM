@@ -14,6 +14,9 @@ namespace xdsdk.Unity
         private string friendlyName;
         private long authorizationState;
         private bool safety;
+        private string phone;
+        private string realname;
+        private string identifyNumber;
 
         public string Id
         {
@@ -80,6 +83,42 @@ namespace xdsdk.Unity
             }
         }
 
+        public string Phone
+        {
+            get
+            {
+                return phone;
+            }
+            set
+            {
+                phone = value;
+            }
+        }
+
+        public string Realname
+        {
+            get
+            {
+                return realname;
+            }
+            set
+            {
+                realname = value;
+            }
+        }
+
+        public string IdentifyNumber
+        {
+            get
+            {
+                return identifyNumber;
+            }
+            set
+            {
+                identifyNumber = value;
+            }
+        }
+
         public static User InitWithDict(Dictionary<string, object> dict){
             User user = new User();
             if (dict.ContainsKey("id"))
@@ -101,6 +140,18 @@ namespace xdsdk.Unity
             if (dict.ContainsKey("safety"))
             {
                 user.Safety = (bool)dict["safety"];
+            }
+            if (dict.ContainsKey("phone"))
+            {
+                user.Phone = (string)dict["phone"];
+            }
+            if (dict.ContainsKey("realname"))
+            {
+                user.Realname = (string)dict["realname"];
+            }
+            if (dict.ContainsKey("identifyNumber"))
+            {
+                user.IdentifyNumber = (string)dict["identifyNumber"];
             }
             return user;
         }

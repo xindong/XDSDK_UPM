@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-
+using xdsdk.Unity.Service;
 
 namespace xdsdk.Unity
 {
@@ -49,7 +49,8 @@ namespace xdsdk.Unity
             }
         }
 
-        public void ClearCallback(){
+        public void ClearCallback()
+        {
             Callback = null;
         }
 
@@ -153,7 +154,10 @@ namespace xdsdk.Unity
                             {
                                 Dictionary<string, object> config = new Dictionary<string, object>
                             {
-                                {"token", token}
+                                {"token", token},
+                                {"default_realname", user.Realname},
+                                {"default_identify_number", user.IdentifyNumber},
+                                {"default_mobile", user.Phone}
                             };
                                 if (appInfo.NeedLoginRealName == 1)
                                 {
@@ -167,14 +171,19 @@ namespace xdsdk.Unity
 
                                 manager.ShowRealName<RealNameWindow>(config, (int code, object result) =>
                                 {
-                                    if (code == SDKManager.RESULT_SUCCESS) {
-                                        Service.Login.User(token, (User userAfterRealName) => {
+                                    if (code == SDKManager.RESULT_SUCCESS)
+                                    {
+                                        Service.Login.User(token, (User userAfterRealName) =>
+                                        {
                                             this.user = userAfterRealName;
                                             state = SDK_State.LoggedIn;
+                                            PlayLog.Instance.StartTrack(user.Id, token);
                                             Callback(ResultCode.LoginSucceed, token);
-                                        }, (String err) => {
+                                        }, (String err) =>
+                                        {
                                             this.user = user;
                                             state = SDK_State.LoggedIn;
+                                            PlayLog.Instance.StartTrack(user.Id, token);
                                             Callback(ResultCode.LoginSucceed, token);
                                         });
                                     }
@@ -195,6 +204,7 @@ namespace xdsdk.Unity
                             {
                                 this.user = user;
                                 state = SDK_State.LoggedIn;
+                                PlayLog.Instance.StartTrack(user.Id, token);
                                 Callback(ResultCode.LoginSucceed, token);
                             }
                         }, (string error) =>
@@ -222,10 +232,12 @@ namespace xdsdk.Unity
                                     if (data.GetType() == typeof(Dictionary<string, object>))
                                     {
                                         Dictionary<string, object> resultDict = data as Dictionary<string, object>;
-                                        Service.Token.SetToken(appInfo.Id, resultDict["token"] as string);
+                                        string token = resultDict["token"] as string;
+                                        Service.Token.SetToken(appInfo.Id, token);
                                         user = resultDict["user"] as User;
                                         state = SDK_State.LoggedIn;
-                                        Callback(ResultCode.LoginSucceed, resultDict["token"] as string);
+                                        PlayLog.Instance.StartTrack(user.Id, token);
+                                        Callback(ResultCode.LoginSucceed, token);
                                     }
                                     else
                                     {
@@ -260,10 +272,14 @@ namespace xdsdk.Unity
             }
         }
 
-        public string GetAccessToken(){
-            if(state == SDK_State.LoggedIn){
+        public string GetAccessToken()
+        {
+            if (state == SDK_State.LoggedIn)
+            {
                 return Service.Token.GetToken(appInfo.Id);
-            } else {
+            }
+            else
+            {
                 return null;
             }
         }
@@ -273,6 +289,7 @@ namespace xdsdk.Unity
         {
             Service.Token.ClearToken(appInfo.Id);
             state = SDK_State.Initialized;
+            PlayLog.Instance.StopTrack();
             Callback(ResultCode.LogoutSucceed, "");
         }
 
@@ -285,7 +302,10 @@ namespace xdsdk.Unity
                     SDKManager manager = managerObject.GetComponent<SDKManager>();
                     Dictionary<string, object> config = new Dictionary<string, object>
                             {
-                        {"token", Service.Token.GetToken(appInfo.Id)}
+                                {"token", Service.Token.GetToken(appInfo.Id)},
+                                {"default_realname", user.Realname},
+                                {"default_identify_number", user.IdentifyNumber},
+                                {"default_mobile", user.Phone}
                             };
                     if (appInfo.NeedChargeRealName == 1)
                     {
@@ -301,14 +321,16 @@ namespace xdsdk.Unity
                         state = SDK_State.LoggedIn;
                         if (code == SDKManager.RESULT_SUCCESS)
                         {
-                            Service.Login.User(Service.Token.GetToken(appInfo.Id), (User userAfterRealName) => {
+                            Service.Login.User(Service.Token.GetToken(appInfo.Id), (User userAfterRealName) =>
+                            {
                                 this.user = userAfterRealName;
                                 if (string.IsNullOrEmpty((string)result) || !result.ToString().Equals("Close button clicked"))
                                 {
                                     Callback(ResultCode.RealNameSucceed, "");
                                 }
                                 PayWithoutRealNameCheck(info);
-                            }, (String err) => {
+                            }, (String err) =>
+                            {
                                 if (string.IsNullOrEmpty((string)result) || !result.ToString().Equals("Close button clicked"))
                                 {
                                     Callback(ResultCode.RealNameSucceed, "");
@@ -397,15 +419,28 @@ namespace xdsdk.Unity
                 SDKManager manager = managerObject.GetComponent<SDKManager>();
                 Dictionary<string, object> config = new Dictionary<string, object>
                             {
-                    {"token", Service.Token.GetToken(appInfo.Id)},
+                        {"client_id", appInfo.Id},
+                        {"user_id", user.Id},
+                        {"token", Service.Token.GetToken(appInfo.Id)},
                         {"type", "required"},
+                        {"default_realname", user.Realname},
+                        {"default_identify_number", user.IdentifyNumber},
+                    { "default_mobile", user.Phone}
                             };
                 manager.ShowRealName<RealNameWindow>(config, (int code, object result) =>
                 {
                     state = SDK_State.LoggedIn;
                     if (code == SDKManager.RESULT_SUCCESS)
                     {
-                        Callback(ResultCode.RealNameSucceed, "");
+                        Service.Login.User(Service.Token.GetToken(appInfo.Id), (User userAfterRealName) =>
+                        {
+                            this.user = userAfterRealName;
+                            Callback(ResultCode.RealNameSucceed, "");
+                        }, (String err) =>
+                        {
+                            Callback(ResultCode.RealNameFailed, err.ToString());
+                        });
+                        
                     }
                     else
                     {

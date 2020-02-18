@@ -32,8 +32,16 @@ namespace xdsdk.Unity.Service
 
         private readonly static string USER = BASE_URL + "/user";
         private readonly static string REALNAME = BASE_URL + "/user/user_fcm_set";
-
+        private readonly static string REALNAME_INFO = BASE_URL + "/user/get_shiming_info";
+        private readonly static string BIND_MOBILE_AND_REALNAME = BASE_URL + "/user/bind_mobile_and_shiming";
+        private readonly static string BIND_MOBILE = BASE_URL + "/user/bind_mobile";
         private readonly static string LOGOUT = BASE_URL + "/users/get_auth_url";
+
+        private readonly static string FCM_PLAY_LOG = BASE_URL_V2 + "/fcm/set_play_log";
+
+        private readonly static string FCM_SERVER_TIME = BASE_URL_V2 + "/fcm/get_server_time";
+
+ 
 
         public static Api Instance
         {
@@ -335,13 +343,22 @@ namespace xdsdk.Unity.Service
             });
         }
 
-        public void FetchVerificationCode(string appid, string userID, Action<string> methodForResult, Action<string> methodForError)
+        public void FetchVerificationCode(string appid,
+            string userID,
+            string token,
+            string areaCode,
+            string mobile,
+            string type,
+            Action<string> methodForResult, Action<string> methodForError)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 {"client_id", appid},
                 {"user_id", userID},
-                {"type", "login"},
+                {"access_token", token},
+                {"area_code", areaCode},
+                {"mobile", mobile},
+                {"type", type},
             };
             Net net = netObject.GetComponent<Net>();
             if (net == null)
@@ -358,7 +375,22 @@ namespace xdsdk.Unity.Service
             {
                 if (methodForError != null)
                 {
-                    methodForError(error);
+                    try
+                    {
+                        Dictionary<string, object> errorDict = MiniJSON.Json.Deserialize(error) as Dictionary<string, object>;
+                        if (errorDict.ContainsKey("error_description"))
+                        {
+                            methodForError(errorDict["error_description"] as string);
+                        }
+                        else
+                        {
+                            methodForError(error);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        methodForError(error);
+                    }
                 }
             });
         }
@@ -383,6 +415,54 @@ namespace xdsdk.Unity.Service
                     if (methodForResult != null)
                     {
                         methodForResult(user);
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (methodForError != null)
+                    {
+                        methodForError(e.Message + " : " + result);
+                    }
+                }
+            }, (int code, string error) =>
+            {
+                if (methodForError != null)
+                {
+                    methodForError(error);
+                }
+            });
+        }
+
+        public void GetRealnameInfo(string token, Action<Dictionary<string, object>> methodForResult, Action<string> methodForError)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                {"access_token", token},
+            };
+            Net net = netObject.GetComponent<Net>();
+            if (net == null)
+            {
+                net = netObject.AddComponent<Net>();
+            }
+            net.GetOnServer(REALNAME_INFO, parameters, (string result) =>
+            {
+                try
+                {
+                    Dictionary<string, object> realnameInfoDict = MiniJSON.Json.Deserialize(result) as Dictionary<string, object>;
+                    
+                    if (methodForResult != null)
+                    {
+                        if(realnameInfoDict.ContainsKey("name") && realnameInfoDict.ContainsKey("name"))
+                        {
+                            methodForResult(realnameInfoDict);
+                        } else
+                        {
+                            if (methodForError != null)
+                            {
+                                methodForError("Unknown response" + " : " + result);
+                            }
+                        }
+                        
                     }
                 }
                 catch (Exception e)
@@ -529,14 +609,186 @@ namespace xdsdk.Unity.Service
             };
             net.PostOnServer(TAPTAP_CHECK, parameters, (string result) =>
             {
-                if(success != null){
+                if (success != null)
+                {
                     success();
                 }
 
             }, (int code, string error) =>
             {
-                if(failed != null){
+                if (failed != null)
+                {
                     failed(code);
+                }
+            });
+        }
+
+        public void SetPlayLog(string accessToken, long[][] localOnlineTimes, long[][] serverOnlineTimes,
+            Action success, Action<string> methodForError)
+        {
+            Net net = netObject.GetComponent<Net>();
+            if (net == null)
+            {
+                net = netObject.AddComponent<Net>();
+            }
+            Dictionary<string, object> playLogs = new Dictionary<string, object>
+            {
+                {"local_online_time", localOnlineTimes},
+                {"server_online_time", serverOnlineTimes}
+            };
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"access_token", accessToken},
+                {"play_logs", playLogs},
+                {"is_tmp", 0}
+            };
+            net.PostOnServer(FCM_PLAY_LOG, parameters, (string result) =>
+            {
+                if (success != null)
+                {
+                    success();
+                }
+
+            }, (int code, string error) =>
+            {
+                if (methodForError != null)
+                {
+                    methodForError(error);
+                }
+            });
+        }
+
+        public void GetServerTime(Action<long> methodForResult, Action<string> methodForError)
+        {
+            Net net = netObject.GetComponent<Net>();
+            if (net == null)
+            {
+                net = netObject.AddComponent<Net>();
+            }
+            net.GetOnServer(FCM_SERVER_TIME, null, (string result) =>
+            {
+                try
+                {
+                    Dictionary<string, object> timestampDict = MiniJSON.Json.Deserialize(result) as Dictionary<string, object>;
+                    long timestamp = (long)timestampDict["timestamp"];
+                    if (methodForResult != null)
+                    {
+                        methodForResult(timestamp);
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (methodForError != null)
+                    {
+                        methodForError(e.Message + " : " + result);
+                    }
+                }
+
+            }, (int code, string error) =>
+            {
+                if (methodForError != null)
+                {
+                    methodForError(error);
+                }
+            });
+        }
+
+        public void BindMobile(string token,
+          string areaCode,
+          string mobile,
+          string code,
+       Action success, Action<string> methodForError)
+        {
+            Net net = netObject.GetComponent<Net>();
+            if (net == null)
+            {
+                net = netObject.AddComponent<Net>();
+            }
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"area_code", areaCode},
+                {"mobile", mobile},
+                {"code", code},
+                {"access_token", token}
+            };
+            net.PostOnServer(BIND_MOBILE, parameters, (string result) =>
+            {
+                if (success != null)
+                {
+                    success();
+                }
+
+            }, (int errCode, string error) =>
+            {
+                if (methodForError != null)
+                {
+                    try
+                    {
+                        Dictionary<string, object> errorDict = MiniJSON.Json.Deserialize(error) as Dictionary<string, object>;
+                        if (errorDict.ContainsKey("error_description"))
+                        {
+                            methodForError(errorDict["error_description"] as string);
+                        }
+                        else
+                        {
+                            methodForError(error);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        methodForError(error);
+                    }
+                }
+            });
+        }
+
+        public void BindMobileAndRealname(string token,
+            string realname,
+            string identityCode,
+            string areaCode,
+            string mobile,
+            string code,
+         Action success, Action<string> methodForError)
+        {
+            Net net = netObject.GetComponent<Net>();
+            if (net == null)
+            {
+                net = netObject.AddComponent<Net>();
+            }
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                {"realname", realname},
+                {"realid", identityCode},
+                {"area_code", areaCode},
+                {"mobile", mobile},
+                {"code", code},
+                {"access_token", token}
+            };
+            net.PostOnServer(BIND_MOBILE_AND_REALNAME, parameters, (string result) =>
+            {
+                if (success != null)
+                {
+                    success();
+                }
+
+            }, (int errCode, string error) =>
+            {
+                if (methodForError != null)
+                {
+                    try
+                    {
+                        Dictionary<string, object> errorDict = MiniJSON.Json.Deserialize(error) as Dictionary<string, object>;
+                        if (errorDict.ContainsKey("error_description"))
+                        {
+                            methodForError(errorDict["error_description"] as string);
+                        } else
+                        {
+                            methodForError(error);
+                        }
+                    } catch (Exception e)
+                    {
+                        methodForError(error);
+                    }
                 }
             });
         }
