@@ -272,42 +272,39 @@
 
             <ImageButton
                 android:id="@+id/weixinLogin"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:background="@null"
-                android:paddingBottom="10dp"
-                android:paddingLeft="7.5dp"
-                android:paddingRight="7.5dp"
-                android:paddingTop="10dp"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/login_weixin"></ImageButton>
 
             <ImageButton
                 android:id="@+id/qqLogin"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
                 android:background="@null"
-                android:paddingBottom="10dp"
-                android:paddingLeft="11.5dp"
-                android:paddingRight="11.5dp"
-                android:paddingTop="10dp"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/login_qq"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/appleLogin"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_apple"></ImageButton>
 
 
             <ImageButton
                 android:id="@+id/verycdLogin"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
                 android:background="@null"
-                android:paddingBottom="10dp"
-                android:paddingLeft="7.5dp"
-                android:paddingRight="7.5dp"
-                android:paddingTop="10dp"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 android:src="@drawable/login_verycd"></ImageButton>
         </LinearLayout>
     </LinearLayout>

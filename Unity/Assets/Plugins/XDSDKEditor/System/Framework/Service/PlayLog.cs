@@ -132,7 +132,7 @@ namespace xdsdk.Unity.Service
                         currentToken,
                         stashedLocalTimes.ToArray(),
                         stashedServerTimes.ToArray(),
-                        () =>
+                        (result) =>
                         {
                             stashedLocalTimes.Clear();
                             stashedServerTimes.Clear();

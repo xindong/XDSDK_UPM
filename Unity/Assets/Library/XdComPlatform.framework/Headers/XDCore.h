@@ -40,7 +40,7 @@
 
 /**
  自定义登录入口。共五种，其中主要两种，次要两种。
- 1、默认显示为：微信、QQ、TapTap、游客
+ 1、默认显示为：苹果、TapTap、微信、QQ、游客
  
  2、各登录方式对应名称如下：
  微信登录：WX_LOGIN，
@@ -48,19 +48,19 @@
  taptap登录：TAPTAP_LOGIN，
  游客登录：GUEST_LOGIN，
  心动登录：XD_LOGIN,
- 苹果登录（iOS13）：APPLE_LOGIN,
+ 苹果登录：APPLE_LOGIN,
  
  3、例，传入的数组。
  @[@"WX_LOGIN",@"QQ_LOGIN",@"TAPTAP_LOGIN",@"GUEST_LOGIN"]
 
  注：
     1）传入为空或nil，则当做隐藏所有按钮，直接显示心动登录。
-    2）最多只能显示4种登录方式。
-    3) 四个登录按钮TapTap和心动登录不能同时显示
+    2）最多只能显示5种登录方式。
+    3) 登录按钮TapTap和心动登录不能同时显示
 
  @param entries 入口类型，带顺序
  */
-+ (void)setLoginEntries:(NSArray *)entries;
++ (void)setLoginEntries:(nullable NSArray *)entries;
 
 
 /**
@@ -207,6 +207,11 @@
  @return TRUE-回调成功，FALSE-回调失败
  */
 + (BOOL)HandleXDOpenURL:(nonnull NSURL *)url;
+
+
+/// 处理跳转回调
+/// @param userActivity 回调内容
++ (BOOL)handleOpenUniversalLink:(NSUserActivity *)userActivity;
 
 
 #pragma mark - TapDB相关

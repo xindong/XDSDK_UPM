@@ -624,7 +624,7 @@ namespace xdsdk.Unity.Service
         }
 
         public void SetPlayLog(string accessToken, long[][] localOnlineTimes, long[][] serverOnlineTimes,
-            Action success, Action<string> methodForError)
+            Action<string> success, Action<string> methodForError)
         {
             Net net = netObject.GetComponent<Net>();
             if (net == null)
@@ -646,7 +646,7 @@ namespace xdsdk.Unity.Service
             {
                 if (success != null)
                 {
-                    success();
+                    success(result);
                 }
 
             }, (int code, string error) =>

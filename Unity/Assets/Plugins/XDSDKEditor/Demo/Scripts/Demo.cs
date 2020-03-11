@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using xdsdk.Unity.Service;
 
 
 namespace xdsdk.Unity
@@ -55,6 +56,7 @@ namespace xdsdk.Unity
         public void OpenRealName(){
             XDSDK.OpenRealName();
         }
+
 #endif
     }
 

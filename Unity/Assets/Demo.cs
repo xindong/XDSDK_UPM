@@ -37,14 +37,15 @@ public class Demo : MonoBehaviour
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
             com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler());
-            string[] entries = { "QQ_LOGIN", "XD_LOGIN","GUEST_LOGIN" };
-            xdsdk.XDSDK.SetLoginEntries(entries);
+            // string[] entries = { "QQ_LOGIN", "XD_LOGIN","GUEST_LOGIN" };
+            // xdsdk.XDSDK.SetLoginEntries(entries);
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
         if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
         {
-			xdsdk.XDSDK.InitSDK("evnn72tle1sgkgo", 1, "UnityXDSDK", "0.0.0", true);
+			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 1, "UnityXDSDK", "0.0.0", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
