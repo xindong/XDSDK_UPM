@@ -280,15 +280,6 @@
                 android:src="@drawable/login_weixin"></ImageButton>
 
             <ImageButton
-                android:id="@+id/qqLogin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="30dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:src="@drawable/login_qq"></ImageButton>
-
-            <ImageButton
                 android:id="@+id/appleLogin"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -297,6 +288,14 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/login_apple"></ImageButton>
 
+            <ImageButton
+                android:id="@+id/qqLogin"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_qq"></ImageButton>
 
             <ImageButton
                 android:id="@+id/verycdLogin"

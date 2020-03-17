@@ -46,7 +46,7 @@
         android:id="@+id/content"
         android:layout_marginTop="10dp"
         android:layout_width="338dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:text="升级为正式账号，提高游戏账号的安全性。"
         android:textColor="#a37d79"
         android:textSize="18sp"/>
@@ -61,8 +61,8 @@
 
         <ImageButton
             android:id="@+id/bind_entry_first"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
             android:layout_marginTop="10dp"
             android:clickable="true"
             android:focusable="true"
@@ -84,8 +84,8 @@
 
         <ImageButton
             android:id="@+id/bind_entry_second"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
@@ -96,11 +96,11 @@
 
 
 
-    <FrameLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@drawable/xd_start_bottom_bg_round"
-        android:gravity="center_vertical">
+        android:gravity="center">
 
 
 
@@ -108,14 +108,26 @@
             android:id="@+id/bind_entry_third"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_gravity="center"
+            android:layout_gravity="center_vertical"
             android:background="@null"
             android:clickable="true"
             android:focusable="true"
             android:visibility="gone"
             android:scaleType="fitCenter" />
 
+        <ImageButton
+            android:layout_marginLeft="30dp"
+            android:id="@+id/bind_entry_forth"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:visibility="gone"/>
 
-    </FrameLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

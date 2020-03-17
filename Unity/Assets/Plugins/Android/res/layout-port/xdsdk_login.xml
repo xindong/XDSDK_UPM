@@ -61,8 +61,8 @@
 
         <ImageButton
             android:id="@+id/login_entry_first"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
             android:layout_marginTop="60dp"
             android:clickable="true"
             android:focusable="true"
@@ -72,8 +72,8 @@
 
         <ImageButton
             android:id="@+id/login_entry_center"
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="90dp"
             android:background="@null"
@@ -84,8 +84,8 @@
 
         <ImageButton
             android:id="@+id/login_entry_second"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="fitCenter"
@@ -100,10 +100,12 @@
         android:layout_height="75dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
+        android:layout_marginLeft="-30dp"
         android:background="@drawable/xd_start_bottom_bg_round"
         android:gravity="center">
 
         <ImageButton
+            android:layout_marginLeft="30dp"
             android:id="@+id/login_entry_third"
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -129,6 +131,18 @@
         <ImageButton
             android:layout_marginLeft="30dp"
             android:id="@+id/login_entry_fourth"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitCenter"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:layout_marginLeft="30dp"
+            android:id="@+id/login_entry_fifth"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"

@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 2.1.0
+ * XDSDK Version 2.1.2
  * 
  * 
  * 
@@ -94,11 +94,6 @@ namespace xdsdk
 		//打开实名认证界面
 		public static void OpenRealName(){
 			XDSDKImp.GetInstance().OpenRealName();
-		}
-
-		// 打开手机认证界面
-		public static void openMobileVerifyView() {
-			XDSDKImp.GetInstance().openMobileVerify();
 		}
 
         public static void OpenUserBindView() {
