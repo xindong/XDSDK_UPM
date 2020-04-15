@@ -480,9 +480,6 @@ namespace xdsdk
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
-			// AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			// jc.CallStatic ("onResume");
-
 		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
 		getAgent().CallStatic("onResume", activity);
 
@@ -499,8 +496,6 @@ namespace xdsdk
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
-			// AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			// jc.CallStatic ("onStop");
 
 		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
 		getAgent().CallStatic("onStop", activity);
