@@ -12,12 +12,14 @@ namespace xdsdk.Unity.Service
 
         private static GameObject uploaderObject;
 
+        public static Action<string> Callback;
+
         public static PlayLog Instance
         {
-            get
+
             {
                 if (instance == null)
-                {
+                { 
                     instance = new PlayLog();
 
                 }
@@ -37,6 +39,17 @@ namespace xdsdk.Unity.Service
             };
             uploaderObject.AddComponent<Uploader>();
             UnityEngine.Object.DontDestroyOnLoad(uploaderObject);
+        }
+
+        public static void SetCallback(Action<string> callback)
+        {
+            PlayLog.Callback += callback;
+        }
+
+        public void StartTrackWithCallback(string userId, string token,Action<string> callback) 
+        {
+            PlayLog.SetCallback(callback);
+            StartTrack(userId,token);
         }
 
         public void StartTrack(string userId, string token)
@@ -61,7 +74,8 @@ namespace xdsdk.Unity.Service
 
         private class Uploader : MonoBehaviour
         {
-            private static readonly float INTERVAL = 10.0f;
+            // 120ss
+            private static readonly float INTERVAL = 120.0f;
 
             private long serverStartTimestamp = 0L;
             private long localStartTimestamp = 0L;
@@ -137,6 +151,11 @@ namespace xdsdk.Unity.Service
                             stashedLocalTimes.Clear();
                             stashedServerTimes.Clear();
                             waitSetPlayLog = false;
+
+                            if (Callback != null)
+                            {
+                                Callback(result);
+                            }
                         },
                         (string error) =>
                         {

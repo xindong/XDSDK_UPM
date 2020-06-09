@@ -103,10 +103,10 @@ namespace xdsdk.Unity
             {
                 state = SDK_State.Initializing;
 
-                ZenFulcrum.EmbeddedBrowser.UserAgent.
-                          SetUserAgent("(Macintosh; Intel Mac OS X 10_9_5) Chrome/45.0.2454.93" + " "
-                                      + "XDCustomUA/1" + " "
-                                       + "XDUnitySDK " + XDSDK.VERSION);
+                // ZenFulcrum.EmbeddedBrowser.UserAgent.
+                //           SetUserAgent("(Macintosh; Intel Mac OS X 10_9_5) Chrome/45.0.2454.93" + " "
+                //                       + "XDCustomUA/1" + " "
+                //                        + "XDUnitySDK " + XDSDK.VERSION);
                 Service.Api.Instance.InitSDK(appid,
                                      (AppInfo info) =>
                                      {
@@ -116,7 +116,7 @@ namespace xdsdk.Unity
                                              name = "XDUIManager"
                                          };
                                          managerObject.AddComponent<SDKManager>();
-                                         managerObject.AddComponent<ZenFulcrum.EmbeddedBrowser.Browser>();
+                                        //  managerObject.AddComponent<ZenFulcrum.EmbeddedBrowser.Browser>();
 
 
                                          UnityEngine.Object.DontDestroyOnLoad(managerObject);
@@ -177,13 +177,21 @@ namespace xdsdk.Unity
                                         {
                                             this.user = userAfterRealName;
                                             state = SDK_State.LoggedIn;
-                                            PlayLog.Instance.StartTrack(user.Id, token);
+                                            PlayLog.Instance.StartTrackWithCallback(user.Id, token,(string resultString) =>
+                                            {
+                                                Callback(ResultCode.OnlineTimeCallback, resultString);
+                                            });
+                                            // PlayLog.Instance.StartTrack(user.Id, token);
                                             Callback(ResultCode.LoginSucceed, token);
                                         }, (String err) =>
                                         {
                                             this.user = user;
                                             state = SDK_State.LoggedIn;
-                                            PlayLog.Instance.StartTrack(user.Id, token);
+                                            PlayLog.Instance.StartTrackWithCallback(user.Id, token,(string resultString) =>
+                                            {
+                                                Callback(ResultCode.OnlineTimeCallback, resultString);
+                                            });
+                                            // PlayLog.Instance.StartTrack(user.Id, token);
                                             Callback(ResultCode.LoginSucceed, token);
                                         });
                                     }
@@ -204,7 +212,11 @@ namespace xdsdk.Unity
                             {
                                 this.user = user;
                                 state = SDK_State.LoggedIn;
-                                PlayLog.Instance.StartTrack(user.Id, token);
+                                PlayLog.Instance.StartTrackWithCallback(user.Id, token,(string resultString) =>
+                                {
+                                    Callback(ResultCode.OnlineTimeCallback, resultString);
+                                });
+                                // PlayLog.Instance.StartTrack(user.Id, token);
                                 Callback(ResultCode.LoginSucceed, token);
                             }
                         }, (string error) =>
@@ -236,7 +248,11 @@ namespace xdsdk.Unity
                                         Service.Token.SetToken(appInfo.Id, token);
                                         user = resultDict["user"] as User;
                                         state = SDK_State.LoggedIn;
-                                        PlayLog.Instance.StartTrack(user.Id, token);
+                                        PlayLog.Instance.StartTrackWithCallback(user.Id, token,(string resultString) =>
+                                        {
+                                            Callback(ResultCode.OnlineTimeCallback, resultString);
+                                        });
+                                        // PlayLog.Instance.StartTrack(user.Id, token);
                                         Callback(ResultCode.LoginSucceed, token);
                                     }
                                     else

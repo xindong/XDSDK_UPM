@@ -13,5 +13,6 @@ namespace xdsdk.Unity
         PayCanceled,
         RealNameSucceed,
         RealNameFailed,
+        OnlineTimeCallback,
     }
 }

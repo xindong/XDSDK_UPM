@@ -24,8 +24,8 @@ namespace xdsdk.Unity
 
         void Awake()
         {
-            ZenFulcrum.EmbeddedBrowser.Browser browser = gameObject.AddComponent<ZenFulcrum.EmbeddedBrowser.Browser>();
-            Destroy(browser);
+            // ZenFulcrum.EmbeddedBrowser.Browser browser = gameObject.AddComponent<ZenFulcrum.EmbeddedBrowser.Browser>();
+            // Destroy(browser);
         }
 
 

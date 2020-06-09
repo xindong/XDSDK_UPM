@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using ZenFulcrum.EmbeddedBrowser;
+// using ZenFulcrum.EmbeddedBrowser;
 namespace xdsdk.Unity
 {
     public class WebWindow : UIElement
@@ -14,7 +14,7 @@ namespace xdsdk.Unity
 
         public Button back;
 
-        public Browser browser;
+        // public Browser browser;
 
         private string url = "";
 
@@ -37,7 +37,7 @@ namespace xdsdk.Unity
                     if (extra.ContainsKey("url"))
                     {
                         url = extra["url"] as string;
-                        browser.Url = url;
+                        // browser.Url = url;
                     }
                     if (extra.ContainsKey("contains_url"))
                     {
@@ -50,31 +50,31 @@ namespace xdsdk.Unity
 
         private void Awake()
         {
-            browser.onNavStateChange += () =>
-            {
-                Debug.Log("onNavStateChange : " + browser.Url);
-                HandleUrl(browser.Url);
-            };
+            // browser.onNavStateChange += () =>
+            // {
+            //     Debug.Log("onNavStateChange : " + browser.Url);
+            //     HandleUrl(browser.Url);
+            // };
 
-            browser.onFetchError += (error) =>
-            {
-                String json = error.AsJSON;
-                Dictionary<string, object> dict =  MiniJSON.Json.Deserialize(json) as Dictionary<string,object>;
-                if(dict.ContainsKey("url")){
-                    Debug.Log("onFetchError : " + dict["url"]);
-                    HandleUrl(dict["url"] as string);
-                }
-            };
+            // browser.onFetchError += (error) =>
+            // {
+            //     String json = error.AsJSON;
+            //     Dictionary<string, object> dict =  MiniJSON.Json.Deserialize(json) as Dictionary<string,object>;
+            //     if(dict.ContainsKey("url")){
+            //         Debug.Log("onFetchError : " + dict["url"]);
+            //         HandleUrl(dict["url"] as string);
+            //     }
+            // };
 
             close.onClick.AddListener(OnCloseClicked);
 
             back.onClick.AddListener(()=>{
-                string a = browser.Url;
-                if(browser.CanGoBack){
-                    browser.GoBack();
-                } else {
-                    OnCloseClicked();
-                }
+                // string a = browser.Url;
+                // if(browser.CanGoBack){
+                //     browser.GoBack();
+                // } else {
+                //     OnCloseClicked();
+                // }
             });
 
             transitionDurationTime = 0.2f;
@@ -90,7 +90,7 @@ namespace xdsdk.Unity
                     GetSDKManager().Pop(name);
                 }
             }
-            lastUrl = browser.Url;
+            // lastUrl = browser.Url;
         }
 
         private void OnCloseClicked()
