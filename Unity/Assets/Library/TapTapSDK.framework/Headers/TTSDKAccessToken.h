@@ -16,24 +16,22 @@
 @interface TTSDKAccessToken : NSObject
 
 /// 唯一标志
-@property (nonatomic, copy, readonly) NSString * kid;
+@property (nonatomic, copy) NSString * kid;
 
 /// 认证码
-@property (nonatomic, copy, readonly) NSString * accessToken;
+@property (nonatomic, copy) NSString * accessToken;
 
 /// 认证码类型
-@property (nonatomic, copy, readonly) NSString * tokenType;
+@property (nonatomic, copy) NSString * tokenType;
 
 /// mac密钥
-@property (nonatomic, copy, readonly) NSString * macKey;
+@property (nonatomic, copy) NSString * macKey;
 
 /// mac密钥计算方式
-@property (nonatomic, copy, readonly) NSString * macAlgorithm;
+@property (nonatomic, copy) NSString * macAlgorithm;
 
 /// 用户授权的权限，多个时以逗号隔开
-@property (nonatomic, copy, readonly) NSString * scope;
-
-- (instancetype)initWithTokenString:(NSString *)tokenString;
+@property (nonatomic, copy) NSString * scope;
 
 /**
  *  @brief 获取当前认证

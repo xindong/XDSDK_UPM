@@ -3,10 +3,12 @@
 #import "XDSDK.h"
 
 #import <XdComPlatform/XDCore.h>
+#import <XdComPlatform/TapForum.h>
+#import <XdComPlatform/XDLive.h>
 
 #import <XdComPlatform/XDWXShare.h>
 
-@interface XDSDK ()<XDCallback,XDWXShareCallback>
+@interface XDSDK ()<XDCallback,XDWXShareCallback,XDLiveDelegate>
 
 @property (nonatomic,copy,nonnull)NSString* gameObjectName;
 
@@ -94,6 +96,22 @@ static XDSDK * instance;
     return 0;
 }
 
+#pragma mark - XDLive
+- (void)onXDLiveClosed {
+//    NSLog(@"WRAPPER onXDLiveClosed");
+        UnitySendMessage("XDLiveListener", "OnXDLiveClosed" , "");
+}
+
+- (void)onXDLiveOpen {
+//    NSLog(@"WRAPPER onXDLiveOpen");
+        UnitySendMessage("XDLiveListener", "OnXDLiveOpen" , "");
+}
+
+- (void)InvokeFuncCallback:(NSString *) resultString{
+    UnitySendMessage("XDLiveListener", "InvokeFuncCallback", [resultString UTF8String]);
+}
+
+
 #if defined(__cplusplus)
 extern "C"{
 #endif
@@ -158,7 +176,8 @@ extern "C"{
         }
         
         bool openMobileVerifyView () {
-            return [XDCore openMobileVerifyView];
+//            return [XDCore openMobileVerifyView];
+            return false;
         }
         
         bool isXdLoggedIn(){
@@ -369,6 +388,82 @@ extern "C"{
             
             [debugAlter show];
         }
+        
+        void XDSDKSetRole(const char* roleId,const char* roleName,const char* avatarUrl) {
+            [XDCore setRole:[NSString stringWithUTF8String:roleId] roleName:[NSString stringWithUTF8String:roleName] roleAvatar:[NSString stringWithUTF8String:avatarUrl]];
+        }
+        
+        void XDSDKClearRole() {
+            [XDCore clearRole];
+        }
+        
+        // 手动登录方式
+        void XDSDKAutoLogin() {
+            [XDCore autoLogin];
+        }
+        
+        void XDSDKTapTapLogin() {
+            [XDCore taptapLogin];
+        }
+        
+        void XDSDKAppleLogin() {
+            [XDCore appleLogin];
+        }
+        
+        void XDSDKGuestLogin() {
+            [XDCore guestLogin];
+        }
+        
+        // 论坛
+        void XDSDKOpenTapTapForum(const char* appid) {
+            [TapForum openTapTapForum:[NSString stringWithUTF8String:appid]];
+        }
+        
+        // XDLive
+        void openXDLive(const char * appid){
+               [XDLive setDelegate:[XDSDK defaultInstance]];
+               [XDLive openXDLive:[NSString stringWithUTF8String:appid]];
+           }
+           
+           void openXDLiveWithUri(const char * appid,const char * uri){
+               [XDLive setDelegate:[XDSDK defaultInstance]];
+               [XDLive openXDLive:[NSString stringWithUTF8String:appid] uri:[NSString stringWithUTF8String:uri]];
+           }
+           
+           void openXDLiveWithUriAndOrientation(const char * appid,const char * uri,int orientation) {
+               [XDLive setDelegate:[XDSDK defaultInstance]];
+               XDLiveOrientation xdlOrientation = XDLiveOrientationDefault;
+               if(orientation == 1){
+                   xdlOrientation = XDLiveOrientationPortrait;
+               }else if (orientation == 2){
+                   xdlOrientation = XDLiveOrientationLandscape;
+               }
+               
+               [XDLive openXDLive:[NSString stringWithUTF8String:appid] uri:[NSString stringWithUTF8String:uri] orientation:xdlOrientation];
+           }
+           
+           void closeXDLive() {
+               [XDLive closeXDLive];
+           }
+           
+           void invokeFunc(const char * unityCallbackID, const char * params) {
+               NSString *unityCallbackIDString = [NSString stringWithUTF8String:unityCallbackID];
+               NSString *paramsString = [NSString stringWithUTF8String:params];
+               NSData *paramsData = [paramsString dataUsingEncoding:NSUTF8StringEncoding];
+               NSError *err;
+               NSDictionary *paramsDict = [NSJSONSerialization JSONObjectWithData:paramsData
+                                                               options:NSJSONReadingMutableContainers
+                                                                     error:&err];
+               [XDLive invokeFunc:paramsDict callback:^(NSDictionary *result) {
+                   NSError *error;
+                   NSMutableDictionary *mutableResult = [result mutableCopy];
+                   [mutableResult setObject:unityCallbackIDString forKey:@"unity_callback_id"];
+                   NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableResult options:NSJSONWritingPrettyPrinted error:&error];
+                   NSString *resultString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+                   [[XDSDK defaultInstance] InvokeFuncCallback:resultString];
+               }];
+               
+           }
         
 #if __cplusplus
     }

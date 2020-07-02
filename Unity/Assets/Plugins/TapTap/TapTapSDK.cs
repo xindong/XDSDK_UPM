@@ -57,47 +57,7 @@ namespace com.taptap.sdk
             if (taptapSDKimpl != null) {
                 taptapSDKimpl.OpenTapTapForum(appid);
             }
-		}	
-
-		public void InitAppBoard(){
-			if(taptapSDKimpl == null){
-#if UNITY_ANDROID && !UNITY_EDITOR
-				taptapSDKimpl = new AndroidImpl ();
-#elif UNITY_IPHONE && !UNITY_EDITOR
-				taptapSDKimpl = new iOSImpl ();
-#endif
-            }
-            if(taptapSDKimpl != null) {
-                taptapSDKimpl.InitAppBoard();
-                TapTapListener.Init();
-            }
-		}	
-
-		public void QueryAppBoardStatus(){
-			if(taptapSDKimpl == null){
-#if UNITY_ANDROID && !UNITY_EDITOR
-				taptapSDKimpl = new AndroidImpl ();
-#elif UNITY_IPHONE && !UNITY_EDITOR
-				taptapSDKimpl = new iOSImpl ();
-#endif
-            }
-            if (taptapSDKimpl != null) {
-                taptapSDKimpl.QueryAppBoardStatus();
-            }
-		}	
-
-		public void OpenAppBoard(string appid){
-			if(taptapSDKimpl == null){
-#if UNITY_ANDROID && !UNITY_EDITOR
-				taptapSDKimpl = new AndroidImpl ();
-#elif UNITY_IPHONE && !UNITY_EDITOR
-				taptapSDKimpl = new iOSImpl ();
-#endif
-            }
-            if(taptapSDKimpl != null) {
-                taptapSDKimpl.OpenAppBoard(appid);
-            }
-		}	
+		}		
 	}
 }
 

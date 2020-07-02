@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDK_VERSION @"1.2.1"  //!< SDK Version
-#define ITK_VERSION @"0.2.0"  //!< Tapitk Version
+#define SDK_VERSION @"2.0"  //!< SDK Version
 
 #import "TTSDKApplicationDelegate.h"
 #import "TTSDKLoginResult.h"
@@ -17,8 +16,7 @@
 #import "TTSDKLoginManager.h"
 #import "TTSDKProfile.h"
 #import "TTSDKProfileManager.h"
-#import "TTSDKCertify.h"
-#import "TTSDKAppBoard.h"
+#import "TTSDKConfig.h"
 
 @interface TapTapSDK: NSObject
 
@@ -28,7 +26,16 @@
  *  请尽量在程序启动的时候初始化
  *  @param clientID TapTap开发者ID
  */
-+ (void)sdkInitialize:(NSString *)clientID;
++ (void)sdkInitialize:(NSString * _Nonnull)clientID;
+
+/**
+ *  @brief SDK初始化方法
+ *
+ *  请尽量在程序启动的时候初始化
+ *  @param clientID TapTap开发者ID
+ *  @param config 初始配置
+ */
++ (void)sdkInitialize:(NSString * _Nonnull)clientID config:(TTSDKConfig * _Nullable)config;
 
 /**
  *  @brief 判断当前的TapTap版本是否支持该SDK调用
@@ -36,20 +43,5 @@
  *  @return 支持返回YES，不支持返回NO
  */
 + (BOOL)isTapTapClientSupport;
-
-/**
- *  @brief 打开TapTap论坛
- *  @param appid 游戏论坛ID，与TapTap开发者ID不同
- */
-+ (void)openTapTapForum:(NSString *)appid;
-
-+ (void)openTapTapForum:(NSString *)appid uri:(NSString *)uri;
-
-/**
- *  @brief 打开TapTap通知中心
- *  @param appid 游戏论坛ID，与TapTap开发者ID不同
- */
-+ (void)openAppBoard:(NSString *)appid;
-
 
 @end

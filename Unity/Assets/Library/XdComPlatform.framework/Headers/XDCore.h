@@ -18,7 +18,7 @@
 @interface XDCore : NSObject
 
 
-# pragma mark - XDSDK3.0
+# pragma mark - XDSDK4.0
 
 /**
  获取SDK版本信息
@@ -127,6 +127,18 @@
 + (void)login;
 
 
+/*
+ 手动调用登录方式时，先调用autologin
+ 若返回YES，则有上次登录用户，SDK会自动登录。等待登录结果回调继续处理
+ 若返回NO，则没有上次登录用户，游戏直接显示登录界面
+ */
++ (BOOL)autoLogin;
+
++ (void)taptapLogin;
++ (void)appleLogin;
++ (void)guestLogin;
+
+
 /**
  用户反馈
  */
@@ -155,7 +167,6 @@
  @return （YES，打开成功）（NO，已经打开）
  */
 + (BOOL)openUserCenter;
-
 
 /**
  打开游客升级
@@ -211,7 +222,12 @@
 
 /// 处理跳转回调
 /// @param userActivity 回调内容
-+ (BOOL)handleOpenUniversalLink:(NSUserActivity *)userActivity;
++ (BOOL)handleOpenUniversalLink:(nullable NSUserActivity *)userActivity;
+
+#pragma mark - 角色相关
++ (void)setRole:(NSString *_Nullable)roleId roleName:(NSString *_Nullable)roleName roleAvatar:(NSString *_Nonnull)avatarUrl;
+
++ (void)clearRole;
 
 
 #pragma mark - TapDB相关

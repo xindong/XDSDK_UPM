@@ -27,9 +27,6 @@
 /// union id
 @property (nonatomic, readonly) NSString * unionid;
 
-/// 是否通过实名认证
-@property (nonatomic, readonly) BOOL is_certified;
-
 - (instancetype)initWithJSON:(NSDictionary *)json;
 
 /**

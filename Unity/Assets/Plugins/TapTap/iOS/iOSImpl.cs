@@ -13,41 +13,14 @@ namespace com.taptap.sdk {
 
 		public override void OpenTapTapForum(string appid){
 #if UNITY_IOS && !UNITY_EDITOR
-			ttOpenTapTapForum(appid);
-#endif
-        }
-
-        public override void InitAppBoard(){
-#if UNITY_IOS && !UNITY_EDITOR
-			ttInitAppBoard();
-#endif
-        }
-
-        public override void QueryAppBoardStatus(){
-#if UNITY_IOS && !UNITY_EDITOR
-			ttQueryAppBoardStatus();
-#endif
-        }
-
-        public override void OpenAppBoard(string appid){
-#if UNITY_IOS && !UNITY_EDITOR
-			ttOpenAppBoard(appid);
+			XDSDKOpenTapTapForum(appid);
 #endif
         }
 
 #if UNITY_IOS && !UNITY_EDITOR
 
         	[DllImport("__Internal")]
-		private static extern void ttOpenTapTapForum (string appid);
-
-		[DllImport("__Internal")]
-		private static extern void ttInitAppBoard ();
-
-		[DllImport("__Internal")]
-		private static extern void ttQueryAppBoardStatus ();
-
-		[DllImport("__Internal")]
-		private static extern void ttOpenAppBoard (string appid);
+		private static extern void XDSDKOpenTapTapForum (string appid);
 #endif
     }
 }

@@ -472,6 +472,69 @@ namespace xdsdk
 #endif
         }
 
+        public void SetRole(string roleId,string roleName,string roleAvatar)
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                XDSDKSetRole(roleId,roleName,roleAvatar);
+            #elif UNITY_ANDROID && !UNITY_EDITOR
+
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("setRole",roleId,roleName,roleAvatar);
+#endif
+        }
+
+        public void ClearRole()
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                XDSDKClearRole();
+            #elif UNITY_ANDROID && !UNITY_EDITOR
+
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("clearRole");
+#endif
+        }
+
+        public bool AutoLogin()
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                return XDSDKAutoLogin();
+        #elif UNITY_ANDROID && !UNITY_EDITOR
+
+                // TODO
+        #endif
+                return false;
+        }
+
+        public void TapTapLogin()
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                XDSDKTapTapLogin();
+        #elif UNITY_ANDROID && !UNITY_EDITOR
+
+                // TODO
+        #endif
+        }
+
+        public void AppleLogin()
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                XDSDKAppleLogin();
+        #elif UNITY_ANDROID && !UNITY_EDITOR
+
+                // TODO
+        #endif
+        }
+
+        public void GuestLogin()
+        {
+        #if UNITY_IOS && !UNITY_EDITOR
+                XDSDKGuestLogin();
+        #elif UNITY_ANDROID && !UNITY_EDITOR
+
+                // TODO
+        #endif
+        }
+
         public void OnResume(){
                 #if UNITY_IOS && !UNITY_EDITOR
 
@@ -581,6 +644,21 @@ namespace xdsdk
 
         [DllImport("__Internal")]
         private static extern void openUserBindView();
+
+        [DllImport("__Internal")]
+        private static extern void XDSDKSetRole(string roleId,string roleName,string avatarUrl);
+
+        [DllImport("__Internal")]
+        private static extern void XDSDKClearRole();
+
+        [DllImport("__Internal")]
+        private static extern bool XDSDKAutoLogin();
+        [DllImport("__Internal")]
+        private static extern void XDSDKTapTapLogin();
+        [DllImport("__Internal")]
+        private static extern void XDSDKAppleLogin();
+        [DllImport("__Internal")]
+        private static extern void XDSDKGuestLogin();
 
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR

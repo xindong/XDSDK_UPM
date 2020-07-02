@@ -49,7 +49,6 @@ public class Demo : MonoBehaviour
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
-            TapTapSDK.Instance.InitAppBoard ();
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
 #endif
         }
@@ -80,7 +79,8 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (50, 1100, 300, 100), "登出", myButtonStyle)){
-			xdsdk.XDSDK.Logout ();
+			xdsdk.XDSDK.ClearRole();
+			xdsdk.XDSDK.Logout();
 		}
 
 		if (GUI.Button (new Rect (50, 1300, 300, 100), "是否登录", myButtonStyle)){
@@ -132,24 +132,24 @@ public class Demo : MonoBehaviour
 				}, 8.0f));
         }
 
-		if (GUI.Button (new Rect (400, 300, 300, 100), "隐藏QQ", myButtonStyle)){
-			com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1");
+		if (GUI.Button (new Rect (400, 300, 300, 100), "自动登录", myButtonStyle)){
+			xdsdk.XDSDK.AutoLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 500, 300, 100), "显示VeryCD", myButtonStyle)){
-			xdsdk.XDSDK.ShowVC();
+		if (GUI.Button (new Rect (400, 500, 300, 100), "TapTap登录", myButtonStyle)){
+			xdsdk.XDSDK.TapTapLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 700, 300, 100), "隐藏游客登录", myButtonStyle)){
-			xdsdk.XDSDK.HideGuest();
+		if (GUI.Button (new Rect (400, 700, 300, 100), "苹果登录", myButtonStyle)){
+			xdsdk.XDSDK.AppleLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 900, 300, 100), "QQ Web", myButtonStyle)){
-			xdsdk.XDSDK.SetQQWeb();
+		if (GUI.Button (new Rect (400, 900, 300, 100), "游客登录", myButtonStyle)){
+			xdsdk.XDSDK.GuestLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 1100, 300, 100), "微信 Web", myButtonStyle)){
-			xdsdk.XDSDK.SetWXWeb();
+		if (GUI.Button (new Rect (400, 1100, 300, 100), "设置角色", myButtonStyle)){
+			xdsdk.XDSDK.SetRole("roleId", "roleName", "https:/img.tapimg.com/market/lcs/db4187014ddc175f2b9dadf23160a88a_360.png?imageMogr2/auto-orient/strip");
 		}
 			
 		if (GUI.Button (new Rect (400, 1300, 300, 100), "退出", myButtonStyle)){
@@ -160,7 +160,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.UserFeedback();
 		}
 
-		if (GUI.Button (new Rect (400, 1700, 300, 100), "TapTap登录", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 1700, 300, 100), "隐藏taptap", myButtonStyle)){
 			xdsdk.XDSDK.HideTapTap();
 		}
 
@@ -219,8 +219,15 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 1100, 300, 100), "实名认证", myButtonStyle)){
-			// xdsdk.XDSDK.OpenRealName();
-						Dictionary<string, string> info = new Dictionary<string,string>();
+			xdsdk.XDSDK.OpenRealName();
+		}
+
+		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
+			TapTapSDK.Instance.OpenTapTapForum("58881");
+		}
+
+		if (GUI.Button (new Rect (750, 1500, 300, 100), "直播", myButtonStyle)) {
+			Dictionary<string, string> info = new Dictionary<string,string>();
 			info.Add("OrderId", "1234567890123456789012345678901234567890");
 			info.Add("Product_Price", "1");
 			info.Add("EXT", "abcd|efgh|1234|5678");
@@ -231,24 +238,11 @@ public class Demo : MonoBehaviour
 			info.Add ("transactionIdentifier", "123456789");
 			// xdsdk.XDSDK.RestorePay (info);
             com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
+
+			// xdsdk.XDSDK.OnResume();
 		}
 
-		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
-			TapTapSDK.Instance.OpenTapTapForum("58881");
-		}
-
-		if (GUI.Button (new Rect (750, 1500, 300, 100), "公告", myButtonStyle)){
-			// TapTapSDK.Instance.OpenAppBoard("58881");
-			xdsdk.XDSDK.OnStop();
-		}
-
-		if (GUI.Button (new Rect (750, 1700, 300, 100), "直播", myButtonStyle)) {
-			// Debug.Log (xdsdk.XDSDK.GetAdChannelName());
-
-			xdsdk.XDSDK.OnResume();
-		}
-
-		if (GUI.Button (new Rect (750, 1900, 300, 100), "退出", myButtonStyle)) {
+		if (GUI.Button (new Rect (750, 1700, 300, 100), "退出", myButtonStyle)) {
 			#if UNITY_EDITOR
 
 			#else

@@ -24,11 +24,8 @@
 
 /* Begin PBXFileReference section */
 		C19649E920F6F21E006DE244 /* TapTapSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TapTapSDK.framework; path = XDSDKiOSWrapper/TapTapSDK.framework; sourceTree = "<group>"; };
-		C19649EA20F6F21E006DE244 /* libTyrantdbGameTracker.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTyrantdbGameTracker.a; path = XDSDKiOSWrapper/libTyrantdbGameTracker.a; sourceTree = "<group>"; };
 		C19649EB20F6F21E006DE244 /* XdComPlatform.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XdComPlatform.framework; path = XDSDKiOSWrapper/XdComPlatform.framework; sourceTree = "<group>"; };
-		C19649EC20F6F21E006DE244 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = XDSDKiOSWrapper/libWeChatSDK.a; sourceTree = "<group>"; };
 		C19649ED20F6F21F006DE244 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = XDSDKiOSWrapper/TencentOpenAPI.framework; sourceTree = "<group>"; };
-		C19649EE20F6F21F006DE244 /* libSensorsAnalyticsSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSensorsAnalyticsSDK.a; path = XDSDKiOSWrapper/libSensorsAnalyticsSDK.a; sourceTree = "<group>"; };
 		C1DDEAD920DA2F1800959047 /* libXDSDKiOSWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDSDKiOSWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DDEAE820DA2F5F00959047 /* XDSDK.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDSDK.mm; sourceTree = "<group>"; };
 		C1DDEAE920DA2F5F00959047 /* XDSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDSDK.h; sourceTree = "<group>"; };
@@ -55,9 +52,6 @@
 		C1DDEAD020DA2F1800959047 = {
 			isa = PBXGroup;
 			children = (
-				C19649EE20F6F21F006DE244 /* libSensorsAnalyticsSDK.a */,
-				C19649EA20F6F21E006DE244 /* libTyrantdbGameTracker.a */,
-				C19649EC20F6F21E006DE244 /* libWeChatSDK.a */,
 				C19649E920F6F21E006DE244 /* TapTapSDK.framework */,
 				C19649ED20F6F21F006DE244 /* TencentOpenAPI.framework */,
 				C19649EB20F6F21E006DE244 /* XdComPlatform.framework */,

@@ -139,6 +139,34 @@ namespace xdsdk
 			XDSDKImp.GetInstance ().SetServer (server);
 		}
 
+		 public static void SetRole(string roleId,string roleName,string roleAvatar)
+        {
+			XDSDKImp.GetInstance().SetRole(roleId, roleName, roleAvatar);
+        }
+
+        public static void ClearRole()
+        {
+			XDSDKImp.GetInstance().ClearRole();
+
+		}
+
+		// 自定义登录方式
+		public static bool AutoLogin() {
+			return XDSDKImp.GetInstance().AutoLogin();
+		}
+
+		public static void TapTapLogin() {
+			XDSDKImp.GetInstance().TapTapLogin();
+		}
+
+		public static void AppleLogin() {
+			XDSDKImp.GetInstance().AppleLogin();
+		}
+
+		public static void GuestLogin() {
+			XDSDKImp.GetInstance().GuestLogin();
+		}
+
 		// onresume 安卓
 		public static void OnResume(){
 			XDSDKImp.GetInstance ().OnResume();
