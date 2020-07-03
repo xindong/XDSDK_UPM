@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/startLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="360dp"
+    android:layout_height="260dp"
     android:background="@drawable/start_bg_round"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -36,8 +36,8 @@
             android:layout_width="35dp"
             android:layout_height="15dp"
             android:layout_gravity="start"
-            android:layout_marginRight="-15dp"
             android:layout_marginTop="-48dp"
+            android:layout_marginRight="-15dp"
             android:paddingLeft="5dp"
             android:text="3.1.1"
             android:textColor="#9987675B"
@@ -49,8 +49,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="start"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="-15dp"
+            android:layout_marginRight="0dp"
             android:paddingLeft="0dp"
             android:visibility="visible" />
 
@@ -72,8 +72,8 @@
     <!--android:visibility="visible" />-->
 
     <ImageView
-        android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="-16dp"
         android:background="@null"
@@ -84,9 +84,9 @@
     <LinearLayout
         android:id="@+id/login_buttons_ll"
         android:layout_width="wrap_content"
-        android:layout_height="139dp"
+        android:layout_height="86dp"
         android:layout_gravity="center"
-        android:layout_marginTop="46.5dp"
+        android:layout_marginTop="31dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -97,23 +97,25 @@
 
             <LinearLayout
                 android:id="@+id/weixin"
-                android:layout_width="338dp"
-                android:layout_height="57dp"
+                android:layout_width="223dp"
+                android:layout_height="38dp"
                 android:background="@drawable/xd_start_weixin_bg"
                 android:gravity="center_horizontal">
 
                 <ImageView
                     android:id="@+id/wechat_iv"
-                    android:layout_width="33dp"
-                    android:layout_height="27dp"
+                    android:layout_width="22dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:padding="0dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/start_weixin" />
+
                 <View
                     android:id="@+id/blank_center"
                     android:layout_width="10dp"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,21 +123,21 @@
                     android:gravity="center"
                     android:text="微信登录"
                     android:textColor="#ffffff"
-                    android:textSize="24sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="15dp">
 
                 <LinearLayout
                     android:id="@+id/taptap"
                     android:layout_width="338dp"
                     android:layout_height="57dp"
-                    android:visibility="gone"
                     android:background="@drawable/xd_start_qq_bg"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -150,14 +152,14 @@
 
                 <LinearLayout
                     android:id="@+id/qq"
-                    android:layout_width="338dp"
-                    android:layout_height="57dp"
+                    android:layout_width="223dp"
+                    android:layout_height="38dp"
                     android:background="@drawable/xd_start_qq_bg"
                     android:gravity="center_horizontal">
 
                     <ImageView
-                        android:layout_width="22.5dp"
-                        android:layout_height="27dp"
+                        android:layout_width="15dp"
+                        android:layout_height="18dp"
                         android:layout_gravity="center_vertical"
                         android:padding="0dp"
                         android:scaleType="fitCenter"
@@ -170,7 +172,7 @@
                         android:layout_marginLeft="12dp"
                         android:text="QQ登录 "
                         android:textColor="#ffffff"
-                        android:textSize="24sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </FrameLayout>
 
@@ -218,7 +220,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="50dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/xd_start_bottom_bg_round"
         android:gravity="center"
@@ -230,19 +232,20 @@
 
             <ImageButton
                 android:id="@+id/youke"
-                android:layout_width="122dp"
-                android:layout_height="48dp"
-                android:layout_marginRight="45dp"
+                android:layout_width="82dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="30dp"
                 android:background="@null"
                 android:clickable="true"
-                android:paddingBottom="13.5dp"
                 android:paddingTop="13.5dp"
+                android:paddingBottom="13.5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/xd_start_guest_click"></ImageButton>
+
             <View
                 android:id="@+id/blank_bottom"
-                android:layout_width="45dp"
-                android:layout_height="match_parent"/>
+                android:layout_width="30dp"
+                android:layout_height="match_parent" />
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -250,23 +253,24 @@
 
                 <ImageButton
                     android:id="@+id/qq_bottom"
-                    android:layout_width="122dp"
-                    android:layout_height="49dp"
+                    android:layout_width="82dp"
+                    android:layout_height="32dp"
                     android:background="@null"
                     android:clickable="true"
-                    android:scaleType="fitXY"
-                    android:paddingBottom="13.5dp"
                     android:paddingTop="13.3dp"
+                    android:paddingBottom="13.5dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/xd_start_qq_click"
                     android:visibility="gone"></ImageButton>
+
                 <ImageButton
                     android:id="@+id/xd"
-                    android:layout_width="122dp"
-                    android:layout_height="48dp"
+                    android:layout_width="82dp"
+                    android:layout_height="32dp"
                     android:background="@null"
                     android:clickable="true"
-                    android:paddingBottom="13.5dp"
                     android:paddingTop="13.5dp"
+                    android:paddingBottom="13.5dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/xd_start_xdbutton_click"></ImageButton>
             </FrameLayout>

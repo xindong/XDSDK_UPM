@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="290dp"
+    android:layout_height="330dp">
 
     <LinearLayout
         android:id="@+id/root"
-        android:layout_width="435dp"
-        android:layout_height="495dp"
+        android:layout_width="290dp"
+        android:layout_height="330dp"
         android:layout_gravity="center"
         android:background="@drawable/start_bg_round"
-        android:orientation="vertical"
-        android:clipChildren="false">
+        android:clipChildren="false"
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="36dp">
 
             <ImageView
                 android:id="@+id/back"
-                android:layout_width="41dp"
-                android:layout_height="50dp"
+                android:layout_width="28dp"
+                android:layout_height="34dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="4dp"
                 android:padding="15dp"
@@ -29,14 +29,24 @@
 
             <ImageView
                 android:id="@+id/close"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="right"
                 android:padding="15dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/xd_close" />
 
         </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="290dp"
+            android:layout_height="330dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:clipChildren="false" />
 
         <ImageView
             android:id="@+id/logo"
@@ -48,16 +58,6 @@
             android:padding="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/xd_logo_landscape" />
-
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="35dp"
-            android:clipChildren="false"/>
 
     </LinearLayout>
 </FrameLayout>

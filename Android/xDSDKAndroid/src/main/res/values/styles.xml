@@ -1,4 +1,5 @@
 <resources>
+
     <style name="dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -10,4 +11,18 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="dialogWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/animation_from_right_slide</item>
+        <item name="android:windowExitAnimation">@anim/animation_exit_left_side</item>
+    </style>
+
+    <style name="xd_normal_game">
+        <item name="android:background">#402e2c</item>
+    </style>
+
+    <style name="xd_taptap_game">
+        <item name="android:background">#ffffff</item>
+    </style>
+
 </resources>

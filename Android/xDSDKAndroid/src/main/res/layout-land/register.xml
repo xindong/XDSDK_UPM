@@ -99,24 +99,24 @@
                 android:textSize="@dimen/text_size" />
 
             <LinearLayout
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
-                android:layout_height="63dp"
+                android:layout_height="42dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="-24dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginRight="-16dp"
                     android:background="@null"
                     android:scaleType="fitCenter"
                     android:src="@drawable/xd_choose" />
 
                 <CheckBox
                     android:id="@+id/register_checkbox"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:background="@drawable/register_checkbox"
                     android:button="@null"
                     android:checked="true" />
@@ -124,11 +124,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="7dp"
                     android:gravity="center_vertical"
                     android:text="我看过并同意"
                     android:textColor="#957266"
-                    android:textSize="19sp" />
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/securityState"
@@ -139,8 +139,7 @@
                     android:gravity="right|center_vertical"
                     android:text="@string/securityState"
                     android:textColor="@drawable/xd_text_secretprotocol_button_pressed"
-                    android:textSize="19sp" >
-                </Button>
+                    android:textSize="12sp"></Button>
             </LinearLayout>
 
             <Button
@@ -151,8 +150,7 @@
                 android:gravity="center"
                 android:text="注册"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" >
-            </Button>
+                android:textSize="16sp"></Button>
         </LinearLayout>
     </LinearLayout>
 

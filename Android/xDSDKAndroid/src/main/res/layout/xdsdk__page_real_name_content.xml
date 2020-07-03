@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/form_content"
     android:layout_width="@dimen/form_element_width"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clipChildren="false">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="安全实名认证"
@@ -13,8 +16,10 @@
         android:textSize="24sp"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/content"
+        android:layout_width="355dp"
         android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
         android:text="根据《网络游戏管理暂行办法》，游戏用户需要使用有效身份证件进行实名认证。"
         android:textColor="#a37d79"
         android:textSize="18sp"/>

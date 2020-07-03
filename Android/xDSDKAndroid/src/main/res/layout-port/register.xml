@@ -10,11 +10,11 @@
 
     <ImageButton
         android:id="@+id/close"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="end"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="-55dp"
+        android:layout_marginRight="0dp"
         android:background="@null"
         android:padding="15dp"
         android:scaleType="fitCenter"
@@ -23,8 +23,8 @@
         android:visibility="visible" />
 
     <ImageView
-        android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="-20dp"
         android:background="@null"
@@ -146,8 +146,7 @@
             android:gravity="center"
             android:text="注册"
             android:textColor="#FFFFFF"
-            android:textSize="24sp" >
-        </Button>
+            android:textSize="16sp"></Button>
     </LinearLayout>
 
 </LinearLayout>

@@ -10,11 +10,13 @@
     android:orientation="vertical">
 
     <include layout="@layout/xdview_top" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:orientation="vertical"
-        android:layout_marginTop="-55dp">
+        android:layout_marginTop="-55dp"
+        android:orientation="vertical">
+
         <ImageButton
             android:id="@+id/close"
             android:layout_width="48dp"
@@ -27,18 +29,20 @@
             android:src="@drawable/xd_close"
             android:tag="Login"
             android:visibility="visible" />
+
         <TextView
             android:id="@+id/version"
             android:layout_width="35dp"
             android:layout_height="15dp"
             android:layout_gravity="start"
             android:layout_marginRight="-15dp"
-            android:paddingLeft="5dp"
             android:layout_marginTop="-48dp"
+            android:paddingLeft="5dp"
             android:text="3.1.1"
             android:textColor="#9987675B"
             android:textSize="13sp"
             android:visibility="invisible" />
+
         <View
             android:id="@+id/hint_button"
             android:layout_width="30dp"
@@ -53,22 +57,22 @@
     </LinearLayout>
 
     <!--<ImageButton-->
-        <!--android:id="@+id/close"-->
-        <!--android:layout_width="48dp"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:layout_gravity="end"-->
-        <!--android:layout_marginRight="0dp"-->
-        <!--android:layout_marginTop="-55dp"-->
-        <!--android:background="@null"-->
-        <!--android:padding="15dp"-->
-        <!--android:scaleType="fitCenter"-->
-        <!--android:src="@drawable/xd_close"-->
-        <!--android:tag="Login"-->
-        <!--android:visibility="visible" />-->
+    <!--android:id="@+id/close"-->
+    <!--android:layout_width="48dp"-->
+    <!--android:layout_height="48dp"-->
+    <!--android:layout_gravity="end"-->
+    <!--android:layout_marginRight="0dp"-->
+    <!--android:layout_marginTop="-55dp"-->
+    <!--android:background="@null"-->
+    <!--android:padding="15dp"-->
+    <!--android:scaleType="fitCenter"-->
+    <!--android:src="@drawable/xd_close"-->
+    <!--android:tag="Login"-->
+    <!--android:visibility="visible" />-->
 
     <ImageView
-        android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@null"
@@ -92,14 +96,15 @@
 
             <LinearLayout
                 android:id="@+id/weixin"
-                android:layout_width="338dp"
-                android:layout_height="60dp"
+                android:layout_width="226dp"
+                android:layout_height="40dp"
                 android:background="@drawable/xd_start_weixin_bg"
                 android:gravity="center_horizontal">
 
                 <ImageView
-                    android:layout_width="33dp"
-                    android:layout_height="27dp"
+                    android:id="@+id/wechat_iv"
+                    android:layout_width="22dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="center_vertical"
                     android:padding="0dp"
                     android:scaleType="fitCenter"
@@ -108,38 +113,69 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:text="微信登录"
                     android:textColor="#ffffff"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/blank_center"
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/qq"
-                android:layout_width="338dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/xd_start_qq_bg"
-                android:gravity="center_horizontal">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
 
-                <ImageView
-                    android:layout_width="22.5dp"
-                    android:layout_height="27dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="0dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/start_qq" />
+                <LinearLayout
+                    android:id="@+id/taptap"
+                    android:layout_width="338dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/xd_start_qq_bg"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="12dp"
-                    android:text="QQ登录 "
-                    android:textColor="#ffffff"
-                    android:textSize="24sp" />
-            </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:text="TapTap登录"
+                        android:textColor="#ffffff"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/qq"
+                    android:layout_width="338dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/xd_start_qq_bg"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:layout_width="22.5dp"
+                        android:layout_height="27dp"
+                        android:layout_gravity="center_vertical"
+                        android:padding="0dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/start_qq" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:text="QQ登录"
+                        android:textColor="#ffffff"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 
@@ -148,7 +184,8 @@
         android:layout_width="wrap_content"
         android:layout_height="88dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
 
         <CheckBox
             android:id="@+id/legal_check"
@@ -194,24 +231,46 @@
                 android:id="@+id/youke"
                 android:layout_width="122dp"
                 android:layout_height="48dp"
-                android:layout_marginRight="45dp"
                 android:background="@null"
                 android:clickable="true"
                 android:paddingBottom="13.5dp"
                 android:paddingTop="13.5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/xd_start_guest_click"></ImageButton>
+            <View
+                android:id="@+id/blank_bottom"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"/>
 
-            <ImageButton
-                android:id="@+id/xd"
-                android:layout_width="122dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:clickable="true"
-                android:paddingBottom="13.5dp"
-                android:paddingTop="13.5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/xd_start_xdbutton_click"></ImageButton>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/qq_bottom"
+                    android:layout_width="122dp"
+                    android:layout_height="49dp"
+                    android:background="@null"
+                    android:clickable="true"
+                    android:paddingBottom="13.5dp"
+                    android:paddingTop="13.5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/xd_start_qq_click"
+                    android:visibility="gone"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/xd"
+                    android:layout_width="122dp"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:clickable="true"
+                    android:paddingBottom="13.5dp"
+                    android:paddingTop="13.5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/xd_start_xdbutton_click"></ImageButton>
+            </FrameLayout>
+
+
         </LinearLayout>
 
 

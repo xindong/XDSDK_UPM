@@ -496,23 +496,25 @@ namespace xdsdk
 
         public bool AutoLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                 return XDSDKAutoLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
-
+#elif UNITY_ANDROID && !UNITY_EDITOR
+               AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("autoLogin");
                 // TODO
-        #endif
-                return false;
+#endif
+            return false;
         }
 
         public void TapTapLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                 XDSDKTapTapLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
-
+#elif UNITY_ANDROID && !UNITY_EDITOR
+              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("loginByTap");
                 // TODO
-        #endif
+#endif
         }
 
         public void AppleLogin()

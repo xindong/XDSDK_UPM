@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="form_element_width">337dp</dimen>
+    <dimen name="form_element_width">223dp</dimen>
     <dimen name="button_height">47dp</dimen>
-    <dimen name="input_height">54dp</dimen>
-    <dimen name="input_height_portrait">56dp</dimen>
+    <dimen name="input_height">36dp</dimen>
+    <dimen name="input_height_portrait">36dp</dimen>
     <dimen name="input_heightali">44dp</dimen>
     <dimen name="list_button_height">45dp</dimen>
     
@@ -11,11 +11,11 @@
     <dimen name="xd_main_height">436dp</dimen>
     
     <!-- start view -->
-	<dimen name="image_size">105dp</dimen>
+	<dimen name="image_size">48dp</dimen>
 	<dimen name="image_size_port">50dp</dimen>
-	<dimen name="text_size_extreme_small">17sp</dimen>
+	<dimen name="text_size_extreme_small">12sp</dimen>
 	<dimen name="text_size_small">19sp</dimen>
-	<dimen name="text_size">21sp</dimen>
+	<dimen name="text_size">14sp</dimen>
 	<dimen name="text_layout_marginTop_port">5dp</dimen>
 	<dimen name="text_layout_marginTop">10dp</dimen>
 	<dimen name="text_layout_marginLeft">9dp</dimen>
@@ -23,6 +23,10 @@
 	
 	<!-- pay activity -->
 	<dimen name="xd_pay_channel_border_height">55dp</dimen>
-	<dimen name="xd_pay_key_textSize">21dp</dimen>
-	<dimen name="xd_pay_value_textSize">24dp</dimen>
+	<dimen name="xd_pay_key_textSize">14dp</dimen>
+	<dimen name="xd_pay_value_textSize">16dp</dimen>
+
+	<!-- ShadowLayout-->
+	<dimen name="defaultShadowRadius">5dp</dimen>
+	<dimen name="defaultBlurRadius">5dp</dimen>
 </resources>

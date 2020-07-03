@@ -46,7 +46,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_bg_round"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -59,7 +59,7 @@
             android:hint="+"
             android:textColor="@color/edittext"
             android:textColorHint="@color/edittextHint"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size" />
 
         <EditText
             android:id="@+id/country_code"
@@ -80,8 +80,8 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="14dp"
             android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
             android:background="#e3e3e3" />
 
         <EditText
@@ -104,7 +104,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -134,18 +134,85 @@
             android:background="@drawable/xdsdk__bg_round_button"
             android:gravity="center"
             android:textColor="@color/xdsdk__action_text"
-            android:textSize="24sp" />
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <CheckBox
+            android:id="@+id/legal_check"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:background="@drawable/register_checkbox"
+            android:button="@null"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:gravity="center_vertical"
+            android:text="我已阅读并同意"
+            android:textColor="#957266"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/legal_info1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="用户协议"
+                android:textColor="@drawable/xd_text_secretprotocol_button_pressed"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="及"
+                android:textColor="@drawable/xd_text_secretprotocol_button_pressed"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/legal_info2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="隐私政策"
+                android:textColor="@drawable/xd_text_secretprotocol_button_pressed"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="6dp"
         android:background="@drawable/pay_submit"
         android:gravity="center"
         android:text="注册"
         android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

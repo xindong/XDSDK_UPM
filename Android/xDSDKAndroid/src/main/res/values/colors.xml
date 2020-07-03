@@ -34,4 +34,13 @@
     <!-- User Center -->
     <color name="uc_label">#332321</color>
     <color name="uc_label_pressed">#ff6600</color>
+
+
+    <!-- shadowLayout-->
+    <color name="defaultShadowColor">#333333</color>
+    <drawable name="defaultShadowBg">#ffffff</drawable>
+
+    <color name="taptap_sdk_forum_white">#FFFFFF</color>
+
+
 </resources>

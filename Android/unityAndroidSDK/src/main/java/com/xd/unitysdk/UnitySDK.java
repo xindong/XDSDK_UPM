@@ -35,6 +35,22 @@ public class UnitySDK{
         XDSDK.login();
     }
 
+    public static void loginByTap(){
+        XDSDK.loginByTap();
+    }
+
+    public static void autoLogin(){
+        XDSDK.autoLogin();
+    }
+
+    public static void setRole(String roleId, String roleName, String roleAvatar){
+        XDSDK.setRole(roleId, roleName, roleAvatar);
+    }
+
+    public static void clearRole(){
+        XDSDK.clearRole();
+    }
+
     public static String getAccessToken() {
         return XDSDK.getAccessToken();
     }
