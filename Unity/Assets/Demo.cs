@@ -42,7 +42,7 @@ public class Demo : MonoBehaviour
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
-        if (GUI.Button(new Rect(50, 300, 300, 100), "初始化", myButtonStyle))
+        if (GUI.Button(new Rect(50, 200, 300, 100), "初始化", myButtonStyle))
         {
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
 			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "UnityXDSDK", "0.0.0", true);
@@ -53,17 +53,17 @@ public class Demo : MonoBehaviour
 #endif
         }
 
-        if (GUI.Button (new Rect (50, 500, 300, 100), "登录", myButtonStyle)){
+        if (GUI.Button (new Rect (50, 300, 300, 100), "登录", myButtonStyle)){
 
 			xdsdk.XDSDK.Login ();
 			com.xdsdk.xdlive.XDLiveListener.Init ();
 		}
 
-		if (GUI.Button (new Rect (50, 700, 300, 100), "用户中心", myButtonStyle)){
-            xdsdk.XDSDK.OpenUserBindView ();
+		if (GUI.Button (new Rect (50, 400, 300, 100), "用户中心", myButtonStyle)){
+			xdsdk.XDSDK.OpenUserCenter();
 		}
 
-		if (GUI.Button (new Rect (50, 900, 300, 100), "支付", myButtonStyle)){
+		if (GUI.Button (new Rect (50, 500, 300, 100), "支付", myButtonStyle)){
 
 
 			Dictionary<string, string> info = new Dictionary<string,string>();
@@ -78,21 +78,21 @@ public class Demo : MonoBehaviour
 
 		}
 
-		if (GUI.Button (new Rect (50, 1100, 300, 100), "登出", myButtonStyle)){
+		if (GUI.Button (new Rect (50, 600, 300, 100), "登出", myButtonStyle)){
 			xdsdk.XDSDK.ClearRole();
 			xdsdk.XDSDK.Logout();
 		}
 
-		if (GUI.Button (new Rect (50, 1300, 300, 100), "是否登录", myButtonStyle)){
+		if (GUI.Button (new Rect (50, 700, 300, 100), "是否登录", myButtonStyle)){
 			Debug.Log (xdsdk.XDSDK.IsLoggedIn ());
 		}
 
-		if (GUI.Button (new Rect (50, 1500, 300, 100), "SDK版本", myButtonStyle)){
+		if (GUI.Button (new Rect (50, 800, 300, 100), "SDK版本", myButtonStyle)){
             //Debug.Log (xdsdk.XDSDK.GetSDKVersion());
             com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
         }
 
-		if (GUI.Button (new Rect (50, 1700, 300, 100), "token", myButtonStyle)){
+		if (GUI.Button (new Rect (50, 900, 300, 100), "token", myButtonStyle)){
 			Debug.Log (xdsdk.XDSDK.GetAccessToken ());
 		}
 
@@ -132,35 +132,35 @@ public class Demo : MonoBehaviour
 				}, 8.0f));
         }
 
-		if (GUI.Button (new Rect (400, 300, 300, 100), "自动登录", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 200, 300, 100), "自动登录", myButtonStyle)){
 			xdsdk.XDSDK.AutoLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 500, 300, 100), "TapTap登录", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 300, 300, 100), "TapTap登录", myButtonStyle)){
 			xdsdk.XDSDK.TapTapLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 700, 300, 100), "苹果登录", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 400, 300, 100), "苹果登录", myButtonStyle)){
 			xdsdk.XDSDK.AppleLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 900, 300, 100), "游客登录", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 500, 300, 100), "游客登录", myButtonStyle)){
 			xdsdk.XDSDK.GuestLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 1100, 300, 100), "设置角色", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 600, 300, 100), "设置角色", myButtonStyle)){
 			xdsdk.XDSDK.SetRole("roleId", "roleName", "https:/img.tapimg.com/market/lcs/db4187014ddc175f2b9dadf23160a88a_360.png?imageMogr2/auto-orient/strip");
 		}
 			
-		if (GUI.Button (new Rect (400, 1300, 300, 100), "退出", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 700, 300, 100), "退出", myButtonStyle)){
 			xdsdk.XDSDK.Exit();
 		}
 
-		if (GUI.Button (new Rect (400, 1500, 300, 100), "用户反馈", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 800, 300, 100), "用户反馈", myButtonStyle)){
 			xdsdk.XDSDK.UserFeedback();
 		}
 
-		if (GUI.Button (new Rect (400, 1700, 300, 100), "隐藏taptap", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 900, 300, 100), "隐藏taptap", myButtonStyle)){
 			xdsdk.XDSDK.HideTapTap();
 		}
 
@@ -174,7 +174,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享图片", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 200, 300, 100), "微信分享图片", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -185,7 +185,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享音乐", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享音乐", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -196,7 +196,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 700, 300, 100), "微信分享视频", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 400, 300, 100), "微信分享视频", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -207,7 +207,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 900, 300, 100), "微信分享链接", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享链接", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
@@ -218,15 +218,15 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 1100, 300, 100), "实名认证", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 600, 300, 100), "实名认证", myButtonStyle)){
 			xdsdk.XDSDK.OpenRealName();
 		}
 
-		if (GUI.Button (new Rect (750, 1300, 300, 100), "论坛", myButtonStyle)){
+		if (GUI.Button (new Rect (750, 700, 300, 100), "论坛", myButtonStyle)){
 			TapTapSDK.Instance.OpenTapTapForum("58881");
 		}
 
-		if (GUI.Button (new Rect (750, 1500, 300, 100), "直播", myButtonStyle)) {
+		if (GUI.Button (new Rect (750, 800, 300, 100), "直播", myButtonStyle)) {
 			Dictionary<string, string> info = new Dictionary<string,string>();
 			info.Add("OrderId", "1234567890123456789012345678901234567890");
 			info.Add("Product_Price", "1");
@@ -242,7 +242,7 @@ public class Demo : MonoBehaviour
 			// xdsdk.XDSDK.OnResume();
 		}
 
-		if (GUI.Button (new Rect (750, 1700, 300, 100), "退出", myButtonStyle)) {
+		if (GUI.Button (new Rect (750, 900, 300, 100), "退出", myButtonStyle)) {
 			#if UNITY_EDITOR
 
 			#else
