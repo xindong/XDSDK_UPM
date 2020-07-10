@@ -494,16 +494,14 @@ namespace xdsdk
 #endif
         }
 
-        public bool AutoLogin()
+        public void AutoLogin()
         {
 #if UNITY_IOS && !UNITY_EDITOR
-                return XDSDKAutoLogin();
+                XDSDKAutoLogin();
 #elif UNITY_ANDROID && !UNITY_EDITOR
                AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
             jc.CallStatic("autoLogin");
-                // TODO
 #endif
-            return false;
         }
 
         public void TapTapLogin()
@@ -654,7 +652,7 @@ namespace xdsdk
         private static extern void XDSDKClearRole();
 
         [DllImport("__Internal")]
-        private static extern bool XDSDKAutoLogin();
+        private static extern void XDSDKAutoLogin();
         [DllImport("__Internal")]
         private static extern void XDSDKTapTapLogin();
         [DllImport("__Internal")]

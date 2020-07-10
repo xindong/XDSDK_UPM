@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 2.1.7
+ * XDSDK Version 2.2.0
  * 
  * 
  * 
@@ -151,8 +151,8 @@ namespace xdsdk
 		}
 
 		// 自定义登录方式
-		public static bool AutoLogin() {
-			return XDSDKImp.GetInstance().AutoLogin();
+		public static void AutoLogin() {
+			XDSDKImp.GetInstance().AutoLogin();
 		}
 
 		public static void TapTapLogin() {
