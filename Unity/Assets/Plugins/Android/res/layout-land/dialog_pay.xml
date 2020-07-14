@@ -5,6 +5,7 @@
     android:id="@+id/payLayout"
     android:layout_width="360dp"
     android:layout_height="260dp"
+    android:layout_gravity="center"
     android:background="@drawable/start_bg_white_round"
     tools:ignore="MissingDefaultResource">
 
