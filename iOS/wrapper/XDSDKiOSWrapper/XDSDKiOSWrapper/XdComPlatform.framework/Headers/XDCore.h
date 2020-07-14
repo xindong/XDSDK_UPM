@@ -132,7 +132,7 @@
  若返回YES，则有上次登录用户，SDK会自动登录。等待登录结果回调继续处理
  若返回NO，则没有上次登录用户，游戏直接显示登录界面
  */
-+ (BOOL)autoLogin;
++ (void)autoLogin;
 
 + (void)taptapLogin;
 + (void)appleLogin;
