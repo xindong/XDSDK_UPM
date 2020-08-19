@@ -474,6 +474,10 @@ namespace xdsdk
 
         public void SetRole(string roleId,string roleName,string roleAvatar)
         {
+                if (roleAvatar == null)
+                {
+                    roleAvatar = "";
+                }
         #if UNITY_IOS && !UNITY_EDITOR
                 XDSDKSetRole(roleId,roleName,roleAvatar);
             #elif UNITY_ANDROID && !UNITY_EDITOR
