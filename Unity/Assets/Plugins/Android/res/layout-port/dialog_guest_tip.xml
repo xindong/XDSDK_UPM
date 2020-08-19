@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="330dp"
+    android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:layout_marginTop="30dp"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_guest_tip_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="健康游戏提示"
+        android:textColor="#a37d79"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_guest_tip_content"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_round"
+        android:padding="15dp"
+        android:text="您当前为游客账号，体验时间为60分钟，实名注册后可继续游戏。"
+        android:textColor="#a37d79"
+        android:textSize="12sp" />
+
     <LinearLayout
         android:id="@+id/ll_guest_tip_switch"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-35dp"
+        android:gravity="center_vertical"
         android:paddingBottom="5dp">
 
         <ImageView
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginBottom="2dp"
             android:scaleType="fitCenter"
             android:src="@drawable/switch_account" />
 
@@ -33,7 +56,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -75,27 +98,5 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_guest_tip_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:text="健康游戏提示"
-        android:textColor="#a37d79"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tv_guest_tip_content"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/bg_round"
-        android:padding="15dp"
-        android:text="您当前为游客账号，体验时间为60分钟，实名注册后可继续游戏。"
-        android:textColor="#a37d79"
-        android:textSize="12sp" />
 
 </LinearLayout>

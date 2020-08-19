@@ -13,7 +13,7 @@
         android:layout_gravity="end"
         android:layout_marginRight="0dp"
         android:background="@null"
-        android:padding="15dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/xd_close"
         android:tag="UserCenter"
@@ -155,17 +155,5 @@
             android:textSize="18sp" />
 
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

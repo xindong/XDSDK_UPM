@@ -109,7 +109,7 @@
                     android:background="#999999" />
 
                 <TextView
-                    android:id="@+id/tv_number"
+                    android:id="@+id/phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#999999"
@@ -125,7 +125,7 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/et_confirm_code"
+                    android:id="@+id/code"
                     android:layout_width="117dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/stroke_gray_cor_bg"
@@ -134,7 +134,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tv_get_confirm"
+                    android:id="@+id/action"
                     android:layout_width="89dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="4dp"
@@ -153,7 +153,7 @@
     </com.xd.sdk.ui.ShadowLayout>
 
     <Button
-        android:id="@+id/submit_btn"
+        android:id="@+id/submit"
         android:layout_width="210dp"
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"

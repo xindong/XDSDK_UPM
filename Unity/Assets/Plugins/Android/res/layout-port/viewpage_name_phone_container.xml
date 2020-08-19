@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
     android:background="@drawable/start_bg_round"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,6 +16,7 @@
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:clickable="true"
+            android:layout_marginTop="5dp"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/xd_back" />
@@ -35,6 +36,7 @@
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
             android:clickable="true"
+            android:layout_marginTop="5dp"
             android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/xd_close" />
@@ -141,7 +143,7 @@
     <LinearLayout
         android:id="@+id/ll_vp_container"
         android:layout_width="@dimen/form_element_width"
-        android:layout_height="123dp"
+        android:layout_height="130dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:orientation="horizontal" />
