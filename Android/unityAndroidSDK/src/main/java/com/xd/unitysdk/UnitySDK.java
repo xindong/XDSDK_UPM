@@ -173,7 +173,7 @@ public class UnitySDK{
 
         @Override
         public void onInitFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnInitFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnInitFailed", s == null ? "":s);
         }
 
         @Override
