@@ -132,6 +132,13 @@ public class UnitySDK{
 
     public static void onResume(){XDSDK.onResume(UnityPlayer.currentActivity);}
     public static void onStop(){XDSDK.onStop(UnityPlayer.currentActivity);}
+    public static void gameStarted(){
+        XDSDK.gameStarted();
+    }
+
+    public static void gameStoped(){
+        XDSDK.gameStoped();
+    }
 
 
     public static void shareToWX(Map<String, String> content) {

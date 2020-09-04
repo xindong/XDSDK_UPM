@@ -540,19 +540,23 @@ namespace xdsdk
         }
 
         public void GameStop() {
-                #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                         XDSDKGameStop();
-                #elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID && !UNITY_EDITOR
                         // TODO
-                #endif
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("gameStoped");
+#endif
         }
 
         public void GameResume() {
-                #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                         XDSDKGameResume();
-                #elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID && !UNITY_EDITOR
                         // TODO
-                #endif
+             AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("gameStarted");
+#endif
         }
 
         public void OnResume(){

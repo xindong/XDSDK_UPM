@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <EditText
@@ -102,7 +102,7 @@
         android:id="@+id/bt_auth_verify_submit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/xdsdk__bg_round_button"
         android:gravity="center"
         android:text="确认"

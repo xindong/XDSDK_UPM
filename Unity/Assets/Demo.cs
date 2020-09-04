@@ -250,6 +250,16 @@ public class Demo : MonoBehaviour
 			#endif
 		}
 
+        if(GUI.Button(new Rect(1200, 100, 300, 100), "防沉迷开启", myButtonStyle))
+        {
+			xdsdk.XDSDK.GameResume();
+        }
+
+		if (GUI.Button(new Rect(1200, 200, 300, 100), "防沉迷关闭", myButtonStyle))
+		{
+			xdsdk.XDSDK.GameStop();
+		}
+
 
 
 	}

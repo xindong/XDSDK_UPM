@@ -73,7 +73,7 @@ task jarUnityXDLiveLib(type: Jar, dependsOn: ['build']) {
 
 task jarUnityXDTrafficControlLib(type: Jar, dependsOn: ['build']) {
     archiveName = 'XDTrafficControlForUnity.jar'
-    from('build/intermediates/classes/release')
+    from('build/intermediates/javac/release/compileReleaseJavaWithJavac/classes')
     destinationDir = file('build/libs')
     exclude('com/xindong/trafficcontrol/BuildConfig.class')
     exclude('com/xindong/trafficcontrol/BuildConfig\$*.class')
