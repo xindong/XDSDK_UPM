@@ -539,6 +539,22 @@ namespace xdsdk
         #endif
         }
 
+        public void GameStop() {
+                #if UNITY_IOS && !UNITY_EDITOR
+                        XDSDKGameStop();
+                #elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+                #endif
+        }
+
+        public void GameResume() {
+                #if UNITY_IOS && !UNITY_EDITOR
+                        XDSDKGameResume();
+                #elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+                #endif
+        }
+
         public void OnResume(){
                 #if UNITY_IOS && !UNITY_EDITOR
 
@@ -663,6 +679,10 @@ namespace xdsdk
         private static extern void XDSDKAppleLogin();
         [DllImport("__Internal")]
         private static extern void XDSDKGuestLogin();
+        [DllImport("__Internal")]
+        private static extern void XDSDKGameStop();
+        [DllImport("__Internal")]
+        private static extern void XDSDKGameResume();
 
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR

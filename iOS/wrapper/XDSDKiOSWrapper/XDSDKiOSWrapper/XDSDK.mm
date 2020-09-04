@@ -414,6 +414,14 @@ extern "C"{
             [XDCore guestLogin];
         }
         
+        void XDSDKGameStop() {
+            [XDCore gameStop];
+        }
+        
+        void XDSDKGameResume() {
+            [XDCore gameResume];
+        }
+        
         // 论坛
         void XDSDKOpenTapTapForum(const char* appid) {
             [TapForum openTapTapForum:[NSString stringWithUTF8String:appid]];

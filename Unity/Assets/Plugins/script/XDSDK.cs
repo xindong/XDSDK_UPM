@@ -167,6 +167,14 @@ namespace xdsdk
 			XDSDKImp.GetInstance().GuestLogin();
 		}
 
+		public static void GameStop() {
+			XDSDKImp.GetInstance ().GameStop();
+		} 
+
+		public static void GameResume () {
+			XDSDKImp.GetInstance ().GameResume();
+		}
+
 		// onresume 安卓
 		public static void OnResume(){
 			XDSDKImp.GetInstance ().OnResume();

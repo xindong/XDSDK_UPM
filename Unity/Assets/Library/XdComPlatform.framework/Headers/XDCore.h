@@ -129,8 +129,6 @@
 
 /*
  手动调用登录方式时，先调用autologin
- 若返回YES，则有上次登录用户，SDK会自动登录。等待登录结果回调继续处理
- 若返回NO，则没有上次登录用户，游戏直接显示登录界面
  */
 + (void)autoLogin;
 
@@ -223,6 +221,13 @@
 /// 处理跳转回调
 /// @param userActivity 回调内容
 + (BOOL)handleOpenUniversalLink:(nullable NSUserActivity *)userActivity;
+
+#pragma mark - 防沉迷
+/// 恢复时长统计
++ (void)gameResume;
+
+/// 停止时长统计
++ (void)gameStop;
 
 #pragma mark - 角色相关
 + (void)setRole:(NSString *_Nullable)roleId roleName:(NSString *_Nullable)roleName roleAvatar:(NSString *_Nonnull)avatarUrl;
