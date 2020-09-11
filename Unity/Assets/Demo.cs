@@ -45,7 +45,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 200, 300, 100), "初始化", myButtonStyle))
         {
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "UnityXDSDK", "0.0.0", true);
+			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "UnityXDSDK", "0.0.1", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
@@ -250,12 +250,12 @@ public class Demo : MonoBehaviour
 			#endif
 		}
 
-        if(GUI.Button(new Rect(1200, 100, 300, 100), "防沉迷开启", myButtonStyle))
+        if(GUI.Button(new Rect(1200, 100, 350, 100), "防沉迷计时开启", myButtonStyle))
         {
 			xdsdk.XDSDK.GameResume();
         }
 
-		if (GUI.Button(new Rect(1200, 200, 300, 100), "防沉迷关闭", myButtonStyle))
+		if (GUI.Button(new Rect(1200, 200, 350, 100), "防沉迷计时关闭", myButtonStyle))
 		{
 			xdsdk.XDSDK.GameStop();
 		}
