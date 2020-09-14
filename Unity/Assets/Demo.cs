@@ -7,6 +7,8 @@ using com.taptap.sdk;
 
 public class Demo : MonoBehaviour
 {
+	private String amount = "1";
+	private String product_id = "product_id";
 
 	public static IEnumerator DelayToInvokeDo(Action action, float delaySeconds)
 	{
@@ -42,7 +44,7 @@ public class Demo : MonoBehaviour
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
-        if (GUI.Button(new Rect(50, 200, 300, 100), "初始化", myButtonStyle))
+        if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
 			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "UnityXDSDK", "0.0.1", true);
@@ -94,6 +96,17 @@ public class Demo : MonoBehaviour
 
 		if (GUI.Button (new Rect (50, 900, 300, 100), "token", myButtonStyle)){
 			Debug.Log (xdsdk.XDSDK.GetAccessToken ());
+		}
+
+		if (GUI.Button(new Rect(50, 1000, 300, 100), "竖屏初始化", myButtonStyle))
+		{
+			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 1, "UnityXDSDK", "0.0.0", true);
+			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
+
+#if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
+            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
+#endif
 		}
 
 
@@ -258,6 +271,21 @@ public class Demo : MonoBehaviour
 		if (GUI.Button(new Rect(1200, 200, 350, 100), "防沉迷计时关闭", myButtonStyle))
 		{
 			xdsdk.XDSDK.GameStop();
+		}
+
+		product_id = GUI.TextArea(new Rect(1200, 400, 350, 100), product_id);
+        amount = GUI.TextArea(new Rect(1200, 500, 350, 100), amount);
+
+        if(GUI.Button(new Rect(1200, 600, 350, 100), "自定义支付",myButtonStyle)){
+			Dictionary<string, string> info = new Dictionary<string, string>();
+			info.Add("OrderId", "1234567890123456789012345678901234567890");
+			info.Add("Product_Price", amount);
+			info.Add("EXT", "abcd|efgh|1234|5678");
+			info.Add("Sid", "2");
+			info.Add("Role_Id", "3");
+			info.Add("Product_Id", product_id);
+			info.Add("Product_Name", "648大礼包");
+			xdsdk.XDSDK.Pay(info);
 		}
 
 

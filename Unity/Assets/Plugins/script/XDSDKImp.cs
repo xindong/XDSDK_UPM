@@ -514,7 +514,7 @@ namespace xdsdk
                 XDSDKTapTapLogin();
 #elif UNITY_ANDROID && !UNITY_EDITOR
               AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("loginByTap");
+            jc.CallStatic("taptapLogin");
                 // TODO
 #endif
         }

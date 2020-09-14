@@ -35,8 +35,8 @@ public class UnitySDK{
         XDSDK.login();
     }
 
-    public static void loginByTap(){
-        XDSDK.loginByTap();
+    public static void taptapLogin(){
+        XDSDK.taptapLogin();
     }
 
     public static void autoLogin(){
@@ -185,12 +185,12 @@ public class UnitySDK{
 
         @Override
         public void onLoginSucceed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginSucceed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginSucceed", s == null ? "":s);
         }
 
         @Override
         public void onLoginFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginFailed", s == null ? "":s);
         }
 
         @Override
@@ -200,12 +200,12 @@ public class UnitySDK{
 
         @Override
         public void onGuestBindSucceed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s == null ? "":s);
         }
 
         @Override
         public void onGuestBindFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindFailed", s == null ? "":s);
         }
 
         @Override
@@ -215,7 +215,7 @@ public class UnitySDK{
 
         @Override
         public void onRealNameFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s == null ? "":s);
         }
 
         @Override
@@ -230,7 +230,7 @@ public class UnitySDK{
 
         @Override
         public void onPayFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnPayFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnPayFailed", s == null ? "":s);
         }
 
         @Override
