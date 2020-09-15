@@ -44,5 +44,11 @@ namespace xdsdk
 
 		public virtual void OnWXShareFailed (string msg){}
 
+        public virtual void OnProtocolAgreed() {}
+
+        public virtual void OnProtocolOpenSucceed() {}
+
+        public virtual void OnProtocolOpenFailed(string msg) {}
+
     }
 }

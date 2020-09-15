@@ -23,6 +23,11 @@ namespace xdsdk{
 		private const int OnWXShareSucceedCode = 15;
 		private const int OnWXShareFailedCode = 16;
 
+		private const int OnProtocolAgreedCode = 100;
+		private const int OnProtocolOpenSucceedCode = 101;
+		private const int OnProtocolOpenFailedCode = 102;
+		
+
 		void Start () {
 			this.name = "XDSDK";
 		}
@@ -122,6 +127,22 @@ namespace xdsdk{
 			XDSDKImp.GetInstance ().GetXDCallback ().OnWXShareFailed (msg);
 		}
 
+        public void OnProtocolAgreed()
+        {
+			XDSDKImp.GetInstance().GetXDCallback().OnProtocolAgreed();
+        }
+
+        public void OnProtocolOpenSucceed()
+        {
+			XDSDKImp.GetInstance().GetXDCallback().OnProtocolOpenSucceed();
+		}
+
+        public void OnProtocolOpenFailed(string msg)
+        {
+			XDSDKImp.GetInstance().GetXDCallback().OnProtocolOpenFailed(msg);
+
+		}
+
 		#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
 		public delegate void UniversalCallbackDelegate(int code, string msg);
@@ -182,7 +203,7 @@ namespace xdsdk{
 			}
 		}
 
-		#endif
+#endif
 
 	}
 }

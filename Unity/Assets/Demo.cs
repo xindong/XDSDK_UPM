@@ -288,7 +288,18 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Pay(info);
 		}
 
-
+		if (GUI.Button(new Rect(1200, 700, 350, 100), "用户协议", myButtonStyle))
+		{
+			xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_USER);
+		}
+		if (GUI.Button(new Rect(1200, 800, 350, 100), "游戏协议", myButtonStyle))
+		{
+			xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_GAME);
+		}
+		if (GUI.Button(new Rect(1200, 900, 350, 100), "隐私协议", myButtonStyle))
+		{
+			xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_PRIVACY);
+		}
 
 	}
 }

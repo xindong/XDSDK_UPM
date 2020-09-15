@@ -286,6 +286,10 @@ NSMutableDictionary *params = [NSMutableDictionary dictionary];
 */
 + (void)customAdParams:(nullable NSDictionary *)params;
 
+/// 打开协议页面
+/// @param type 0用户协议， 1游戏协议， 2隐私协议
++ (void)openProtocolWithType:(NSInteger)type;
+
 @end
 
 #endif

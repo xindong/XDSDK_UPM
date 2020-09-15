@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System;
 
-
-
 namespace xdsdk
 {
     public class XDSDKImp
@@ -591,6 +589,18 @@ namespace xdsdk
 
 	}
 
+        public void OpenProtocol(XDSDK.ProtocolType type)
+        {
+            int protocolType = Convert.ToInt32(type);
+#if UNITY_IOS && !UNITY_EDITOR
+                      OpenProtocol(protocolType);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("openProtocol",protocolType);
+#endif
+        }
+
 
 
 #if UNITY_IOS && !UNITY_EDITOR
@@ -687,7 +697,8 @@ namespace xdsdk
         private static extern void XDSDKGameStop();
         [DllImport("__Internal")]
         private static extern void XDSDKGameResume();
-
+         [DllImport("__Internal")]
+        private static extern void OpenProtocol(int type);
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 

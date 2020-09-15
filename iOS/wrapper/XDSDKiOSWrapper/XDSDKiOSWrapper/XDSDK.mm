@@ -453,6 +453,10 @@ extern "C"{
            void closeXDLive() {
                [XDLive closeXDLive];
            }
+        
+        void OpenProtocol(int type) {
+            [XDCore openProtocolWithType:(NSInteger)type];
+        }
            
            void invokeFunc(const char * unityCallbackID, const char * params) {
                NSString *unityCallbackIDString = [NSString stringWithUTF8String:unityCallbackID];
@@ -620,6 +624,15 @@ extern "C"{
     UnitySendMessage(self.gameObjectName.UTF8String, "OnRealNameFailed", error_msg?error_msg.UTF8String:"");
 }
 
+- (void)onOpenProtocolSuccess {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnProtocolOpenSucceed", "");
+}
+- (void)onOpenProtocolFail {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnProtocolOpenFailed", "");
+}
+- (void)onAgreeProtocol {
+    UnitySendMessage(self.gameObjectName.UTF8String, "OnProtocolAgreed", "");
+}
 
 @end
 

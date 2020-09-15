@@ -140,6 +140,10 @@ public class UnitySDK{
         XDSDK.gameStoped();
     }
 
+    public static void openProtocol(int type){
+        XDSDK.openProtocol(type);
+    }
+
 
     public static void shareToWX(Map<String, String> content) {
         XDWXShareObject wxShareObject = new XDWXShareObject();
@@ -237,6 +241,23 @@ public class UnitySDK{
         public void onPayCanceled() {
             UnityPlayer.UnitySendMessage("XDSDK", "OnPayCanceled", "");
         }
+
+        @Override
+        public void onProtocolAgreed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolAgreed", "");
+        }
+
+        @Override
+        public void onProtocolOpenFailed(String s) {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolOpenFailed", s == null ? "" :s);
+        }
+
+        @Override
+        public void onProtocolOpenSucceed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolOpenSucceed", "");
+        }
+
+
     };
 
     private static final ExitCallback exitCallback = new ExitCallback() {

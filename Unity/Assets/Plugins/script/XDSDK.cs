@@ -16,6 +16,13 @@ namespace xdsdk
 {
 	public class XDSDK
 	{
+        public enum ProtocolType
+        {
+            PROTOCOL_TYPE_USER,
+            PROTOCOL_TYPE_GAME,
+            PROTOCOL_TYPE_PRIVACY
+        }
+
 		//设置回调方法
 		public static void SetCallback(XDCallback callback){
 			XDSDKImp.GetInstance ().SetCallback (callback);
@@ -184,5 +191,11 @@ namespace xdsdk
 		public static void OnStop(){
 			XDSDKImp.GetInstance ().OnStop();
 		}
+
+        
+        public static void OpenProtocol(ProtocolType type)
+        {
+			XDSDKImp.GetInstance().OpenProtocol(type);
+        }
 	}
 }
