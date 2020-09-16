@@ -13,6 +13,18 @@
     <string name="open_liquan">礼券充值</string>
     <string name="phone_number_verify">手机号认证</string>
     <string name="phone_number_verify_tip">依据中国互联网实名认证管理要求，用户账号须通过实名认证方可进行。</string>
+    <string name="tap_login_tip">根据国家相关的网络社区管理规定，在TapTap社区发言互动，需要登录账号并填写实名信息。</string>
+    <string name="tap_use_auth_tip">登录后将自动使用游戏实名</string>
+    <string name="register">注册</string>
+    <string name="login">登录</string>
+
+
+    <string name="ensure_login_tip">确认使用此账号登录？</string>
+    <string name="login_function">登录可享受如下功能：\n·同步TapTap好友\n·可使用此TapTap账号登录游戏</string>
+    <string name="auto_bind_tip">登录后自动绑定游戏，</string>
+    <string name="unbind_limit">无法解绑</string>
+    <string name="ensure_login">确认登录</string>
+    <string name="give_up">放弃</string>
 
     <string name="tap_forum_sdk_close">关闭</string>
     <string name="tap_forum_sdk_other">更多功能</string>

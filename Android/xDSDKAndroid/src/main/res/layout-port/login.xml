@@ -13,6 +13,7 @@
         android:id="@+id/version"
         android:layout_width="35dp"
         android:layout_height="15dp"
+        android:layout_marginLeft="35dp"
         android:layout_gravity="start"
         android:layout_marginRight="-15dp"
         android:paddingLeft="5dp"
@@ -25,6 +26,7 @@
         android:id="@+id/hint_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="35dp"
         android:layout_gravity="start"
         android:layout_marginRight="0dp"
         android:layout_marginTop="-15dp"
@@ -36,7 +38,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="end"
-        android:layout_marginTop="-20dp"
+        android:layout_marginTop="-30dp"
         android:layout_marginRight="0dp"
         android:background="@null"
         android:padding="10dp"
@@ -157,7 +159,7 @@
                 android:gravity="left|center_vertical"
                 android:text="忘记密码"
                 android:textColor="@drawable/xd_text_button_pressed"
-                android:textSize="@dimen/text_size"></Button>
+                android:textSize="@dimen/text_size"/>
 
             <Button
                 android:id="@+id/switchToRegister"
@@ -168,7 +170,7 @@
                 android:gravity="right|center_vertical"
                 android:text="注册"
                 android:textColor="@drawable/xd_text_button_pressed"
-                android:textSize="@dimen/text_size"></Button>
+                android:textSize="@dimen/text_size"/>
         </LinearLayout>
 
         <LinearLayout
@@ -215,8 +217,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginTop="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/xd_start_bottom_bg_round"
         android:gravity="center"
         android:orientation="vertical">
@@ -241,7 +243,7 @@
                 android:paddingTop="9dp"
                 android:paddingBottom="9dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/xd_start_guest_click"></ImageButton>
+                android:src="@drawable/xd_start_guest_click"/>
 
             <ImageButton
                 android:id="@+id/verycd"

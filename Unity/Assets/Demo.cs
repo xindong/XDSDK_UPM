@@ -47,7 +47,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "UnityXDSDK", "0.0.1", true);
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK Android", "AndroidVersion", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
@@ -299,6 +299,11 @@ public class Demo : MonoBehaviour
 		if (GUI.Button(new Rect(1200, 900, 350, 100), "隐私协议", myButtonStyle))
 		{
 			xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_PRIVACY);
+		}
+
+		if (GUI.Button(new Rect(1200, 1000, 350, 100), "游客登录", myButtonStyle))
+		{
+			xdsdk.XDSDK.GuestLogin();
 		}
 
 	}

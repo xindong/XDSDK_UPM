@@ -17,6 +17,7 @@
         android:layout_gravity="start"
         android:layout_marginTop="-55dp"
         android:layout_marginRight="-15dp"
+        android:layout_marginLeft="35dp"
         android:paddingLeft="5dp"
         android:text="3.1.1"
         android:textColor="#9987675B"
@@ -30,18 +31,19 @@
         android:layout_gravity="start"
         android:layout_marginTop="-15dp"
         android:layout_marginRight="0dp"
+        android:layout_marginLeft="35dp"
         android:paddingLeft="0dp"
         android:visibility="visible" />
 
     <ImageButton
         android:id="@+id/close"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="end"
         android:layout_marginTop="-30dp"
         android:layout_marginRight="0dp"
         android:background="@null"
-        android:padding="15dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/xd_close"
         android:tag="Login"
@@ -49,7 +51,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="233dp"
+        android:layout_height="160dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -180,7 +182,7 @@
     <LinearLayout
         android:id="@+id/legal_ll"
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -218,9 +220,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/xd_start_bottom_bg_round"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -228,7 +230,7 @@
         <LinearLayout
             android:id="@+id/guest_loging_ll"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@drawable/xd_start_bottom_bg_round"
             android:gravity="center"
@@ -269,48 +271,48 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="180dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="70dp"
                 android:text="使用其他账号登录"
                 android:textColor="#957266"
                 android:textSize="@dimen/text_size" />
 
             <ImageButton
                 android:id="@+id/weixinLogin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="25dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/login_weixin"></ImageButton>
+                android:src="@drawable/login_weixin"/>
 
             <ImageButton
                 android:id="@+id/appleLogin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/login_apple"></ImageButton>
+                android:src="@drawable/login_apple"/>
 
             <ImageButton
                 android:id="@+id/qqLogin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/login_qq"></ImageButton>
+                android:src="@drawable/login_qq"/>
 
             <ImageButton
                 android:id="@+id/verycdLogin"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginLeft="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/login_verycd"></ImageButton>
+                android:src="@drawable/login_verycd"/>
         </LinearLayout>
 
     </LinearLayout>

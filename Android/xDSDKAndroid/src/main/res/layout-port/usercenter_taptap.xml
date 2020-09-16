@@ -6,6 +6,24 @@
     android:layout_height="330dp"
     android:background="@drawable/start_bg_white_round">
 
+    <View
+        android:id="@+id/version_hint"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="35dp"
+        android:layout_height="15dp"
+        android:layout_gravity="start"
+        android:layout_marginLeft="35dp"
+        android:paddingLeft="5dp"
+        android:text="3.1.1"
+        android:textColor="#9987675B"
+        android:textSize="13sp"
+        android:visibility="invisible" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -191,10 +209,9 @@
         android:text="联系客服"
         android:textColor="#000000"
         android:textSize="10sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -209,7 +226,6 @@
         android:text="退出账号"
         android:textColor="#000000"
         android:textSize="10sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/contact_btn" />
 
