@@ -10,34 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef struct GameLoginType{
-    NSString * _Nonnull loginType;
-}GameLoginType;
-
-// 登录方式
-/*
- 自定义登录方式：
- GameLoginType customLoginType = {@"custom"};
- */
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeTapTap;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeWeiXin;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeQQ;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeTourist;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeApple;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeZhifubao;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeFacebook;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeGoogle;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypeTwitter;
-FOUNDATION_EXPORT GameLoginType const GameLoginTypePhoneNumber;
-
 @interface TTSDKConfig : NSObject
 
 /// 是否为圆角，默认为圆角
 @property (nonatomic, assign) BOOL roundCorner;
-
-@property (nonatomic) BOOL openTapDB;                       // 是否开启tapdb统计
-@property (nullable,nonatomic) NSString *channel;          // 渠道名，如『AppStore』
-@property (nullable,nonatomic) NSString *gameVersion;      // 游戏版本
 
 @end
 

@@ -16,16 +16,16 @@
 @interface TTSDKProfile : NSObject
 
 /// 用户名
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString * name;
 
 /// 用户头像
-@property (nonatomic, readonly) NSString *avatar;
+@property (nonatomic, readonly) NSString * avatar;
 
 /// open id
-@property (nonatomic, readonly) NSString *openid;
+@property (nonatomic, readonly) NSString * openid;
 
 /// union id
-@property (nonatomic, readonly) NSString *unionid;
+@property (nonatomic, readonly) NSString * unionid;
 
 - (instancetype)initWithJSON:(NSDictionary *)json;
 
@@ -36,5 +36,4 @@
  */
 + (TTSDKProfile *)currentProfile;
 
-+ (void)fetchProfileForCurrentAccessToken:(void (^)(TTSDKProfile *profile, NSError *error))handler;
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDK_VERSION @"2.4"  //!< SDK Version
+#define SDK_VERSION @"2.0"  //!< SDK Version
 
 #import "TTSDKApplicationDelegate.h"
 #import "TTSDKLoginResult.h"
@@ -43,11 +43,5 @@
  *  @return 支持返回YES，不支持返回NO
  */
 + (BOOL)isTapTapClientSupport;
-
-/// 记录一个用户（不是游戏角色！！！！），需要保证唯一性
-/// @param userId 用户ID。不同用户需要保证ID的唯一性
-/// @param openId 通过TapTap登录获取到的openId
-/// @param loginType 登录方式
-+ (void)setUser:(NSString *_Nonnull)userId openId:(NSString *_Nonnull)openId loginType:(GameLoginType)loginType;
 
 @end
