@@ -100,4 +100,9 @@
 ///                                                                     quantity：商品数量
 - (void)restoredPayment:(nonnull NSArray*)paymentInfos;
 
+
+/// 打开协议页面成功失败
+- (void)onOpenProtocolSuccess;
+- (void)onOpenProtocolFail;
+- (void)onAgreeProtocol;
 @end

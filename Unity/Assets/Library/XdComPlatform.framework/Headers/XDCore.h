@@ -222,6 +222,21 @@
 /// @param userActivity 回调内容
 + (BOOL)handleOpenUniversalLink:(nullable NSUserActivity *)userActivity;
 
+#pragma mark - 防沉迷
+/// 恢复时长统计
++ (void)gameResume;
+
+/// 停止时长统计
++ (void)gameStop;
+
+
+/*
+ 检查防沉迷剩余时间，暂时只支持联网数据查询
+ 由于客户端数据定时发送，结果可能有最多两分钟时长误差
+ 成年人或不受防沉迷用户，结果可能为空
+ */
++ (NSString *_Nullable)checkAntiAddictionResult;
+
 #pragma mark - 角色相关
 + (void)setRole:(NSString *_Nullable)roleId roleName:(NSString *_Nullable)roleName roleAvatar:(NSString *_Nonnull)avatarUrl;
 
@@ -270,6 +285,10 @@ NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
 */
 + (void)customAdParams:(nullable NSDictionary *)params;
+
+/// 打开协议页面
+/// @param type 0用户协议， 1游戏协议， 2隐私协议
++ (void)openProtocolWithType:(NSInteger)type;
 
 @end
 
