@@ -30,7 +30,7 @@
     <string name="tap_forum_sdk_other">更多功能</string>
     <string name="pay_center">充值中心</string>
     <string name="money_title">金额：</string>
-    <string name="store">商品</string>
+    <string name="store">商品：</string>
     <string name="account_protected">账号保护</string>
     <string name="sure_submit">确认提交</string>
     <string name="confirm_tips">在不常用的设备上登录，需要验证你的手机号码</string>

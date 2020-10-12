@@ -219,8 +219,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:background="@drawable/xd_start_bottom_bg_round"
         android:gravity="center"
+        android:background="@drawable/xd_start_bottom_bg_round"
         android:orientation="vertical">
 
         <LinearLayout
@@ -228,7 +228,6 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@drawable/xd_start_bottom_bg_round"
             android:gravity="center"
             android:orientation="horizontal">
 
