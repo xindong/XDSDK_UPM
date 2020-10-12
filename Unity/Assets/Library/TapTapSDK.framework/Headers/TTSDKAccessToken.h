@@ -33,6 +33,16 @@
 /// 用户授权的权限，多个时以逗号隔开
 @property (nonatomic, copy) NSString * scope;
 
+/// 根据JSON生成 TTSDKAccessToken
+/// @param accessTokenString json字符串类型的AccessToken
++ (TTSDKAccessToken *)build:(NSString *)accessTokenString;
+
+/// 通过参数生成实例
++ (TTSDKAccessToken *)build:(NSString *)kid accessToken:(NSString *)accessToken tokenType:(NSString *)tokenType macKey:(NSString *)macKey macAlgorithm:(NSString *)macAlgorithm;
+
+/// 转换成json字符串
+- (NSString *)toJsonString;
+
 /**
  *  @brief 获取当前认证
  *
