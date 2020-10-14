@@ -39,8 +39,9 @@ public class Demo : MonoBehaviour
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
             com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler());
-            // string[] entries = { "QQ_LOGIN", "XD_LOGIN","GUEST_LOGIN" };
-            // xdsdk.XDSDK.SetLoginEntries(entries);
+            string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN","APPLE_LOGIN" };
+
+			xdsdk.XDSDK.SetLoginEntries(entries);
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
