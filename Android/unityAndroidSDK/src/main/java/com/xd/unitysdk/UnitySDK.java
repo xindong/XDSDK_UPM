@@ -39,6 +39,10 @@ public class UnitySDK{
         XDSDK.taptapLogin();
     }
 
+    public static void guestLogin(){
+        XDSDK.guestLogin();
+    }
+
     public static void autoLogin(){
         XDSDK.autoLogin();
     }
@@ -142,6 +146,10 @@ public class UnitySDK{
 
     public static void openProtocol(int type){
         XDSDK.openProtocol(type);
+    }
+
+    public static void openUserMoment(String config, String xdId){
+        XDSDK.openUserMoment(config, xdId);
     }
 
 
