@@ -532,8 +532,8 @@ namespace xdsdk
         #if UNITY_IOS && !UNITY_EDITOR
                 XDSDKGuestLogin();
         #elif UNITY_ANDROID && !UNITY_EDITOR
-
-                // TODO
+                AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+                jc.CallStatic("guestLogin");
         #endif
         }
 
@@ -598,6 +598,17 @@ namespace xdsdk
                         // TODO
             AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
             jc.CallStatic("openProtocol",protocolType);
+#endif
+        }
+
+        public void OpenUserMoment(XDMomentConfig config, string xdId)
+        {
+            string configString = config.GetConfigString();
+#if UNITY_IOS && !UNITY_EDITOR
+                     OpenUserMoment(xdId,configString);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("openUserMoment",configString,xdId);
 #endif
         }
 
@@ -697,8 +708,10 @@ namespace xdsdk
         private static extern void XDSDKGameStop();
         [DllImport("__Internal")]
         private static extern void XDSDKGameResume();
-         [DllImport("__Internal")]
+        [DllImport("__Internal")]
         private static extern void OpenProtocol(int type);
+        [DllImport("__Internal")]
+        private static extern void OpenUserMoment(string xdId,string config);
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 

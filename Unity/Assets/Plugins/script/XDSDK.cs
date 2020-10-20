@@ -197,5 +197,10 @@ namespace xdsdk
         {
 			XDSDKImp.GetInstance().OpenProtocol(type);
         }
+
+        public static void OpenUserMoment(XDMomentConfig config, string xdId)
+        {
+			XDSDKImp.GetInstance().OpenUserMoment(config, xdId);
+        }
 	}
 }

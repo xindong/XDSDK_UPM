@@ -1,0 +1,11 @@
+framework module XdComPlatform {
+  umbrella header "XdComPlatform.h"
+
+  export *
+  module * { export * }
+}
+
+module XdComPlatform.Swift {
+    header "XdComPlatform-Swift.h"
+    requires objc
+}
