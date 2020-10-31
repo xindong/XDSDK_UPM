@@ -13,7 +13,7 @@
 #define XdComPlatform_XDCore_h
 
 /**
- 心动SDK 4.3.2
+ 心动SDK 4.3.3
  */
 @interface XDCore : NSObject
 
