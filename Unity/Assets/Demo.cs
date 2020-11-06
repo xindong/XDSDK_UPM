@@ -23,7 +23,14 @@ public class Demo : MonoBehaviour
 
 	void OnApplicationPause(bool pauseStatus)
     {
-		
+        if (pauseStatus)
+        {
+			xdsdk.XDSDK.OnStop();
+        }
+        else
+        {
+			xdsdk.XDSDK.OnResume();
+        }
     }
 
     void OnGUI()
@@ -39,16 +46,16 @@ public class Demo : MonoBehaviour
         {
             xdsdk.XDSDK.SetCallback(new XDSDKHandler());
             com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler());
-            string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN","APPLE_LOGIN" };
+            //string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN","APPLE_LOGIN" };
 
-			xdsdk.XDSDK.SetLoginEntries(entries);
+			//xdsdk.XDSDK.SetLoginEntries(entries);
             com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
         if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
-			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK Android", "AndroidVersion", true);
+			//ios d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK ios", "iosversion", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
@@ -75,7 +82,7 @@ public class Demo : MonoBehaviour
 			info.Add("EXT", "abcd|efgh|1234|5678");
 			info.Add("Sid", "2");
 			info.Add("Role_Id", "3");
-			info.Add("Product_Id", "com.xd.ro.3d.EP04_Card73");
+			info.Add("Product_Id", "com.xd.sdkdemo1.stone300");
 			info.Add("Product_Name", "648大礼包");
 			xdsdk.XDSDK.Pay (info);
 
