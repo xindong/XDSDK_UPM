@@ -66,7 +66,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button (new Rect (50, 300, 300, 100), "登录", myButtonStyle)){
 
 			xdsdk.XDSDK.Login ();
-			com.xdsdk.xdlive.XDLiveListener.Init ();
+			//com.xdsdk.xdlive.XDLiveListener.Init ();
 		}
 
 		if (GUI.Button (new Rect (50, 400, 300, 100), "用户中心", myButtonStyle)){
@@ -257,8 +257,10 @@ public class Demo : MonoBehaviour
 			info.Add("Product_Id", "4");
 			info.Add("Product_Name", "648大礼包");
 			info.Add ("transactionIdentifier", "123456789");
+			com.xdsdk.xdlive.XDLive.Instance.SetCallback(new XDLIVECallback());
 			// xdsdk.XDSDK.RestorePay (info);
-            com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
+			com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
+
 
 			// xdsdk.XDSDK.OnResume();
 		}
@@ -315,4 +317,19 @@ public class Demo : MonoBehaviour
 		}
 
 	}
+	class XDLIVECallback : com.xdsdk.xdlive.XDLive.XDLiveCallback
+    {
+        override
+		public void OnXDLiveClosed()
+	{
+			Debug.Log(" xdlive close=========");
+	}
+
+	override
+	public void OnXDLiveOpen()
+	{
+			Debug.Log(" xdlive open==========");
+		}
+}
+	
 }
