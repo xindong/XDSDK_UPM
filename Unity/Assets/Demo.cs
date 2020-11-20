@@ -55,7 +55,7 @@ public class Demo : MonoBehaviour
         if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
 			//ios d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK ios", "iosversion", true);
+			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "XDSDK ios", "iosversion", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
@@ -109,7 +109,7 @@ public class Demo : MonoBehaviour
 		if (GUI.Button(new Rect(50, 1000, 300, 100), "竖屏初始化", myButtonStyle))
 		{
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 1, "UnityXDSDK", "0.0.0", true);
+			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 1, "UnityXDSDK", "0.0.0", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
 
 #if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN

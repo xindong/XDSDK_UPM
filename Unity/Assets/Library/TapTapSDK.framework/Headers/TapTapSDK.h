@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDK_VERSION @"2.4"  //!< SDK Version
+#define SDK_VERSION @"2.5.3"  //!< SDK Version
 
 #import "TTSDKApplicationDelegate.h"
 #import "TTSDKLoginResult.h"

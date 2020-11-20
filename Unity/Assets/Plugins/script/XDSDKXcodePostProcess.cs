@@ -1,0 +1,333 @@
+#if UNITY_EDITOR && UNITY_IOS
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEditor.Callbacks;
+#if UNITY_IOS
+using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode.Extensions;
+#endif
+using UnityEngine;
+
+ public class XDSDKXcodePostProcess : MonoBehaviour
+    {
+        #if UNITY_IOS
+        // 添加标签，unity导出工程后自动执行该函数
+        [PostProcessBuild]
+        /* 
+            2020-11-20 Jiang Jiahao
+            该脚本中参数为DEMO参数，项目组根据实际参数修改
+            导出工程后核对配置或依赖是否正确，根据需要修改脚本
+        */
+        public static void OnPostprocessBuild(BuildTarget BuildTarget, string path)
+        {
+            if (BuildTarget == BuildTarget.iOS)
+            {   
+                // 获得工程路径
+                string projPath = PBXProject.GetPBXProjectPath(path);
+                UnityEditor.iOS.Xcode.PBXProject proj = new PBXProject();
+                proj.ReadFromString(File.ReadAllText(projPath));
+
+                // 2019.3以上有多个target
+                #if UNITY_2019_3_OR_NEWER
+                string unityFrameworkTarget = proj.GetUnityFrameworkTargetGuid();
+                string target = proj.GetUnityMainTargetGuid();
+                #else
+                string unityFrameworkTarget = proj.TargetGuidByName("Unity-iPhone");
+                string target = proj.TargetGuidByName("Unity-iPhone");
+                #endif
+                if (target == null)
+                {
+                    Debug.Log("target is null ?");
+                    return;
+                }
+
+                // capabilities 
+                string fileName = "Unity-iPhone" + ".entitlements";
+                string entitleFilePath = path + "/" + fileName;
+                PlistDocument tempEntitlements = new PlistDocument();
+                string key_associatedDomains = "com.apple.developer.associated-domains";
+                string key_signinWithApple = "com.apple.developer.applesignin";
+                var arr_associateDomains = (tempEntitlements.root[key_associatedDomains] = new PlistElementArray()) as PlistElementArray;
+                var arr_signinWithApple = (tempEntitlements.root[key_signinWithApple] = new PlistElementArray()) as PlistElementArray;
+                // www.xd.com 需要替换成游戏自己官网域名
+                arr_associateDomains.values.Add(new PlistElementString("applinks:www.xd.com"));
+                arr_signinWithApple.values.Add(new PlistElementString("Default"));
+                // AssciateDomains
+                proj.AddCapability(target, PBXCapabilityType.AssociatedDomains, entitleFilePath);
+                // Sign In With Apple
+                proj.AddCapability (target, PBXCapabilityType.SignInWithApple,entitleFilePath);
+                tempEntitlements.WriteToFile(entitleFilePath);
+
+                // 编译配置
+                proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC");
+                proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS", "-ObjC");
+
+                // Swift编译选项
+                proj.SetBuildProperty(target, "ENABLE_BITCODE", "NO"); //bitcode  NO
+                proj.SetBuildProperty(target,"ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES","YES");
+                proj.SetBuildProperty(target, "SWIFT_VERSION", "5.0");
+                proj.SetBuildProperty(target, "CLANG_ENABLE_MODULES", "YES");
+                proj.SetBuildProperty(unityFrameworkTarget, "ENABLE_BITCODE", "NO"); //bitcode  NO
+                proj.SetBuildProperty(unityFrameworkTarget,"ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES","YES");
+                proj.SetBuildProperty(unityFrameworkTarget, "SWIFT_VERSION", "5.0");
+                proj.SetBuildProperty(unityFrameworkTarget, "CLANG_ENABLE_MODULES", "YES");
+                
+
+                // add extra framework(s)
+                // 参数: 目标targetGUID, framework,是否required:fasle->required,true->optional
+                proj.AddFrameworkToProject(unityFrameworkTarget, "CoreTelephony.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "QuartzCore.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "Security.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "WebKit.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "AdSupport.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "AssetsLibrary.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "AVKit.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "AuthenticationServices.framework", false);
+                // proj.AddFrameworkToProject(target, "TapFriends.framework", false);
+                // 动态库
+                // AddFramework("TapFriends.framework", proj, target);
+                Debug.Log("添加framework成功");
+
+                // 添加 tbd
+                // 参数: 目标targetGUID, tdbGUID
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libc++.tbd", "libc++.tbd",PBXSourceTree.Sdk));
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libiconv.tbd", "libiconv.tbd",PBXSourceTree.Sdk));
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libsqlite3.0.tbd", "libsqlite3.0.tbd",PBXSourceTree.Sdk));
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libz.tbd", "libz.tbd",PBXSourceTree.Sdk));
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libresolv.9.tbd", "libresolv.9.tbd",PBXSourceTree.Sdk));
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libicucore.tbd", "libicucore.tbd",PBXSourceTree.Sdk));
+
+                Debug.Log("添加tbd成功");
+
+                // 添加资源文件，注意文件路径
+                var resourcePath = Path.Combine(path, "resource");
+                string parentFolder = Directory.GetParent(Application.dataPath).FullName;
+                // 复制资源文件夹到工程目录
+                CopyAndReplaceDirectory(parentFolder + "/Assets/Plugins/iOS/resource", resourcePath);
+                DirectoryInfo directoryInfo = new DirectoryInfo(resourcePath);
+                FileInfo[] files = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
+                foreach (var file in files)
+                {
+                    if (file.Extension == ".meta")
+                    {
+                        // 删除meta文件
+                        file.Delete();
+                    }else {
+                        Debug.Log(file);
+                        proj.AddFileToBuild(target, proj.AddFile(file.FullName, file.FullName, PBXSourceTree.Source));
+                    }
+
+                }
+
+                List<string> names = new List<string>();
+                names.Add("CommonUI.bundle");
+                names.Add("TapMomentResources.bundle");
+                foreach (var name in names)
+                {
+                    proj.AddFileToBuild(target, proj.AddFile(Path.Combine(resourcePath,name), Path.Combine(resourcePath,name), PBXSourceTree.Source));
+                }
+
+                Debug.Log("添加resource成功");
+
+                // rewrite to file  
+                File.WriteAllText(projPath, proj.WriteToString());
+                SetPlist(path);
+                SetScriptClass(path);
+                Debug.Log("测试打包成功");
+            }
+        }
+
+        // 添加动态库 注意路径
+        public static void AddFramework(string coreFrameworkName, UnityEditor.iOS.Xcode.PBXProject proj, string target)
+        {
+            const string defaultLocationInProj = "Library/";
+            string framework = Path.Combine(defaultLocationInProj, coreFrameworkName);
+            string fileGuid = proj.AddFile(framework, "Frameworks/" + framework, PBXSourceTree.Sdk);
+            PBXProjectExtensions.AddFileToEmbedFrameworks(proj, target, fileGuid);
+            proj.SetBuildProperty(target, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks");
+        }
+
+        // 修改Build版本号，使用时间 『年月日时分秒』
+        public static string AddBuildNumber()
+        {
+            string buildNumber = DateTime.Now.ToString("yyyyMMdd") + DateTime.Now.Hour.ToString() +
+            DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+            return buildNumber;
+        }
+
+        public static void CopyAndReplaceDirectory(string srcPath, string dstPath)
+        {
+            if (Directory.Exists(dstPath))
+                Directory.Delete(dstPath);
+            if (File.Exists(dstPath))
+                File.Delete(dstPath);
+
+            Directory.CreateDirectory(dstPath);
+
+            foreach (var file in Directory.GetFiles(srcPath))
+                File.Copy(file, Path.Combine(dstPath, Path.GetFileName(file)));
+
+            foreach (var dir in Directory.GetDirectories(srcPath))
+                CopyAndReplaceDirectory(dir, Path.Combine(dstPath, Path.GetFileName(dir)));
+        }
+
+        // 修改pilist
+        private static void SetPlist(string pathToBuildProject)
+        {
+            //添加info
+            string _plistPath = pathToBuildProject + "/Info.plist";
+            PlistDocument _plist = new PlistDocument();
+            _plist.ReadFromString(File.ReadAllText(_plistPath));
+            PlistElementDict _rootDic = _plist.root;
+
+            List<string> items = new List<string>()
+            {
+                "tapsdk",
+                "mqq",
+                "mqqapi",
+                "wtloginmqq2",
+                "mqqopensdkapiV4",
+                "mqqopensdkapiV3",
+                "mqqopensdkapiV2",
+                "mqqwpa",
+                "mqqOpensdkSSoLogin",
+                "mqqgamebindinggroup",
+                "mqqopensdkfriend",
+                "mqzone",
+                "weixin",
+                "wechat",
+                "weixinULAPI",
+                "tapfriends"
+            };
+            PlistElementArray _list = _rootDic.CreateArray("LSApplicationQueriesSchemes");
+            for (int i = 0; i < items.Count; i++)
+            {
+                _list.AddString(items[i]);
+            }
+            PlistElementDict _dict = _rootDic.CreateDict("NSAppTransportSecurity");
+            _dict.SetBoolean("NSAllowsArbitraryLoads", true); // HTTP
+            _rootDic.SetString("CFBundleVersion", AddBuildNumber());
+            //添加url
+            PlistElementDict dict = _plist.root.AsDict();
+
+            //心动
+            PlistElementArray array = dict.CreateArray("CFBundleURLTypes");
+            PlistElementDict dict2 = array.AddDict();
+            dict2.SetString("CFBundleURLName", "XD");
+            PlistElementArray array2 = dict2.CreateArray("CFBundleURLSchemes");
+            array2.AddString("XD-d4bjgwom9zk84wk");
+
+            // 微信
+            dict2 = array.AddDict();
+            dict2.SetString("CFBundleURLName", "wechat");
+            array2 = dict2.CreateArray("CFBundleURLSchemes");
+            array2.AddString("wxbdfbe5dbd3e3c64b");
+
+            // qq
+            dict2 = array.AddDict();
+            dict2.SetString("CFBundleURLName", "tencent");
+            array2 = dict2.CreateArray("CFBundleURLSchemes");
+            array2.AddString("tencent1106148555");
+            //taptap
+            dict2 = array.AddDict();
+            dict2.SetString("CFBundleURLName", "tt");
+            array2 = dict2.CreateArray("CFBundleURLSchemes");
+            array2.AddString("ttp60jgYd4FUWc4Rr8pK");
+
+            // TapFriends
+            dict2 = array.AddDict();
+            dict2.SetString("CFBundleURLName", "tapfriends");
+            array2 = dict2.CreateArray("CFBundleURLSchemes");
+            array2.AddString("tapfriendsfz5gunjnu0ow40o");
+
+            string exitsOnSuspendKey = "UIApplicationExitsOnSuspend";
+            if(_rootDic.values.ContainsKey(exitsOnSuspendKey))
+            {
+                _rootDic.values.Remove(exitsOnSuspendKey);
+            }
+
+            // 权限声明，文案可修改
+			_rootDic.SetString("NSCameraUsageDescription", "XDSDK-DEMO需要使用您的相机");
+            File.WriteAllText(_plistPath, _plist.WriteToString());
+            Debug.Log("修改添加info文件成功");
+        }
+
+        // 添加appdelegate处理
+        private static void SetScriptClass(string pathToBuildProject)
+        {
+            //插入代码
+            //读取UnityAppController.mm文件
+            string unityAppControllerPath = pathToBuildProject + "/Classes/UnityAppController.mm";
+            XClass UnityAppController = new XClass(unityAppControllerPath);
+            //在指定代码后面增加一行代码
+            UnityAppController.WriteBelow(@"#import <OpenGLES/ES2/glext.h>", @"#import <XdComPlatform/XDCore.h>");
+            UnityAppController.WriteBelow(@"[KeyboardDelegate Initialize];",@"[XDCore setupXDStore];");
+            UnityAppController.WriteBelow(@"AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);",
+@"// [TapFriends handleOpenUrlWithUrl:url];   
+return [XDCore HandleXDOpenURL:url];");
+            UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",
+@"// [TapFriends handleUniversalLinksWithUserActivity:userActivity];
+        [XDCore handleOpenUniversalLink:userActivity];");
+            Debug.Log("修改代码成功");
+        }
+    }
+
+    internal partial class XClass : System.IDisposable
+    {
+        private string filePath;
+
+        public XClass(string fPath)
+        {
+            filePath = fPath;
+            if (!System.IO.File.Exists(filePath))
+            {
+                Debug.LogError(filePath + "路径下文件不存在");
+                return;
+            }
+        }
+
+        public void WriteBelow(string below, string text)
+        {
+            StreamReader streamReader = new StreamReader(filePath);
+            string all = streamReader.ReadToEnd();
+            streamReader.Close();
+            int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
+            if (beginIndex == -1)
+            {
+                Debug.LogError(filePath + "中没有找到字符串" + below);
+                return;
+            }
+
+            int endIndex = all.LastIndexOf("\n", beginIndex + below.Length, StringComparison.Ordinal);
+            all = all.Substring(0, endIndex) + "\n" + text + "\n" + all.Substring(endIndex);
+            StreamWriter streamWriter = new StreamWriter(filePath);
+            streamWriter.Write(all);
+            streamWriter.Close();
+        }
+
+        public void Replace(string below, string newText)
+        {
+            StreamReader streamReader = new StreamReader(filePath);
+            string all = streamReader.ReadToEnd();
+            streamReader.Close();
+            int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
+            if (beginIndex == -1)
+            {
+                Debug.LogError(filePath + "中没有找到字符串" + below);
+                return;
+            }
+
+            all = all.Replace(below, newText);
+            StreamWriter streamWriter = new StreamWriter(filePath);
+            streamWriter.Write(all);
+            streamWriter.Close();
+        }
+
+        public void Dispose()
+        {
+        }
+        # endif
+}
+#endif

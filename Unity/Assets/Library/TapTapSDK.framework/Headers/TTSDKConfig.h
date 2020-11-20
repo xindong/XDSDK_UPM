@@ -10,8 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef struct GameLoginType{
-    NSString * _Nonnull loginType;
+typedef NS_ENUM (NSInteger, RegionType) {
+    RegionTypeCN,
+    RegionTypeIO
+};
+
+typedef struct GameLoginType {
+    NSString *_Nonnull loginType;
 }GameLoginType;
 
 // 登录方式
@@ -34,10 +39,14 @@ FOUNDATION_EXPORT GameLoginType const GameLoginTypePhoneNumber;
 
 /// 是否为圆角，默认为圆角
 @property (nonatomic, assign) BOOL roundCorner;
-
-@property (nonatomic) BOOL openTapDB;                       // 是否开启tapdb统计
-@property (nullable,nonatomic) NSString *channel;          // 渠道名，如『AppStore』
-@property (nullable,nonatomic) NSString *gameVersion;      // 游戏版本
+/// 限定登录客户端
+@property (nonatomic, assign) RegionType regionType;
+/// 是否开启tapdb统计
+@property (nonatomic) BOOL openTapDB;
+/// 渠道名，如『AppStore』
+@property (nullable, nonatomic) NSString *channel;
+/// 游戏版本
+@property (nullable, nonatomic) NSString *gameVersion;
 
 @end
 
