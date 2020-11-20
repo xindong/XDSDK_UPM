@@ -119,38 +119,39 @@ public class Demo : MonoBehaviour
 
 
 		if (GUI.Button (new Rect (400, 100, 300, 100), "隐藏微信", myButtonStyle)){
-//            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("appid001");
-			com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("dhsjolxyls840co");
-			StartCoroutine(DelayToInvokeDo(() =>
-				{
-					Dictionary<string, object> parameters = new Dictionary<string, object>();
-					parameters.Add("type", "alert");
-					parameters.Add("id", "0");
-					Dictionary<string, object> config = new Dictionary<string, object>();
-					config.Add("image", "/images/invitation.png");
-					config.Add("content", "您收到奥特曼的[size=16][color=#ffb100]私聊[/color][/size]是否返回游戏查看");
-					List<object> buttons = new List<object>();
-					Dictionary<string, object> no = new Dictionary<string, object>();
-					no.Add("key", "no");
-					no.Add("content", "忽略");
-					no.Add("type", "");
-					buttons.Add(no);
-					Dictionary<string, object> yes = new Dictionary<string, object>();
-					yes.Add("key", "yes");
-					yes.Add("content", "去查看");
-					yes.Add("type", "primary");
-					buttons.Add(yes);
-					config.Add("buttons", buttons);
-					Dictionary<string, object> checkbox = new Dictionary<string, object>();
-					checkbox.Add("content", "5分钟内不再提示");
-					checkbox.Add("value", true);
-					config.Add("checkbox", checkbox);
-					parameters.Add("config", config);
-					com.xdsdk.xdlive.XDLive.Instance.InvokeFunc(parameters, (params1)=>{
-						Debug.Log ("Receive result from" + params1);
-						com.xdsdk.xdlive.XDLive.Instance.CloseXDLive();
-					});
-				}, 8.0f));
+			//            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("appid001");
+			//com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("dhsjolxyls840co");
+			//StartCoroutine(DelayToInvokeDo(() =>
+			//	{
+			//		Dictionary<string, object> parameters = new Dictionary<string, object>();
+			//		parameters.Add("type", "alert");
+			//		parameters.Add("id", "0");
+			//		Dictionary<string, object> config = new Dictionary<string, object>();
+			//		config.Add("image", "/images/invitation.png");
+			//		config.Add("content", "您收到奥特曼的[size=16][color=#ffb100]私聊[/color][/size]是否返回游戏查看");
+			//		List<object> buttons = new List<object>();
+			//		Dictionary<string, object> no = new Dictionary<string, object>();
+			//		no.Add("key", "no");
+			//		no.Add("content", "忽略");
+			//		no.Add("type", "");
+			//		buttons.Add(no);
+			//		Dictionary<string, object> yes = new Dictionary<string, object>();
+			//		yes.Add("key", "yes");
+			//		yes.Add("content", "去查看");
+			//		yes.Add("type", "primary");
+			//		buttons.Add(yes);
+			//		config.Add("buttons", buttons);
+			//		Dictionary<string, object> checkbox = new Dictionary<string, object>();
+			//		checkbox.Add("content", "5分钟内不再提示");
+			//		checkbox.Add("value", true);
+			//		config.Add("checkbox", checkbox);
+			//		parameters.Add("config", config);
+			//		com.xdsdk.xdlive.XDLive.Instance.InvokeFunc(parameters, (params1)=>{
+			//			Debug.Log ("Receive result from" + params1);
+			//			com.xdsdk.xdlive.XDLive.Instance.CloseXDLive();
+			//		});
+			//	}, 8.0f));
+			Invoke("closeLive", 5.0f);
         }
 
 		if (GUI.Button (new Rect (400, 200, 300, 100), "自动登录", myButtonStyle)){
@@ -316,6 +317,10 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.GuestLogin();
 		}
 
+	}
+    void closeLive()
+	{
+		com.xdsdk.xdlive.XDLive.Instance.CloseXDLive();
 	}
 	class XDLIVECallback : com.xdsdk.xdlive.XDLive.XDLiveCallback
     {
