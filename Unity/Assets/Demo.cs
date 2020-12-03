@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
 using com.taptap.sdk;
+using TDSCommon;
 
 public class Demo : MonoBehaviour
 {
@@ -184,6 +185,13 @@ public class Demo : MonoBehaviour
 
 		if (GUI.Button (new Rect (400, 900, 300, 100), "隐藏taptap", myButtonStyle)){
 			xdsdk.XDSDK.HideTapTap();
+		}
+
+		if (GUI.Button(new Rect(400,1000,300,100),"获取地区Code",myButtonStyle)){
+			TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
+			{
+				Debug.Log("isMainland:" + isMainland);
+			});
 		}
 
 		if (GUI.Button (new Rect (750, 100, 300, 100), "微信分享文字", myButtonStyle)){
