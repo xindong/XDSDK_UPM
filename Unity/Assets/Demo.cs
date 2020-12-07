@@ -320,9 +320,13 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_PRIVACY);
 		}
 
-		if (GUI.Button(new Rect(1200, 1000, 350, 100), "游客登录", myButtonStyle))
+		if (GUI.Button(new Rect(1200, 1000, 350, 100), "好友动态", myButtonStyle))
 		{
-			xdsdk.XDSDK.GuestLogin();
+			//xdsdk.XDSDK.GuestLogin();
+			xdsdk.XDMomentConfig momentConfig = new xdsdk.XDMomentConfig();
+			momentConfig.SetOrientation(-1);
+			xdsdk.XDSDK.OpenUserMoment(momentConfig, "199949426");
+
 		}
 
 	}
