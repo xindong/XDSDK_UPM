@@ -84,7 +84,7 @@ using UnityEngine;
                 proj.AddFrameworkToProject(unityFrameworkTarget, "AdSupport.framework", false);
                 proj.AddFrameworkToProject(unityFrameworkTarget, "AssetsLibrary.framework", false);
                 proj.AddFrameworkToProject(unityFrameworkTarget, "AVKit.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AuthenticationServices.framework", false);
+                proj.AddFrameworkToProject(unityFrameworkTarget, "AuthenticationServices.framework", true);
                 // proj.AddFrameworkToProject(target, "TapFriends.framework", false);
                 // 动态库
                 // AddFramework("TapFriends.framework", proj, target);
@@ -106,24 +106,10 @@ using UnityEngine;
                 string parentFolder = Directory.GetParent(Application.dataPath).FullName;
                 // 复制资源文件夹到工程目录
                 CopyAndReplaceDirectory(parentFolder + "/Assets/Plugins/iOS/resource", resourcePath);
-                DirectoryInfo directoryInfo = new DirectoryInfo(resourcePath);
-                FileInfo[] files = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
-                foreach (var file in files)
-                {
-                    if (file.Extension == ".meta")
-                    {
-                        // 删除meta文件
-                        file.Delete();
-                    }else {
-                        Debug.Log(file);
-                        proj.AddFileToBuild(target, proj.AddFile(file.FullName, file.FullName, PBXSourceTree.Source));
-                    }
-
-                }
-
+                
                 List<string> names = new List<string>();
-                names.Add("CommonUI.bundle");
                 names.Add("TapMomentResources.bundle");
+                names.Add("XDSDKResouse.bundle");
                 foreach (var name in names)
                 {
                     proj.AddFileToBuild(target, proj.AddFile(Path.Combine(resourcePath,name), Path.Combine(resourcePath,name), PBXSourceTree.Source));

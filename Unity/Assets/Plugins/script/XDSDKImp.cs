@@ -436,9 +436,30 @@ namespace xdsdk
         {
 #if UNITY_IOS && !UNITY_EDITOR
 
-			xdShare(content["text"],content["bText"],content["scene"],content["shareType"],content["title"],content["description"],content["thumbPath"],content["imageUrl"],content["musicUrl"],
-			content["musicLowBandUrl"],content["musicDataUrl"],content["musicLowBandDataUrl"],content["videoUrl"],content["videoLowBandUrl"],content["webpageUrl"]);
+                        string text = XDSDKUtil.DictionaryGetStringValue("text",content);
+                        string bText = XDSDKUtil.DictionaryGetStringValue("bText",content);
+                        string scene = XDSDKUtil.DictionaryGetStringValue("scene",content);
+                        string shareType =  XDSDKUtil.DictionaryGetStringValue("shareType",content);
+                        string title = XDSDKUtil.DictionaryGetStringValue("title",content);
+                        string description = XDSDKUtil.DictionaryGetStringValue("description",content);
+                        string thumbPath = XDSDKUtil.DictionaryGetStringValue("thumbPath",content);
+                        string imageUrl =XDSDKUtil.DictionaryGetStringValue("imageUrl",content);
+                        string musicUrl = XDSDKUtil.DictionaryGetStringValue("musicUrl",content);
+                        string musicLowBandUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandUrl",content);
+                        string musicDataUrl = XDSDKUtil.DictionaryGetStringValue("musicDataUrl",content);
+                        string musicLowBandDataUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandDataUrl",content);
+                        string videoUrl = XDSDKUtil.DictionaryGetStringValue("videoUrl",content);
+                        string videoLowBandUrl = XDSDKUtil.DictionaryGetStringValue("videoLowBandUrl",content);
+                        string webpageUrl = XDSDKUtil.DictionaryGetStringValue("webpageUrl",content);
 
+                        Debug.Log("wx Share Dic text:" + text + "\n bText:" + bText + "\n Scene:" + scene + "\n ShareType:" + shareType + "\n title:" + title + "\n description:" + description 
+                        + "\n thumbPath:" + thumbPath + "\n imageUrl:" + imageUrl +"\n musicUrl:" + musicUrl + "\n musicLowBandDataUrl:" + musicLowBandDataUrl + "\n videoUrl:" + videoUrl 
+                        + "\n videoLowBandUrl:" + videoLowBandUrl + "\n webPageUrl:" + webpageUrl);
+
+                        Debug.Log("start to Wx Share");
+
+			xdShare(text,bText,scene,shareType,title,description,thumbPath,imageUrl,musicUrl,
+			musicLowBandUrl,musicDataUrl,musicLowBandDataUrl,videoUrl,videoLowBandUrl,webpageUrl);
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("shareToWX", DicToMap(content));
