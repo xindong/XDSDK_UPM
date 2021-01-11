@@ -465,6 +465,12 @@ extern "C"{
         void OpenProtocol(int type) {
             [XDCore openProtocolWithType:(NSInteger)type];
         }
+        
+        void OpenUserMoment(const char * xdId, const char * config) {
+            NSString *_xdid = [NSString stringWithUTF8String:NoNull(xdId)];
+            NSString *_config = [NSString stringWithUTF8String:NoNull(config)];
+            [XDCore openTapMomentUserCenterWithId:_xdid config:_config];
+        }
            
            void invokeFunc(const char * unityCallbackID, const char * params) {
                NSString *unityCallbackIDString = [NSString stringWithUTF8String:unityCallbackID];

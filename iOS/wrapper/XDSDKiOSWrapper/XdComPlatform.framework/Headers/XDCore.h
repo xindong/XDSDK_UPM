@@ -13,7 +13,7 @@
 #define XdComPlatform_XDCore_h
 
 /**
- 心动SDK
+ 心动SDK 4.3.10
  */
 @interface XDCore : NSObject
 
@@ -285,6 +285,13 @@ NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
 */
 + (void)customAdParams:(nullable NSDictionary *)params;
+
+
+
+/// 打开用户动态个人中心
+/// @param xdId 心动 id
+/// @param config json 字符串固定格式
++ (void)openTapMomentUserCenterWithId:(NSString *_Nonnull)xdId config:(NSString *_Nonnull)config;
 
 /// 打开协议页面
 /// @param type 0用户协议， 1游戏协议， 2隐私协议
