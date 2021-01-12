@@ -196,6 +196,10 @@ public class Demo : MonoBehaviour
 
 		if (GUI.Button (new Rect (750, 100, 300, 100), "微信分享文字", myButtonStyle)){
 			Dictionary<string, string> content = new Dictionary<string, string> ();
+            
+            // https://developer.apple.com/documentation/foundation/nsstring/1409420-boolvalue?preferredLanguage=occ
+            content.Add ("bText", "Y");
+            
 			content.Add ("title", "***title***");
 			content.Add ("description", "***description***");
 			content.Add ("text", "***text***");
