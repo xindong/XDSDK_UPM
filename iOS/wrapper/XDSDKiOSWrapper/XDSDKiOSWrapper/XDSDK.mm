@@ -126,6 +126,14 @@ extern "C"{
     extern "C" {
 #endif
         
+#pragma mark - Tool
+        
+        const char* NoNull(const char* content) {
+            return content ?: "";
+        }
+        /*===============================================*/
+        
+        
         void initXDSDK(const char* appid,int orientation,const char* channel, const char* version, bool enableTapdb){
             
             XDSDK * sdk = [XDSDK defaultInstance];
@@ -306,25 +314,25 @@ extern "C"{
             
             NSLog(@"微信分享");
             
-            NSString * oc_text = [NSString stringWithUTF8String:text];
-            NSString * oc_bText = [NSString stringWithUTF8String:bText];
-            NSString * oc_scene = [NSString stringWithUTF8String:scene];
-            NSString * oc_shareType = [NSString stringWithUTF8String:shareType];
-            NSString * oc_title = [NSString stringWithUTF8String:title];
-            NSString * oc_description = [NSString stringWithUTF8String:description];
-            NSString * oc_thumbPath = [NSString stringWithUTF8String:thumbPath];
+            NSString * oc_text = [NSString stringWithUTF8String:NoNull(text)];
+            NSString * oc_bText = [NSString stringWithUTF8String:NoNull(bText)];
+            NSString * oc_scene = [NSString stringWithUTF8String:NoNull(scene)];
+            NSString * oc_shareType = [NSString stringWithUTF8String:NoNull(shareType)];
+            NSString * oc_title = [NSString stringWithUTF8String:NoNull(title)];
+            NSString * oc_description = [NSString stringWithUTF8String:NoNull(description)];
+            NSString * oc_thumbPath = [NSString stringWithUTF8String:NoNull(thumbPath)];
             
-            NSString * oc_imageUrl = [NSString stringWithUTF8String:imageUrl];
+            NSString * oc_imageUrl = [NSString stringWithUTF8String:NoNull(imageUrl)];
            
-            NSString * oc_musicUrl = [NSString stringWithUTF8String:musicUrl];
-            NSString * oc_musicLowBandUrl = [NSString stringWithUTF8String:musicLowBandUrl];
-            NSString * oc_musicDataUrl = [NSString stringWithUTF8String:musicDataUrl];
-            NSString * oc_musicLowBandDataUrl = [NSString stringWithUTF8String:musicLowBandDataUrl];
+            NSString * oc_musicUrl = [NSString stringWithUTF8String:NoNull(musicUrl)];
+            NSString * oc_musicLowBandUrl = [NSString stringWithUTF8String:NoNull(musicLowBandUrl)];
+            NSString * oc_musicDataUrl = [NSString stringWithUTF8String:NoNull(musicDataUrl)];
+            NSString * oc_musicLowBandDataUrl = [NSString stringWithUTF8String:NoNull(musicLowBandDataUrl)];
             
-            NSString * oc_videoUrl = [NSString stringWithUTF8String:videoUrl];
-            NSString * oc_videoLowBandUrl = [NSString stringWithUTF8String:videoLowBandUrl];
+            NSString * oc_videoUrl = [NSString stringWithUTF8String:NoNull(videoUrl)];
+            NSString * oc_videoLowBandUrl = [NSString stringWithUTF8String:NoNull(videoLowBandUrl)];
             
-            NSString * oc_webpageUrl = [NSString stringWithUTF8String:webpageUrl];
+            NSString * oc_webpageUrl = [NSString stringWithUTF8String:NoNull(webpageUrl)];
             
             [XDWXShare setWXShareCallBack:[XDSDK defaultInstance]];
             
@@ -457,6 +465,12 @@ extern "C"{
         void OpenProtocol(int type) {
             [XDCore openProtocolWithType:(NSInteger)type];
         }
+        
+        void OpenUserMoment(const char * xdId, const char * config) {
+            NSString *_xdid = [NSString stringWithUTF8String:NoNull(xdId)];
+            NSString *_config = [NSString stringWithUTF8String:NoNull(config)];
+            [XDCore openTapMomentUserCenterWithId:_xdid config:_config];
+        }
            
            void invokeFunc(const char * unityCallbackID, const char * params) {
                NSString *unityCallbackIDString = [NSString stringWithUTF8String:unityCallbackID];
@@ -480,6 +494,8 @@ extern "C"{
 #if __cplusplus
     }
 #endif
+
+
 
 
 # pragma mark - XDSDKCallBack
