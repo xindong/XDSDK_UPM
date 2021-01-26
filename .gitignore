@@ -75,3 +75,6 @@ Unity/Assets/ZFBrowser
 *.DS_Store
 
 Unity/io
+Unity/TapSDKUnity
+
+*.unitypackage
