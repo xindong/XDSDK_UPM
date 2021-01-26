@@ -1,0 +1,33 @@
+stages:
+  - build-nightly
+  - merge
+  - build-release
+
+merge:
+  stage: merge
+  script:
+    - ./.ci/merge.sh
+  tags:
+    - ios-builder
+  only:
+    - merge_requests
+
+build-nightly:
+  stage: build-nightly
+  script:
+    - ./.ci/build-nightly.sh
+  tags:
+    - ios-builder
+  only:
+    - /^nb-.*$/
+
+build-release:
+  stage: build-release
+  script:
+  - ./.ci/build-release.sh
+  tags:
+    - ios-builder
+  only:
+    - tags
+  except:
+    - /^nb-.*$/
