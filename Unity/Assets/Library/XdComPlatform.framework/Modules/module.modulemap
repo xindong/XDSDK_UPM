@@ -1,0 +1,6 @@
+framework module XdComPlatform {
+  umbrella header "XdComPlatform.h"
+
+  export *
+  module * { export * }
+}

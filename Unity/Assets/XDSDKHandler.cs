@@ -76,7 +76,22 @@ public class XDSDKHandler : xdsdk.XDCallback {
 
 	}
 
-	public override void RestoredPayment(List<Dictionary<string,string>> resultList){
+    public override void OnProtocolAgreed()
+    {
+		Debug.Log("OnProtocolAgreed  " );
+	}
+
+    public override void OnProtocolOpenSucceed()
+    {
+		Debug.Log("OnProtocolOpenSucceed " );
+	}
+
+    public override void OnProtocolOpenFailed(string msg)
+    {
+		Debug.Log("OnProtocolOpenFail ： " + msg);
+	}
+
+    public override void RestoredPayment(List<Dictionary<string,string>> resultList){
 		Debug.Log ("RestoredPayment resultList： ");
 		foreach (Dictionary<string,string> dictionary in resultList)
 			{

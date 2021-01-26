@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_limit_layout"
+    android:layout_width="360dp"
+    android:layout_height="260dp"
+    android:background="@drawable/start_bg_white_round">
+
+    <TextView
+        android:id="@+id/tv_guest_tip_title"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="健康游戏提醒"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="340dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/content_bg_gray_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_guest_tip_title" />
+
+
+    <com.xd.sdk.ui.ShadowLayout
+        android:id="@+id/imageView10"
+        android:layout_width="338dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="6dp"
+        app:blurRadius="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/view5"
+        app:layout_constraintStart_toEndOf="@+id/view5"
+        app:layout_constraintTop_toTopOf="@+id/view5"
+        app:shadowColor="#e3e3e3"
+        app:shadowRadius="6dp"
+        app:xOffset="0dp"
+        app:yOffset="2dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/shadow_dialog_bg" />
+
+    </com.xd.sdk.ui.ShadowLayout>
+
+    <TextView
+        android:id="@+id/tv_guest_tip_content"
+        android:layout_width="308dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="10dp"
+        android:letterSpacing="0.07"
+        android:lineSpacingExtra="2dp"
+        android:scrollbars="none"
+        android:text="您的游客体验时长60分钟，请实名以后继续游戏。未成年人已纳入防沉迷系统，请合理安排时间"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+    <LinearLayout
+        android:id="@+id/ll_guest_tip_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_gravity="right"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/switch_account_new" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:background="#00FFFFFF"
+            android:gravity="center"
+            android:text="切换账号"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_guest_tip_real"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/xd_button_taptap_blue"
+        android:text="去实名"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bt_guest_tip_enter"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/xd_button_taptap_white"
+        android:text="进入游戏"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bt_guest_tip_quit"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/xd_button_taptap_white"
+        android:text="退出游戏"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,18 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
     package="com.xd.sdklib"
     android:versionCode="1"
     android:versionName="1.0" >
-    
-    <uses-sdk
-        android:minSdkVersion="12"
-        android:targetSdkVersion="21" />
-
+    <uses-sdk tools:overrideLibrary="com.bun.miitmdid"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
-    <application>
+    <application  android:usesCleartextTraffic="true">
         <activity
                          android:name="com.unity3d.player.UnityPlayerActivity"
                          android:launchMode="2"
@@ -30,7 +27,6 @@
                          </intent-filter>
 
         </activity>
-
 
         <activity
             android:name="com.xd.sdklib.helper.XDStartView"
@@ -69,10 +65,15 @@
         <activity
             android:name="com.taptap.sdk.TapTapActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:theme="@android:style/Theme.NoTitleBar" />
 
+        <activity
+            android:name="com.taptap.forum.TapTapActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -101,6 +102,7 @@
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+           <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
 

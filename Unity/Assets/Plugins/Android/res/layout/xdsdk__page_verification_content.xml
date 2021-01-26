@@ -10,39 +10,39 @@
         android:layout_height="wrap_content"
         android:text="账号保护"
         android:textColor="#a37d79"
-        android:textSize="31sp"/>
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="在不常用的设备上登录，需要验证你的手机号码"
         android:textColor="#a37d79"
-        android:textSize="@dimen/text_size"/>
+        android:textSize="12sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
+        android:layout_height="38dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="9dp"
         android:background="@drawable/xdsdk__bg_round_dark"
-        android:layout_gravity="center_vertical">
+        android:orientation="horizontal">
 
         <!--<TextView-->
-            <!--android:id="@+id/country_code"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:paddingLeft="20dp"-->
-            <!--android:paddingRight="20dp"-->
-            <!--android:textColor="#a37d79"-->
-            <!--android:textSize="18sp"/>-->
+        <!--android:id="@+id/country_code"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingRight="20dp"-->
+        <!--android:textColor="#a37d79"-->
+        <!--android:textSize="18sp"/>-->
 
         <!--<View-->
-            <!--android:layout_width="0.5dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="14dp"-->
-            <!--android:layout_marginBottom="14dp"-->
-            <!--android:background="#a37d79" />-->
+        <!--android:layout_width="0.5dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="14dp"-->
+        <!--android:layout_marginBottom="14dp"-->
+        <!--android:background="#a37d79" />-->
 
         <TextView
             android:id="@+id/phone_number"
@@ -58,10 +58,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical">
+        android:layout_height="36dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/code"
@@ -69,10 +69,10 @@
             android:layout_height="match_parent"
             android:layout_weight="129"
             android:background="@drawable/edittext_bg_round"
+            android:digits="0123456789"
             android:hint="验证码"
             android:imeOptions="flagNoFullscreen|flagNavigateNext"
             android:inputType="number"
-            android:digits="0123456789"
             android:paddingLeft="23dp"
             android:paddingRight="23dp"
             android:textColor="@color/edittext"
@@ -84,26 +84,26 @@
             android:id="@+id/action"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="89"
             android:layout_marginLeft="14dp"
+            android:layout_weight="89"
             android:background="@drawable/xdsdk__bg_round_button"
             android:gravity="center"
             android:text="发送验证码"
             android:textColor="@color/xdsdk__action_text"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/xdsdk__bg_round_button"
         android:gravity="center"
         android:text="确认"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"/>
+        android:textSize="16sp" />
 
 
 </LinearLayout>

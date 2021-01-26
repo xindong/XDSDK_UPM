@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System;
 
-
-
 namespace xdsdk
 {
     public class XDSDKImp
@@ -438,9 +436,30 @@ namespace xdsdk
         {
 #if UNITY_IOS && !UNITY_EDITOR
 
-			xdShare(content["text"],content["bText"],content["scene"],content["shareType"],content["title"],content["description"],content["thumbPath"],content["imageUrl"],content["musicUrl"],
-			content["musicLowBandUrl"],content["musicDataUrl"],content["musicLowBandDataUrl"],content["videoUrl"],content["videoLowBandUrl"],content["webpageUrl"]);
+                        string text = XDSDKUtil.DictionaryGetStringValue("text",content);
+                        string bText = XDSDKUtil.DictionaryGetStringValue("bText",content);
+                        string scene = XDSDKUtil.DictionaryGetStringValue("scene",content);
+                        string shareType =  XDSDKUtil.DictionaryGetStringValue("shareType",content);
+                        string title = XDSDKUtil.DictionaryGetStringValue("title",content);
+                        string description = XDSDKUtil.DictionaryGetStringValue("description",content);
+                        string thumbPath = XDSDKUtil.DictionaryGetStringValue("thumbPath",content);
+                        string imageUrl =XDSDKUtil.DictionaryGetStringValue("imageUrl",content);
+                        string musicUrl = XDSDKUtil.DictionaryGetStringValue("musicUrl",content);
+                        string musicLowBandUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandUrl",content);
+                        string musicDataUrl = XDSDKUtil.DictionaryGetStringValue("musicDataUrl",content);
+                        string musicLowBandDataUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandDataUrl",content);
+                        string videoUrl = XDSDKUtil.DictionaryGetStringValue("videoUrl",content);
+                        string videoLowBandUrl = XDSDKUtil.DictionaryGetStringValue("videoLowBandUrl",content);
+                        string webpageUrl = XDSDKUtil.DictionaryGetStringValue("webpageUrl",content);
 
+                        Debug.Log("wx Share Dic text:" + text + "\n bText:" + bText + "\n Scene:" + scene + "\n ShareType:" + shareType + "\n title:" + title + "\n description:" + description 
+                        + "\n thumbPath:" + thumbPath + "\n imageUrl:" + imageUrl +"\n musicUrl:" + musicUrl + "\n musicLowBandDataUrl:" + musicLowBandDataUrl + "\n videoUrl:" + videoUrl 
+                        + "\n videoLowBandUrl:" + videoLowBandUrl + "\n webPageUrl:" + webpageUrl);
+
+                        Debug.Log("start to Wx Share");
+
+			xdShare(text,bText,scene,shareType,title,description,thumbPath,imageUrl,musicUrl,
+			musicLowBandUrl,musicDataUrl,musicLowBandDataUrl,videoUrl,videoLowBandUrl,webpageUrl);
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
 			jc.CallStatic ("shareToWX", DicToMap(content));
@@ -474,6 +493,10 @@ namespace xdsdk
 
         public void SetRole(string roleId,string roleName,string roleAvatar)
         {
+                if (roleAvatar == null)
+                {
+                    roleAvatar = "";
+                }
         #if UNITY_IOS && !UNITY_EDITOR
                 XDSDKSetRole(roleId,roleName,roleAvatar);
             #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -494,25 +517,25 @@ namespace xdsdk
 #endif
         }
 
-        public bool AutoLogin()
+        public void AutoLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
-                return XDSDKAutoLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
-
-                // TODO
-        #endif
-                return false;
+#if UNITY_IOS && !UNITY_EDITOR
+                XDSDKAutoLogin();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+               AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("autoLogin");
+#endif
         }
 
         public void TapTapLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
                 XDSDKTapTapLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
-
+#elif UNITY_ANDROID && !UNITY_EDITOR
+              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("taptapLogin");
                 // TODO
-        #endif
+#endif
         }
 
         public void AppleLogin()
@@ -530,9 +553,29 @@ namespace xdsdk
         #if UNITY_IOS && !UNITY_EDITOR
                 XDSDKGuestLogin();
         #elif UNITY_ANDROID && !UNITY_EDITOR
-
-                // TODO
+                AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+                jc.CallStatic("guestLogin");
         #endif
+        }
+
+        public void GameStop() {
+#if UNITY_IOS && !UNITY_EDITOR
+                        XDSDKGameStop();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("gameStoped");
+#endif
+        }
+
+        public void GameResume() {
+#if UNITY_IOS && !UNITY_EDITOR
+                        XDSDKGameResume();
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+             AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("gameStarted");
+#endif
         }
 
         public void OnResume(){
@@ -566,6 +609,29 @@ namespace xdsdk
 #endif
 
 	}
+
+        public void OpenProtocol(XDSDK.ProtocolType type)
+        {
+            int protocolType = Convert.ToInt32(type);
+#if UNITY_IOS && !UNITY_EDITOR
+                      OpenProtocol(protocolType);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                        // TODO
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("openProtocol",protocolType);
+#endif
+        }
+
+        public void OpenUserMoment(XDMomentConfig config, string xdId)
+        {
+            string configString = config.GetConfigString();
+#if UNITY_IOS && !UNITY_EDITOR
+                     OpenUserMoment(xdId,configString);
+#elif UNITY_ANDROID && !UNITY_EDITOR
+              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
+            jc.CallStatic("openUserMoment",configString,xdId);
+#endif
+        }
 
 
 
@@ -652,14 +718,21 @@ namespace xdsdk
         private static extern void XDSDKClearRole();
 
         [DllImport("__Internal")]
-        private static extern bool XDSDKAutoLogin();
+        private static extern void XDSDKAutoLogin();
         [DllImport("__Internal")]
         private static extern void XDSDKTapTapLogin();
         [DllImport("__Internal")]
         private static extern void XDSDKAppleLogin();
         [DllImport("__Internal")]
         private static extern void XDSDKGuestLogin();
-
+        [DllImport("__Internal")]
+        private static extern void XDSDKGameStop();
+        [DllImport("__Internal")]
+        private static extern void XDSDKGameResume();
+        [DllImport("__Internal")]
+        private static extern void OpenProtocol(int type);
+        [DllImport("__Internal")]
+        private static extern void OpenUserMoment(string xdId,string config);
 
 #elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 

@@ -22,6 +22,10 @@ android {
         }
     }
 
+    repositories {
+        flatDir{dirs 'libs'}
+    }
+
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -29,6 +33,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //    compile 'com.android.support:support-v4:25.0.0'
     compile files('libs/classes.jar')
+    implementation(name: 'constraint-layout-1.1.3', ext: 'aar')
+
 }
 
 android.libraryVariants.all { variant ->
@@ -67,7 +73,7 @@ task jarUnityXDLiveLib(type: Jar, dependsOn: ['build']) {
 
 task jarUnityXDTrafficControlLib(type: Jar, dependsOn: ['build']) {
     archiveName = 'XDTrafficControlForUnity.jar'
-    from('build/intermediates/classes/release')
+    from('build/intermediates/javac/release/compileReleaseJavaWithJavac/classes')
     destinationDir = file('build/libs')
     exclude('com/xindong/trafficcontrol/BuildConfig.class')
     exclude('com/xindong/trafficcontrol/BuildConfig\$*.class')

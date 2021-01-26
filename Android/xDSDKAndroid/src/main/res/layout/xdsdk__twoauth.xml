@@ -12,30 +12,30 @@
 
         <ImageButton
             android:id="@+id/back"
-            android:layout_width="41dp"
-            android:layout_height="50dp"
+            android:layout_width="28dp"
+            android:layout_height="34dp"
             android:layout_gravity="left"
             android:layout_marginLeft="4dp"
             android:background="@null"
-            android:padding="15dp"
+            android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/xd_back" />
 
         <ImageButton
             android:id="@+id/close"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="right"
             android:background="@null"
-            android:padding="15dp"
+            android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/xd_close" />
 
     </FrameLayout>
 
     <ImageView
-        android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="-20dp"
         android:background="@null"

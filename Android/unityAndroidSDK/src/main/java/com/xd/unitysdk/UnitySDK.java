@@ -35,6 +35,26 @@ public class UnitySDK{
         XDSDK.login();
     }
 
+    public static void taptapLogin(){
+        XDSDK.taptapLogin();
+    }
+
+    public static void guestLogin(){
+        XDSDK.guestLogin();
+    }
+
+    public static void autoLogin(){
+        XDSDK.autoLogin();
+    }
+
+    public static void setRole(String roleId, String roleName, String roleAvatar){
+        XDSDK.setRole(roleId, roleName, roleAvatar);
+    }
+
+    public static void clearRole(){
+        XDSDK.clearRole();
+    }
+
     public static String getAccessToken() {
         return XDSDK.getAccessToken();
     }
@@ -116,6 +136,21 @@ public class UnitySDK{
 
     public static void onResume(){XDSDK.onResume(UnityPlayer.currentActivity);}
     public static void onStop(){XDSDK.onStop(UnityPlayer.currentActivity);}
+    public static void gameStarted(){
+        XDSDK.gameStarted();
+    }
+
+    public static void gameStoped(){
+        XDSDK.gameStoped();
+    }
+
+    public static void openProtocol(int type){
+        XDSDK.openProtocol(type);
+    }
+
+    public static void openUserMoment(String config, String xdId){
+        XDSDK.openUserMoment(config, xdId);
+    }
 
 
     public static void shareToWX(Map<String, String> content) {
@@ -157,17 +192,17 @@ public class UnitySDK{
 
         @Override
         public void onInitFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnInitFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnInitFailed", s == null ? "":s);
         }
 
         @Override
         public void onLoginSucceed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginSucceed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginSucceed", s == null ? "":s);
         }
 
         @Override
         public void onLoginFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnLoginFailed", s == null ? "":s);
         }
 
         @Override
@@ -177,12 +212,12 @@ public class UnitySDK{
 
         @Override
         public void onGuestBindSucceed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindSucceed", s == null ? "":s);
         }
 
         @Override
         public void onGuestBindFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnGuestBindFailed", s == null ? "":s);
         }
 
         @Override
@@ -192,7 +227,7 @@ public class UnitySDK{
 
         @Override
         public void onRealNameFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnRealNameFailed", s == null ? "":s);
         }
 
         @Override
@@ -207,13 +242,30 @@ public class UnitySDK{
 
         @Override
         public void onPayFailed(String s) {
-            UnityPlayer.UnitySendMessage("XDSDK", "OnPayFailed", s);
+            UnityPlayer.UnitySendMessage("XDSDK", "OnPayFailed", s == null ? "":s);
         }
 
         @Override
         public void onPayCanceled() {
             UnityPlayer.UnitySendMessage("XDSDK", "OnPayCanceled", "");
         }
+
+        @Override
+        public void onProtocolAgreed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolAgreed", "");
+        }
+
+        @Override
+        public void onProtocolOpenFailed(String s) {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolOpenFailed", s == null ? "" :s);
+        }
+
+        @Override
+        public void onProtocolOpenSucceed() {
+            UnityPlayer.UnitySendMessage("XDSDK", "OnProtocolOpenSucceed", "");
+        }
+
+
     };
 
     private static final ExitCallback exitCallback = new ExitCallback() {

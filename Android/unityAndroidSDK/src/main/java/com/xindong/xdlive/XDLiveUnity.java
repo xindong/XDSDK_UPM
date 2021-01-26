@@ -24,7 +24,7 @@ public class XDLiveUnity {
 
         @Override
         public void onXDLiveClosed() {
-            UnityPlayer.UnitySendMessage("XDLiveListener", "OnXDLiveClos./ed", "");
+            UnityPlayer.UnitySendMessage("XDLiveListener", "OnXDLiveClosed", "");
         }
     };
 

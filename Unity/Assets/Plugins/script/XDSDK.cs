@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 2.1.7
+ * XDSDK Version 2.4.7
  * 
  * 
  * 
@@ -16,6 +16,13 @@ namespace xdsdk
 {
 	public class XDSDK
 	{
+        public enum ProtocolType
+        {
+            PROTOCOL_TYPE_USER,
+            PROTOCOL_TYPE_GAME,
+            PROTOCOL_TYPE_PRIVACY
+        }
+
 		//设置回调方法
 		public static void SetCallback(XDCallback callback){
 			XDSDKImp.GetInstance ().SetCallback (callback);
@@ -151,8 +158,8 @@ namespace xdsdk
 		}
 
 		// 自定义登录方式
-		public static bool AutoLogin() {
-			return XDSDKImp.GetInstance().AutoLogin();
+		public static void AutoLogin() {
+			XDSDKImp.GetInstance().AutoLogin();
 		}
 
 		public static void TapTapLogin() {
@@ -167,6 +174,14 @@ namespace xdsdk
 			XDSDKImp.GetInstance().GuestLogin();
 		}
 
+		public static void GameStop() {
+			XDSDKImp.GetInstance ().GameStop();
+		} 
+
+		public static void GameResume () {
+			XDSDKImp.GetInstance ().GameResume();
+		}
+
 		// onresume 安卓
 		public static void OnResume(){
 			XDSDKImp.GetInstance ().OnResume();
@@ -176,5 +191,16 @@ namespace xdsdk
 		public static void OnStop(){
 			XDSDKImp.GetInstance ().OnStop();
 		}
+
+        
+        public static void OpenProtocol(ProtocolType type)
+        {
+			XDSDKImp.GetInstance().OpenProtocol(type);
+        }
+
+        public static void OpenUserMoment(XDMomentConfig config, string xdId)
+        {
+			XDSDKImp.GetInstance().OpenUserMoment(config, xdId);
+        }
 	}
 }

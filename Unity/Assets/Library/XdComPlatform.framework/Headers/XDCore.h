@@ -13,7 +13,7 @@
 #define XdComPlatform_XDCore_h
 
 /**
- 心动SDK
+ 心动SDK 4.3.11
  */
 @interface XDCore : NSObject
 
@@ -129,10 +129,8 @@
 
 /*
  手动调用登录方式时，先调用autologin
- 若返回YES，则有上次登录用户，SDK会自动登录。等待登录结果回调继续处理
- 若返回NO，则没有上次登录用户，游戏直接显示登录界面
  */
-+ (BOOL)autoLogin;
++ (void)autoLogin;
 
 + (void)taptapLogin;
 + (void)appleLogin;
@@ -224,6 +222,21 @@
 /// @param userActivity 回调内容
 + (BOOL)handleOpenUniversalLink:(nullable NSUserActivity *)userActivity;
 
+#pragma mark - 防沉迷
+/// 恢复时长统计
++ (void)gameResume;
+
+/// 停止时长统计
++ (void)gameStop;
+
+
+/*
+ 检查防沉迷剩余时间，暂时只支持联网数据查询
+ 由于客户端数据定时发送，结果可能有最多两分钟时长误差
+ 成年人或不受防沉迷用户，结果可能为空
+ */
++ (NSString *_Nullable)checkAntiAddictionResult;
+
 #pragma mark - 角色相关
 + (void)setRole:(NSString *_Nullable)roleId roleName:(NSString *_Nullable)roleName roleAvatar:(NSString *_Nonnull)avatarUrl;
 
@@ -272,6 +285,17 @@ NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
 */
 + (void)customAdParams:(nullable NSDictionary *)params;
+
+
+
+/// 打开用户动态个人中心
+/// @param xdId 心动 id
+/// @param config json 字符串固定格式
++ (void)openTapMomentUserCenterWithId:(NSString *_Nonnull)xdId config:(NSString *_Nonnull)config;
+
+/// 打开协议页面
+/// @param type 0用户协议， 1游戏协议， 2隐私协议
++ (void)openProtocolWithType:(NSInteger)type;
 
 @end
 

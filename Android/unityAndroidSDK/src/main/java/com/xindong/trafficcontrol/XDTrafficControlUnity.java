@@ -19,7 +19,7 @@ public class XDTrafficControlUnity {
             @Override
             public void onQueueingFailed(String s) {
                 Log.e("XDTrafficControlUnity", "onQueueingFailed");
-                UnityPlayer.UnitySendMessage("XDTrafficControlListener", "XDTrafficControlFailed", s);
+                UnityPlayer.UnitySendMessage("XDTrafficControlListener", "XDTrafficControlFailed", s == null ? "" :s);
             }
 
             @Override

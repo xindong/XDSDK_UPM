@@ -10,19 +10,19 @@
 
     <ImageButton
         android:id="@+id/pay_close"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="end"
         android:layout_marginRight="0dp"
         android:background="@null"
-        android:padding="15dp"
+        android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/xd_close"
         android:visibility="visible" />
 
     <ImageView
-        android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_width="132dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="-20dp"
         android:background="@null"
@@ -57,15 +57,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/products"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                 android:id="@+id/pays"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,32 +109,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="bottom" >
-
-            <LinearLayout
-                android:id="@+id/pay_alipay_commit"
-                android:layout_width="337.5dp"
-                android:layout_height="54dp"
-                android:background="@drawable/xd_start_qq_bg"
-                android:gravity="center_horizontal" >
-
-                <ImageView
-                    android:layout_width="33dp"
-                    android:layout_height="27dp"
-                    android:layout_gravity="center_vertical"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/xd_alipay"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:text="支付宝"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp" />
-            </LinearLayout>
+            android:layout_marginTop="20dp"
+            android:gravity="bottom">
 
             <ImageView
                 android:id="@+id/pay_recommand"
@@ -143,25 +119,49 @@
                 android:layout_marginLeft="-57dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/xd_recommand"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
+
+            <LinearLayout
+                android:id="@+id/pay_alipay_commit"
+                android:layout_width="225dp"
+                android:layout_height="36dp"
+                android:background="@drawable/xd_start_qq_bg"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/xd_alipay" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="支付宝"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/pay_wechat_commit"
-            android:layout_width="337.5dp"
-            android:layout_height="54dp"
+            android:layout_width="225dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="18dp"
-            android:layout_marginTop="18dp"
             android:background="@drawable/xd_start_weixin_bg"
-            android:gravity="center_horizontal" >
+            android:gravity="center_horizontal">
 
             <ImageView
-                android:layout_width="33dp"
-                android:layout_height="27dp"
+                android:layout_width="22dp"
+                android:layout_height="18dp"
                 android:layout_gravity="center_vertical"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/start_weixin"/>
+                android:src="@drawable/start_weixin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -170,7 +170,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="微信支付 "
                 android:textColor="#ffffff"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

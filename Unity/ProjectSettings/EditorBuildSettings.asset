@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/demo.unity
-    guid: af086ef2599c44671b95480781e3620c
-  - enabled: 0
-    path: Assets/Plugins/XDSDKEditor/Demo/Demo.unity
-    guid: 594b06642c06c41a5917d0f78c94fbbc
+  m_Scenes: []
   m_configObjects: {}
