@@ -21,10 +21,6 @@ EnterpriseExportOptionsPlist=$PROJECT_PATH/ExportOptions.plist
 
 ExportIPAPath=$4
 
-echo $3
-
-echo $4
-
 xcodebuild -project $PROJECT_PATH/$Project_Folder/$Project_Name.xcodeproj -scheme $Project_Name -configuration $Configuration -archivePath $PROJECT_PATH/$Project_Folder/build/$Project_Name-enterprise.xcarchive clean archive build
 
 xcodebuild -exportArchive -archivePath $PROJECT_PATH/$Project_Folder/build/$Project_Name-enterprise.xcarchive -exportOptionsPlist $EnterpriseExportOptionsPlist -exportPath $ExportIPAPath/$3
