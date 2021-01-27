@@ -62,8 +62,6 @@ unity_package_compile_sh=$project_dir/export_unity_package.sh
 
 unity_version=2018.4.30f1
 
-sdkVersion=2.4.7
-
 doBuild() {
 
     cd $1

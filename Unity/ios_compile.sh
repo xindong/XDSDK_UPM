@@ -7,7 +7,7 @@ UNITY_PATH=/Applications/Unity/Hub/Editor/$2/Unity.app/Contents/MacOS/Unity
 PROJECT_PATH=$1
  
 #在Unity中构建apk#
-$UNITY_PATH -buildTarget iOS -projectPath $PROJECT_PATH -executeMethod XDSDK_Editor.ProjectBuild.BuildForIOS
+$UNITY_PATH -buildTarget iOS -batchmode -projectPath $PROJECT_PATH -executeMethod XDSDK_Editor.ProjectBuild.BuildForIOS -quit
 
 echo "开始XCode build"
 
