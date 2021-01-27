@@ -8,4 +8,4 @@ echo SDK_VERSION:$3
 
 echo EXPORT_PATH:$4
 
-$UNITY_PATH -projectPath $1 -executeMethod XDSDK_Editor.ProjectBuild.ExportUnityPackage -UNITY_VERSION=$2 -SDK_VERSION=$3 -EXPORT_PATH=$4
+$UNITY_PATH -projectPath $1 -batchmode -executeMethod XDSDK_Editor.ProjectBuild.ExportUnityPackage -UNITY_VERSION=$2 -SDK_VERSION=$3 -EXPORT_PATH=$4 -quit

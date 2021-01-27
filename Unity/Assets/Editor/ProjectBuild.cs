@@ -54,7 +54,13 @@ namespace XDSDK_Editor
         static void ExportUnitySDKPackage(string createPath, string version)
         {
             var path = createPath + "/XDSDK_Unity_v" + version + ".unitypackage";
-            string[] resPaths = { "Assets/Library/", "Assets/Plugins/" };
+            string[] resPaths = { "Assets/Library",
+            "Assets/Plugins/Android",
+            "Assets/Plugins/Common","Assets/Plugins/script","Assets/Plugins/TapTap","Assets/Plugins/XDLive","Assets/Plugins/XDTrafficControl",
+            "Assets/Plugins/iOS/Blank.swift",
+            "Assets/Plugins/iOS/libWeChatSDK.a",
+            "Assets/Plugins/iOS/libXDSDKiOSWrapper.a",
+            "Assets/Plugins/iOS/libXDTrafficControliOSWrapper.a" };
             var assetPathNames = AssetDatabase.GetDependencies(resPaths);
             AssetDatabase.ExportPackage(assetPathNames, path, ExportPackageOptions.Recurse);
         }
@@ -62,7 +68,7 @@ namespace XDSDK_Editor
         static void ExportUnityDemoPackdge(string createPath, string version)
         {
             var path = createPath + "/XDSDK_Unity_v" + version + "_demo.unitypackage";
-            var assetPathNames = AssetDatabase.GetDependencies("Assets/");
+            var assetPathNames = AssetDatabase.GetDependencies("Assets");
             AssetDatabase.ExportPackage(assetPathNames, path, ExportPackageOptions.Recurse);
         }
 
