@@ -113,7 +113,8 @@ if isNightly; then
     doBuild $DEMO_DIR "demo" "Android"
     doBuild $DEMO_DIR "demo" "IOS"
 else
-    doBuild $UP_DIR "up" 
+    doBuild $UP_DIR "up"
+    cp -a $project_dir/Assets/Plugins/iOS/resource $UP_DIR
 fi
 
 cd ..
