@@ -44,23 +44,6 @@ using XDSDK_Editor;
                     return;
                 }
 
-                // capabilities 
-                string fileName = "Unity-iPhone" + ".entitlements";
-                string entitleFilePath = path + "/" + fileName;
-                PlistDocument tempEntitlements = new PlistDocument();
-                // string key_associatedDomains = "com.apple.developer.associated-domains";
-                // string key_signinWithApple = "com.apple.developer.applesignin";
-                // var arr_associateDomains = (tempEntitlements.root[key_associatedDomains] = new PlistElementArray()) as PlistElementArray;
-                // var arr_signinWithApple = (tempEntitlements.root[key_signinWithApple] = new PlistElementArray()) as PlistElementArray;
-                // // www.xd.com 需要替换成游戏自己官网域名
-                // arr_associateDomains.values.Add(new PlistElementString("applinks:www.xd.com"));
-                // arr_signinWithApple.values.Add(new PlistElementString("Default"));
-                // // AssciateDomains
-                // proj.AddCapability(target, PBXCapabilityType.AssociatedDomains, entitleFilePath);
-                // // Sign In With Apple
-                // proj.AddCapability (target, PBXCapabilityType.SignInWithApple,entitleFilePath);
-                tempEntitlements.WriteToFile(entitleFilePath);
-
                 // 编译配置
                 proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC");
                 proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS", "-ObjC");
@@ -132,16 +115,34 @@ using XDSDK_Editor;
                     File.Copy(parentFolder + "/Assets/Plugins/IOS/Resource/XDSDK-Info.plist", resourcePath + "/XDSDK-Info.plist");
                 }
 
-                // List<string> names = new List<string>();
-                // names.Add("TapMomentResources.bundle");
-                // names.Add("XDSDKResouse.bundle");
-                // foreach (var name in names)
-                // {
-                    // proj.AddFileToBuild(target, proj.AddFile(Path.Combine(resourcePath,name), Path.Combine(resourcePath,name), PBXSourceTree.Source));
-                // }
+                // capabilities 
+                string fileName = "Unity-iPhone" + ".entitlements";
+                string entitleFilePath = path + "/" + fileName;
+                PlistDocument tempEntitlements = new PlistDocument();
 
+                string key_associatedDomains = "com.apple.developer.associated-domains";
+                string key_signinWithApple = "com.apple.developer.applesignin";
+
+                string isNeedAppleSignIn = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","apple-Sign-In");
+                string domain = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","game-domain");
+                if(isNeedAppleSignIn!=null && isNeedAppleSignIn.Equals("true"))
+                {
+                    var arr_signinWithApple = (tempEntitlements.root[key_signinWithApple] = new PlistElementArray()) as PlistElementArray;
+                    arr_signinWithApple.values.Add(new PlistElementString("Default"));
+                    // Sign In With Apple
+                    proj.AddCapability (target, PBXCapabilityType.SignInWithApple,entitleFilePath);
+                }
+                if(domain!=null)
+                {
+                    var arr_associateDomains = (tempEntitlements.root[key_associatedDomains] = new PlistElementArray()) as PlistElementArray;
+                    // www.xd.com 需要替换成游戏自己官网域名
+                    arr_associateDomains.values.Add(new PlistElementString("applinks:"+domain));
+                    proj.AddCapability(target, PBXCapabilityType.AssociatedDomains, entitleFilePath);
+                }
+
+                tempEntitlements.WriteToFile(entitleFilePath);
+                
                 Debug.Log("添加resource成功");
-
                 // rewrite to file  
                 File.WriteAllText(projPath, proj.WriteToString());
                 SetPlist(path,resourcePath + "/XDSDK-Info.plist");
@@ -196,6 +197,23 @@ using XDSDK_Editor;
                 }
                 dir.Delete(true);
             }
+        }
+
+        private static string GetValueFromPlist(string infoPlistPath,string key)
+        {
+            if(infoPlistPath==null)
+            {
+                return null;
+            }
+            Dictionary<string, object> dic = (Dictionary<string, object>)Plist.readPlist(infoPlistPath);
+            foreach (var item in dic)
+            {
+                if(item.Key.Equals(key))
+                {
+                    return (string)item.Value;
+                }
+            }
+            return null;
         }
 
         // 修改pilist
@@ -389,12 +407,8 @@ using XDSDK_Editor;
             //在指定代码后面增加一行代码
             UnityAppController.WriteBelow(@"#import <OpenGLES/ES2/glext.h>", @"#import <XdComPlatform/XDCore.h>");
             UnityAppController.WriteBelow(@"[KeyboardDelegate Initialize];",@"[XDCore setupXDStore];");
-            UnityAppController.WriteBelow(@"AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);",
-@"// [TapFriends handleOpenUrlWithUrl:url];   
-return [XDCore HandleXDOpenURL:url];");
-            UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",
-@"// [TapFriends handleUniversalLinksWithUserActivity:userActivity];
-        [XDCore handleOpenUniversalLink:userActivity];");
+            UnityAppController.WriteBelow(@"AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);",@"return [XDCore HandleXDOpenURL:url];");
+            UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",@"[XDCore handleOpenUniversalLink:userActivity];");
             Debug.Log("修改代码成功");
         }
     }

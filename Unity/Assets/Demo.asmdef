@@ -1,0 +1,22 @@
+{
+    "name": "Demo",
+    "references": [
+        "XDSDK",
+        "TapTap",
+        "XDLive",
+        "TDSCommon",
+        "XDTrafficControl"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "iOS"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

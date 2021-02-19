@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using xdsdk;
 
 public class XDSDKHandler : xdsdk.XDCallback {
 

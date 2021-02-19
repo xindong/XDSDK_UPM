@@ -130,7 +130,16 @@
 
 #### 2.2 IOS 配置
 
-在Assets/Plugins/IOS/Resource目录下创建XD-Info.plist文件,复制以下代码并且替换其中的taptap-ClientId等第三方clientId、申请权限时的文案。
+在Assets/Plugins/IOS/Resource目录下创建XD-Info.plist文件,复制以下代码并且替换其中以下内容。
+
+* taptap:TapTap ClientId
+* wechat:微信 ClientId
+* tecent:腾讯 ClientId
+* XD: XD ClientId
+* apple-Sign-In:true 需要Apple登陆
+* game-domain: applink
+* 权限文案
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -139,24 +148,27 @@
     <key>taptap</key>
     <dict>
         <key>client_id</key>
-        <string>tt{taptap-clientId}</string>
+        <string>ttp60jgYd4FUWc4Rr8pK</string>
     </dict>
     <key>wechat</key>
     <dict>
         <key>client_id</key>
-        <string>{wechatId}</string>
+        <string>wxbdfbe5dbd3e3c64b</string>
     </dict>
     <key>tencent</key>
     <dict>
         <key>client_id</key>
-        <string>{tencentId}</string>
+        <string>tencent1106148555</string>
     </dict>
     <key>XD</key>
     <dict>
         <key>client_id</key>
-        <string>XD-{XDId}</string>
+        <string>XD-d4bjgwom9zk84wk</string>
     </dict>
-
+    <key>apple-Sign-In</key>
+    <string>true</string>
+    <key>game-domain</key>
+    <string>www.xd.com</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>App需要您的同意,才能访问相册</string>
     <key>NSCameraUsageDescription</key>
@@ -165,4 +177,5 @@
     <string>App需要您的同意,才能访问麦克风</string>
 </dict>
 </plist>
+
 ```
