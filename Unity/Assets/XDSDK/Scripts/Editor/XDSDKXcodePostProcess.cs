@@ -107,8 +107,10 @@ using XDSDK_Editor;
                 proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution: Shanghai Xindong Enterprise Development Co., Ltd.");
 
                 proj.SetBuildProperty(target,"RUNPATH_SEARCH_PATHS","@executable_path/Frameworks"); 
+                proj.SetBuildProperty(unityFrameworkTarget,"RUNPATH_SEARCH_PATHS","@executable_path/Frameworks"); 
 
                 proj.SetBuildProperty(target, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks");
+                proj.SetBuildProperty(unityFrameworkTarget, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks");
 
                 proj.SetBuildProperty(unityFrameworkTarget, "CODE_SIGN_STYLE", "Manual");
                 
