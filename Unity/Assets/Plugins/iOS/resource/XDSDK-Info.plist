@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>taptap</key>
-    <dict>
-        <key>client_id</key>
-        <string>ttp60jgYd4FUWc4Rr8pK</string>
-    </dict>
     <key>wechat</key>
     <dict>
         <key>client_id</key>
@@ -22,15 +17,9 @@
         <key>client_id</key>
         <string>XD-d4bjgwom9zk84wk</string>
     </dict>
-    <key>apple-Sign-In</key>
-    <string>true</string>
-    <key>game-domain</key>
-    <string>www.xd.com</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>App需要您的同意,才能访问相册</string>
-    <key>NSCameraUsageDescription</key>
-    <string>App需要您的同意,才能访问相机</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>App需要您的同意,才能访问麦克风</string>
+    <key>Apple_SignIn_Enable</key>
+    <string>false</string>
+    <key>Game_Domain</key>
+    <string></string>
 </dict>
 </plist>

@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
 using com.taptap.sdk;
-using TDSCommon;
 
 public class Demo : MonoBehaviour
 {

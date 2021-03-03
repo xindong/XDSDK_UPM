@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.2.4-alpha-rnd",
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
     "com.unity.collab-proxy": "1.2.15",
@@ -36,5 +37,11 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
+  },
+  "lock": {
+    "com.tds.sdk": {
+      "revision": "1.0.2.4-alpha-rnd",
+      "hash": "abf764e5ad156ef7bd555ca29ea4f62c89de420c"
+    }
   }
 }

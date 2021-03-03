@@ -15,7 +15,7 @@ using XDSDK_Editor;
     {
 #if UNITY_IOS
         // 添加标签，unity导出工程后自动执行该函数
-        [PostProcessBuild(100)]
+        [PostProcessBuildAttribute(99)]
         /* 
             2020-11-20 Jiang Jiahao
             该脚本中参数为DEMO参数，项目组根据实际参数修改
@@ -44,51 +44,6 @@ using XDSDK_Editor;
                     return;
                 }
 
-                // 编译配置
-                proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC");
-                proj.AddBuildProperty(unityFrameworkTarget, "OTHER_LDFLAGS", "-ObjC");
-
-                // Swift编译选项
-                proj.SetBuildProperty(target, "ENABLE_BITCODE", "NO"); //bitcode  NO
-                proj.SetBuildProperty(target,"ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES","YES");
-                proj.SetBuildProperty(target, "SWIFT_VERSION", "5.0");
-                proj.SetBuildProperty(target, "CLANG_ENABLE_MODULES", "YES");
-                proj.SetBuildProperty(unityFrameworkTarget, "ENABLE_BITCODE", "NO"); //bitcode  NO
-                proj.SetBuildProperty(unityFrameworkTarget,"ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES","YES");
-                proj.SetBuildProperty(unityFrameworkTarget, "SWIFT_VERSION", "5.0");
-                proj.SetBuildProperty(unityFrameworkTarget, "CLANG_ENABLE_MODULES", "YES");
-                
-
-                // add extra framework(s)
-                // 参数: 目标targetGUID, framework,是否required:fasle->required,true->optional
-                proj.AddFrameworkToProject(unityFrameworkTarget, "CoreTelephony.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "QuartzCore.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "Security.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "WebKit.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AdSupport.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AssetsLibrary.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AVKit.framework", false);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AuthenticationServices.framework", true);
-                proj.AddFrameworkToProject(unityFrameworkTarget, "AppTrackingTransparency.framework", true);
-                // proj.AddFrameworkToProject(target, "TapFriends.framework", false);
-                // 动态库
-                // AddFramework("TapFriends.framework", proj, target);
-                Debug.Log("添加framework成功");
-
-                // 添加 tbd
-                // 参数: 目标targetGUID, tdbGUID
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libc++.tbd", "libc++.tbd",PBXSourceTree.Sdk));
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libiconv.tbd", "libiconv.tbd",PBXSourceTree.Sdk));
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libsqlite3.0.tbd", "libsqlite3.0.tbd",PBXSourceTree.Sdk));
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libz.tbd", "libz.tbd",PBXSourceTree.Sdk));
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libresolv.9.tbd", "libresolv.9.tbd",PBXSourceTree.Sdk));
-                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libicucore.tbd", "libicucore.tbd",PBXSourceTree.Sdk));
-
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY", "iPhone Distribution: Shanghai Xindong Enterprise Development Co., Ltd.");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE_SPECIFIER", "Everything 2020");
-                proj.SetBuildProperty(target, "PROVISIONING_PROFILE", "6a542e15-b177-4e10-a884-31e7c51c4857");
-                proj.SetBuildProperty(target, "CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution: Shanghai Xindong Enterprise Development Co., Ltd.");
-
                 proj.SetBuildProperty(target,"RUNPATH_SEARCH_PATHS","@executable_path/Frameworks"); 
                 proj.SetBuildProperty(unityFrameworkTarget,"RUNPATH_SEARCH_PATHS","@executable_path/Frameworks"); 
 
@@ -97,10 +52,8 @@ using XDSDK_Editor;
 
                 proj.SetBuildProperty(unityFrameworkTarget, "CODE_SIGN_STYLE", "Manual");
                 
-                Debug.Log("添加tbd成功");
-
                 // 添加资源文件，注意文件路径
-                var resourcePath = Path.Combine(path, "resource");
+                var resourcePath = Path.Combine(path, "XDSDKResource");
                 string parentFolder = Directory.GetParent(Application.dataPath).FullName;
 
                 if (Directory.Exists(resourcePath))
@@ -119,12 +72,12 @@ using XDSDK_Editor;
                 string fileName = "Unity-iPhone" + ".entitlements";
                 string entitleFilePath = path + "/" + fileName;
                 PlistDocument tempEntitlements = new PlistDocument();
-
+                
                 string key_associatedDomains = "com.apple.developer.associated-domains";
                 string key_signinWithApple = "com.apple.developer.applesignin";
 
-                string isNeedAppleSignIn = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","apple-Sign-In");
-                string domain = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","game-domain");
+                string isNeedAppleSignIn = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","Apple_SignIn_Enable");
+                string domain = GetValueFromPlist(resourcePath + "/XDSDK-Info.plist","Game_Domain");
                 if(isNeedAppleSignIn!=null && isNeedAppleSignIn.Equals("true"))
                 {
                     var arr_signinWithApple = (tempEntitlements.root[key_signinWithApple] = new PlistElementArray()) as PlistElementArray;
@@ -258,24 +211,13 @@ using XDSDK_Editor;
             if(!string.IsNullOrEmpty(infoPlistPath))
             {   
                 Dictionary<string, object> dic = (Dictionary<string, object>)Plist.readPlist(infoPlistPath);
-                string taptapId = null; 
                 string xdId = null;
                 string tencentId = null;
                 string wechatId = null;
 
                 foreach (var item in dic)
                 {
-                    if(item.Key.Equals("taptap")){
-                        Dictionary<string,object> taptapDic = (Dictionary<string,object>) item.Value;
-                        foreach (var taptapItem in taptapDic)
-                        {
-                            if(taptapItem.Key.Equals("client_id")){
-                                taptapId = (string) taptapItem.Value;
-                                break;
-                            }
-                        }
-                    }
-                    else if(item.Key.Equals("XD"))
+                    if(item.Key.Equals("XD"))
                     {
                         Dictionary<string,object> xdDic = (Dictionary<string,object>) item.Value;
                         foreach (var xdItem in xdDic)
@@ -316,13 +258,6 @@ using XDSDK_Editor;
                 PlistElementArray array = dict.CreateArray("CFBundleURLTypes");
 
                 PlistElementDict dict2 = array.AddDict();
-                if(taptapId!=null)
-                {
-                    Debug.Log("修改TapTapClientId:" + taptapId + " 成功");
-                    dict2.SetString("CFBundleURLName", "TapTap");
-                    PlistElementArray array2 = dict2.CreateArray("CFBundleURLSchemes");
-                    array2.AddString(taptapId);
-                }    
 
                 if(xdId!=null)
                 {
@@ -353,45 +288,11 @@ using XDSDK_Editor;
 
             }
 
-            // //心动
-            // PlistElementArray array = dict.CreateArray("CFBundleURLTypes");
-            // PlistElementDict dict2 = array.AddDict();
-            // dict2.SetString("CFBundleURLName", "XD");
-            // PlistElementArray array2 = dict2.CreateArray("CFBundleURLSchemes");
-            // array2.AddString("XD-d4bjgwom9zk84wk");
-
-            // // 微信
-            // dict2 = array.AddDict();
-            // dict2.SetString("CFBundleURLName", "wechat");
-            // array2 = dict2.CreateArray("CFBundleURLSchemes");
-            // array2.AddString("wxbdfbe5dbd3e3c64b");
-
-            // // qq
-            // dict2 = array.AddDict();
-            // dict2.SetString("CFBundleURLName", "tencent");
-            // array2 = dict2.CreateArray("CFBundleURLSchemes");
-            // array2.AddString("tencent1106148555");
-            // //taptap
-            // dict2 = array.AddDict();
-            // dict2.SetString("CFBundleURLName", "tt");
-            // array2 = dict2.CreateArray("CFBundleURLSchemes");
-            // array2.AddString("ttp60jgYd4FUWc4Rr8pK");
-
-            // TapFriends
-            // dict2 = array.AddDict();
-            // dict2.SetString("CFBundleURLName", "tapfriends");
-            // array2 = dict2.CreateArray("CFBundleURLSchemes");
-            // array2.AddString("tapfriendsfz5gunjnu0ow40o");
-
             string exitsOnSuspendKey = "UIApplicationExitsOnSuspend";
             if(_rootDic.values.ContainsKey(exitsOnSuspendKey))
             {
                 _rootDic.values.Remove(exitsOnSuspendKey);
             }
-
-            // 权限声明，文案可修改
-			// _rootDic.SetString("NSCameraUsageDescription", "XDSDK-DEMO需要使用您的相机");
-            // _rootDic.SetString("NSUserTrackingUsageDescription", "XDSDK-DEMO需要使用您的IDFA");
 
             File.WriteAllText(_plistPath, _plist.WriteToString());
             Debug.Log("修改添加info文件成功");
