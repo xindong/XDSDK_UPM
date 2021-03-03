@@ -50,19 +50,21 @@ public class Demo : MonoBehaviour
             //string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN","APPLE_LOGIN" };
 
 			//xdsdk.XDSDK.SetLoginEntries(entries);
-            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
         }
 
         if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
 			//ios d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
+#if UNITY_ANDROID && !UNITY_EDITOR
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK android", "androidversion", true);
+#else
 			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "XDSDK ios", "iosversion", true);
-			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
-
-#if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
-            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
 #endif
-        }
+
+			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
+			//com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new TrafficCallbackImpl());
+
+		}
 
         if (GUI.Button (new Rect (50, 300, 300, 100), "登录", myButtonStyle)){
 
@@ -100,7 +102,7 @@ public class Demo : MonoBehaviour
 
 		if (GUI.Button (new Rect (50, 800, 300, 100), "SDK版本", myButtonStyle)){
             //Debug.Log (xdsdk.XDSDK.GetSDKVersion());
-            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
+            //com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
         }
 
 		if (GUI.Button (new Rect (50, 900, 300, 100), "token", myButtonStyle)){
@@ -112,10 +114,6 @@ public class Demo : MonoBehaviour
 			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
 			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 1, "UnityXDSDK", "0.0.0", true);
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
-
-#if !UNITY_EDITOR && !UNITY_STANDALONE_OSX && !UNITY_STANDALONE_WIN
-            com.xdsdk.xdtrafficcontrol.XDTrafficControlListener.Init();
-#endif
 		}
 
 
@@ -208,15 +206,14 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.Share (content);
 		}
 
-		if (GUI.Button (new Rect (750, 200, 300, 100), "微信分享图片", myButtonStyle)){
-			Dictionary<string, string> content = new Dictionary<string, string> ();
-			content.Add ("title", "***title***");
-			content.Add ("description", "***description***");
-			content.Add ("thumbPath", "/storage/emulated/0/2.png");
-			content.Add ("imageUrl", "/storage/emulated/0/2.png");
-			content.Add ("scene", "SESSION");
-			content.Add ("shareType", "IMAGE");
-			xdsdk.XDSDK.Share (content);
+		if (GUI.Button (new Rect (750, 200, 300, 100), "排队", myButtonStyle)){
+//#if UNITY_ANDROID && !UNITY_EDITOR
+//			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("a4d6xky5gt4c80s");
+//#else
+//			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("d4bjgwom9zk84wk");
+//#endif
+
+			
 		}
 
 		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享音乐", myButtonStyle)){
@@ -279,11 +276,11 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 900, 300, 100), "退出", myButtonStyle)) {
-			#if UNITY_EDITOR
+#if UNITY_EDITOR
 
-			#else
+#else
 			Application.Quit();
-			#endif
+#endif
 		}
 
         if(GUI.Button(new Rect(1200, 100, 350, 100), "防沉迷计时开启", myButtonStyle))
@@ -350,7 +347,7 @@ public class Demo : MonoBehaviour
 	public void OnXDLiveOpen()
 	{
 			Debug.Log(" xdlive open==========");
-		}
+	}
 }
-	
+
 }

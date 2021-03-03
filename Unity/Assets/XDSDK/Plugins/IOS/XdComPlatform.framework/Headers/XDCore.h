@@ -13,7 +13,7 @@
 #define XdComPlatform_XDCore_h
 
 /**
- 心动SDK 4.3.11
+ 心动SDK 4.3.12
  */
 @interface XDCore : NSObject
 
@@ -120,6 +120,23 @@
      version:(nonnull NSString *)version
  enableTapdb:(BOOL)enableTapdb;
 
+
+/**
+ 初始化sdk，包含心动SDK，TapDB统计SDK
+
+ @param appid 心动appid
+ @param orientation 屏幕方向
+ @param channel 渠道号
+ @param version 版本号
+ @param enableTapdb 是否开启TapDB
+ @param enableTapdb 是否开启Moment
+ */
++ (void)init:(nonnull NSString *)appid
+ orientation:(int)orientation
+     channel:(nonnull NSString *)channel
+     version:(nonnull NSString *)version
+ enableTapdb:(BOOL)enableTapdb
+enableMoment:(BOOL)enableMoment;
 
 /**
  登录

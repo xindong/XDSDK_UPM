@@ -32,7 +32,7 @@ namespace xdsdk
 
 			UnitySetCallback(new XDSDKListener.UniversalCallbackDelegate(XDSDKListener.UniversalCallback));
 
-#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN ) && PC_VERSION
+#elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.SetCallback((Unity.ResultCode code, string data) =>
             {
                 if (xdCallback != null)
@@ -74,7 +74,6 @@ namespace xdsdk
                     }
                 }
             });
-
 #endif
         }
 
@@ -85,115 +84,59 @@ namespace xdsdk
 
         public void HideGuest()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			hideGuest();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("hideGuest");
-#endif
         }
 
         public void HideWX()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			hideWeiChat();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("hideWX");
-#endif
         }
 
         public void HideQQ()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			hideQQ();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("hideQQ");
-#endif
         }
 
         public void ShowVC()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			showVC();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("showVC");
-#endif
         }
 
         public void SetQQWeb()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			setQQWeb();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("setQQWeb");
-#endif
         }
 
         public void SetWXWeb()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			setWXWeb();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("setWXWeb");
-#endif
         }
 
         public void HideTapTap()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			hideTapTap();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("hideTapTap");
-#endif
         }
 
         public void SetLoginEntries(string[] entries)
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			setLoginEntries(entries,entries.Count());
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			UnitySetLoginEntries(entries, entries.Count());
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
 
             Unity.XDSDK.SetLoginEntries(entries);
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("setLoginEntries", CSStringArrayToJavaStringArray(entries));
 #endif
         }
 
         public string GetSDKVersion()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			return getXDSDKVersion();
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 			return UnityGetSdkVersion();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return Unity.XDSDK.VERSION;
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<string> ("getSDKVersion");
-
 #else
             return "0.0.0";
 #endif
@@ -202,18 +145,12 @@ namespace xdsdk
 
         public string GetAdChannelName()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-            return "";
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
             return "";
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return "";
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<string> ("getAdChannelName");
 
 #else
             return "";
@@ -225,55 +162,38 @@ namespace xdsdk
 
         public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB)
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			initXDSDK(appid,aOrientation,channel,version,enableTapDB);
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			UnityInit(appid);
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Init(appid);
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("initSDK",appid,aOrientation,channel,version,enableTapDB);
 #endif
         }
 
         public void Login()
         {
 
-#if UNITY_IOS && !UNITY_EDITOR
-			xdLogin();
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			UnityLogin();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Login();
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("login");
 #endif
         }
 
         public string GetAccessToken()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			return getXDAccessToken();
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			return UnityGetAccessToken();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return Unity.XDSDK.GetAccessToken();
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<string> ("getAccessToken");
 #else
             return "";
 #endif
@@ -282,19 +202,13 @@ namespace xdsdk
 
         public bool IsLoggedIn()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			return isXdLoggedIn();
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			return UnityIsLoggedIn();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             return !string.IsNullOrEmpty(Unity.XDSDK.GetAccessToken());
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<bool> ("isLoggedIn");
 #else
             return true;
 #endif
@@ -302,70 +216,37 @@ namespace xdsdk
 
         public bool OpenUserCenter()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			return openUserCenter();
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<bool> ("openUserCenter");
-#endif
             return false;
         }
 
         public void UserFeedback()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			userFeedback();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("userFeedback");
-#endif
         }
 
 
         public void OpenRealName()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			openRealName();
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			UnityOpenRealName();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.OpenRealName();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic("openRealName");
 #endif
         }
 
         public void OpenUserBindView()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-            openUserBindView();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("openUserBindView");
-#endif
         }
 
         public bool Pay(Dictionary<string, string> info)
         {
 
-#if UNITY_IOS && !UNITY_EDITOR
-			xdPay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
-					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
-					info.ContainsKey("Product_Price") ? info["Product_Price"] : "",
-					info.ContainsKey("Sid") ? info["Sid"] : "",
-					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
-					info.ContainsKey("OrderId") ? info["OrderId"] : "",
-					info.ContainsKey("EXT") ? info["EXT"] : "");
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 			UnityPay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
 					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
@@ -378,9 +259,6 @@ namespace xdsdk
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Pay(info);
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			return jc.CallStatic<bool> ("pay", DicToMap(info));
 #endif
             return false;
 
@@ -388,107 +266,41 @@ namespace xdsdk
 
         public void RestorePay(Dictionary<string, string> info)
         {
-#if UNITY_IOS && !UNITY_EDITOR
-	xdRestorePay(info.ContainsKey("Product_Name") ? info["Product_Name"] : "",
-					info.ContainsKey("Product_Id") ? info["Product_Id"] : "",
-					info.ContainsKey("Product_Price") ? info["Product_Price"] : "",
-					info.ContainsKey("Sid") ? info["Sid"] : "",
-					info.ContainsKey("Role_Id") ? info["Role_Id"] : "",
-					info.ContainsKey("OrderId") ? info["OrderId"] : "",
-					info.ContainsKey("EXT") ? info["EXT"] : "",
-                                        info.ContainsKey("TransactionIdentifier") ? info["TransactionIdentifier"] : "");
-#elif UNITY_ANDROID && !UNITY_EDITOR
 
-#endif
         }
 
         public void Logout()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-			xdLogout();
 
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR  && !USE_UNITY_XDSDK
+
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR  && !USE_UNITY_XDSDK
 
 			UnityLogout();
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
             Unity.XDSDK.Logout();
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("logout");
-
 #endif
         }
 
         public void Exit()
         {
-#if UNITY_IOS && !UNITY_EDITOR
 
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("exit");
-#endif
         }
 
         public void Share(Dictionary<string, string> content)
         {
-#if UNITY_IOS && !UNITY_EDITOR
 
-                        string text = XDSDKUtil.DictionaryGetStringValue("text",content);
-                        string bText = XDSDKUtil.DictionaryGetStringValue("bText",content);
-                        string scene = XDSDKUtil.DictionaryGetStringValue("scene",content);
-                        string shareType =  XDSDKUtil.DictionaryGetStringValue("shareType",content);
-                        string title = XDSDKUtil.DictionaryGetStringValue("title",content);
-                        string description = XDSDKUtil.DictionaryGetStringValue("description",content);
-                        string thumbPath = XDSDKUtil.DictionaryGetStringValue("thumbPath",content);
-                        string imageUrl =XDSDKUtil.DictionaryGetStringValue("imageUrl",content);
-                        string musicUrl = XDSDKUtil.DictionaryGetStringValue("musicUrl",content);
-                        string musicLowBandUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandUrl",content);
-                        string musicDataUrl = XDSDKUtil.DictionaryGetStringValue("musicDataUrl",content);
-                        string musicLowBandDataUrl = XDSDKUtil.DictionaryGetStringValue("musicLowBandDataUrl",content);
-                        string videoUrl = XDSDKUtil.DictionaryGetStringValue("videoUrl",content);
-                        string videoLowBandUrl = XDSDKUtil.DictionaryGetStringValue("videoLowBandUrl",content);
-                        string webpageUrl = XDSDKUtil.DictionaryGetStringValue("webpageUrl",content);
-
-                        Debug.Log("wx Share Dic text:" + text + "\n bText:" + bText + "\n Scene:" + scene + "\n ShareType:" + shareType + "\n title:" + title + "\n description:" + description 
-                        + "\n thumbPath:" + thumbPath + "\n imageUrl:" + imageUrl +"\n musicUrl:" + musicUrl + "\n musicLowBandDataUrl:" + musicLowBandDataUrl + "\n videoUrl:" + videoUrl 
-                        + "\n videoLowBandUrl:" + videoLowBandUrl + "\n webPageUrl:" + webpageUrl);
-
-                        Debug.Log("start to Wx Share");
-
-			xdShare(text,bText,scene,shareType,title,description,thumbPath,imageUrl,musicUrl,
-			musicLowBandUrl,musicDataUrl,musicLowBandDataUrl,videoUrl,videoLowBandUrl,webpageUrl);
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("shareToWX", DicToMap(content));
-#endif
         }
 
         public void SetLevel(int level)
         {
-#if UNITY_IOS && !UNITY_EDITOR
 
-			setLevel(level);
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("setLevel", level);
-#endif
         }
 
         public void SetServer(string server)
         {
 
-#if UNITY_IOS && !UNITY_EDITOR
-
-			setServer(server);
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-			AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-			jc.CallStatic ("setServer", server);
-#endif
         }
 
         public void SetRole(string roleId,string roleName,string roleAvatar)
@@ -497,97 +309,46 @@ namespace xdsdk
                 {
                     roleAvatar = "";
                 }
-        #if UNITY_IOS && !UNITY_EDITOR
-                XDSDKSetRole(roleId,roleName,roleAvatar);
-            #elif UNITY_ANDROID && !UNITY_EDITOR
-
-            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("setRole",roleId,roleName,roleAvatar);
-#endif
         }
 
         public void ClearRole()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
-                XDSDKClearRole();
-            #elif UNITY_ANDROID && !UNITY_EDITOR
 
-            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("clearRole");
-#endif
         }
 
         public void AutoLogin()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-                XDSDKAutoLogin();
-#elif UNITY_ANDROID && !UNITY_EDITOR
-               AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("autoLogin");
-#endif
+
         }
 
         public void TapTapLogin()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-                XDSDKTapTapLogin();
-#elif UNITY_ANDROID && !UNITY_EDITOR
-              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("taptapLogin");
-                // TODO
-#endif
+
         }
 
         public void AppleLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
-                XDSDKAppleLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
 
-                // TODO
-        #endif
         }
 
         public void GuestLogin()
         {
-        #if UNITY_IOS && !UNITY_EDITOR
-                XDSDKGuestLogin();
-        #elif UNITY_ANDROID && !UNITY_EDITOR
-                AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-                jc.CallStatic("guestLogin");
-        #endif
+
         }
 
         public void GameStop() {
-#if UNITY_IOS && !UNITY_EDITOR
-                        XDSDKGameStop();
-#elif UNITY_ANDROID && !UNITY_EDITOR
-                        // TODO
-            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("gameStoped");
-#endif
+
         }
 
         public void GameResume() {
-#if UNITY_IOS && !UNITY_EDITOR
-                        XDSDKGameResume();
-#elif UNITY_ANDROID && !UNITY_EDITOR
-                        // TODO
-             AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("gameStarted");
-#endif
+
         }
 
         public void OnResume(){
-                #if UNITY_IOS && !UNITY_EDITOR
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+           
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
-		getAgent().CallStatic("onResume", activity);
 
 #else
 #endif
@@ -595,16 +356,11 @@ namespace xdsdk
 	}
 	
 	public void OnStop(){
-                             #if UNITY_IOS && !UNITY_EDITOR
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
+            
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR && !USE_UNITY_XDSDK
 
 #elif (UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN) && PC_VERSION
 
-#elif UNITY_ANDROID && !UNITY_EDITOR
-
-		AndroidJavaObject activity = getUnityClass().GetStatic<AndroidJavaObject>("currentActivity");
-		getAgent().CallStatic("onStop", activity);
 #else
 #endif
 
@@ -613,128 +369,17 @@ namespace xdsdk
         public void OpenProtocol(XDSDK.ProtocolType type)
         {
             int protocolType = Convert.ToInt32(type);
-#if UNITY_IOS && !UNITY_EDITOR
-                      OpenProtocol(protocolType);
-#elif UNITY_ANDROID && !UNITY_EDITOR
-                        // TODO
-            AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("openProtocol",protocolType);
-#endif
+
         }
 
         public void OpenUserMoment(XDMomentConfig config, string xdId)
         {
             string configString = config.GetConfigString();
-#if UNITY_IOS && !UNITY_EDITOR
-                     OpenUserMoment(xdId,configString);
-#elif UNITY_ANDROID && !UNITY_EDITOR
-              AndroidJavaClass jc = new AndroidJavaClass("com.xd.unitysdk.UnitySDK");
-            jc.CallStatic("openUserMoment",configString,xdId);
-#endif
+
         }
 
 
-
-#if UNITY_IOS && !UNITY_EDITOR
-        [DllImport("__Internal")]
-        private static extern void initSDK(string appid, int aOrientation);
-
-        [DllImport("__Internal")]
-        private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
-
-        [DllImport("__Internal")]
-        private static extern void setLevel(int level);
-
-        [DllImport("__Internal")]
-        private static extern void setServer(string server);
-
-        [DllImport("__Internal")]
-        private static extern void xdLogin();
-
-        [DllImport("__Internal")]
-        private static extern bool isXdLoggedIn();
-
-        [DllImport("__Internal")]
-        private static extern void xdLogout();
-
-        [DllImport("__Internal")]
-        private static extern bool openUserCenter();
-
-        [DllImport("__Internal")]
-        private static extern void xdPay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext);
-
-        [DllImport("__Internal")]
-        private static extern void xdRestorePay(string proudct_name, string product_id, string product_price, string sid, string role_id, string orderid, string ext,string transactionIdentifier);
-
-        [DllImport("__Internal")]
-        private static extern string getXDSDKVersion();
-
-        [DllImport("__Internal")]
-        private static extern string getXDAccessToken();
-
-        [DllImport("__Internal")]
-        private static extern void hideGuest();
-
-        [DllImport("__Internal")]
-        private static extern void hideQQ();
-
-        [DllImport("__Internal")]
-        private static extern void hideWeiChat();
-
-        [DllImport("__Internal")]
-        private static extern void showVC();
-
-        [DllImport("__Internal")]
-        private static extern void setQQWeb();
-
-        [DllImport("__Internal")]
-        private static extern void setWXWeb();
-
-        [DllImport("__Internal")]
-        private static extern void setLoginEntries(string[] entries,int length);
-
-        [DllImport("__Internal")]
-        private static extern void userFeedback();
-
-        [DllImport("__Internal")]
-        private static extern void hideTapTap();
-
-        [DllImport("__Internal")]
-        private static extern void openRealName();
-
-        [DllImport("__Internal")]
-        private static extern void xdShare (string text, string bText, string scene, string shareType, string title,string description, string thumbPath,
-        string imageUrl, string musicUrl, string musicLowBandUrl, string musicDataUrl, string musicLowBandDataUrl, string videoUrl,string videoLowBandUrl,
-        string webPageUrl
-        );
-
-        [DllImport("__Internal")]
-        private static extern void openUserBindView();
-
-        [DllImport("__Internal")]
-        private static extern void XDSDKSetRole(string roleId,string roleName,string avatarUrl);
-
-        [DllImport("__Internal")]
-        private static extern void XDSDKClearRole();
-
-        [DllImport("__Internal")]
-        private static extern void XDSDKAutoLogin();
-        [DllImport("__Internal")]
-        private static extern void XDSDKTapTapLogin();
-        [DllImport("__Internal")]
-        private static extern void XDSDKAppleLogin();
-        [DllImport("__Internal")]
-        private static extern void XDSDKGuestLogin();
-        [DllImport("__Internal")]
-        private static extern void XDSDKGameStop();
-        [DllImport("__Internal")]
-        private static extern void XDSDKGameResume();
-        [DllImport("__Internal")]
-        private static extern void OpenProtocol(int type);
-        [DllImport("__Internal")]
-        private static extern void OpenUserMoment(string xdId,string config);
-
-#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
         [DllImport("XDSDK")]
         private static extern void UnitySetCallback(XDSDKListener.UniversalCallbackDelegate universalCallback);
@@ -767,86 +412,6 @@ namespace xdsdk
         private static extern void UnityPay(string proudct_name, string product_id, int product_price, string sid, string role_id, string order_id, string ext);
 
 #endif
-
-#if UNITY_IOS && !UNITY_EDITOR
-
-#elif UNITY_ANDROID && !UNITY_EDITOR
-	public static string JAVA_CLASS = "com.xd.xdsdk.XDSDK";
-	private static string UNTIFY_CLASS = "com.unity3d.player.UnityPlayer";
-	private static AndroidJavaClass agent = null;
-	private static AndroidJavaClass unityClass = null;
-
-	private static AndroidJavaClass getAgent() {
-		if (agent == null) {
-			agent = new AndroidJavaClass(JAVA_CLASS);
-		}
-		return agent;
-	}
-
-	private static AndroidJavaClass getUnityClass(){
-		if (unityClass == null) {
-			unityClass = new AndroidJavaClass(UNTIFY_CLASS);
-		}
-		return unityClass;
-	}
-
-        private AndroidJavaObject CSStringArrayToJavaStringArray(string [] values) {
-            AndroidJavaClass arrayClass  = new AndroidJavaClass("java.lang.reflect.Array");
-            AndroidJavaObject arrayObject = arrayClass.CallStatic<AndroidJavaObject>("newInstance",
-                                             new AndroidJavaClass("java.lang.String"),
-                                             values.Count());
-            for (int i=0; i<values.Count(); ++i) {
-                arrayClass.CallStatic("set",
-                arrayObject,
-                i,
-                new AndroidJavaObject("java.lang.String",
-                values[i]));
-            }
-            return arrayObject;
-        }
-        public static AndroidJavaObject DicToMap(Dictionary<string, string> dictionary)
-        {
-            if(dictionary == null)
-            {
-                return null;
-            }
-            AndroidJavaObject map = new AndroidJavaObject("java.util.HashMap");
-            foreach(KeyValuePair<string, string> pair in dictionary)
-            {
-                
-                safeCallStringMethod(map,"put",new string[2] { pair.Key,pair.Value});
-                // map.Call<string>("put", pair.Key, pair.Value);
-            }
-            return map;
-        }
-
-        public static string safeCallStringMethod(AndroidJavaObject javaObject, string methodName, params object[] args)
-        {
-#if UNITY_2018_2_OR_NEWER
-            if (args == null) args = new object[] {null};
-            IntPtr methodID = AndroidJNIHelper.GetMethodID<string>(javaObject.GetRawClass(), methodName, args, false);
-            jvalue[] jniArgs = AndroidJNIHelper.CreateJNIArgArray(args);
  
-            try
-            {
-                IntPtr returnValue = AndroidJNI.CallObjectMethod(javaObject.GetRawObject(), methodID, jniArgs);
-                if (IntPtr.Zero != returnValue)
-                {
-                    var val = AndroidJNI.GetStringUTFChars(returnValue);
-                    AndroidJNI.DeleteLocalRef(returnValue);
-                    return val;
-                }
-            }
-            finally
-            {
-                AndroidJNIHelper.DeleteJNIArgArray(args, jniArgs);
-            }
- 
-            return null;
-#else
-            return  javaObject.Call<string>(methodName, args);
-#endif
-        }
-#endif
     }
 }

@@ -15,7 +15,27 @@ namespace com.xdsdk.xdtrafficcontrol
         private static volatile XDTrafficControl instance;
         private static object syncRoot = new System.Object();
 
-        private XDTrafficControlCallback callback;
+        private static XDTrafficControlCallback callback;
+
+        private delegate void XDTrafficCallback(string method, string message);
+        [AOT.MonoPInvokeCallback(typeof(XDTrafficCallback))]
+        static void XDTrafficCallbackImp(string method, string message)
+        {
+            Debug.Log(" Unity trafficControl ios method = " + method + " msg = " + message);
+            if (callback == null) return;
+            switch (method)
+            {
+                case "XDTrafficControlFinished":
+                    callback.OnQueueingFinished();
+                    break;
+                case "XDTrafficControlFailed":
+                    callback.OnQueueingFailed(message);
+                    break;
+                case "XDTrafficControlCanceled":
+                    callback.OnQueueingCanceled();
+                    break;
+            }
+        }
 
         public XDTrafficControl()
         {
@@ -46,8 +66,9 @@ namespace com.xdsdk.xdtrafficcontrol
             xdtcCheck(appid);
 
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidJavaClass jc = new AndroidJavaClass("com.xindong.trafficcontrol.XDTrafficControlUnity");
-            jc.CallStatic ("check", appid);
+            AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.sdk.trafficcontrol.XDTrafficControl");
+            jc.CallStatic ("check", activity,appid);
 #endif
 
         }
@@ -55,13 +76,13 @@ namespace com.xdsdk.xdtrafficcontrol
         public void SetCallback(XDTrafficControlCallback callback)
         {
 #if UNITY_IOS && !UNITY_EDITOR
-
+            XDTrafficSetCallback(XDTrafficCallbackImp);
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidJavaClass jc = new AndroidJavaClass("com.xindong.trafficcontrol.XDTrafficControlUnity");
-            jc.CallStatic ("init");
+            AndroidJavaClass jc = new AndroidJavaClass("com.xd.sdk.trafficcontrol.XDTrafficControl");
+            jc.CallStatic ("setCallback",new XDTrafficCallbackAnd(callback));
 #endif
 
-            this.callback = callback;
+            XDTrafficControl.callback = callback;
         }
 
         public XDTrafficControlCallback GetCallback()
@@ -78,7 +99,45 @@ namespace com.xdsdk.xdtrafficcontrol
 
 #if UNITY_IOS && !UNITY_EDITOR
         [DllImport("__Internal")]
+        private static extern void XDTrafficSetCallback(XDTrafficCallback callback);
+
+        [DllImport("__Internal")]
         private static extern void xdtcCheck(string appid);
 #endif
+
+        class XDTrafficCallbackAnd : AndroidJavaProxy
+        {
+            XDTrafficControlCallback callback;
+
+            public XDTrafficCallbackAnd(XDTrafficControlCallback callback):base("com.xd.sdk.trafficcontrol.XDTrafficControl$Callback")
+            {
+                this.callback = callback;
+            }
+
+            public override AndroidJavaObject Invoke(string methodName, object[] javaArgs)
+            {
+                switch (methodName)
+                {
+                    case "onQueueingFinished":
+                        callback.OnQueueingFinished();
+                        break;
+                    case "onQueueingFailed":
+                        string error = "";
+                        try
+                        {
+                            error = (string)javaArgs[0];
+                        }catch(Exception e)
+                        {
+                            error = "unknow error";
+                        }
+                         callback.OnQueueingFailed(error);
+                        break;
+                    case "onQueueingCanceled":
+                        callback.OnQueueingCanceled();
+                        break;
+                }
+                return null;
+            }
+        }
     }
 }

@@ -6,9 +6,12 @@ namespace com.taptap.sdk
 	
 	public abstract class TapCallback
 	{
-		public abstract void OnQueryAppBoardStatusSuccess (int count);
+		//public abstract void OnQueryAppBoardStatusSuccess (int count);
 
-		public abstract void OnQueryAppBoardStatusFailed (string msg);
+		//public abstract void OnQueryAppBoardStatusFailed (string msg);
+
+		public abstract void OnForumAppear();
+		public abstract void OnForumDisappear();
 
 	}
 }

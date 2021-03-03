@@ -11,16 +11,37 @@ using UnityEngine;
 namespace com.taptap.sdk {
 	public class iOSImpl : TapTapSDKImpl {
 
-		public override void OpenTapTapForum(string appid){
+        private delegate void XDForumMessageCallback(string method, string message);
+        [AOT.MonoPInvokeCallback(typeof(XDForumMessageCallback))]
+        static void XDForumCallbackImp(string method, string message)
+        {
+            Debug.Log(" Unity ios tapForum method = " + method + " msg= " + message);
+            TapCallback tapCallback = TapTapSDK.Instance.GetCallback();
+            if (tapCallback == null) return;
+            switch (method)
+            {
+                case "onForumDisappear":
+                    tapCallback.OnForumDisappear();
+                    break;
+                case "onForumAppear":
+                    tapCallback.OnForumAppear();
+                    break;
+            }
+        }
+
+        public override void OpenTapTapForum(string appid){
 #if UNITY_IOS && !UNITY_EDITOR
+            XDForumSetCallback(XDForumCallbackImp);    
 			XDSDKOpenTapTapForum(appid);
 #endif
         }
 
 #if UNITY_IOS && !UNITY_EDITOR
 
-        	[DllImport("__Internal")]
+        [DllImport("__Internal")]
 		private static extern void XDSDKOpenTapTapForum (string appid);
+         [DllImport("__Internal")]
+         private static extern void XDForumSetCallback(XDForumMessageCallback callback);
 #endif
     }
 }
