@@ -1,6 +1,0 @@
-framework module XDTrafficControl {
-  umbrella header "XDTrafficControl.h"
-
-  export *
-  module * { export * }
-}
