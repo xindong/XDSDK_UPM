@@ -187,6 +187,7 @@ namespace com.xdsdk.xdlive
 
             public override AndroidJavaObject Invoke(string methodName, object[] javaArgs)
             {
+                if (this.callback == null) return null;
                 switch (methodName)
                 {
                     case "onXDLiveOpen":

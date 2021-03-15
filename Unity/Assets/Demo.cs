@@ -4,16 +4,30 @@ using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
 using com.taptap.sdk;
+#if PLATFORM_ANDROID
+using UnityEngine.Android;
+#endif
+
+using UnityNative.Toasts;
+
 
 public class Demo : MonoBehaviour
 {
 	private String amount = "1";
 	private String product_id = "product_id";
+	private String sceneId = "taprl0137852001";
+	private string imagePath = "";
+	IUnityNativeToasts toast = UnityNativeToasts.Create();
 
 	public static IEnumerator DelayToInvokeDo(Action action, float delaySeconds)
 	{
 		yield return new WaitForSeconds(delaySeconds);
 		action();
+	}
+
+
+	void Start()
+	{
 	}
 
     void Update()
@@ -44,24 +58,35 @@ public class Demo : MonoBehaviour
 
         if (GUI.Button(new Rect(50, 100, 300, 100), "设置回调", myButtonStyle))
         {
-            xdsdk.XDSDK.SetCallback(new XDSDKHandler());
-            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler());
-            //string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN","APPLE_LOGIN" };
+            xdsdk.XDSDK.SetCallback(new XDSDKHandler(toast));
+            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new XDTCHandler(toast));
+			TapSDK.TDSMoment.SetCallback((code,msg) =>
+			{
+                switch (code)
+                {
+					case 20000:
+						toast.ShowShortToast("获取小红点：" + msg);
+						break;
+					case 20100:
+						toast.ShowShortToast("获取小红点失败：" + msg);
+						break;
+				}
+			});
+            //string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN", "APPLE_LOGIN" };
 
-			//xdsdk.XDSDK.SetLoginEntries(entries);
+            //xdsdk.XDSDK.SetLoginEntries(entries);
         }
 
         if (GUI.Button(new Rect(50, 200, 300, 100), "横屏初始化", myButtonStyle))
         {
 			//ios d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
 #if UNITY_ANDROID && !UNITY_EDITOR
-			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK android", "androidversion", true);
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 0, "XDSDK android", "androidversion", true, true);
 #else
-			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "XDSDK ios", "iosversion", true);
+			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 0, "XDSDK ios", "iosversion", true, true);
 #endif
 
 			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
-			//com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.SetCallback(new TrafficCallbackImpl());
 
 		}
 
@@ -99,10 +124,13 @@ public class Demo : MonoBehaviour
 			Debug.Log (xdsdk.XDSDK.IsLoggedIn ());
 		}
 
-		if (GUI.Button (new Rect (50, 800, 300, 100), "SDK版本", myButtonStyle)){
-            //Debug.Log (xdsdk.XDSDK.GetSDKVersion());
-            //com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
-        }
+		if (GUI.Button (new Rect (50, 800, 300, 100), "版本号", myButtonStyle)){
+			//Debug.Log(xdsdk.XDSDK.GetSDKVersion());
+			//com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
+
+			toast.ShowShortToast("当前版本：" + xdsdk.XDSDK.GetSDKVersion());
+
+		}
 
 		if (GUI.Button (new Rect (50, 900, 300, 100), "token", myButtonStyle)){
 			Debug.Log (xdsdk.XDSDK.GetAccessToken ());
@@ -110,13 +138,15 @@ public class Demo : MonoBehaviour
 
 		if (GUI.Button(new Rect(50, 1000, 300, 100), "竖屏初始化", myButtonStyle))
 		{
-			//d4bjgwom9zk84wk evnn72tle1sgkgo a4d6xky5gt4c80s
-			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 1, "UnityXDSDK", "0.0.0", true);
-			// xdsdk.XDSDK.InitSDK("2isp77irl1c0gc4", 1, "UnityXDSDK", "0.0.0", true);
+#if UNITY_ANDROID && !UNITY_EDITOR
+			xdsdk.XDSDK.InitSDK("a4d6xky5gt4c80s", 1, "XDSDK android", "androidversion", true, true);
+#else
+			xdsdk.XDSDK.InitSDK("d4bjgwom9zk84wk", 1, "XDSDK ios", "iosversion", true, true);
+#endif
 		}
 
 
-		if (GUI.Button (new Rect (400, 100, 300, 100), "隐藏微信", myButtonStyle)){
+		if (GUI.Button (new Rect (400, 100, 300, 100), "5s关闭直播", myButtonStyle)){
 			//            com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("appid001");
 			//com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("dhsjolxyls840co");
 			//StartCoroutine(DelayToInvokeDo(() =>
@@ -156,12 +186,12 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.AutoLogin();
 		}
 
-		if (GUI.Button (new Rect (400, 300, 300, 100), "TapTap登录", myButtonStyle)){
-			xdsdk.XDSDK.TapTapLogin();
-		}
-
-		if (GUI.Button (new Rect (400, 400, 300, 100), "苹果登录", myButtonStyle)){
+		if (GUI.Button(new Rect(400, 300, 500, 100), "苹果登录(仅支持IOS)", myButtonStyle))
+		{
 			xdsdk.XDSDK.AppleLogin();
+		}
+		if (GUI.Button (new Rect (400, 400, 300, 100), "TapTap登录", myButtonStyle)){
+			xdsdk.XDSDK.TapTapLogin();
 		}
 
 		if (GUI.Button (new Rect (400, 500, 300, 100), "游客登录", myButtonStyle)){
@@ -184,7 +214,7 @@ public class Demo : MonoBehaviour
 			xdsdk.XDSDK.HideTapTap();
 		}
 
-		if (GUI.Button(new Rect(400,1000,300,100),"获取地区Code",myButtonStyle)){
+		if (GUI.Button(new Rect(400,1000,500,100),"获取地区Code",myButtonStyle)){
 			TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 			{
 				Debug.Log("isMainland:" + isMainland);
@@ -206,54 +236,60 @@ public class Demo : MonoBehaviour
 		}
 
 		if (GUI.Button (new Rect (750, 200, 300, 100), "排队", myButtonStyle)){
-//#if UNITY_ANDROID && !UNITY_EDITOR
-//			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("a4d6xky5gt4c80s");
-//#else
-//			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("d4bjgwom9zk84wk");
-//#endif
+#if UNITY_ANDROID && !UNITY_EDITOR
+			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
+#else
+			com.xdsdk.xdtrafficcontrol.XDTrafficControl.Instance.Check("cf1j5axm7hckw48");
+#endif
 
-			
+
+        }
+
+		//      if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享音乐", myButtonStyle)){
+		//	Dictionary<string, string> content = new Dictionary<string, string> ();
+		//	content.Add ("title", "***title***");
+		//	content.Add ("description", "***description***");
+		//	content.Add ("thumbPath", "/storage/emulated/0/2.png");
+		//	content.Add ("musicUrl", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");
+		//	content.Add ("scene", "SESSION");
+		//	content.Add ("shareType", "MUSIC");
+		//	xdsdk.XDSDK.Share (content);
+		//}
+
+		//if (GUI.Button (new Rect (750, 400, 300, 100), "微信分享视频", myButtonStyle)){
+		//	Dictionary<string, string> content = new Dictionary<string, string> ();
+		//	content.Add ("title", "***title***");
+		//	content.Add ("description", "***description***");
+		//	content.Add ("thumbPath", "/storage/emulated/0/2.png");
+		//	content.Add ("videoUrl", "xd.com");
+		//	content.Add ("scene", "SESSION");
+		//	content.Add ("shareType", "VIDEO");
+		//	xdsdk.XDSDK.Share (content);
+		//}
+
+		sceneId = GUI.TextArea(new Rect(750, 400, 300, 100), sceneId);
+		if (GUI.Button(new Rect(750, 500, 300, 100), "场景化入口", myButtonStyle))
+		{
+			TapSDK.TDSMoment.OpenSceneEntryMoment(TapSDK.Orientation.ORIENTATION_DEFAULT, sceneId);
 		}
+			//if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享链接", myButtonStyle)){
+			//	Dictionary<string, string> content = new Dictionary<string, string> ();
+			//	content.Add ("title", "***title***");
+			//	content.Add ("description", "***description***");
+			//	content.Add ("thumbPath", "/storage/emulated/0/2.png");
+			//	content.Add ("webpageUrl", "xd.com");
+			//	content.Add ("scene", "SESSION");
+			//	content.Add ("shareType", "WEB");
+			//	xdsdk.XDSDK.Share (content);
+			//}
 
-		if (GUI.Button (new Rect (750, 300, 300, 100), "微信分享音乐", myButtonStyle)){
-			Dictionary<string, string> content = new Dictionary<string, string> ();
-			content.Add ("title", "***title***");
-			content.Add ("description", "***description***");
-			content.Add ("thumbPath", "/storage/emulated/0/2.png");
-			content.Add ("musicUrl", "http://staff2.ustc.edu.cn/~wdw/softdown/index.asp/0042515_05.ANDY.mp3");
-			content.Add ("scene", "SESSION");
-			content.Add ("shareType", "MUSIC");
-			xdsdk.XDSDK.Share (content);
-		}
-
-		if (GUI.Button (new Rect (750, 400, 300, 100), "微信分享视频", myButtonStyle)){
-			Dictionary<string, string> content = new Dictionary<string, string> ();
-			content.Add ("title", "***title***");
-			content.Add ("description", "***description***");
-			content.Add ("thumbPath", "/storage/emulated/0/2.png");
-			content.Add ("videoUrl", "xd.com");
-			content.Add ("scene", "SESSION");
-			content.Add ("shareType", "VIDEO");
-			xdsdk.XDSDK.Share (content);
-		}
-
-		if (GUI.Button (new Rect (750, 500, 300, 100), "微信分享链接", myButtonStyle)){
-			Dictionary<string, string> content = new Dictionary<string, string> ();
-			content.Add ("title", "***title***");
-			content.Add ("description", "***description***");
-			content.Add ("thumbPath", "/storage/emulated/0/2.png");
-			content.Add ("webpageUrl", "xd.com");
-			content.Add ("scene", "SESSION");
-			content.Add ("shareType", "WEB");
-			xdsdk.XDSDK.Share (content);
-		}
-
-		if (GUI.Button (new Rect (750, 600, 300, 100), "实名认证", myButtonStyle)){
+			if (GUI.Button (new Rect (750, 600, 300, 100), "实名认证", myButtonStyle)){
 			xdsdk.XDSDK.OpenRealName();
 		}
 
 		if (GUI.Button (new Rect (750, 700, 300, 100), "论坛", myButtonStyle)){
-			TapTapSDK.Instance.OpenTapTapForum("58881");
+			TapForumSDK.Instance.SetCallback(new TapforumCallbackHandler(toast));
+			TapForumSDK.Instance.OpenTapTapForum("58881");
 		}
 
 		if (GUI.Button (new Rect (750, 800, 300, 100), "直播", myButtonStyle)) {
@@ -266,7 +302,7 @@ public class Demo : MonoBehaviour
 			info.Add("Product_Id", "4");
 			info.Add("Product_Name", "648大礼包");
 			info.Add ("transactionIdentifier", "123456789");
-			com.xdsdk.xdlive.XDLive.Instance.SetCallback(new XDLIVECallback());
+			com.xdsdk.xdlive.XDLive.Instance.SetCallback(new XDLIVECallback(toast));
 			// xdsdk.XDSDK.RestorePay (info);
 			com.xdsdk.xdlive.XDLive.Instance.OpenXDLive("1","xcc://events/redpoint?path=videos.307");
 
@@ -290,6 +326,10 @@ public class Demo : MonoBehaviour
 		if (GUI.Button(new Rect(1200, 200, 350, 100), "防沉迷计时关闭", myButtonStyle))
 		{
 			xdsdk.XDSDK.GameStop();
+		}
+		if (GUI.Button(new Rect(1200, 300, 350, 100), "打开动态", myButtonStyle))
+		{
+			TapSDK.TDSMoment.OpenMoment(TapSDK.Orientation.ORIENTATION_DEFAULT);
 		}
 
 		product_id = GUI.TextArea(new Rect(1200, 400, 350, 100), product_id);
@@ -329,24 +369,88 @@ public class Demo : MonoBehaviour
 
 		}
 
+		imagePath = GUI.TextArea(new Rect(1600, 100, 350, 100), imagePath);
+
+		if (GUI.Button(new Rect(1600, 200, 350, 100), "发布动态", myButtonStyle))
+		{
+			string[] imagePaths = imagePath.Split(',');
+			TapSDK.TDSMoment.PublishMoment(TapSDK.Orientation.ORIENTATION_DEFAULT, imagePaths, "描述测试");
+		}
+
+		if (GUI.Button(new Rect(1600, 300, 350, 100), "获取小红点数据", myButtonStyle))
+		{
+			TapSDK.TDSMoment.GetNoticeData();
+
+		}
+
+		if (GUI.Button(new Rect(1600, 400, 350, 100), "10s直接关闭", myButtonStyle))
+		{
+			Invoke("closeMoment", 10.0f);
+
+		}
+		if (GUI.Button(new Rect(1600, 500, 350, 100), "设置XD登录", myButtonStyle))
+		{
+            string[] entries = { "QQ_LOGIN", "XD_LOGIN", "GUEST_LOGIN", "WX_LOGIN", "APPLE_LOGIN" };
+
+            xdsdk.XDSDK.SetLoginEntries(entries);
+
+        }
 	}
+
     void closeLive()
 	{
 		com.xdsdk.xdlive.XDLive.Instance.CloseXDLive();
 	}
+
+	void closeMoment()
+	{
+		TapSDK.TDSMoment.CloseMoment();
+	}
 	class XDLIVECallback : com.xdsdk.xdlive.XDLive.XDLiveCallback
     {
+		IUnityNativeToasts toast;
+
+		public XDLIVECallback(IUnityNativeToasts toast)
+        {
+			this.toast = toast;
+        }
+
         override
 		public void OnXDLiveClosed()
 	{
 			Debug.Log(" xdlive close=========");
+			toast.ShowShortToast("xdlive close=========");
+
+
 	}
 
 	override
 	public void OnXDLiveOpen()
 	{
 			Debug.Log(" xdlive open==========");
+			toast.ShowShortToast("xdlive open==========");
 	}
 }
+
+    class TapforumCallbackHandler : TapForumCallback
+    {
+		IUnityNativeToasts toast;
+
+		public TapforumCallbackHandler(IUnityNativeToasts toast)
+		{
+			this.toast = toast;
+		}
+		public override void OnForumAppear()
+        {
+			Debug.Log(" XDForum open==========");
+			toast.ShowShortToast(" XDForum open======");
+		}
+
+        public override void OnForumDisappear()
+        {
+			Debug.Log(" XDForum close==========");
+			toast.ShowShortToast("XDForum close=========");
+		}
+    }
 
 }

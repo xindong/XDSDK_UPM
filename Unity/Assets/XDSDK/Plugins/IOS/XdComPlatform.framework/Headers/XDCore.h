@@ -13,12 +13,12 @@
 #define XdComPlatform_XDCore_h
 
 /**
- 心动SDK 4.3.12
+ 心动SDK 5.0.0
  */
 @interface XDCore : NSObject
 
 
-# pragma mark - XDSDK4.0
+
 
 /**
  获取SDK版本信息

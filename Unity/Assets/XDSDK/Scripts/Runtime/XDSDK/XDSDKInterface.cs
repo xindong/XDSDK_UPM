@@ -53,6 +53,9 @@ namespace xdsdk
 		//初始化心动SD
 		void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
 
+		//初始化心动SD
+		void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb, bool enableMoment);
+
 		//登录
 		void Login();
 

@@ -116,6 +116,7 @@ namespace com.xdsdk.xdtrafficcontrol
 
             public override AndroidJavaObject Invoke(string methodName, object[] javaArgs)
             {
+                if (this.callback == null) return null;
                 switch (methodName)
                 {
                     case "onQueueingFinished":

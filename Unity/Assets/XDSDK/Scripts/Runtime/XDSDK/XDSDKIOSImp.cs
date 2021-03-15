@@ -213,6 +213,13 @@ namespace xdsdk
 #endif
         }
 
+        public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB, bool enableMoment)
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+			initXDSDKWithMoment(appid,aOrientation,channel,version,enableTapDB,enableMoment);
+#endif
+        }
+
         public void Login()
         {
 
@@ -463,10 +470,10 @@ namespace xdsdk
         private static extern void XDSDKSetCallback(XDSDKMessageCallback callback);
 
         [DllImport("__Internal")]
-        private static extern void initSDK(string appid, int aOrientation);
+        private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
 
         [DllImport("__Internal")]
-        private static extern void initXDSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb);
+        private static extern void initXDSDKWithMoment(string appid, int aOrientation, string channel, string version, bool enableTapdb, bool enableMoment);
 
         [DllImport("__Internal")]
         private static extern void setLevel(int level);

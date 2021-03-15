@@ -141,6 +141,16 @@ namespace xdsdk
 #endif
         }
 
+        public void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapDB, bool enableMoment)
+        {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            AndroidJavaClass playerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject activityObject = playerClass.GetStatic<AndroidJavaObject>("currentActivity");
+		
+			getAgent().CallStatic ("initSDK",activityObject,appid,aOrientation,channel,version,enableTapDB,enableMoment);
+#endif
+        }
+
         public void Login()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -482,7 +492,7 @@ namespace xdsdk
                     callback.OnRealNameSucceed();
                     break;
                 case "onRealNameFailed":
-                    callback.OnRealNameFailed("");
+                    callback.OnRealNameFailed(extra);
                     break;
                 case "onLogoutSucceed":
                     callback.OnLogoutSucceed();

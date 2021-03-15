@@ -78,6 +78,12 @@ namespace xdsdk
 			getXDSDKImp().InitSDK (appid, aOrientation, channel, version, enableTapdb);
         }
 
+		//初始化心动SDK
+		public static void InitSDK(string appid, int aOrientation, string channel, string version, bool enableTapdb, bool enableMoment)
+		{
+			getXDSDKImp().InitSDK(appid, aOrientation, channel, version, enableTapdb, enableMoment);
+		}
+
 		//登录
 		public static void Login(){
 			getXDSDKImp().Login ();
