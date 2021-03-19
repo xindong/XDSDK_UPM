@@ -117,54 +117,6 @@ using TDSEditor;
             }
         }
 
-        // 添加动态库 注意路径
-        public static void AddFramework(string coreFrameworkName, UnityEditor.iOS.Xcode.PBXProject proj, string target)
-        {
-            const string defaultLocationInProj = "Library/";
-            string framework = Path.Combine(defaultLocationInProj, coreFrameworkName);
-            string fileGuid = proj.AddFile(framework, "Frameworks/" + framework, PBXSourceTree.Sdk);
-            PBXProjectExtensions.AddFileToEmbedFrameworks(proj, target, fileGuid);
-            proj.SetBuildProperty(target, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks");
-        }
-
-        // 修改Build版本号，使用时间 『年月日时分秒』
-        public static string AddBuildNumber()
-        {
-            string buildNumber = DateTime.Now.ToString("yyyyMMdd") + DateTime.Now.Hour.ToString() +
-            DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
-            return buildNumber;
-        }
-
-        public static void CopyAndReplaceDirectory(string srcPath, string dstPath)
-        {
-            if (Directory.Exists(dstPath))
-                DeleteDirectory(dstPath);
-            if (File.Exists(dstPath))
-                File.Delete(dstPath);
-
-            Directory.CreateDirectory(dstPath);
-
-            foreach (var file in Directory.GetFiles(srcPath))
-                File.Copy(file, Path.Combine(dstPath, Path.GetFileName(file)));
-
-            foreach (var dir in Directory.GetDirectories(srcPath))
-                CopyAndReplaceDirectory(dir, Path.Combine(dstPath, Path.GetFileName(dir)));
-        }
-
-        public static void DeleteDirectory(string path)
-        {
-            DirectoryInfo dir = new DirectoryInfo(path);
-            if (dir.Exists)
-            {
-                DirectoryInfo[] childs = dir.GetDirectories();
-                foreach (DirectoryInfo child in childs)
-                {
-                    child.Delete(true);
-                }
-                dir.Delete(true);
-            }
-        }
-
         private static string GetValueFromPlist(string infoPlistPath,string key)
         {
             if(infoPlistPath==null)
@@ -217,7 +169,6 @@ using TDSEditor;
 
             PlistElementDict _dict = _rootDic.CreateDict("NSAppTransportSecurity");
             _dict.SetBoolean("NSAllowsArbitraryLoads", true); // HTTP
-            _rootDic.SetString("CFBundleVersion", AddBuildNumber());
 
             PlistElementDict dict = _plist.root.AsDict();
             
@@ -317,70 +268,28 @@ using TDSEditor;
             //插入代码
             //读取UnityAppController.mm文件
             string unityAppControllerPath = pathToBuildProject + "/Classes/UnityAppController.mm";
-            XClass UnityAppController = new XClass(unityAppControllerPath);
+            TDSEditor.TDSScriptStreamWriterHelper UnityAppController = new TDSEditor.TDSScriptStreamWriterHelper(unityAppControllerPath);
             //在指定代码后面增加一行代码
             UnityAppController.WriteBelow(@"#import <OpenGLES/ES2/glext.h>", @"#import <XdComPlatform/XDCore.h>");
             UnityAppController.WriteBelow(@"[KeyboardDelegate Initialize];",@"[XDCore setupXDStore];");
             UnityAppController.WriteBelow(@"AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);",@"return [XDCore HandleXDOpenURL:url];");
-            UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",@"[XDCore handleOpenUniversalLink:userActivity];");
-            Debug.Log("修改代码成功");
+            if(CheckoutUniversalLinkHolder(unityAppControllerPath,@"NSURL* url = userActivity.webpageURL;"))
+            {
+                UnityAppController.WriteBelow(@"NSURL* url = userActivity.webpageURL;",@"[XDCore handleOpenUniversalLink:userActivity];");
+            }else
+            {
+                UnityAppController.WriteBelow(@"- (void)preStartUnity               {}",@"-(BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler{return [XDCore handleOpenUniversalLink:userActivity];}");
+            }
+        }
+
+        private static bool CheckoutUniversalLinkHolder(string filePath,string below)
+        {
+            StreamReader streamReader = new StreamReader(filePath);
+            string all = streamReader.ReadToEnd();
+            streamReader.Close();
+            int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
+            return beginIndex != -1;
         }
     }
-
-    internal partial class XClass : System.IDisposable
-    {
-        private string filePath;
-
-        public XClass(string fPath)
-        {
-            filePath = fPath;
-            if (!System.IO.File.Exists(filePath))
-            {
-                Debug.LogError(filePath + "路径下文件不存在");
-                return;
-            }
-        }
-
-        public void WriteBelow(string below, string text)
-        {
-            StreamReader streamReader = new StreamReader(filePath);
-            string all = streamReader.ReadToEnd();
-            streamReader.Close();
-            int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
-            if (beginIndex == -1)
-            {
-                Debug.LogError(filePath + "中没有找到字符串" + below);
-                return;
-            }
-
-            int endIndex = all.LastIndexOf("\n", beginIndex + below.Length, StringComparison.Ordinal);
-            all = all.Substring(0, endIndex) + "\n" + text + "\n" + all.Substring(endIndex);
-            StreamWriter streamWriter = new StreamWriter(filePath);
-            streamWriter.Write(all);
-            streamWriter.Close();
-        }
-
-        public void Replace(string below, string newText)
-        {
-            StreamReader streamReader = new StreamReader(filePath);
-            string all = streamReader.ReadToEnd();
-            streamReader.Close();
-            int beginIndex = all.IndexOf(below, StringComparison.Ordinal);
-            if (beginIndex == -1)
-            {
-                Debug.LogError(filePath + "中没有找到字符串" + below);
-                return;
-            }
-
-            all = all.Replace(below, newText);
-            StreamWriter streamWriter = new StreamWriter(filePath);
-            streamWriter.Write(all);
-            streamWriter.Close();
-        }
-
-        public void Dispose()
-        {
-        }
 #endif
-}
 #endif
