@@ -10,12 +10,17 @@
 
 ### 1.添加XDSDK
 
+使用XDSDK的前提条件是依赖 **[TapSDK](https://developer.taptap.com/v2-doc/sdk/tap-unity)**
+
+ **TapSDK** 和 **XDSDK** 的版本关系为强绑定关系。
+
 * 使用Unity Pacakge Manager
 
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#{version_name}"
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#1.0.0",
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.6",
     }
 ```
 
@@ -132,24 +137,17 @@
 
 在Assets/Plugins/IOS/Resource目录下创建XD-Info.plist文件,复制以下代码并且替换其中以下内容。
 
-* taptap:TapTap ClientId
-* wechat:微信 ClientId
-* tecent:腾讯 ClientId
-* XD: XD ClientId
-* apple-Sign-In:true 需要Apple登陆
-* game-domain: applink
-* 权限文案
+* wechat：微信 ClientId
+* tecent：腾讯 ClientId
+* XD：XD ClientId
+* Apple_SignIn_Enable：true 需要Apple登陆
+* Game_Domain：applinks
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>taptap</key>
-    <dict>
-        <key>client_id</key>
-        <string>ttp60jgYd4FUWc4Rr8pK</string>
-    </dict>
     <key>wechat</key>
     <dict>
         <key>client_id</key>
@@ -165,16 +163,10 @@
         <key>client_id</key>
         <string>XD-d4bjgwom9zk84wk</string>
     </dict>
-    <key>apple-Sign-In</key>
-    <string>true</string>
-    <key>game-domain</key>
-    <string>www.xd.com</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>App需要您的同意,才能访问相册</string>
-    <key>NSCameraUsageDescription</key>
-    <string>App需要您的同意,才能访问相机</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>App需要您的同意,才能访问麦克风</string>
+    <key>Apple_SignIn_Enable</key>
+    <string>false</string>
+    <key>Game_Domain</key>
+    <string></string>
 </dict>
 </plist>
 
