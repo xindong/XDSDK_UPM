@@ -50,6 +50,8 @@ using TDSEditor;
                 proj.SetBuildProperty(unityFrameworkTarget, "LD_RUNPATH_SEARCH_PATHS", "$(inherited) @executable_path/Frameworks");
 
                 proj.SetBuildProperty(unityFrameworkTarget, "CODE_SIGN_STYLE", "Manual");
+
+                proj.AddFileToBuild(unityFrameworkTarget, proj.AddFile("usr/lib/libz.tbd", "libz.tbd",PBXSourceTree.Sdk));
                 
                 // 添加资源文件，注意文件路径
                 var resourcePath = Path.Combine(path, "XDSDKResource");

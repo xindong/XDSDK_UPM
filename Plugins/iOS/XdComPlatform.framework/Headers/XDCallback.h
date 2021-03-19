@@ -64,6 +64,10 @@
 - (void)onGuestBindFailed:(nonnull NSString*)errorMsg;
 
 
+/// 绑定taptap成功
+/// @param profile 返回用户信息
+- (void)onBindTaptapSucceed:(nonnull NSString *)profile;
+
 /**
  登出成功
  */
@@ -105,4 +109,5 @@
 - (void)onOpenProtocolSuccess;
 - (void)onOpenProtocolFail;
 - (void)onAgreeProtocol;
+
 @end
