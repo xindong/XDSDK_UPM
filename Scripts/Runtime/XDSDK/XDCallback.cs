@@ -50,5 +50,8 @@ namespace xdsdk
 
         public virtual void OnProtocolOpenFailed(string msg) {}
 
-    }
+		public virtual void OnBindTaptapSucceed(Dictionary<string,string> msg) {}
+
+
+	}
 }
