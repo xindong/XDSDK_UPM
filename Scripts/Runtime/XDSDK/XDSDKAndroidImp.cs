@@ -547,8 +547,13 @@ namespace xdsdk
                     callback.OnProtocolOpenFailed(extra);
                     break;
                 case "onBindTaptapSucceed":
-                    Dictionary<string, string> tapInfo = (Dictionary<string, string>)Json.Deserialize(extra);
-                    callback.OnBindTaptapSucceed(tapInfo);
+                    Dictionary<string, object> tapInfo = (Dictionary<string, object>)Json.Deserialize(extra);
+                    Dictionary<string, string> tapInfoString = new Dictionary<string, string>();
+                    foreach(KeyValuePair<string,object> kvp in tapInfo)
+                    {
+                        tapInfoString[kvp.Key] = (string)kvp.Value;
+                    }
+                    callback.OnBindTaptapSucceed(tapInfoString);
                     break;
 
 
