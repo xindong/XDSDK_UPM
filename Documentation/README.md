@@ -36,6 +36,7 @@
 
 
 <span id="1环境配置">
+
 ## Unity 环境设置及 SDK 资源配置
 
 ### 前提条件
@@ -47,6 +48,7 @@
 * Android 编译设置 **Minimum API 21** 或更高版本, Target API 建议使用 30 以下
 
 <span id="1.1XDSDK依赖">
+
 ### 1. 添加 XDSDK 依赖
 
 **已接入旧版 SDK 的游戏需要先删除旧版 SDK 的所有文件，具体文件列表参考 [旧版SDK文件列表](./旧版SDK文件列表.md)**  
@@ -70,6 +72,7 @@
 > 注意：不同 Unity 版本 UI 显示可能略有差别
 	
 <span id="1.2配置XDSDK">
+
 ### 2. 配置 XDSDK
 
 #### 2.1 Android 配置
@@ -130,7 +133,9 @@
 
 #### 2.2 IOS 配置
 
-在 Assets/Plugins/IOS/Resource 目录下创建 XD-Info.plist 文件,复制以下代码并且替换其中以下内容。
+在 Assets / Plugins / iOS / Resource 目录下创建 XD-Info.plist 文件,复制以下代码并且替换其中以下内容。
+
+> 注意：目录名要区分大小写
 
 * wechat：微信 ClientId
 * tecent：腾讯 ClientId
@@ -167,9 +172,11 @@
 
 ```
 <span id="2API">
+
 ## API
 
 <span id="2.1实现并设置回调方法">
+
 ### 1. 实现并设置回调方法
 
 <p> 脚本需要实现的回调请参考以下代码： </p>
@@ -292,12 +299,15 @@ public override void RestoredPayment(List<Dictionary<string,string>> resultList)
 XDSDK.SetCallback (new XDSDKHandler ());
 ```
 <span id="2.2配置登录选项">
+
 ### 2. 配置登录选项
 
 **如果游戏之前登录入口已包含 心动 或 QQ 、微信等其他的账号类型，则使用`自定义登录顺序`设置，否则使用`自定义登录入口`。**
 
 建议一般在调用 SDK 初始化前进行登录入口设置。
+
 #### 2.1 自定义登录顺序
+
 自定义登录入口。共五种，其中主要两种，次要两种。
 默认显示为：
 
@@ -357,6 +367,7 @@ public static void GuestLogin()
 <img src="unity_img/5.jpg"></img>  
 
 <span id="2.3初始化SDK">
+
 ### 3. 初始化SDK
 
 初始化心动SDK应尽量提前，调用该接口是调用其它功能接口的必要条件。
@@ -394,7 +405,9 @@ XDSDK.InitSDK ("xxxxxx", 1, "xx", "xx", true, true);
 <p style="color:red">其他注意事项请参考文档TapDB部分或与平台联系</p>
 
 <span id="2.4登录">
+
 ### 4. 登录
+
 > 注意：**游戏应在收到同意协议的回调（OnProtocolAgreed）之后再进行登录操作**  
 
 
@@ -447,6 +460,7 @@ XDSDK.GetAccessToken()
 
 
 <span id="2.5角色信息">
+
 ### 5. 角色信息
 
 如果游戏使用 **自定义登录顺序** 来配置登录入口，该设置可跳过。  
@@ -460,6 +474,7 @@ XDSDK.GetAccessToken()
 ```
 
 <span id="2.6用户中心">
+
 ### 6. 用户中心
 
 调用该接口打开用户中心界面，用户可以在该界面进行游客升级和登出操作，游戏注意正确处理回调。在未登录状态，无法打开用户中心。  
@@ -476,6 +491,7 @@ public static bool OpenUserCenter()
 XDSDK.OpenUserCenter()
 ```
 <span id="2.7支付">
+
 ### 7. 支付
 
 <p style='color:red'> SDK 不保证在任何情况下都能收到准确回调，请勿直接使用SDK返回的支付结果作为最终判定订单状态的依据，以后端通知结果为准。</p>
@@ -599,6 +615,7 @@ XDSDK.Pay (info);
 ```
 
 <span id="2.8登出">
+
 ### 8. 登出
 
 
@@ -618,6 +635,7 @@ public static void Logout()
 XDSDK.Logout();
 ```
 <span id="2.9游客升级">
+
 ### 9. 游客升级
 
 **如果游戏只有 Tap 登录入口，该接口可忽略。**  
@@ -629,6 +647,7 @@ XDSDK.Logout();
 游客升级成功 | public void OnGuestBindSucceed(string token)
 
 <span id="2.10实名认证">
+
 ### 10. 实名认证
 
 当用户为未实名玩家是，调用该方法弹出实名认证窗口。对于已实名用户，调用该接口会返回实名失败。
@@ -655,6 +674,7 @@ XDSDK.OpenRealName();
 </p> 
 
 <span id="2.11游客升级">
+
 ### 11. 游客升级
 
 对于游客账号，如果需要绑定 Tap 或其他类型账号时（根据游戏登录入口决定），调用如下接口：
@@ -677,6 +697,7 @@ XDSDK.OpenUserBindView ();
 失败 | public void OnGuestBindFailed(string msg)
 
 <span id="2.12客服">
+
 ### 12. 客服
 
 
@@ -693,6 +714,7 @@ XDSDK.UserFeedback();
 ```
 
 <span id="2.13TapDB">
+
 ### 13. TapDB
 
 如果需要调用 TapDB 中设置等级和服务端地址，可调用如下接口：
@@ -721,7 +743,10 @@ XDSDK.SetServer("xxxxxxx");
 5.如果需要自行接入TapDB，请在SDK初始化方法中enableTapDB参数填写false。
 </p> 
 
+为统计数据更加精确，SDK 提供了一个可选的第三方库`数美`，如果游戏需要数美的设备数据，可以下载依赖库 [数美](https://res.xdcdn.net/tapdb/Android/xdwl/xdwl-pri1-release.aar) 并将其添加到项目中。
+
 <span id="2.14防沉迷设置">
+
 ### 14. 防沉迷设置
 
 SDK 中提供停止计时和恢复计时接口。游戏根据需求自行调用。
@@ -749,7 +774,8 @@ void OnApplicationPause(bool pauseStatus)
     }
 ```
 
-<span id="2.15TapTap论坛">
+<span id="2.15TapTap论坛">、
+
 ### 15. TapTap 论坛
 
 如果游戏使用 Tap 内部论坛，需在脚本类中导入 `namespace com.taptap.sdk`，相关功能接口如下
@@ -798,6 +824,7 @@ class TapforumCallbackExample : TapForumCallback
 ```
 
 <span id="2.16XDLive直播">
+
 ### 16. XDLive 直播
 
 XDSDK 中包含了游戏直播相关组件，游戏第一次使用需要联系平台相关人员开通，获取 appid 和授权直播源管理后台。相关接口如下：
@@ -841,6 +868,7 @@ class XDLIVECallbackE : com.xdsdk.xdlive.XDLive.XDLiveCallback
 ```
 
 <span id="2.17打开协议页面">
+
 ### 17. 打开协议页面
 
 游戏需要打开协议的内容时，可以调用该接口，示例如下：
@@ -851,6 +879,7 @@ xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_GAME);
 参数为协议类型，包括  PROTOCOL\_TYPE\_USER(用户协议),PROTOCOL\_TYPE\_GAME(游戏协议),PROTOCOL\_TYPE\_PRIVACY(隐私协议)
 
 <span id="2.18地区判断">
+
 ### 18. 地区判断
 
 如果需要判断当前地区是否在大陆内，可调用如下接口：
@@ -1053,6 +1082,7 @@ Enable Bitcode = NO
 ## 服务端对接
 
 <span id="4.1获取用户信息">
+
 ### 1. 获取用户信息
 
 游戏服务端使用客户端获取的access token，按照下面的方式获取用户信息。
@@ -1091,6 +1121,7 @@ authoriz_state：0/1/2/3/4（实名状态,0未实名，>0 都表示已实名认�
 判断是否实名认证 | authoriz_state（0未实名，>0 都表示已实名认证）
 
 <span id="4.2处理支付回调">
+
 ### 2	. 处理支付回调
 
 游戏服务端需要提供一个能够处理支付回调的接口，这个接口是申请心动AppID时需要的。处理逻辑中，需要使用一个密钥进行加密验证，该密钥即为心动AppKey。
@@ -1153,6 +1184,7 @@ return strcasecmp($sign, md5(http_build_query($tmp) . $appKey)) == 0;
 </p>
 
 <span id="5广告渠道配置">
+
 ## 广告渠道配置
 
 <span id="5.1广告渠道配置">
