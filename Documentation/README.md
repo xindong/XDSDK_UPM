@@ -171,6 +171,28 @@
 </plist>
 
 ```
+在 Assets / Plugins / iOS / Resource 目录下创建 TDS-Info.plist 文件，复制以下代码并且替换其中的 TapTap 的 ClientId 和 授权文案
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>taptap</key>
+    <dict>
+        <key>client_id</key>
+        <string>ClientId</string>
+    </dict>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>App 需要你的同意，才能访问相册 </string>
+    <key>NSCameraUsageDescription</key>
+    <string>App 需要你的同意，才能访问相机 </string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>App 需要你的同意，才能访问麦克风 </string>
+</dict>
+</plist>
+```
+
 <span id="2API">
 
 ## API
@@ -809,7 +831,7 @@ class TapforumCallbackExample : TapForumCallback
 		}
 	}
 ```
-其中 IOS 还需配置 info.plist，内容如下： 
+其中 IOS 还需配置 info.plist（如果游戏之前已配置可忽略)，内容如下： 
 
 ```
 <key>NSPhotoLibraryUsageDescription</key>   
