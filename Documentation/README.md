@@ -929,9 +929,9 @@ TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 > targetSdkVersion 指在 unity 中通过 File -> Build Settings -> Player Settings -> Other Settings 中 Target API Level 设置的版本  
 
 如果游戏打包配置时 targetSdkVersion < 30 , 暂不需要配置，可跳过。  
-如果 targetSdkVersion >= 30 , 需按如下步骤进行配置：
+如果 targetSdkVersion >= 30 , 需按如下步骤进行配置。
 
-####（1）添加 AndroidManifest 配置  
+#### (1) 添加 AndroidManifest 配置  
 
  在 AndroidManifest.xml 中添加如下内容：
  
@@ -1142,7 +1142,7 @@ authoriz_state：0/1/2/3/4（实名状态,0未实名，>0 都表示已实名认�
 
 <a name="4.2"></a>
 
-### 2	. 处理支付回调
+### 2. 处理支付回调
 
 游戏服务端需要提供一个能够处理支付回调的接口，这个接口是申请心动AppID时需要的。处理逻辑中，需要使用一个密钥进行加密验证，该密钥即为心动AppKey。
 当心动平台处有充值成功时，心动服务端会通知到支付回调接口，信息如下。
