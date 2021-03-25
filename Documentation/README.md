@@ -60,14 +60,14 @@
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#1.0.0",
-        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.6",
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.0.0",
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.7",
     }
 ```
 
 #### 1.2 通过 Unity PackageManager 导入
 
-在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.6` 和 `https://github.com/xindong/TAPSDK_UPM.git#1.0.6`即可。
+在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.7` 和 `https://github.com/xindong/XDSDK_UPM.git#3.0.0`即可。
 
 > 注意：不同 Unity 版本 UI 显示可能略有差别
 	
@@ -352,7 +352,7 @@ iOS: 微信、QQ、游客、苹果、TapTap
 
 例如传入的数组 {"APPLE\_LOGIN","WX\_LOGIN","TAPTAP\_LOGIN","GUEST\_LOGIN","QQ\_LOGIN"}  
 
-> 注：(1) 最多只能显示4种登录方式。(2) 四个登录按钮中 TapTap 和心动登录不能同时显示
+> 注：(1) 最多只能显示5种登录方式。(2) 5个登录按钮中 TapTap 和心动登录不能同时显示
 
 ```
 // 自定义登录按钮及顺序

@@ -1,5 +1,5 @@
 /*
- * XDSDK Version 2.4.7
+ * XDSDK Version 3.0.0
  * 
  * 
  * 
