@@ -1,41 +1,39 @@
 # <center> XDSDK-Unity </center>
 
 ### 目录
-* [Unity 环境设置及 SDK 资源配置](#1环境配置)
-	* [1.添加 XDSDK 依赖](#1.1XDSDK依赖)
-	* [2.配置 XDSDK](#1.2配置XDSDK)
-* [API](#2API)
-	* [1.实现并设置回调方法](#2.1实现并设置回调方法)
-	* [2.配置登录选项](#2.2配置登录选项)
-	* [3.初始化SDK](#2.3初始化SDK)
-	* [4.登录](#2.4登录)
-	* [5.角色信息](#2.5角色信息)
-	* [6.用户中心](#2.6用户中心)
-	* [7.支付](#2.7支付)
-	* [8.登出](#2.8登出)
-	* [9.游客升级](#2.9游客升级)
-	* [10.实名认证](#2.10实名认证)
-	* [11.游客升级](#2.11游客升级)
-	* [12.客服](#2.12客服)
-	* [13.TapDB](#2.13TapDB)
-	* [14.防沉迷设置](#2.14防沉迷设置)
-	* [15.TapTap 论坛](#2.15TapTap论坛)
-	* [16.XDLive 直播](#2.16XDLive直播)
-	* [17.打开协议页面](#2.17打开协议页面)
-	* [18.地区判断](#2.18地区判断)
-* [原生平台设置](#3原生平台设置)
-	* [1.Android 平台设置](#3.1Android平台设置)
-	* [2.iOS 平台设置](#3.2iOS平台设置)
-* [服务端对接](#4服务端对接)
-	* [1.获取用户信息](#4.1获取用户信息)
-	* [2.处理支付回调](#4.2处理支付回调)
-* [广告渠道配置](#5广告渠道配置)
-	* [1.广告部分说明](#5.1广告部分说明)
+* <a href="#1">Unity 环境设置及 SDK 资源配置</a>
+	* <a href="#1.1">1.添加 XDSDK 依赖</a>
+	* <a href="#1.2">2..配置 XDSDK</a>
+* <a href="#2">API</a>
+	* <a href="#2.1">1.实现并设置回调方法</a>
+	* <a href="#2.2">2.配置登录选项</a>
+	* <a href="#2.3">3.初始化SDK</a>
+	* <a href="#2.4">4.登录</a>
+	* <a href="#2.5">5.角色信息</a>
+	* <a href="#2.6">6.用户中心</a>
+	* <a href="#2.7">7.支付</a>
+	* <a href="#2.8">8.登出</a>
+	* <a href="#2.9">9.游客升级</a>
+	* <a href="#2.10">10.实名认证</a>
+	* <a href="#2.11">11.游客升级</a>
+	* <a href="#2.12">12.客服</a>
+	* <a href="#2.13">13.TapDB</a>
+	* <a href="#2.14">14.防沉迷设置</a>
+	* <a href="#2.15">15.TapTap 论坛</a>
+	* <a href="#2.16">16.XDLive 直播</a>
+	* <a href="#2.17">17.打开协议页面</a>
+	* <a href="#2.18">18.地区判断</a>
+* <a href="#3">原生平台设置</a>
+	* <a href="#3.1">1.Android 平台设置</a>
+	* <a href="#3.2">2.iOS 平台设置</a>
+* <a href="#4">服务端对接</a>
+	* <a href="#4.1">1.获取用户信息</a>
+	* <a href="#4.2">2.处理支付回调</a>
+* <a href="#5">广告渠道配置</a>
+	* <a href="#5.1">1.广告部分说明</a>
 
 
-
-
-<span id="1环境配置">
+<a name="1"></a>
 
 ## Unity 环境设置及 SDK 资源配置
 
@@ -47,7 +45,7 @@
 
 * Android 编译设置 **Minimum API 21** 或更高版本, Target API 建议使用 30 以下
 
-<span id="1.1XDSDK依赖">
+<a name="1.1"></a>
 
 ### 1. 添加 XDSDK 依赖
 
@@ -71,7 +69,7 @@
 
 > 注意：不同 Unity 版本 UI 显示可能略有差别
 	
-<span id="1.2配置XDSDK">
+<a name="1.2"></a>
 
 ### 2. 配置 XDSDK
 
@@ -193,11 +191,11 @@
 </plist>
 ```
 
-<span id="2API">
+<a name="2"></a>
 
 ## API
 
-<span id="2.1实现并设置回调方法">
+<a name="2.1"></a>
 
 ### 1. 实现并设置回调方法
 
@@ -320,7 +318,7 @@ public override void RestoredPayment(List<Dictionary<string,string>> resultList)
 ```
 XDSDK.SetCallback (new XDSDKHandler ());
 ```
-<span id="2.2配置登录选项">
+<a name="2.2"></a>
 
 ### 2. 配置登录选项
 
@@ -361,7 +359,7 @@ XDSDK.SetLoginEntries({"APPLE_LOGIN","WX_LOGIN","TAPTAP_LOGIN","GUEST_LOGIN","QQ
 
 #### 2.2 自定义登录入口
 
-登录入口 UI 由游戏绘制，不再使用 SDK 页面。绘制登录按钮所需要的 UI 素材由 SDK 提供，素材地址：[XDSDK登录方式素材](./XDSDK登录方式(大陆)_2020.zip)   
+登录入口 UI 由游戏绘制，不再使用 SDK 页面。绘制登录按钮所需要的 UI 素材由 SDK 提供，素材地址：[XDSDK登录方式素材](XDSDK登录方式(大陆)_2020.zip)  
 
 使用该方式登录时, SDK 提供了对应的自定义登录接口（iOS:AutoLogin/TapTapLogin/AppleLogin/GuestLogin,Android:AutoLogin/TapTapLogin），用户在点击游戏绘制的登录入口后，游戏调用对应登录接口即可。  
 
@@ -388,7 +386,7 @@ public static void GuestLogin()
 
 <img src="unity_img/5.jpg"></img>  
 
-<span id="2.3初始化SDK">
+<a name="2.3"></a>
 
 ### 3. 初始化SDK
 
@@ -426,7 +424,7 @@ XDSDK.InitSDK ("xxxxxx", 1, "xx", "xx", true, true);
 <p style="color:red">已经单独接入TapDB的项目请勿开启内置TapDB统计功能</p>
 <p style="color:red">其他注意事项请参考文档TapDB部分或与平台联系</p>
 
-<span id="2.4登录">
+<a name="2.4"></a>
 
 ### 4. 登录
 
@@ -481,7 +479,7 @@ XDSDK.GetAccessToken()
 ```
 
 
-<span id="2.5角色信息">
+<a name="2.5"></a>
 
 ### 5. 角色信息
 
@@ -495,7 +493,7 @@ XDSDK.GetAccessToken()
 	public static void ClearRole()
 ```
 
-<span id="2.6用户中心">
+<a name="2.6"></a>
 
 ### 6. 用户中心
 
@@ -512,7 +510,7 @@ public static bool OpenUserCenter()
 ```
 XDSDK.OpenUserCenter()
 ```
-<span id="2.7支付">
+<a name="2.7"></a>
 
 ### 7. 支付
 
@@ -636,7 +634,7 @@ info.Add("EXT", "{\"payCallbackCode\":2}");（）
 XDSDK.Pay (info);
 ```
 
-<span id="2.8登出">
+<a name="2.8"></a>
 
 ### 8. 登出
 
@@ -656,7 +654,7 @@ public static void Logout()
 ```
 XDSDK.Logout();
 ```
-<span id="2.9游客升级">
+<a name="2.9"></a>
 
 ### 9. 游客升级
 
@@ -668,7 +666,7 @@ XDSDK.Logout();
 --- | ---
 游客升级成功 | public void OnGuestBindSucceed(string token)
 
-<span id="2.10实名认证">
+<a name="2.10"></a>
 
 ### 10. 实名认证
 
@@ -695,7 +693,7 @@ XDSDK.OpenRealName();
 注意：实名认证结果以服务端authoriz_state参数为准（见4.1）。
 </p> 
 
-<span id="2.11游客升级">
+<a name="2.11"></a>
 
 ### 11. 游客升级
 
@@ -718,7 +716,7 @@ XDSDK.OpenUserBindView ();
 成功 | public void OnGuestBindSucceed (string token)
 失败 | public void OnGuestBindFailed(string msg)
 
-<span id="2.12客服">
+<a name="2.12"></a>
 
 ### 12. 客服
 
@@ -735,7 +733,7 @@ public static void UserFeedback()
 XDSDK.UserFeedback();
 ```
 
-<span id="2.13TapDB">
+<a name="2.13"></a>
 
 ### 13. TapDB
 
@@ -767,7 +765,7 @@ XDSDK.SetServer("xxxxxxx");
 
 为统计数据更加精确，SDK 提供了一个可选的第三方库`数美`，如果游戏需要数美的设备数据，可以下载依赖库 [数美](https://res.xdcdn.net/tapdb/Android/xdwl/xdwl-pri1-release.aar) 并将其添加到项目中。
 
-<span id="2.14防沉迷设置">
+<a name="2.14"></a>
 
 ### 14. 防沉迷设置
 
@@ -796,7 +794,7 @@ void OnApplicationPause(bool pauseStatus)
     }
 ```
 
-<span id="2.15TapTap论坛">、
+<a name="2.15"></a>
 
 ### 15. TapTap 论坛
 
@@ -831,7 +829,7 @@ class TapforumCallbackExample : TapForumCallback
 		}
 	}
 ```
-其中 IOS 还需配置 info.plist（如果游戏之前已配置可忽略)，内容如下： 
+其中 IOS 还需配置 info.plist，内容如下： 
 
 ```
 <key>NSPhotoLibraryUsageDescription</key>   
@@ -845,7 +843,7 @@ class TapforumCallbackExample : TapForumCallback
 </dict>
 ```
 
-<span id="2.16XDLive直播">
+<a name="2.16"></a>
 
 ### 16. XDLive 直播
 
@@ -889,7 +887,7 @@ class XDLIVECallbackE : com.xdsdk.xdlive.XDLive.XDLiveCallback
 
 ```
 
-<span id="2.17打开协议页面">
+<a name="2.17"></a>
 
 ### 17. 打开协议页面
 
@@ -900,7 +898,7 @@ xdsdk.XDSDK.OpenProtocol(xdsdk.XDSDK.ProtocolType.PROTOCOL_TYPE_GAME);
 ```
 参数为协议类型，包括  PROTOCOL\_TYPE\_USER(用户协议),PROTOCOL\_TYPE\_GAME(游戏协议),PROTOCOL\_TYPE\_PRIVACY(隐私协议)
 
-<span id="2.18地区判断">
+<a name="2.18"></a>
 
 ### 18. 地区判断
 
@@ -917,11 +915,11 @@ TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 
 ```
 
-<span id="3原生平台设置">
+<a name="3"></a>
 
 ## 原生平台设置
 
-<span id="3.1Android平台设置">
+<a name="3.1"></a>
 
 ### 1. Android 平台设置
 
@@ -958,7 +956,7 @@ TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 
 如果当前版本小于 2019.3.patch 7, 当编译提示 launcher 与 main library 的 gradle 版本不一致错误信息时，需要将 SDK 目录中的 Android 附加 / Android 11适配目录 中 launcherTemplate.gradle 文件复制到项目 Assets / plugins / Android 目录中 、GradleTemplateFixer.cs 复制到 Assets / Editor 目录中。在编译前需选择Unity菜单 Tools -> Build -> Gradle Template Fix (Preprocess build）。如果游戏除了当前项目外还需要编译其他项目，在编译完成后还需选择 Tools -> Build -> Gradle Template Fix (Postprocess build）否则不需要其他操作。
 
-<span id="3.2iOS平台设置">
+<a name="3.2"></a>
 
 ### 2. iOS 平台设置
 
@@ -1099,11 +1097,11 @@ Enable Bitcode = NO
 
  完成以上配置即可进行编译打包。
 
-<span id="4服务端对接">
+<a name="4"></a>
 
 ## 服务端对接
 
-<span id="4.1获取用户信息">
+<a name="4.1"></a>
 
 ### 1. 获取用户信息
 
@@ -1142,7 +1140,7 @@ authoriz_state：0/1/2/3/4（实名状态,0未实名，>0 都表示已实名认�
 判断账号类型 | site（0 => vc账号，1 => 心动账号，3 => qq账号，8 => 微信账号，9 => TapTap账号，注意类型是字符串）
 判断是否实名认证 | authoriz_state（0未实名，>0 都表示已实名认证）
 
-<span id="4.2处理支付回调">
+<a name="4.2"></a>
 
 ### 2	. 处理支付回调
 
@@ -1205,11 +1203,11 @@ return strcasecmp($sign, md5(http_build_query($tmp) . $appKey)) == 0;
 3、只要通过签名校验的回调，都应该视为合法数据，按照如下逻辑发放道具。A.如果payment字段为appstore，即AppStore支付，直接按照product_id字段进行道具发放；B.如果payment字段为其它值，需要验证gold字段和 product_id 字段是否相符，如果相符，按照product_id发放道具，如果不相符，直接按照gold字段折算成对应的游戏货币发放。
 </p>
 
-<span id="5广告渠道配置">
+<a name="5"></a>
 
 ## 广告渠道配置
 
-<span id="5.1广告渠道配置">
+<a name="5.1"></a>
 
 ### 1. 广告部分说明
 
