@@ -6,6 +6,6 @@
     "unity": "2018.3",
     "license": "MIT",
     "dependencies": {
-        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.6.0-alpha"
+        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.7"
     }
 }
