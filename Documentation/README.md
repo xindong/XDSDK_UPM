@@ -58,8 +58,8 @@
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.0.0",
-        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.7",
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.0.1",
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.7.1",
     }
 ```
 
