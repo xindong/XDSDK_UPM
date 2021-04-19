@@ -12,9 +12,10 @@
 
 #define XdComPlatform_XDCore_h
 
-/**
- 心动SDK 5.0.0
- */
+
+
+#define XDSDK_VERSION @"5.1.0"
+
 @interface XDCore : NSObject
 
 
