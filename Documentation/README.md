@@ -58,14 +58,14 @@
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.0.1",
-        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.7.1",
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.1.0“,
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.8"
     }
 ```
 
 #### 1.2 通过 Unity PackageManager 导入
 
-在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.7` 和 `https://github.com/xindong/XDSDK_UPM.git#3.0.0`即可。
+在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.8` 和 `https://github.com/xindong/XDSDK_UPM.git#3.1.0`即可。
 
 > 注意：不同 Unity 版本 UI 显示可能略有差别
 	

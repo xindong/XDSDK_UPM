@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 3.1.0 
+
+### Dependencies
+
+* TapSDK version --> 1.0.8
+
+### BugFix
+
+* 修复 iOS 内嵌动态旋转问题
+
 ## 3.0.0 
 
 ### 1. 功能变更
