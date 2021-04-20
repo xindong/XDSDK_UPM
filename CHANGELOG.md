@@ -2,14 +2,13 @@
 
 ## 3.1.0 
 
-### Dependencies
-
-* TapSDK version --> 1.0.8
-
+### Feature
+* Android / iOS 添加防沉迷 SDK 游戏时长上报功能
+* Android / iOS 添加中宣部实名信息认证异常后提示
 ### BugFix
-
-* 修复 iOS 内嵌动态旋转问题
-
+* iOS 修复动态屏幕旋转异常
+### Dependencies
+* TapSDK version --> 1.0.8
 ## 3.0.0 
 
 ### 1. 功能变更
