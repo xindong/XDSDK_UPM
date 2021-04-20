@@ -2,10 +2,10 @@
     "name": "com.xd.sdk",
     "displayName": "XDSDK",
     "description": "TapTap Develop Service!",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "unity": "2018.3",
     "license": "MIT",
     "dependencies": {
-        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.8"
+        "com.tds.sdk": "https://github.com/xindong/TAPSDK_UPM.git#1.0.9"
     }
 }

@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 3.1.1
+
+### BugFix
+
+* 修复 iOS TapDB 数据上报错误
+
+### Dependencies
+
+* TapSDK Version ---> 1.0.9
+
 ## 3.1.0 
 
 ### Feature
