@@ -51,24 +51,38 @@
 
 **已接入旧版 SDK 的游戏需要先删除旧版 SDK 的所有文件，具体文件列表参考 [旧版SDK文件列表](./旧版SDK文件列表.md)**  
 
- 新版 XDSDK 使用 UPM 方式导入 SDK 资源，配置方式有两种，选择一种即可，如下所示：
+ 新版 XDSDK 使用 UPM 方式导入 SDK 资源，配置方式有三种，选择一种即可，如下所示：
 
 #### 1.1 修改对应配置文件
 
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.1.0“,
-        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.8"
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.1.1“,
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.0.9"
     }
 ```
 
 #### 1.2 通过 Unity PackageManager 导入
 
-在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.8` 和 `https://github.com/xindong/XDSDK_UPM.git#3.1.0`即可。
+在 Unity 菜单栏中选择 Window -> Package Manager, 选择添加方式为 `Add package from git URL` , 在地址栏中输入 `https://github.com/xindong/TAPSDK_UPM.git#1.0.9` 和 `https://github.com/xindong/XDSDK_UPM.git#3.1.1`即可。
 
 > 注意：不同 Unity 版本 UI 显示可能略有差别
-	
+
+#### 1.3 通过本地源码导入
+
+在 ProjectPath 目录下新建 XDSDK、TapSDK 两个文件夹，拷贝 [XDSDK源码](https://github.com/xindong/XDSDK_UPM.git#3.1.1)、[TapSDK源码](https://github.com/xindong/TAPSDK_UPM.git#1.0.9) 到指定目录中。
+
+>注意：ProjectPath/XDSDK，Project/TapSDK 目录均为大小写敏感，且 XDSDK 、TapSDK 会对该目录下的资源文件进行脚本依赖。
+
+```json
+//在YourProjectPath/Packages/manifest.json中添加以下代码
+"dependencies":{
+        "com.xd.sdk":"file:..//XDSDK“,
+        "com.tds.sdk":"file:..//TapSDK",
+    }
+```
+
 <a name="1.2"></a>
 
 ### 2. 配置 XDSDK
@@ -131,7 +145,7 @@
 
 #### 2.2 IOS 配置
 
-在 Assets / Plugins / iOS / Resource 目录下创建 XD-Info.plist 文件,复制以下代码并且替换其中以下内容。
+在 Assets / Plugins / iOS / Resource 目录下创建 XDSDK-Info.plist 文件,复制以下代码并且替换其中以下内容。
 
 > 注意：目录名要区分大小写
 
@@ -171,7 +185,7 @@
 ```
 在 Assets / Plugins / iOS / Resource 目录下创建 TDS-Info.plist 文件，复制以下代码并且替换其中的 TapTap 的 ClientId 和 授权文案
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -187,6 +201,8 @@
     <string>App 需要你的同意，才能访问相机 </string>
     <key>NSMicrophoneUsageDescription</key>
     <string>App 需要你的同意，才能访问麦克风 </string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>App需要追踪你的信息</string>
 </dict>
 </plist>
 ```

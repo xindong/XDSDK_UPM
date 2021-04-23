@@ -113,7 +113,7 @@ using TDSEditor;
                 tempEntitlements.WriteToFile(entitleFilePath);
 
                 File.WriteAllText(projPath, proj.WriteToString());
-                SetPlist(path,resourcePath + "/XDSDK-Info.plist");
+                SetPlist(path,resourcePath + "/XDSDK-Info.plist", Path.Combine(path, "TDSResource") + "/TDS-Info.plist");
                 SetScriptClass(path);
                 Debug.Log("测试打包成功");
             }
@@ -137,7 +137,7 @@ using TDSEditor;
         }
 
         // 修改pilist
-        private static void SetPlist(string pathToBuildProject,string infoPlistPath)
+        private static void SetPlist(string pathToBuildProject,string infoPlistPath,string tdsInfoPlistPath)
         {
            //添加info
             string _plistPath = pathToBuildProject + "/Info.plist";
@@ -177,9 +177,24 @@ using TDSEditor;
             if(!string.IsNullOrEmpty(infoPlistPath))
             {   
                 Dictionary<string, object> dic = (Dictionary<string, object>)Plist.readPlist(infoPlistPath);
+                Dictionary<string,object> tdsDic = (Dictionary<string,object>) Plist.readPlist(tdsInfoPlistPath);
                 string xdId = null;
                 string tencentId = null;
                 string wechatId = null;
+                string taptapId = null;
+
+                foreach (var item in tdsDic)
+                {
+                    if(item.Key.Equals("taptap"))
+                    {
+                        foreach(var taptapItem in (Dictionary<string,object>)item.Value)
+                        {
+                            taptapId = $"tt{taptapItem.Value}";
+                            break;
+                        }
+                        break;
+                    }
+                }
 
                 foreach (var item in dic)
                 {
@@ -252,6 +267,14 @@ using TDSEditor;
                     array2.AddString(wechatId);   
                 }
 
+                if(taptapId!=null)
+                {
+                    dict2 = array.AddDict();
+                    dict2.SetString("CFBundleURLName", "TapTap");
+                    PlistElementArray array2 = dict2.CreateArray("CFBundleURLSchemes");
+                    array2 = dict2.CreateArray("CFBundleURLSchemes");
+                    array2.AddString(taptapId);   
+                }
             }
 
             string exitsOnSuspendKey = "UIApplicationExitsOnSuspend";
