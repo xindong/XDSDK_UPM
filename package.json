@@ -2,7 +2,7 @@
     "name": "com.xd.sdk",
     "displayName": "XDSDK",
     "description": "TapTap Develop Service!",
-    "version": "3.1.1",
+    "version": "3.1.2",
     "unity": "2018.3",
     "license": "MIT",
     "dependencies": {

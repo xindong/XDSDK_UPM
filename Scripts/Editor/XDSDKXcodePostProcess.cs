@@ -67,9 +67,9 @@ using TDSEditor;
 
                 string remotePackagePath = TDSFileHelper.FilterFile(parentFolder + "/Library/PackageCache/","com.xd.sdk@");
 
-                string localPacckagePath = TDSFileHelper.FilterFile(parentFolder,"XDSDK");
+                string localPackagePath = TDSFileHelper.FilterFile(parentFolder,"XDSDK");
 
-                string tdsResourcePath = remotePackagePath !=null ? remotePackagePath + "/Plugins/iOS/Resource" : localPacckagePath + "/Plugins/iOS/Resource";
+                string tdsResourcePath = remotePackagePath !=null ? remotePackagePath + "/Plugins/iOS/Resource" : localPackagePath + "/Plugins/iOS/Resource";
                 
                 if(Directory.Exists(tdsResourcePath)){
                     Debug.Log($"Copy XDSDKResource to XCode Project:{tdsResourcePath}");

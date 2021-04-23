@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 3.1.2
+
+### BugFix
+
+* 修复 iOS Processor.cs 脚本未添加 TapTap URLTypes 的错误
+
 ## 3.1.1
 
 ### BugFix
