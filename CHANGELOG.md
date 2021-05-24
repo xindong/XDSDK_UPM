@@ -1,4 +1,23 @@
 # ChangeLog
+## 3.3.0 
+
+### Feature
+* Android / iOS 将隐私协议验证调整至初始化之前
+* Android 更新 OAID 依赖库
+* Android 更新防沉迷依赖库
+
+
+## 3.2.0    
+### Feature
+* Android / iOS 修改实名提示文案
+* Android / iOS 修改不同意隐私和用户等协议时文案显示
+* Android / iOS 修改心动注册时默认为未同意协议
+* iOS TapDB在 14.5及以上不再申请 IDFA 权限
+
+### Dependencies
+
+* TapSDK Version ---> 1.1.5
+
 
 ## 3.1.2
 
@@ -25,6 +44,8 @@
 * iOS 修复动态屏幕旋转异常
 ### Dependencies
 * TapSDK version --> 1.0.8
+
+
 ## 3.0.0 
 
 ### 1. 功能变更
