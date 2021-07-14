@@ -3,11 +3,11 @@
 ## 3.3.1
 
 ### Feature
-* 升级 TapSDK 版本 1.1.5
+* 升级 TapSDK UPM版本 1.1.8
 
 ### Dependencies
 
-* TapSDK Version ---> 1.1.5
+* TapSDK UPM Version ---> 1.1.8
 
 
 ## 3.3.0 
