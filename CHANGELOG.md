@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 3.3.1
+
+### Feature
+* 升级 TapSDK 版本 1.1.5
+
+### Dependencies
+
+* TapSDK Version ---> 1.1.5
+
+
 ## 3.3.0 
 
 ### Feature
