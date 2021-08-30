@@ -1,5 +1,12 @@
 # ChangeLog
 
+## 3.3.2
+* 兼容今日头条分包 SDK 
+* 升级 TapSDK UPM 版本 1.1.9
+
+### Dependencies
+* TapSDK UPM Version ---> 1.1.9
+
 ## 3.3.1
 
 ### Feature
