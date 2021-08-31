@@ -31,6 +31,7 @@
 	* <a href="#4.2">2.处理支付回调</a>
 * <a href="#5">广告渠道配置</a>
 	* <a href="#5.1">1.广告部分说明</a>
+	* <a href="#5.2">2.今日头条分包SDK接入说明 ( 仅Android )</a>
 
 
 <a name="1"></a>
@@ -1268,6 +1269,22 @@ SDK提供接口，获取当前包的渠道名。（单接TapDB时可以使用改
 public static string GetAdChannelName()
 
 ```
+
+<a name="5.2"></a>
+### 2. 今日头条分包SDK接入说明 ( 仅Android )
+> **_NOTE:_** 由于今日头条的相关规定，若游戏需要在今日头条进行广告投放，则「强制接入」此 SDK。具体需求请与广告组联系。
+
+使用今日头条的分包时，将 humesdk-1.0.0.aar 包加入工程
+
+##### 渠道号读取
+* 无需初始化
+
+调用API读取渠道号
+```
+//获取当前包的渠道名（安卓）
+public static string GetAdChannelName()
+```
+
 
 
 
