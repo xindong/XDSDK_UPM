@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 3.3.3
+
+### BugFix
+* 修复 Android 初始化时 TapDB 传值问题
+
 ## 3.3.2
 * 兼容今日头条分包 SDK 
 * 升级 TapSDK UPM 版本 1.1.9
