@@ -58,6 +58,9 @@ namespace xdsdk
 
 		//登录
 		void Login();
+		
+		//账户注销
+		void AccountCancellation();
 
 		//获取Access Token
 		string GetAccessToken();

@@ -306,6 +306,13 @@ namespace xdsdk
                 // TODO
 #endif
         }
+        
+        public void AccountCancellation(){
+#if UNITY_ANDROID && !UNITY_EDITOR
+
+#endif
+
+        }
 
         public void GuestLogin()
         {

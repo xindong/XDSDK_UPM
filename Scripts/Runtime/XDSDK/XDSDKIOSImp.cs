@@ -237,6 +237,14 @@ namespace xdsdk
 #endif
         }
 
+        public void AccountCancellation()
+        {
+#if UNITY_IOS && !UNITY_EDITOR
+         accountCancellation();
+#endif 
+        }
+        
+
         public string GetAccessToken()
         {
 #if UNITY_IOS && !UNITY_EDITOR
@@ -492,6 +500,9 @@ namespace xdsdk
 
         [DllImport("__Internal")]
         private static extern void xdLogin();
+
+       [DllImport("__Internal")]
+       private static extern void  accountCancellation();
 
         [DllImport("__Internal")]
         private static extern bool isXdLoggedIn();

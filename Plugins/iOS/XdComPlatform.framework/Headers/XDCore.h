@@ -315,6 +315,11 @@ NSMutableDictionary *params = [NSMutableDictionary dictionary];
 /// @param type 0用户协议， 1游戏协议， 2隐私协议
 + (void)openProtocolWithType:(NSInteger)type;
 
+// 账户注销
++ (void)accountCancellation;
+
+
+
 @end
 
 #endif

@@ -88,6 +88,13 @@ namespace xdsdk
 		public static void Login(){
 			getXDSDKImp().Login ();
 		}
+
+		public static void AccountCancellation()
+		{
+			getXDSDKImp().AccountCancellation();
+
+		}
+		
 		//获取Access Token
 		public static string GetAccessToken(){
 			return getXDSDKImp().GetAccessToken ();
