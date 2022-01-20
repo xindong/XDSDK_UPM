@@ -23,6 +23,7 @@
 	* <a href="#2.16">16.XDLive 直播</a>
 	* <a href="#2.17">17.打开协议页面</a>
 	* <a href="#2.18">18.地区判断</a>
+	* <a href="#2.19">19.账户注销</a>
 * <a href="#3">原生平台设置</a>
 	* <a href="#3.1">1.Android 平台设置</a>
 	* <a href="#3.2">2.iOS 平台设置</a>
@@ -59,7 +60,7 @@
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.3.3“,
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.4.0“,
         "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.1.9"
     }
 ```
@@ -929,6 +930,20 @@ TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 {
     //true 大陆 false 非大陆
 });
+
+```
+
+<a name="3"></a>
+
+<a name="2.18"></a>
+
+### 18. 账号注销 （仅iOS支持）
+
+如果需要判断当前地区是否在大陆内，可调用如下接口：
+
+```c#
+
+xdsdk.XDSDK.AccountCancellation();
 
 ```
 

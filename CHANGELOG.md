@@ -1,5 +1,8 @@
 # ChangeLog
 
+##3.4.0
+* iOS 新增账户注销
+
 ## 3.3.3
 
 ### BugFix
