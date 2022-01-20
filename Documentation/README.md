@@ -933,11 +933,10 @@ TDSCommon.TDSCommon.GetRegionCode((isMainland)=>
 
 ```
 
-<a name="3"></a>
 
-<a name="2.18"></a>
+<a name="2.19"></a>
 
-### 18. 账号注销 （仅iOS支持）
+### 19. 账号注销 （仅iOS支持）
 
 如果需要判断当前地区是否在大陆内，可调用如下接口：
 
