@@ -1,4 +1,10 @@
 # ChangeLog
+##3.4.1
+* Android 添加政策合规及漏洞风险处理
+
+### Dependencies
+* TapSDK UPM Version ---> 1.2.1
+
 
 ##3.4.0
 * iOS 新增账户注销
