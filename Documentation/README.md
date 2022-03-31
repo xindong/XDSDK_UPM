@@ -60,8 +60,8 @@
 ```json
 //在YourProjectPath/Packages/manifest.json中添加以下代码
 "dependencies":{
-        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.4.0“,
-        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.1.9"
+        "com.xd.sdk":"https://github.com/xindong/XDSDK_UPM.git#3.4.2“,
+        "com.tds.sdk":"https://github.com/xindong/TAPSDK_UPM.git#1.2.1"
     }
 ```
 
@@ -73,7 +73,7 @@
 
 #### 1.3 通过本地源码导入
 
-在 ProjectPath 目录下新建 XDSDK、TapSDK 两个文件夹，拷贝 [XDSDK源码](https://github.com/xindong/XDSDK_UPM.git#3.3.3) 、[TapSDK源码](https://github.com/xindong/TAPSDK_UPM.git#1.1.9) 到指定目录中。
+在 ProjectPath 目录下新建 XDSDK、TapSDK 两个文件夹，拷贝 [XDSDK源码](https://github.com/xindong/XDSDK_UPM.git#3.4.2) 、[TapSDK源码](https://github.com/xindong/TAPSDK_UPM.git#1.2.1) 到指定目录中。
 
 >注意：ProjectPath/XDSDK，Project/TapSDK 目录均为大小写敏感，且 XDSDK 、TapSDK 会对该目录下的资源文件进行脚本依赖。
 
