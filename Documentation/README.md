@@ -33,6 +33,7 @@
 * <a href="#5">广告渠道配置</a>
 	* <a href="#5.1">1.广告部分说明</a>
 	* <a href="#5.2">2.今日头条分包SDK接入说明 ( 仅Android )</a>
+	* <a href="#5.3">3.腾讯广点通分包SDK接入说明 ( 仅Android )</a>
 
 
 <a name="1"></a>
@@ -1299,6 +1300,18 @@ public static string GetAdChannelName()
 public static string GetAdChannelName()
 ```
 
+<a name="5.3"></a>
+### 3. 腾讯广点通分包 SDK 接入说明 ( 仅Android )
+因腾讯广点通分包 SDK 的限制，需要添加远程依赖，需要手动添加远程依赖属性，另 XDAdAction 库已升级到 2.0 版本，添加 XDAdAction_v2.0.aar 包导入到 app module 级别的 libs 文件夹中，
+在 app 级的 build.gradle 文件中添加腾讯广告系统分包依赖包：
+
+```groovy
+
+// 腾讯广点通分包 SDK
+implementation 'com.tencent.vasdolly:helper:3.0.4'
+```
+
+附：[腾讯广点通分包 SDK 接入原始文档](https://docs.qq.com/doc/DQkNBeVR4UmFNd2pO)
 
 
 
