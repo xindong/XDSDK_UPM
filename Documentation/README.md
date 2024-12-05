@@ -1265,9 +1265,9 @@ XDSDK内部集成了部分主要渠道广告 SDK，包括今日头条巨量广�
 
 #### 1.2	Android
 
-今日头条：版本2.0.6
+今日头条：版本6.16.9
 
-广点通：版本1.4.9
+广点通：~~版本1.4.9~~， 从 XDAdAction_v2.2.aar 开始，内部不在包含广点通 SDK，如有广点通广告 SDK 需求，需要手动添加。
 
 需要使用广告包时，将XDAdAction.aar加入工程。并添加新权限
 
@@ -1286,11 +1286,34 @@ public static string GetAdChannelName()
 
 ```
 
+##### 今日头条广告 SDK 集成
+
+1） 添加仓库
+
+```groovy
+allprojects {
+    repositories {
+        maven {
+            url 'https://artifact.bytedance.com/repository/Volcengine/'
+        }
+    }
+}
+```
+
+2) 添加 SDK
+
+```groovy
+// Applog 上报组件（必须）
+implementation 'com.bytedance.applog:RangersAppLog-Lite-cn:6.16.9'
+// 商业化组件（必须，头条广告埋点 SDK 从 6.15.4 版本开始已更改组件名称，如有旧版 SDK 依赖，可以删除依赖，并添加以下依赖
+implementation 'com.bytedance.ads:AppConvert:1.3.1.9'
+```
+
 <a name="5.2"></a>
 ### 2. 今日头条分包SDK接入说明 ( 仅Android )
 > **_NOTE:_** 由于今日头条的相关规定，若游戏需要在今日头条进行广告投放，则「强制接入」此 SDK。具体需求请与广告组联系。
-
-使用今日头条的分包时，将 humesdk-1.0.0.aar 包加入工程
+> 
+> **_WARNING:_** 从 XDAdAction_v2.2.aar 开始，不再使用 humesdk-1.0.0.aar 获取分包信息，头条已将功能放到了商业化组件中，如有添加，请删除该 aar 包。
 
 ##### 渠道号读取
 * 无需初始化
