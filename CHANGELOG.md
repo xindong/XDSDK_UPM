@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 3.7.2
+- iOS 升级 QQ SDK 3.5.17_lite
+
+## 3.7.1
+- iOS 升级 5.4.2，兼容 iOS on Mac 问题
+
 ## 3.7.0
 - Android 升级巨量广告 SDK  6.16.9 & 商业化组件 1.3.1.0 版本
 

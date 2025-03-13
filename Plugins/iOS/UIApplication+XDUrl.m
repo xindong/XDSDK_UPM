@@ -5,11 +5,11 @@
 //  Created by Fattycat on 2025/2/18.
 //
 
-#import "UIApplication+XDG.h"
+#import "UIApplication+XDUrl.h"
 
 #import <objc/runtime.h>
 
-@implementation UIApplication_XDG
+@implementation UIApplication_XDUrl
 // 利用runtime将UIApplication的@selector(openURL:)改为iOS 10的那个
 
 + (void)load {

@@ -14,7 +14,7 @@
 
 
 
-#define XDSDK_VERSION @"5.4.2"
+#define XDSDK_VERSION @"5.4.3"
 
 @interface XDCore : NSObject
 

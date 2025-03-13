@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIApplication_XDG : UIApplication
+@interface UIApplication_XDUrl : UIApplication
 
 @end
 

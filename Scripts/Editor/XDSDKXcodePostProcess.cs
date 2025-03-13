@@ -161,7 +161,10 @@ using TDSEditor;
                 "mqzone",
                 "weixin",
                 "wechat",
-                "weixinULAPI"
+                "weixinULAPI",
+                "tim",
+                "mqqopensdknopasteboard",
+                "mqqopensdknopasteboardios16"
             };
             PlistElementArray _list = _rootDic.CreateArray("LSApplicationQueriesSchemes");
             for (int i = 0; i < items.Count; i++)

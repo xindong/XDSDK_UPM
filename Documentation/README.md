@@ -1061,6 +1061,10 @@ tt{TapTap AppID}|用户TapTap授权登录后跳回|tt123456
 <string>wechat</string>
 // 2.1.0
 <string>weixinULAPI</string>
+// 5.7.2
+<string>tim</string>
+<string>mqqopensdknopasteboard</string>
+<string>mqqopensdknopasteboardios16</string>
 </array>
 <key>NSAppTransportSecurity</key>
 <dict>
